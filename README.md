@@ -20,7 +20,7 @@ webpage real estate
         </tr>
         <tr>
             <td><a href="https://www.instagram.com/reel/DU1nxKEEcYA/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_self"><img src="06999d6a-b1c2-49bd-9b06-b3fd575181d3.png"></a></td>
-            <td><a href="file:///C:/Users/Aluno/Documents/CPF%2070982909209_YAKELINDIAZ_PROGRAMAWEB/h=ZDNlZDc0MzIxNw=" target="_blank"><img src="cf4dd48c-a09b-416b-a941-d5019321388e.png"></a></td>
+            <td><a href="[file:///C:/Users/Aluno/Documents/CPF%2070982909209_YAKELINDIAZ_PROGRAMAWEB/h=ZDNlZDc0MzIxNw=](https://www.instagram.com/reel/DU1nxKEEcYA/?utm_source=ig_web_button_share_sheet)" target="_blank"><img src="cf4dd48c-a09b-416b-a941-d5019321388e.png"></a></td>
             <td><a href="https://www.instagram.com/reel/DUehrABEfFF/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="d4988773-30bb-45de-8d90-05da5eca97b0.png" alt="Apartments Penhouse"></a></td>
         </tr>
         <tr>
