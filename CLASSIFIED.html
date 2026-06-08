@@ -50,6 +50,31 @@
 			</div>
 		</h2>
 	<h3>
+		<style>
+  /* Contenedor principal */
+  .contenedor {
+    position: relative; /* Necesario para posicionar elementos hijos */
+    width: 400px;
+    height: 300px;
+    background-color: #f0f0f0;
+    border: 2px solid #333;
+    overflow: hidden; /* Evita que la imagen sobresalga */
+  }
+
+  /* Imagen en la esquina inferior derecha */
+  .imagen-esquina {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    border-bottom-right-radius: 50px; /* Redondea solo la esquina inferior derecha */
+    border-top-left-radius: 20px; /* Opcional: redondear otra esquina */
+    border: 3px solid white; /* Borde decorativo */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Sombra opcional */
+  }
+</style>
 		<button class="ripple-btn"><a href="https://wa.me/+5511939385258" target="_blank"><img src="whatsapp 4.0.gif" alt="Chat en WhatsApp width:20"></a></button>
 	</h3>
 	</body>
