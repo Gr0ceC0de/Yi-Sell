@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Global Technology, Fintech & Crypto Headlines</title>
+<title>Yi-Sell Navigation Index</title>
 
-<meta name="description" content="index for visible content Yisel">
-</head>
+<meta name="description" content="Navigation index for Yi-Sell Trading Assistant">
 
-<style>*{
+<style>
+
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -17,79 +19,96 @@
 
 body{
     font-family:Consolas,"Courier New",monospace;
-    color:#222;
-
-    background:
-    linear-gradient(
-        rgba(255,255,255,0.88),
-        rgba(255,255,255,0.88)
-    ),
-    url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
+    background:#111;
+    color:white;
 }
 
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:20px;
+/* HEADER */
+header{
+    text-align:center;
+    padding:30px;
 }
 
 /* NAVIGATION */
-
 nav{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
     gap:15px;
-    margin-bottom:30px;
+    padding:20px;
 }
 
-.ripple-btn{
-    border:none;
-    background:transparent;
-    cursor:pointer;
+nav a{
+    text-decoration:none;
+    color:white;
+    background:#222;
+    padding:10px 15px;
+    border-radius:6px;
 }
 
-.ripple-btn img{
-    display:block;
-    height:55px;
-    width:auto;
+nav a:hover{
+    background:#444;
 }
 
-.ripple-btn:hover{
-    transform:scale(1.06);
-    transition:.25s;
+/* SECTIONS */
+section{
+    padding:60px 20px;
+    border-top:1px solid #333;
 }
 
-/* TITLES */
+/* COLORS FOR VISIBILITY */
+#headlines{ background:#1a1a1a; }
+#classified{ background:#141414; }
+#market{ background:#101010; }
+#properties{ background:#0d0d0d; }
+#shopping{ background:#080808; }
 
-h1{
-    text-align:center;
-    font-size:2.4rem;
-    margin-bottom:10px;
-}
+</style>
 
-.subtitle{
-    text-align:center;
-    margin-bottom:30px;
-    font-size:1rem;
-}
-
-/* TABLE */
-
-.table-wrapper{
-    overflow-x:auto;
-} </style>
+</head>
 
 <body>
-  <a href="#headlines"></a>
-  <a href="#classified"></a>
-  <a href="#market overview"></a>
-  <a href="#properties caracas"></a>
-  <a href="#shopping456"></a>
-	  </body>
+
+<header>
+<h1>Yi-Sell Navigation Index</h1>
+<p>Click a section to jump inside the page</p>
+</header>
+
+<nav>
+<a href="#headlines">Headlines</a>
+<a href="#classified">Classified</a>
+<a href="#market">Market Overview</a>
+<a href="#properties">Properties</a>
+<a href="#shopping">Shopping Cart</a>
+</nav>
+
+<!-- SECTIONS -->
+
+<section id="headlines">
+<h2>Headlines</h2>
+<p>This is your headlines section (paste content here).</p>
+</section>
+
+<section id="classified">
+<h2>Classified Ads</h2>
+<p>This is your classified ads section (paste content here).</p>
+</section>
+
+<section id="market">
+<h2>Market Overview</h2>
+<p>This is your forex/crypto market section (paste content here).</p>
+</section>
+
+<section id="properties">
+<h2>Properties Caracas</h2>
+<p>This is your real estate section (paste content here).</p>
+</section>
+
+<section id="shopping">
+<h2>Shopping Cart</h2>
+<p>This is your shopping cart section (paste content here).</p>
+</section>
+
+</body>
 </html>
   
