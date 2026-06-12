@@ -1,187 +1,158 @@
 <!DOCTYPE html>
-<html lang="en"> 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="styles.css">
-		<title>Yi-Sell Navigation Index</title>
-		<meta name="description" content="Navigation Yi-Sell Trading Tools">
-	</head>
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-body{
-    font-family:Consolas,"Courier New",monospace;
-    background:#111;
-    color:white;
-}
-/* HEADER */
-	header{
-    text-align:center;
-    padding:30px;
-}
-/* NAVIGATION */
-nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-    padding:20px;
-}
-nav a{
-    text-decoration:none;
-    color:white;
-    background:#222;
-    padding:10px 15px;
-    border-radius:6px;
-}
-nav a:hover{
-    background:#444;
-}
-/* SECTIONS */
-section{
-    padding:60px 20px;
-    border-top:1px solid #333;
-}
-/* COLORS FOR VISIBILITY */
-#headlines{ background:#1a1a1a; }
-#classified{ background:#141414; }
-#market{ background:#101010; }
-#properties{ background:#0d0d0d; }
-#shopping{ background:#080808; }
-</style>
-	</head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yi-Sell Navigation Index</title>
+    <meta name="description" content="Navigation Yi-Sell Trading Tools">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Consolas,"Courier New",monospace;
+            background:#111;
+            color:white;
+        }
+
+        header{
+            text-align:center;
+            padding:30px;
+        }
+
+        nav{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:15px;
+            padding:20px;
+        }
+
+        nav a{
+            text-decoration:none;
+            color:white;
+            background:#222;
+            padding:10px 15px;
+            border-radius:6px;
+            display:inline-block;
+        }
+
+        nav a:hover{
+            background:#444;
+        }
+
+        nav img{
+            max-width:120px;
+            height:auto;
+            display:block;
+        }
+
+        section{
+            padding:60px 20px;
+            border-top:1px solid #333;
+        }
+
+        #headlines{
+            background:#1a1a1a;
+        }
+
+        #classified{
+            background:#141414;
+        }
+
+        #market{
+            background:#101010;
+        }
+
+        #properties{
+            background:#0d0d0d;
+        }
+
+        #shopping{
+            background:#080808;
+        }
+
+        .ripple-btn{
+            cursor:pointer;
+        }
+    </style>
+</head>
+
 <body>
-	<header>
-		<h1>Yi-Sell Navigation Index</h1>
-		<p>Click a section to jump inside the page</p>
+
+<header>
+    <h1>Yi-Sell Navigation Index</h1>
+    <p>Click a section to jump inside the page</p>
 </header>
+
 <div class="container">
-<nav>
-<a href="TradingTools.html" class="ripple-btn">
-<img src="docs/rob.gif" alt="info products">
-</a>
 
-<a href="MARKET(OVER)VIEW.html" class="ripple-btn">
-<img src="docs/exchanges.gif" alt="Rates">
-</a>
+    <nav>
+        <a href="TradingTools.html" class="ripple-btn">
+            <img src="docs/rob.gif" alt="Info Products">
+        </a>
 
-<a href="HEADLINES.html" class="ripple-btn">
-<img src="docs/headtitle.gif" alt="Headlines">
-</a>
+        <a href="MARKET(OVER)VIEW.html" class="ripple-btn">
+            <img src="docs/exchanges.gif" alt="Rates">
+        </a>
 
-<a href="classifieds.html" class="ripple-btn">
-<img src="docs/classsified.gif" alt="Classified">
-</a>
+        <a href="HEADLINES.html" class="ripple-btn">
+            <img src="docs/headtitle.gif" alt="Headlines">
+        </a>
 
-<a href="shopping456.html" class="ripple-btn">
-<img src="docs/shoppingcart.gif" alt="Shopping">
-</a>
+        <a href="classifieds.html" class="ripple-btn">
+            <img src="docs/classsified.gif" alt="Classified">
+        </a>
 
-</nav>
+        <a href="shopping456.html" class="ripple-btn">
+            <img src="docs/shoppingcart.gif" alt="Shopping">
+        </a>
+    </nav>
 
-<!-- SECTIONS -->
-    font-family:Consolas,"Courier New",monospace;
-    background:#111;
-    color:white;
-}
-/* HEADER */
-	header{
-    text-align:center;
-    padding:30px;
-}
-/* NAVIGATION */
-nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-    padding:20px;
-}
-nav a{
-    text-decoration:none;
-    color:white;
-    background:#222;
-    padding:10px 15px;
-    border-radius:6px;
-}
-nav a:hover{
-    background:#444;
-}
-/* SECTIONS */
-section{
-    padding:60px 20px;
-    border-top:1px solid #333;
-}
-/* COLORS FOR VISIBILITY */
-#headlines{ background:#1a1a1a; }
-#classified{ background:#141414; }
-#market{ background:#101010; }
-#properties{ background:#0d0d0d; }
-#shopping{ background:#080808; }
-</style>
-	</head>
-<body>
-	<header>
-		<h1>Yi-Sell Navigation Index</h1>
-		<p>Click a section to jump inside the page</p>
-</header>
-<div class="container">
-<nav>
-<a href="TradingTools.html" class="ripple-btn">
-<img src="docs/rob.gif" alt="info products">
-</a>
+    <section id="trading-tools">
+        <h2>Trading Tools</h2>
 
-<a href="MARKET(OVER)VIEW.html" class="ripple-btn">
-<img src="docs/exchanges.gif" alt="Rates">
-</a>
+        <button class="ripple-btn">
+            <img src="docs/TreMA.jpg" alt="Trend Advisory Forex">
+            Robots and Tools: Script .mql5 Trend Advisory Forex
+        </button>
+    </section>
 
-<a href="HEADLINES.html" class="ripple-btn">
-<img src="docs/headtitle.gif" alt="Headlines">
-</a>
+    <section id="properties">
+        <h2>Financial Algorithm</h2>
 
-<a href="classifieds.html" class="ripple-btn">
-<img src="docs/classsified.gif" alt="Classified">
-</a>
+        <a href="TradingTools.html" target="_blank" class="ripple-btn">
+            <img src="docs/Adas.gif" alt="Financial Algorithm">
+        </a>
+    </section>
 
-<a href="shopping456.html" class="ripple-btn">
-<img src="docs/shoppingcart.gif" alt="Shopping">
-</a>
+    <section id="market">
+        <h2>Market Overview</h2>
 
-</nav>
+        <p>
+            Forex Major
+            <a href="MARKET(OVER)VIEW.html" class="ripple-btn">
+                <img src="docs/exchanges.gif" alt="Rates">
+            </a>
+        </p>
+    </section>
 
-<!-- SECTIONS -->
-<section id="Robots and Tranding Tools">
-<h2>Trading Tools</h2>
-  <tr>
-    <td><button class="ripple-btn"><img src="docs/TreMA.jpg">Robots and Tools: Script .mql5 Trend Advisory Forex</td>
-	</tr>
-</section>
-	
-	<section id="properties">
-		<h2>Financial Algorithm</h2>
-		<button class="ripple-btn"><a href="TradingTools.html" target="_blank"><img src="docs/Adas.gif"></td>		
-</section>
+    <section id="headlines">
+        <h2>Headlines</h2>
+        <p>Follow the news</p>
+    </section>
 
-	<section id="market">
-		<h2>Market Overview</h2>
-		<p>Forex Major <a href="MARKET(OVER)VIEW.html" class="ripple-btn">
-			<img src="docs/exchanges.gif" alt="Rates"></a></p>
-</section>
+    <section id="classified">
+        <h2>Classified Ads</h2>
+        <p>Selling Anything</p>
+    </section>
 
-<section id="headlines">
-<h2>Headlines</h2>
-<p>Follow the news</p>
-</section>
+</div>
 
-<section id="classified">
-<h2>Classified Ads</h2>
-<p>Selling Anything</p>
-</section>
-			
 </body>
 </html>
   
