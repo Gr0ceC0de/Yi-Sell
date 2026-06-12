@@ -1,4 +1,74 @@
 /* ===== GLOBAL DOCUMENT STYLES ===== */
+RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    font-family:Consolas,"Courier New",monospace;
+    color:white;
+
+    /* background moderno + imagen */
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+    ),
+    url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    font-size:2.4rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:1rem;
+    color:#ccc;
+}
+
+/* NAVIGATION (buttons + icons support) */
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+/* TEXT NAV LINKS */
+nav a{
+    text-decoration:none;
+    color:white;
+    background:#222;
+    padding:10px 15px;
+    border-radius:6px;
+    transition:0.2s;
+}
+
 
 * {
     margin: 0;
