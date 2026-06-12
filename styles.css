@@ -2,6 +2,31 @@
 YI-SELL DESIGN SYSTEM v1.0
 Luxury Finance • Trading • News • Marketplace
 ========================================== */
+<style>
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    font-family:Consolas,"Courier New",monospace;
+    color:white;
+
+    /* background moderno + imagen */
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+    ),
+    url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
 
 /* ===== ROOT ===== */
 
