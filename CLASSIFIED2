@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Yi-Sell | Classified Marketplace</title>
+
+<meta name="description" content="Forex Tools, Properties, Jobs, Business Opportunities, Technology and Classified Ads">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#050505;
+--card:#1a1a1a;
+--border:#2c2c2c;
+--accent:#00d9a5;
+--text:#ffffff;
+--muted:#a7a7a7;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+/* HEADER */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 40px;
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:2rem;
+font-weight:800;
+}
+
+.languages{
+display:flex;
+gap:12px;
+}
+
+.languages button{
+background:transparent;
+border:1px solid #666;
+color:white;
+padding:10px 18px;
+border-radius:12px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+max-width:1200px;
+margin:auto;
+padding:80px 30px;
+}
+
+.hero-tag{
+color:var(--accent);
+font-weight:700;
+margin-bottom:15px;
+text-transform:uppercase;
+letter-spacing:2px;
+}
+
+.hero h1{
+font-size:3.2rem;
+margin-bottom:20px;
+line-height:1.1;
+}
+
+.hero p{
+font-size:1.2rem;
+color:var(--muted);
+max-width:900px;
+line-height:1.7;
+}
+
+/* TABS */
+
+.tabs{
+display:flex;
+gap:40px;
+padding:20px 40px;
+border-bottom:1px solid #333;
+}
+
+.tabs a{
+color:white;
+text-decoration:none;
+font-weight:600;
+padding-bottom:12px;
+}
+
+.tabs a:hover{
+color:var(--accent);
+}
+
+/* SECTION */
+
+.section-title{
+max-width:1400px;
+margin:auto;
+padding:35px 40px;
+font-size:1.1rem;
+letter-spacing:2px;
+color:#aaa;
+}
+
+/* PRODUCTS */
+
+.products{
+max-width:1400px;
+margin:auto;
+padding:0 40px 50px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:24px;
+padding:28px;
+transition:0.3s;
+}
+
+.card:hover{
+border-color:var(--accent);
+transform:translateY(-5px);
+}
+
+.card img{
+width:70px;
+height:70px;
+object-fit:contain;
+margin-bottom:20px;
+}
+
+.card h3{
+font-size:1.6rem;
+margin-bottom:15px;
+}
+
+.card p{
+color:var(--muted);
+line-height:1.7;
+margin-bottom:25px;
+}
+
+.price{
+font-size:2rem;
+font-weight:700;
+margin-bottom:25px;
+display:block;
+}
+
+.btn{
+display:block;
+text-align:center;
+padding:15px;
+border:1px solid #555;
+border-radius:12px;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+background:var(--accent);
+color:black;
+}
+
+/* FOOTER */
+
+.footer{
+border-top:1px solid #222;
+margin-top:50px;
+padding:30px;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.footer a{
+color:#ccc;
+text-decoration:none;
+}
+
+.footer a:hover{
+color:var(--accent);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.2rem;
+}
+
+.tabs{
+overflow-x:auto;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<div class="logo">Yi-Sell</div>
+
+<div class="languages">
+<button>EN</button>
+<button>ES</button>
+<button>PT</button>
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-tag">
+CLASSIFIED MARKETPLACE
+</div>
+
+<h1>
+Products, Properties, Forex Tools & Business Opportunities
+</h1>
+
+<p>
+Welcome to Yi-Sell. Find Forex Robots, Trading Indicators,
+Real Estate, Technology, Laser Equipment, Business Services,
+Jobs and Classified Advertisements from around the world.
+</p>
+
+</section>
+
+<nav class="tabs">
+
+<a href="shopping456.html">Products</a>
+
+<a href="MARKET(OVER)VIEW.html">Market</a>
+
+<a href="HEADLINES.html">News</a>
+
+<a href="CLASSIFIED.html">Classified</a>
+
+</nav>
+
+<div class="section-title">
+FEATURED LISTINGS
+</div>
+
+<section class="products">
+
+<!-- NOTEBOOK -->
+
+<div class="card">
+
+<img src="docs/notebook.gif">
+
+<h3>LOQ Intel Core i5</h3>
+
+<p>
+Intel Core i5/i3 13450HX,
+16GB RAM,
+512GB SSD.
+</p>
+
+<span class="price">
+R$ 3.950
+</span>
+
+<a
+class="btn"
+href="https://link.infinitepay.io/yakelin-yisel/VC1DLUMtSQ-6eWdptstqV-3950,00">
+Buy →
+</a>
+
+</div>
+
+<!-- APARTMENTS -->
+
+<div class="card">
+
+<img src="docs/icon apart.gif">
+
+<h3>Apartments Caracas</h3>
+
+<p>
+Apartments from
+40m² to 500m².
+Residential and investment opportunities.
+</p>
+
+<span class="price">
+Listings
+</span>
+
+<a
+class="btn"
+href="PropertiesCaracas.html">
+View Properties →
+</a>
+
+</div>
+
+<!-- LASER -->
+
+<div class="card">
+
+<img src="docs/laser.gif">
+
+<h3>Q-Switch ND:YAG Laser</h3>
+
+<p>
+Professional laser equipment
+for aesthetic and dermatology treatments.
+</p>
+
+<span class="price">
+R$ 14.600
+</span>
+
+<a
+class="btn"
+href="https://1drv.ms/v/c/ad7965b7f3c5d0f8/IQQ_jnH9-zomSa7d0IkzBWeeAe42eL3eRJx2zy-sHsi9wOo">
+Details →
+</a>
+
+</div>
+
+<!-- ISO -->
+
+<div class="card">
+
+<img src="docs/icon Services.gif">
+
+<h3>ISO 10002 Surveys</h3>
+
+<p>
+Customer Satisfaction Surveys,
+Service Quality Assessment
+and Business Improvement.
+</p>
+
+<span class="price">
+Consulting
+</span>
+
+<a
+class="btn"
+href="https://wa.me/5511939385258">
+Request →
+</a>
+
+</div>
+
+<!-- GEMSTONES -->
+
+<div class="card">
+
+<img src="docs/CrystalStones.jpg">
+
+<h3>Gemstones & Crystals</h3>
+
+<p>
+Buying and selling gemstones,
+minerals and collectible crystals.
+</p>
+
+<span class="price">
+Offers Open
+</span>
+
+<a
+class="btn"
+href="https://wa.me/5511939385258">
+Contact →
+</a>
+
+</div>
+
+<!-- TREND ADVISORY -->
+
+<div class="card">
+
+<img src="docs/TreMA.jpg">
+
+<h3>Trend Advisory Indicator</h3>
+
+<p>
+MQL5 trend signal indicator.
+Detects reversals and momentum shifts.
+</p>
+
+<span class="price">
+R$ 350
+</span>
+
+<a
+class="btn"
+href="https://link.infinitepay.io/yakelin-yisel/VC1DLUMtSQ-eyqxbzbr2s-350,00">
+Buy →
+</a>
+
+</div>
+
+<!-- TRADING ASSISTANT -->
+
+<div class="card">
+
+<img src="docs/Adas.gif">
+
+<h3>Trading Assistant</h3>
+
+<p>
+Automated Forex trading robot.
+Runs 24/5 on MT4 and MT5 with risk controls.
+</p>
+
+<span class="price">
+R$ 899
+</span>
+
+<a
+class="btn"
+href="https://link.infinitepay.io/yakelin-yisel/VC1DLUMtSQ-liQolwtIXB-899,99">
+Buy →
+</a>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<a href="https://wa.me/5511939385258">
+WhatsApp
+</a>
+
+<a href="#">
+Policy
+</a>
+
+<a href="ABOUTUS.html">
+About
+</a>
+
+</footer>
+
+</body>
+</html>
