@@ -579,7 +579,48 @@ img{
 
     border-radius:999px;
 }
+/* ==========================================
+   MARKET OVERVIEW PAGE
+   ========================================== */
 
+.market-overview-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Tables */
+.market-overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.market-overview-table th,
+.market-overview-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.market-overview-table img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .market-overview-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .market-overview-table img {
+        width: 60px;
+        height: 60px;
+    }
+}
 /* =========================
    FOOTER
 ========================= */
