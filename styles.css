@@ -1,909 +1,487 @@
-/* ==========================================
-YI-SELL DESIGN SYSTEM v1.0
-Luxury Finance • Trading • News • Marketplace
-========================================== */
+/* =====================================================
+   YI-SELL ULTRA LUXURY DESIGN SYSTEM
+   Finance • News • Trading • Marketplace
+   Feminine Edition
+===================================================== */
 
-            body{    background-image: url("docs/frog bot space.jpg");
-                     background-size: cover;
-                     background-repeat: no-repeat;
-                     background-attachment: fixed;
-                     font-family: Consolas, Lucida Console, monospace;
-                     color: white;}
-            table{
-                width: fit-content;
-                width:100%;
-                background-color: rgba(0,0,0,0.65);
-                border-collapse: collapse;}
-            td, th{
-                border:0px solid white;
-                width: fit-content;
-                white-space: nowrap;
-                padding:10px;
-                text-align:center;}
-            h1{ text-align:center;
-                   color:white;
-               }
-            nav{
-                    background-color: rgba(0,0,0,0.5);
-                    padding:10px;}
-            img{    max-width:90px;
-                }
-/* RESET */
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root{
+
+    --bg-dark:#120918;
+    --bg-card:rgba(28,15,38,.82);
+
+    --fuchsia:#d63384;
+    --rose:#ff5ea8;
+    --pink:#ffd6eb;
+    --violet:#8a2be2;
+
+    --white:#ffffff;
+    --soft-white:#fff8fc;
+
+    --text:#fdf7fb;
+    --muted:#cba9ba;
+
+    --border:rgba(255,255,255,.15);
+
+    --radius:24px;
+
+    --shadow:
+        0 12px 35px rgba(0,0,0,.35);
+
+    --shadow-hover:
+        0 20px 60px rgba(214,51,132,.35);
+
+    --transition:.35s ease;
+}
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    font-family:Consolas,"Courier New",monospace;
-    color:#222;
+
+    min-height:100vh;
+
+    font-family:
+    "Segoe UI",
+    Inter,
+    sans-serif;
+
+    color:var(--text);
 
     background:
+
     linear-gradient(
-        rgba(255,255,255,0.88),
-        rgba(255,255,255,0.88)
+        rgba(18,9,24,.82),
+        rgba(18,9,24,.90)
     ),
-    url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
+
+    url("docs/frog bot space.jpg");
 
     background-size:cover;
     background-position:center;
     background-attachment:fixed;
 }
 
+/* =========================
+   PAGE CONTAINER
+========================= */
+
 .container{
-    max-width:1400px;
+
+    width:min(1500px,95%);
     margin:auto;
-    padding:20px;
+
+    padding:35px;
 }
 
-/* NAVIGATION */
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    margin-bottom:40px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+    text-align:center;
+
+    font-size:4rem;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:var(--rose);
+
+    text-shadow:
+    0 0 25px rgba(255,94,168,.6);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav{
+
     display:flex;
+
     justify-content:center;
+
+    align-items:center;
+
     flex-wrap:wrap;
-    gap:15px;
-    margin-bottom:30px;
+
+    gap:16px;
+
+    padding:20px;
+
+    margin-bottom:40px;
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
 }
 
-.ripple-btn{
-    border:none;
-    background:transparent;
-    cursor:pointer;
+nav a{
+
+    text-decoration:none;
+
+    color:var(--white);
+
+    padding:14px 22px;
+
+    border-radius:18px;
+
+    font-weight:600;
+
+    transition:var(--transition);
 }
 
-.ripple-btn img{
-    display:block;
-    height:55px;
-    width:auto;
+nav a:hover{
+
+    background:linear-gradient(
+        135deg,
+        var(--fuchsia),
+        var(--rose)
+    );
+
+    transform:translateY(-3px);
 }
 
-.ripple-btn:hover{
-    transform:scale(1.06);
-    transition:.25s;
-}
-
-/* TITLES */
+/* =========================
+   TITLES
+========================= */
 
 h1{
+
     text-align:center;
-    font-size:2.4rem;
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+    color:white;
+}
+
+h2{
+
+    color:var(--pink);
+
+    margin-bottom:18px;
+}
+
+h3{
+
+    color:var(--rose);
+
     margin-bottom:10px;
 }
 
 .subtitle{
+
     text-align:center;
-    margin-bottom:30px;
-    font-size:1rem;
-}
 
-/* TABLE */
+    color:var(--muted);
 
-.table-wrapper{
-    overflow-x:auto;
-}
+    margin-bottom:35px;
 
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:8px;
-}
-
-th{
-    background:#111;
-    color:white;
-    padding:15px;
-    text-align:left;
-    font-size:1rem;
-}
-
-td{
-    background:rgba(255,255,255,0.96);
-    padding:16px;
-    vertical-align:top;
-    line-height:1.5;
-}
-
-.country{
-    width:220px;
-    font-weight:bold;
-    white-space:nowrap;
-    font-size:1.05rem;
-}
-
-.country span{
-    font-size:1.4rem;
-    margin-right:10px;
-}
-
-.headline{
-    padding-left:25px;
-}
-
-tr:hover td{
-    background:#f5f5f5;
-}
-
-/* MOBILE */
-
-@media (max-width:768px){
-
-    h1{
-        font-size:1.8rem;
-    }
-
-    .subtitle{
-        font-size:.95rem;
-    }
-
-    th,
-    td{
-        font-size:.9rem;
-        padding:12px;
-    }
-
-    .country{
-        width:150px;
-    }
-
-    .ripple-btn img{
-        height:42px;
-    }
-}
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* BODY */
-body{
-    font-family:Consolas,"Courier New",monospace;
-    color:white;
-
-    /* background moderno + imagen */
-    background:
-    linear-gradient(
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.65)
-    ),
-    url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-}
-
-/* ===== ROOT ===== */
-
-:root{
-
-```
---black:#0c1014;
---dark:#151b22;
-
---green:#22c55e;
---green-soft:#4ade80;
-
---gold:#c7a96b;
-
---paper:#faf8f3;
---paper-dark:#f1eee8;
-
---rose:#f8f2f0;
-
---white:#ffffff;
-
---text-dark:#141414;
---text-light:#ffffff;
-
---muted:#8b95a1;
-
---border:#29313b;
-
---card-dark:#171c24;
---card-light:#ffffff;
-
---radius:22px;
-
---shadow:
-    0 10px 40px rgba(0,0,0,.12);
-
---transition:.25s ease;
-```
-
-}
-
-/* ===== RESET ===== */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Inter',sans-serif;
-line-height:1.6;
-min-height:100vh;
-}
-
-/* ===== PAGE THEMES ===== */
-
-/* Trading Tools + Market */
-
-body.market,
-body.tools{
-
-```
-background:var(--black);
-color:var(--text-light);
-```
-
-}
-
-/* News */
-
-body.news{
-
-```
-background:
-linear-gradient(
-    rgba(255,255,255,.92),
-    rgba(255,255,255,.92)
-),
-url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80');
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-
-color:var(--text-dark);
-```
-
-}
-
-/* Classified */
-
-body.classified{
-background:var(--rose);
-color:var(--text-dark);
-}
-
-/* ===== CONTAINER ===== */
-
-.container{
-width:min(1400px,95%);
-margin:auto;
-}
-
-/* ===== HEADER ===== */
-
-header{
-padding:30px 0;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:20px;
-}
-
-/* ===== LOGO ===== */
-
-.logo{
-font-size:3rem;
-font-weight:900;
-letter-spacing:-2px;
-}
-
-/* ===== LANGUAGE ===== */
-
-.languages{
-display:flex;
-gap:15px;
-}
-
-.lang-btn{
-
-```
-width:90px;
-height:60px;
-
-border-radius:18px;
-
-cursor:pointer;
-
-font-weight:700;
-
-transition:var(--transition);
-```
-
-}
-
-body.market .lang-btn,
-body.tools .lang-btn{
-
-```
-border:2px solid white;
-color:white;
-background:transparent;
-```
-
-}
-
-body.market .lang-btn:hover,
-body.tools .lang-btn:hover{
-
-```
-background:white;
-color:black;
-```
-
-}
-
-body.news .lang-btn,
-body.classified .lang-btn{
-
-```
-border:1px solid #ddd;
-background:white;
-color:#222;
-```
-
-}
-
-body.news .lang-btn:hover,
-body.classified .lang-btn:hover{
-
-```
-background:var(--gold);
-color:white;
-```
-
-}
-
-/* ===== HERO ===== */
-
-.hero{
-margin-top:40px;
-padding-left:35px;
-border-left:6px solid var(--green);
-}
-
-.hero-tag{
-
-```
-color:var(--gold);
-
-text-transform:uppercase;
-
-letter-spacing:2px;
-
-font-weight:800;
-
-margin-bottom:15px;
-```
-
-}
-
-.hero h1{
-
-```
-font-size:clamp(3rem,6vw,5rem);
-
-line-height:1.05;
-
-font-weight:900;
-
-margin-bottom:25px;
-
-max-width:1000px;
-```
-
-}
-
-.hero p{
-
-```
-max-width:1000px;
-
-font-size:1.4rem;
-```
-
-}
-
-/* ===== TABS ===== */
-
-.tabs{
-
-```
-display:flex;
-
-gap:40px;
-
-margin-top:70px;
-
-overflow-x:auto;
-```
-
-}
-
-body.market .tabs,
-body.tools .tabs{
-border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-body.news .tabs,
-body.classified .tabs{
-border-bottom:1px solid rgba(0,0,0,.08);
-}
-
-.tabs a{
-
-```
-text-decoration:none;
-
-font-weight:600;
-
-padding-bottom:18px;
-
-transition:var(--transition);
-```
-
-}
-
-body.market .tabs a,
-body.tools .tabs a{
-color:#9aa5b1;
-}
-
-body.news .tabs a,
-body.classified .tabs a{
-color:#666;
-}
-
-.tabs a.active{
-
-```
-color:var(--green);
-
-border-bottom:4px solid var(--green);
-```
-
-}
-
-/* ===== SECTIONS ===== */
-
-.section-title{
-
-```
-margin-top:50px;
-
-margin-bottom:25px;
-
-color:var(--gold);
-
-letter-spacing:3px;
-
-text-transform:uppercase;
-
-font-size:1rem;
-```
-
-}
-
-/* ===== GRID ===== */
-
-.grid{
-
-```
-display:grid;
-
-grid-template-columns:
-    repeat(auto-fit,minmax(380px,1fr));
-
-gap:25px;
-```
-
-}
-
-/* ===== CARDS ===== */
-
-.card{
-
-```
-border-radius:var(--radius);
-
-padding:35px;
-
-display:flex;
-
-flex-direction:column;
-
-min-height:520px;
-
-transition:var(--transition);
-```
-
-}
-
-.card:hover{
-transform:translateY(-4px);
-}
-
-body.market .card,
-body.tools .card{
-
-```
-background:var(--card-dark);
-
-border:1px solid var(--border);
-```
-
-}
-
-body.news .card,
-body.classified .card{
-
-```
-background:white;
-
-border:1px solid #ececec;
-
-box-shadow:var(--shadow);
-```
-
-}
-
-.card.featured{
-
-```
-border:2px solid var(--green);
-
-box-shadow:
-    0 0 40px rgba(34,197,94,.12);
-```
-
-}
-
-/* ===== BADGE ===== */
-
-.badge{
-
-```
-display:inline-block;
-
-background:#dcfce7;
-
-color:#166534;
-
-padding:10px 18px;
-
-border-radius:999px;
-
-margin-bottom:30px;
-
-font-weight:700;
-```
-
-}
-
-/* ===== ICON ===== */
-
-.icon{
-
-```
-color:var(--green);
-
-font-size:2rem;
-
-margin-bottom:25px;
-```
-
-}
-
-/* ===== CARD CONTENT ===== */
-
-.card h2{
-
-```
-font-size:2rem;
-
-margin-bottom:20px;
-```
-
-}
-
-.card p{
-
-```
-margin-bottom:35px;
-```
-
-}
-
-.price{
-
-```
-margin-top:auto;
-
-font-size:3rem;
-
-font-weight:800;
-```
-
-}
-
-.price span{
-
-```
-font-size:1.2rem;
-
-font-weight:400;
-```
-
-}
-
-/* ===== BUTTON ===== */
-
-.btn{
-
-```
-display:block;
-
-text-align:center;
-
-text-decoration:none;
-
-margin-top:30px;
-
-padding:20px;
-
-border-radius:18px;
-
-font-weight:700;
-
-transition:var(--transition);
-```
-
-}
-
-body.market .btn,
-body.tools .btn{
-
-```
-border:1px solid #555;
-
-color:white;
-```
-
-}
-
-body.market .btn:hover,
-body.tools .btn:hover{
-
-```
-background:var(--green);
-
-color:black;
-
-border-color:var(--green);
-```
-
-}
-
-body.news .btn,
-body.classified .btn{
-
-```
-background:var(--green);
-
-color:white;
-```
-
-}
-
-body.news .btn:hover,
-body.classified .btn:hover{
-
-```
-background:#1ea24d;
-```
-
-}
-
-/* ===== NEWS ARTICLES ===== */
-
-.article-card{
-
-```
-background:white;
-
-padding:30px;
-
-border-radius:var(--radius);
-
-box-shadow:var(--shadow);
-
-margin-bottom:25px;
-```
-
-}
-
-.article-card h2{
-
-```
-font-size:2rem;
-
-margin-bottom:10px;
-```
-
-}
-
-/* ===== CLASSIFIED LISTINGS ===== */
-
-.listing{
-
-```
-background:white;
-
-border-radius:var(--radius);
-
-padding:25px;
-
-box-shadow:var(--shadow);
-
-transition:var(--transition);
-```
-
-}
-
-.listing:hover{
-
-```
-transform:translateY(-4px);
-```
-
-}
-
-/* ===== TABLES ===== */
-
-table{
-
-```
-width:100%;
-
-border-collapse:collapse;
-```
-
-}
-
-th,td{
-
-```
-padding:14px;
-
-text-align:left;
-```
-
-}
-
-body.market th{
-
-```
-background:#121820;
-```
-
-}
-
-body.news th,
-body.classified th{
-
-```
-background:#f5f5f5;
-```
-
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-
-```
-margin-top:80px;
-
-padding:30px 0;
-```
-
-}
-
-body.market footer,
-body.tools footer{
-border-top:1px solid rgba(255,255,255,.1);
-}
-
-body.news footer,
-body.classified footer{
-border-top:1px solid rgba(0,0,0,.08);
-}
-
-.footer-links{
-
-```
-display:flex;
-
-gap:40px;
-
-flex-wrap:wrap;
-```
-
-}
-
-.footer-links a{
-
-```
-text-decoration:none;
-```
-
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:768px){
-
-```
-.logo{
-    font-size:2rem;
-}
-
-.hero h1{
-    font-size:2.4rem;
-}
-
-.hero p{
     font-size:1.1rem;
 }
 
+/* =========================
+   CARDS
+========================= */
+
+.card{
+
+    background:var(--bg-card);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow-hover);
+}
+
+/* =========================
+   GRID
+========================= */
+
 .grid{
-    grid-template-columns:1fr;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:25px;
 }
 
-.tabs{
-    gap:20px;
+/* =========================
+   TABLES
+========================= */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:25px;
 }
 
-.lang-btn{
-    width:70px;
-    height:50px;
-}
-```
+table{
 
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:12px;
+
+    min-width:900px;
+}
+
+/* HEADER */
+
+th{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--fuchsia),
+        var(--rose)
+    );
+
+    color:white;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:
+    0 8px 20px rgba(214,51,132,.25);
+}
+
+/* CELLS */
+
+td{
+
+    background:
+    rgba(255,255,255,.10);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    line-height:1.7;
+
+    vertical-align:top;
+
+    text-align:left;
+
+    transition:var(--transition);
+}
+
+/* ROW HOVER */
+
+tr:hover td{
+
+    background:
+    rgba(255,94,168,.18);
+
+    transform:scale(1.01);
+}
+
+/* COUNTRY COLUMN */
+
+.country{
+
+    font-weight:700;
+
+    color:var(--pink);
+
+    white-space:nowrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:15px 28px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--fuchsia),
+        var(--rose)
+    );
+
+    transition:var(--transition);
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 10px 25px rgba(214,51,132,.4);
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+img{
+
+    max-width:100%;
+
+    border-radius:18px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:12px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#180f22;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--rose);
+
+    border-radius:999px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    margin-top:60px;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    border-top:
+    1px solid rgba(255,255,255,.10);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:900px){
+
+    .container{
+        padding:18px;
+    }
+
+    .logo{
+        font-size:2.6rem;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+
+        width:100%;
+
+        text-align:center;
+    }
+
+    table{
+
+        border-spacing:8px;
+    }
+
+    td,
+    th{
+
+        padding:14px;
+    }
 }
