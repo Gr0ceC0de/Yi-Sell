@@ -129,8 +129,8 @@
 
 </table>
         </body>
-    <footer class="risk-warning">
-<footer style="color: green; text-align: center; font-size: smaller;">
+    <section class="risk-warning">
+<section style="color: green; text-align: center; font-size: smaller;">
     <p><style="color:yellow;">Risk Disclosure</p>
 <p>
 Trading foreign exchange, cryptocurrencies, commodities, and leveraged financial products involves substantial risk and may not be suitable for all investors.
@@ -150,6 +150,16 @@ Users are solely responsible for their investment decisions and should consult l
 <p>
 Data displayed may be delayed, inaccurate, or obtained from third-party providers including APIs, exchanges, brokers, and market data services.
 </p>
-</footer>
+<!-- Container for footer -->
+  <div id="footer"></div>
+
+  <!-- Load footer dynamically -->
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
