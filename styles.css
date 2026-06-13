@@ -51,7 +51,13 @@ html{
     scroll-behavior:smooth;
 }
 
-body{
+body{ 
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+}
 
     min-height:100vh;
 
