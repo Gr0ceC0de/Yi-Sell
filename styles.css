@@ -114,6 +114,85 @@ body{
     color: #d62828;
     font-weight: 600;
 }
+   /* CONTAINER */
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:10px;
+}
+
+h1{
+    text-align:center;
+    font-size:2.4rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:1rem;
+    color:#ccc;
+}
+
+/* NAVIGATION (buttons + icons support) */
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+/* TEXT NAV LINKS */
+nav a{
+    text-decoration:none;
+    color:white;
+    background:#222;
+    padding:10px 15px;
+    border-radius:6px;
+    transition:0.2s;
+}
+
+nav a:hover{
+    background:#444;
+}
+
+/* IMAGE BUTTON STYLE */
+.ripple-btn{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+}
+
+.ripple-btn img{
+    display:block;
+    height:55px;
+    width:auto;
+    transition:0.25s;
+}
+
+.ripple-btn img:hover{
+    transform:scale(1.08);
+}
+
+/* SECTIONS */
+section{
+    padding:60px 20px;
+    border-top:1px solid #333;
+}
+
+/* SECTION COLORS */
+#headlines{ background:#1a1a1a; }
+#classified{ background:#141414; }
+#market{ background:#101010; }
+#properties{ background:#0d0d0d; }
+#shopping{ background:#080808; }
 
 /* ===== Mobile ===== */
 
