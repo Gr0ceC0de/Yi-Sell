@@ -145,15 +145,17 @@ Request ↗
 
 </section>
 
-<footer>
+<!-- Container for footer -->
+  <div id="footer"></div>
 
-<div class="footer-links">
-<a href="https://wa.me/+5511939385258">WhatsApp</a>
-<a href="#">Policy</a>
-<a href="ABOUTUS.html">About</a>
-</div>
-
-</footer>
+  <!-- Load footer dynamically -->
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+  </script>
 
 </div>
 
