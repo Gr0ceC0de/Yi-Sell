@@ -88,6 +88,13 @@
   /* Transitions */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* ======================================================
+   HEADER - CENTRADO Y RESPONSIVE
+====================================================== */
+header {
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
 
 /* ======================================================
    2. RESET & BASE - CONSOLE FONT APPLIED
