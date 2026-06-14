@@ -137,7 +137,45 @@ body{
   overflow-x:hidden;
   margin:0;
 }
+.site-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 
+  color: var(--headline-main);
+
+  text-shadow:
+    0 0 8px rgba(0,247,255,.8),
+    0 0 20px rgba(0,247,255,.6),
+    0 0 40px rgba(0,247,255,.4);
+}
+
+.section-title {
+  color: var(--headline-secondary);
+  border-bottom: 3px solid var(--old-rose-500);
+  padding-bottom: .5rem;
+}
+
+body {
+  background:
+    linear-gradient(
+      rgba(245,240,232,.96),
+      rgba(245,240,232,.96)
+    ),
+    url("paper-texture.jpg");
+
+  color: var(--ink-primary);
+  font-family: "Libre Baskerville", serif;
+}
+
+.tech-space-tagline {
+  color: var(--headline-accent);
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font-weight: 700;
+}
 /* ---------- OVERFLOW PROTECTION ---------- */
 
 body,
