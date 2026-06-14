@@ -10,8 +10,7 @@
     <link rel="header" href="header.html">
 </head>
 <body>
-<header>
-    <div id="header-pleaceholder"></div>
+     <div id="header-placeholder"></div>
     <h1>Yi-Sell Navigation Index</h1>
     <p>Click a section to jump inside the page</p>
 </header>
@@ -69,22 +68,12 @@
     });
 </script>
     !-- 2. The Script to load header.html -->
-    <script>
-        // Fetch the file content
-        fetch('header.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Insert the HTML into the placeholder
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem loading the header:', error);
-            });
-    </script>
+      <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
