@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'apps.headlines',
     'apps.market_over_view',
     'apps.PropertiesCaracas',
+    'apps.analytics',
 ]
 
 MIDDLEWARE = [
