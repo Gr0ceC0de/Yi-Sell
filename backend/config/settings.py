@@ -18,7 +18,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'apps.products',
+    'apps.shoppingcart',
+    'apps.TradingTools',
+    'apps.classifieds',
+    'apps.headlines',
+    'apps.market_over_view',
+    'apps.PropertiesCaracas',
 ]
 
 MIDDLEWARE = [
