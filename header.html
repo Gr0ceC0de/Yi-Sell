@@ -54,3 +54,71 @@
    नमस्ते • Bem-vindo • Welcome • Bienvenue • 欢迎 • ようこそ • 환영합니다 • こんにちは • 안녕하세요 • Xin chào • Sawubona • Jambo • Ciao • Hall • שָׁלוֹם • Γειά σου • Merhaba • مَرْحَبًا • Привет • Guten Tag • สวัสดี • Halo • Cześć • Kumusta
     </p>
   </div>
+  <script>
+(function() {
+  const toggle = document.getElementById('signupToggle');
+  const dropdown = document.getElementById('signupDropdown');
+  const form = document.getElementById('headerSignupForm');
+  const msg = document.getElementById('signupMsg');
+
+  if (!toggle ||!dropdown) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = dropdown.hasAttribute('hidden');
+    dropdown.toggleAttribute('hidden',!isHidden);
+    toggle.setAttribute('aria-expanded', isHidden? 'true' : 'false');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.auth-area')) {
+      dropdown.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
+
+    const data = Object.fromEntries(new FormData(form));
+
+    if (data.password!== data.confirmPassword) {
+      msg.textContent = 'Passwords do not match';
+      msg.style.color = '#ff5252';
+      return;
+    }
+
+    msg.textContent = 'Registering...';
+    msg.style.color = '#fff';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password
+        })
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        msg.textContent = result.message || 'Success!';
+        msg.style.color = '#4caf50';
+        form.reset();
+        setTimeout(() => dropdown.setAttribute('hidden', ''), 2000);
+      } else {
+        msg.textContent = result.message || 'Registration failed';
+        msg.style.color = '#ff5252';
+      }
+    } catch (err) {
+      msg.textContent = 'Network error. Try again.';
+      msg.style.color = '#ff5252';
+    }
+  });
+})();
+</script>
+</header>
