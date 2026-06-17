@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     'apps.market_over_view',
     'apps.PropertiesCaracas',
     'apps.analytics',
+    'rest_framework',
+    'corsheaders',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -36,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -62,8 +66,24 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'yisell_db',
+        'USER': 'yisell_user',
+        'PASSWORD': 'senha_forte',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
     }
 }
+AUTH_USER_MODEL = 'accounts.User'
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'seu@email.com'
+EMAIL_HOST_PASSWORD = 'senha_app'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -80,6 +100,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOWED_ORIGINS = [
+    "https://yi-sell.com",
+    "http://localhost:3000",
+]
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
