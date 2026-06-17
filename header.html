@@ -3,6 +3,34 @@
   <div class="container">
     <h1 class="site-title">YI-SELL</h1>
     <p class="tech-space-tagline">Finance • News • Trading • Marketplace</p>
+
+    <!-- Adicione isso dentro da <nav class="header-nav">, depois do último <a> -->
+<div class="auth-area">
+  <button type="button" id="signupToggle" class="ripple-btn signup-trigger" aria-expanded="false">
+    <span>Sign Up</span>
+  </button>
+
+  <div id="signupDropdown" class="signup-dropdown" hidden>
+    <form id="headerSignupForm" action="/api/register" method="POST">
+      <h3>Create Account</h3>
+
+      <label for="signup-name">Full Name</label>
+      <input type="text" id="signup-name" name="name" required autocomplete="name">
+
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" name="email" required autocomplete="email">
+
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" name="password" required minlength="8" autocomplete="new-password">
+
+      <label for="signup-confirm">Confirm Password</label>
+      <input type="password" id="signup-confirm" name="confirmPassword" required minlength="8" autocomplete="new-password">
+
+      <button type="submit" class="ripple-btn">Register</button>
+      <p id="signupMsg" class="form-message"></p>
+    </form>
+  </div>
+</div>
     
     <nav class="header-nav">
       <a href="TradingTools.html" class="ripple-btn">
@@ -23,7 +51,6 @@
     </nav>
     
     <p class="welcome-text">
-      नमस्ते • Bem-vindo • Welcome • Bienvenue • 欢迎 • ようこそ • 환영합니다<br>
-      こんにちは • 안녕하세요 • Xin chào • Sawubona • Jambo • Ciao • Hallo
+   नमस्ते • Bem-vindo • Welcome • Bienvenue • 欢迎 • ようこそ • 환영합니다 • こんにちは • 안녕하세요 • Xin chào • Sawubona • Jambo • Ciao • Hall • שָׁלוֹם • Γειά σου • Merhaba • مَرْحَبًا • Привет • Guten Tag • สวัสดี • Halo • Cześć • Kumusta
     </p>
   </div>
