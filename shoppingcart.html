@@ -244,17 +244,7 @@ function renderCart() {
 renderProducts();
 renderCart();
 </script>
-<!-- Container for footer -->
-  <div id="footer"></div>
 
-  <!-- Load footer dynamically -->
-  <script>
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      });
-  </script>
     <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
 
