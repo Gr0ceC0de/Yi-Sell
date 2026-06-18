@@ -8,147 +8,274 @@
 
 <meta name="description" content="Quarterly global headlines covering technology, fintech, cryptocurrencies, digital banking, artificial intelligence, financial markets, and innovation.">
 
-
+<style>
+    :root {
+        --paper: #F5F5F0;
+        --ink: #1A1A1A;
+        --rose: #C08081;
+        --rose-light: #C080811A;
+        --border: #1A1A1A33;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3, .serif {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+    
+    .masthead {
+        border-bottom: 3px double var(--ink);
+        position: relative;
+    }
+    
+    .masthead::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .tagline {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rose);
+    }
+    
+    .city-filter {
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+    }
+    
+    .city-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .city-btn:hover, .city-btn.active {
+        background: var(--rose);
+        color: var(--paper);
+        border-color: var(--rose);
+    }
+    
+    .classifieds-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0;
+        border-left: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+    }
+    
+    @media (min-width: 640px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .ad-box {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        position: relative;
+        background: var(--paper);
+        transition: background 0.2s ease;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .ad-box:hover {
+        background: var(--rose-light);
+    }
+    
+    .box-number {
+        font-family: 'Times New Roman', serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose);
+        border-bottom: 1px solid var(--rose);
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .city-tag {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        padding: 2px 6px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+    }
+    
+    .ad-header {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    
+    .ad-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        stroke: var(--rose);
+        stroke-width: 1.5;
+        fill: none;
+        margin-top: 2px;
+    }
+    
+    .ad-title {
+        font-family: 'Times New Roman', serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+    }
+    
+    .ad-desc {
+        font-size: 11px;
+        line-height: 1.4;
+        margin: 8px 0;
+        flex-grow: 1;
+        hyphens: auto;
+    }
+    
+    .ad-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: auto;
+        padding-top: 8px;
+    }
+    
+    .ad-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        padding: 5px 8px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .ad-btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+    }
+    
+    .ad-btn.primary {
+        border-color: var(--rose);
+        color: var(--rose);
+    }
+    
+    .ad-btn.primary:hover {
+        background: var(--rose);
+        color: var(--paper);
+    }
+    
+    .footer-bar {
+        border-top: 3px double var(--ink);
+        margin-top: 24px;
+        padding: 16px 0;
+        text-align: center;
+        position: relative;
+    }
+    
+    .footer-bar::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .footer-text {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+    
+    .footer-accent {
+        color: var(--rose);
+        font-weight: 700;
+    }
+    
+    .disclaimer {
+        font-size: 9px;
+        color: #666;
+        margin-top: 12px;
+        font-style: italic;
+    }
+    
+    @media (max-width: 639px) {
+        body {
+            font-size: 12px;
+        }
+        .ad-title {
+            font-size: 13px;
+        }
+        .ad-desc {
+            font-size: 10px;
+        }
+        .masthead h1 {
+            font-size: 24px;
+        }
+        .tagline {
+            font-size: 9px;
+        }
+    }
+    
+    .ad-box.hidden {
+        display: none;
+    }
+</style>
 </head>
 
-<body><style>
-   /* === HEADLINES.HTML SPECIFIC STYLES - ADD TO styles.css === */
-:root {
-  --rose: #C08081;
-  --paper: #F5F5F0;
-  --ink: #1A1A1A;
-  --rose-light: #E8C4C5;
-}
-
-.headlines-wrapper {
-  background: var(--paper);
-  color: var(--ink);
- font-family: 'Courier New', monospace;
-  padding: 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.headlines-masthead {
-  font-family: 'Times New Roman', serif;
-  text-align: center;
-  border-bottom: 3px double var(--rose);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-.headlines-masthead h1 {
-  font-size: 28px;
-  letter-spacing: 1px;
-  margin: 0;
-}
-.headlines-subtitle {
-  font-size: 12px;
-  font-style: italic;
-  margin-top: 5px;
-}
-
-.country-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--rose);
-  border: 1px solid var(--rose);
-}
-
-.country-box {
-  background: var(--paper);
-  padding: 12px;
-  border: none;
-}
-.country-box-header {
-  font-family: 'Times New Roman', serif;
-  font-weight: bold;
-  font-size: 14px;
-  color: var(--rose);
-  border-bottom: 1px solid var(--rose-light);
-  padding-bottom: 4px;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-.country-box-header .flag {
-  margin-right: 6px;
-}
-
-.headline-text {
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.sub-bullet {
-  margin: 8px 0;
-  padding-left: 12px;
-  border-left: 2px solid var(--rose-light);
-}
-.sub-bullet strong {
-  color: var(--rose);
-  font-family: 'Times New Roman', serif;
-  font-size: 13px;
-  display: block;
-  margin-bottom: 2px;
-}
-
-.pull-quote {
-  background: var(--rose-light);
-  border-left: 3px solid var(--rose);
-  padding: 8px;
-  margin: 10px 0;
-  font-style: italic;
-  font-size: 11px;
-}
-
-.sources-line {
-  font-size: 9px;
-  color: #666;
-  font-style: italic;
-  margin-top: 10px;
-  word-break: break-all;
-}
-
-.creator-kit {
-  margin-top: 30px;
-  border-top: 3px double var(--rose);
-  padding-top: 15px;
-}
-.creator-kit h2 {
-  font-family: 'Times New Roman', serif;
-  color: var(--rose);
-  font-size: 18px;
-  text-align: center;
-}
-.creator-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 15px;
-}
-.creator-card {
-  border: 1px solid var(--rose);
-  padding: 10px;
-  background: #fff;
-}
-.creator-card h3 {
-  font-family: 'Times New Roman', serif;
-  font-size: 13px;
-  color: var(--rose);
-  margin: 0 0 6px 0;
-}
-.creator-card p {
-  font-size: 11px;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .country-grid, .creator-cards {
-    grid-template-columns: 1fr;
-  }
-  .headlines-masthead h1 { font-size: 22px; }
-}
-   </style>
+<body>
    <header>
       <div id="header-placeholder"></div>
                         <script>
