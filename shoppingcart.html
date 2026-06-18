@@ -4,6 +4,112 @@
     <link rel="stylesheet" href="styles.css">
 <title>simple shoppingchart</title>
 <style>
+    :root {
+  --rose: #C08081;          /* rosa principal */
+  --rose-light: #E8C4C5;    /* rosa claro */
+  --fuchsia: #D1467A;       /* fúcsia destaque */
+  --paper: #F5F5F0;         /* papel jornal */
+  --ink: #1A1A1A;           /* texto */
+}
+
+body { 
+    font-family: 'Courier New', Courier, monospace; 
+    margin: 20px; 
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.product { 
+    border: 2px solid var(--rose); 
+    padding: 12px; 
+    margin: 10px; 
+    display: inline-block; 
+    width: 200px;
+    background: #ffffff;
+    box-shadow: 2px 2px 0 var(--rose-light);
+}
+
+.product h3 {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-size: 14px;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rose-light);
+    padding-bottom: 4px;
+}
+
+.product .price {
+    color: var(--rose);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.cart { 
+    margin-top: 30px; 
+    border-top: 3px double var(--rose); 
+    padding-top: 15px;
+    background: #ffffff;
+}
+
+.cart h2 {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 1px solid var(--rose);
+}
+
+th { 
+    border: 1px solid var(--rose); 
+    padding: 8px; 
+    text-align: center;
+    background: var(--rose-light);
+    font-family: 'Times New Roman', serif;
+    color: var(--ink);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+td { 
+    border: 1px solid var(--rose-light); 
+    padding: 8px; 
+    text-align: center;
+    background: #ffffff;
+    font-size: 12px;
+}
+
+button { 
+    padding: 6px 12px; 
+    cursor: pointer;
+    background: var(--rose);
+    color: #fff;
+    border: 1px solid var(--fuchsia);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: var(--fuchsia);
+}
+
+.cart-total {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rose);
+}
     body { font-family: 'Courier New', Courier, monospace, sans-serif; margin: 20px; }
     .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
     .cart { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
