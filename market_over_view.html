@@ -28,24 +28,8 @@
     </style>    
                 
                 <header>
-                     <div id="header-placehold"></div>
-                      <script>
-        // Fetch the file content
-        fetch('header.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Insert the HTML into the placeholder
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('There was a problem loading the header:', error);
-            });
-    </script>
+     <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
                 </header>
                         <h1>Currency Pair$ Review</h1>
           <div class="market-overview-container">
@@ -155,6 +139,27 @@ Data displayed may be delayed, inaccurate, or obtained from third-party provider
       .then(data => {
         document.getElementById('footer').innerHTML = data;
       });
+  </script>
+         <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script único para cargar header y footer -->
+  <script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
   </script>
 </body>
 </html>
