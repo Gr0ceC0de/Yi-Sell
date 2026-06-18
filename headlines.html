@@ -11,7 +11,145 @@
 
 </head>
 
-<body>
+<body><style>
+   /* === HEADLINES.HTML SPECIFIC STYLES - ADD TO styles.css === */
+:root {
+  --rose: #C08081;
+  --paper: #F5F5F0;
+  --ink: #1A1A1A;
+  --rose-light: #E8C4C5;
+}
+
+.headlines-wrapper {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Courier New', monospace;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.headlines-masthead {
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+  border-bottom: 3px double var(--rose);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.headlines-masthead h1 {
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+.headlines-subtitle {
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rose);
+  border: 1px solid var(--rose);
+}
+
+.country-box {
+  background: var(--paper);
+  padding: 12px;
+  border: none;
+}
+.country-box-header {
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--rose);
+  border-bottom: 1px solid var(--rose-light);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.country-box-header .flag {
+  margin-right: 6px;
+}
+
+.headline-text {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sub-bullet {
+  margin: 8px 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--rose-light);
+}
+.sub-bullet strong {
+  color: var(--rose);
+  font-family: 'Times New Roman', serif;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.pull-quote {
+  background: var(--rose-light);
+  border-left: 3px solid var(--rose);
+  padding: 8px;
+  margin: 10px 0;
+  font-style: italic;
+  font-size: 11px;
+}
+
+.sources-line {
+  font-size: 9px;
+  color: #666;
+  font-style: italic;
+  margin-top: 10px;
+  word-break: break-all;
+}
+
+.creator-kit {
+  margin-top: 30px;
+  border-top: 3px double var(--rose);
+  padding-top: 15px;
+}
+.creator-kit h2 {
+  font-family: 'Times New Roman', serif;
+  color: var(--rose);
+  font-size: 18px;
+  text-align: center;
+}
+.creator-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+.creator-card {
+  border: 1px solid var(--rose);
+  padding: 10px;
+  background: #fff;
+}
+.creator-card h3 {
+  font-family: 'Times New Roman', serif;
+  font-size: 13px;
+  color: var(--rose);
+  margin: 0 0 6px 0;
+}
+.creator-card p {
+  font-size: 11px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .country-grid, .creator-cards {
+    grid-template-columns: 1fr;
+  }
+  .headlines-masthead h1 { font-size: 22px; }
+}
+   </style>
+/* === END HEADLINES STYLES === */
    <header>
                         <script>
     fetch('header.html')
