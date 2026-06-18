@@ -273,12 +273,14 @@
 </style>
 </head>
 <body>
+    <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
     <div class="max-w-7xl mx-auto px-4 py-6">
         <header class="masthead pb-4 mb-4">
             <div class="text-center">
-                <p class="tagline mb-1">FANTASY BUSINESS SIMULATION</p>
-                <h1 class="serif text-4xl md:text-5xl mb-2">CLASSIFIED | Trading Assistant</h1>
-                <p class="serif text-sm md:text-base">100 Digital Categories | 1 Item Each | <span class="footer-accent">$100/mo Affiliate Slots</span></p>
+          
+                <h1 class="serif text-4xl md:text-5xl mb-2">CLASSIFIEDS | Trading Tools</h1>
+                <p class="serif text-sm md:text-base">100 Traditional and Digital Categories | 1 Item Each | $10/mo Affiliate Slots</p>
             </div>
         </header>
 
@@ -552,5 +554,26 @@
     // Future: Load boxes from JSON, render 100 slots dynamically
 </script>
 <script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+    <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script único para cargar header y footer -->
+  <script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
 </body>
 </html>
