@@ -150,6 +150,123 @@ button:hover, .btn-primary:hover {
     font-size: 13px;
     padding: 10px 20px;
 }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: #fff;
+    margin: 3% auto;
+    padding: 30px;
+    border: 3px solid var(--rose);
+    border-radius: 12px;
+    width: 90%;
+}
+
+.close {
+    float: right;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close:hover { color: #000; }
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--rose-light);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.order-summary {
+    background: var(--paper);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid var(--rose-light);
+}
+
+.order-summary h4 {
+    margin: 0 0 12px 0;
+    color: var(--fuchsia);
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.summary-line.total {
+    border-top: 2px solid var(--rose);
+    margin-top: 8px;
+    padding-top: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fuchsia);
+}
+
+.payment-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-pay {
+    width: 100%;
+    padding: 16px;
+    background: #00A859;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-pay:hover {
+    background: #008a48;
+    transform: translateY(-2px);
+}
+
+.btn-pay.stripe {
+    background: #635BFF;
+}
+
+.btn-pay.stripe:hover {
+    background: #5147d9;
+}
 </style>
 </head>
 <body>
