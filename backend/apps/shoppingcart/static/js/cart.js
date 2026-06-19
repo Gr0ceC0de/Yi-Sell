@@ -119,6 +119,83 @@ button:hover {
 </style>
 </head>
 <body>
+    // cart.js - cola esse arquivo na raiz do projeto
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Adiciona evento pra todos botões "Add to Cart"
+document.addEventListener('click', e => {
+    if(e.target.classList.contains('add-to-cart')) {
+        const p = e.target.closest('.product');
+        const id = p.dataset.id;
+        const name = p.dataset.name;
+        const price = parseFloat(p.dataset.price);
+
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ id, name, price, quantity: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        alert(`${name} adicionado ao carrinho!`);
+    }
+});
+
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const el = document.querySelector('#cart-count');
+    if(el) el.innerText = count;
+}
+
+// Roda quando a página carrega
+document.addEventListener('DOMContentLoaded', updateCartCount);
+
+// Funções que só rodam no shoppingcart.html
+function renderCart() {
+    if(!document.querySelector("#cartTable")) return; // Só roda se tiver tabela
+    const tbody = document.querySelector("#cartTable tbody");
+    tbody.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+        const row = document.createElement("tr");
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price.toFixed(2)}</td>
+            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)"></td>
+            <td>${itemTotal.toFixed(2)}</td>
+            <td><button onclick="removeFromCart('${item.id}')">Remove</button></td>
+        `;
+        tbody.appendChild(row);
+    });
+    document.getElementById("cartTotal").textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id!== id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+}
+
+function updateQuantity(id, qty) {
+    qty = parseInt(qty);
+    if (isNaN(qty) || qty < 1) return;
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity = qty;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+    }
+}
+
+// Se estiver na página do carrinho, renderiza
+if(window.location.pathname.includes('shoppingcart.html')) {
+    document.addEventListener('DOMContentLoaded', renderCart);
+}
     <header>
      <!-- Header dinámico -->
   <div id="header-placeholder"></div>
