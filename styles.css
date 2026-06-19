@@ -949,3 +949,31 @@ body, p, .product p {
 button, .add-to-cart {
     font-size: 13px; /* era 11px */
 }
+.cart-fixed {
+    position: fixed; /* Fica preso na tela */
+    top: 20px; /* 20px do topo */
+    left: 20px; /* 20px da esquerda */
+    z-index: 999; /* Fica na frente de tudo */
+    background: #fff;
+    padding: 10px 15px;
+    border: 2px solid var(--rose);
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.cart-fixed.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-fixed.cart-gif {
+    width: 35px;
+    height: 35px;
+}
+
+
