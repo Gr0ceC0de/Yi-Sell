@@ -1,10 +1,12 @@
-// backend/apps/shoppingcart/static/js/cart.js
+// cart.js - Versão limpa e universal
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Evento global pra qualquer botão .add-to-cart em qualquer página
+// Evento global: funciona em TradingTools.html, classifieds.html, etc
 document.addEventListener('click', e => {
-    if(e.target.classList.contains('add-to-cart')) {
+    if (e.target.classList.contains('add-to-cart')) {
         const p = e.target.closest('.product');
+        if (!p) return;
+        
         const id = p.dataset.id;
         const name = p.dataset.name;
         const price = parseFloat(p.dataset.price);
@@ -16,21 +18,27 @@ document.addEventListener('click', e => {
             cart.push({ id, name, price, quantity: 1 });
         }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
+        saveCart();
         updateCartCount();
-        alert(`${name} adicionado ao carrinho!`);
+        renderCart();
+        e.target.innerText = 'Added ✓';
+        setTimeout(() => { e.target.innerText = 'Add to Cart'; }, 1500);
     }
 });
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function updateCartCount() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     const el = document.querySelector('#cart-count');
-    if(el) el.innerText = count;
+    if (el) el.innerText = count;
 }
 
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCart();
     renderCart();
     updateCartCount();
 }
@@ -41,21 +49,22 @@ function updateQuantity(id, qty) {
     const item = cart.find(i => i.id === id);
     if (item) {
         item.quantity = qty;
-        localStorage.setItem("cart", JSON.stringify(cart));
+        saveCart();
         renderCart();
     }
 }
 
 function renderCart() {
     const tbody = document.querySelector("#cartTable tbody");
-    if(!tbody) return; // Só roda se estiver no shoppingcart.html
+    if (!tbody) return;
     
     tbody.innerHTML = "";
     let total = 0;
+    
     cart.forEach(item => {
-        const row = document.createElement("tr");
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
+        const row = document.createElement("tr");
         row.innerHTML = `
             <td>${item.name}</td>
             <td>R$ ${item.price.toFixed(2)}</td>
@@ -65,11 +74,24 @@ function renderCart() {
         `;
         tbody.appendChild(row);
     });
-    document.getElementById("cartTotal").textContent = `Total: R$ ${total.toFixed(2)}`;
+    
+    const totalEl = document.getElementById("cartTotal");
+    if (totalEl) totalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
-// Roda ao carregar qualquer página
+// Roda quando a página carrega
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
-    renderCart(); // Só vai renderizar se tiver #cartTable
+    renderCart();
+    
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        });
+    }
 });
