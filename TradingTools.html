@@ -10,6 +10,123 @@
       <script src="cart.js" defer></script>
       <title>Yi_Sell | Trading Tools</title>
       <style>
+          :root {
+            --rose: #E91E63;
+            --rose-light: #FCE4EC;
+            --fuchsia: #C2185B;
+            --ink: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+       .site-header {
+            background: #ffffff;
+            border-bottom: 3px solid var(--rose);
+            padding: 16px 0;
+        }
+
+       .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+       .header-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+
+       .header-left {
+            justify-self: start;
+        }
+
+       .header-center {
+            justify-self: center;
+            text-align: center;
+        }
+
+       .header-right {
+            justify-self: end;
+        }
+
+       .languages {
+            display: flex;
+            gap: 8px;
+        }
+
+       .lang-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--rose-light);
+            color: var(--ink);
+            border: 1px solid var(--rose);
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+       .lang-btn:hover,
+       .lang-btn.active {
+            background: var(--rose);
+            color: #ffffff;
+        }
+
+       .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+       .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+       .logo-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--fuchsia);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+       .cart-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+       .cart-link:hover {
+            color: var(--fuchsia);
+        }
+
+       .cart-gif {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        #cart-count {
+            font-weight: 700;
+            color: var(--fuchsia);
+        }
    .site-header {
     background: #fff;
     border-bottom: 3px solid var(--rose);
