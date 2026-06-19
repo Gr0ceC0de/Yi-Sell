@@ -902,3 +902,50 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+/* Carrinho no header */
+.cart-icon {
+    display: flex;
+    align-items: center;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: 16px; /* Medium - antes tava 11px ou 12px */
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.cart-link:hover {
+    color: var(--fuchsia);
+}
+
+.cart-gif {
+    width: 28px;  /* ajusta o tamanho do gif */
+    height: 28px;
+    object-fit: contain;
+}
+
+.cart-text {
+    font-size: 16px; /* Medium */
+    letter-spacing: 0.5px;
+}
+
+#cart-count {
+    font-weight: 700;
+    color: var(--fuchsia);
+}
+
+/* Aumenta fonte medium geral do site se quiser */
+body, p, .product p {
+    font-size: 14px; /* era 12px */
+    line-height: 1.5;
+}
+
+button, .add-to-cart {
+    font-size: 13px; /* era 11px */
+}
