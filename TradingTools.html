@@ -295,39 +295,50 @@ button, .add-to-cart, .btn {
       </head>
    
    <body>
-        <header>
-           <div class="header-row">
-    <div class="cart-icon">
-        <a href="shoppingcart.html" class="cart-link">
-            <img src="docs/GIF-2026-05-12-19-45-46.gif" alt="Shopping Cart" class="cart-gif">
-            <span class="cart-text">Cart (<span id="cart-count">0</span>)</span>
-        </a>
-    </div>
-                 <div class="container">
-                        <div id="header-placeholder"></div>
-                    </header>
-              <div class="topbar">
-                             <div class="logo">
-                                     Yi_Sell
-                                  </div>
-                                          <div class="languages">
-               <button class="lang-btn">EN</button>
-               <button class="lang-btn">ES</button>
-               <button class="lang-btn">PT</button>
-               </div>
+        <header class="site-header">
+        <div class="container">
+            <div class="header-row">
+                <div class="header-left">
+                    <div class="languages">
+                        <button class="lang-btn active">EN</button>
+                        <button class="lang-btn">ES</button>
+                        <button class="lang-btn">PT</button>
+                    </div>
+                </div>
+
+                <div class="header-center">
+                    <div class="logo-wrap">
+                        <img id="dynamic-image" src="docs/logo-default.png" alt="Yi_Sell Logo" class="logo-img">
+                        <span class="logo-text">Yi_Sell</span>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <a href="shoppingcart.html" class="cart-link">
+                        <img src="docs/GIF-2026-05-12-19-45-46.gif" alt="Shopping Cart" class="cart-gif">
+                        <span class="cart-text">Cart (<span id="cart-count">0</span>)</span>
+                    </a>
+                </div>
             </div>
-         <p>
-            MQL5 scripts, trend advisors, and automation tools —
-            tested in live markets. Deployed worldwide.
-            </p>
-         </div>
-      <div class="tabs">
-         <a href="#" class="active">Products</a>
-         <a href="market_over_view.html">Market</a>
-         <a href="headlines.html">News</a>
-         <a href="classifieds.html">Classifieds</a>
-         </div>
-      </header>
+        </div>
+    </header>
+
+    <script>
+        // Dynamic image changer
+        const images = [
+            'docs/logo-default.png',
+            'docs/logo-forex.png',
+            'docs/logo-crypto.png'
+        ];
+
+        let currentIndex = 0;
+        const imageElement = document.getElementById('dynamic-image');
+
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            imageElement.src = images[currentIndex];
+        }, 5000);
+    </script>
       <section>
         <div class="section-title">MQL5 Tools</div>
         <div class="grid">
