@@ -189,6 +189,144 @@ class ShoppingCart {
         const modal = document.getElementById('checkoutModal');
         if (modal) modal.style.display = 'none';
     }
+    // Adiciona dentro da class ShoppingCart
+
+openCheckout() {
+    if (this.items.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+    }
+
+    const modal = document.getElementById('checkoutModal');
+    this.renderOrderSummary();
+    this.bindCheckoutEvents();
+    modal.style.display = 'block';
+}
+
+renderOrderSummary() {
+    const itemsDiv = document.getElementById('orderItems');
+    const subtotal = this.getTotal();
+    const taxRate = 0.08; // 8% de taxa
+    const taxes = subtotal * taxRate;
+    const total = subtotal + taxes;
+
+    let html = '';
+    this.items.forEach(item => {
+        html += `
+            <div class="summary-line">
+                <span>${item.qty}x ${item.name}</span>
+                <span>R$ ${(parseFloat(item.price) * item.qty).toFixed(2)}</span>
+            </div>
+        `;
+    });
+    
+    itemsDiv.innerHTML = html;
+    document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+    document.getElementById('taxes').textContent = `R$ ${taxes.toFixed(2)}`;
+    document.getElementById('finalTotal').textContent = `R$ ${total.toFixed(2)}`;
+}
+
+bindCheckoutEvents() {
+    // Busca CEP automático
+    document.getElementById('cep').addEventListener('blur', async (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+        if (cep.length !== 8) return;
+        
+        try {
+            const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await res.json();
+            if (!data.erro) {
+                document.getElementById('endereco').value = data.logradouro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+            }
+        } catch (err) {
+            console.error('Erro ao buscar CEP:', err);
+        }
+    });
+
+    // Máscara CEP
+    document.getElementById('cep').addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length > 5) v = v.slice(0,5) + '-' + v.slice(5,8);
+        e.target.value = v;
+    });
+
+    // Botão InfinitePay
+    document.getElementById('payInfinitePay').addEventListener('click', () => {
+        this.processInfinitePay();
+    });
+
+    // Botão Stripe
+    document.getElementById('payStripe').addEventListener('click', () => {
+        this.processStripe();
+    });
+}
+
+getFormData() {
+    const subtotal = this.getTotal();
+    const taxes = subtotal * 0.08;
+    const total = subtotal + taxes;
+
+    return {
+        name: document.getElementById('customerName').value,
+        email: document.getElementById('email').value,
+        cep: document.getElementById('cep').value,
+        endereco: document.getElementById('endereco').value,
+        numero: document.getElementById('numero').value,
+        complemento: document.getElementById('complemento').value,
+        cidade: document.getElementById('cidade').value,
+        estado: document.getElementById('estado').value,
+        items: this.items,
+        subtotal: subtotal,
+        taxes: taxes,
+        total: total
+    };
+}
+
+validateForm() {
+    const form = document.getElementById('checkoutForm');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return false;
+    }
+    return true;
+}
+
+processInfinitePay() {
+    if (!this.validateForm()) return;
+    
+    const data = this.getFormData();
+    
+    // Monta link InfinitePay com valor total
+    // Formato: https://link.infinitepay.io/NOME/VALOR
+    const valor = data.total.toFixed(2).replace('.', ',');
+    const nomeUrl = encodeURIComponent(data.name);
+    const link = `https://link.infinitepay.io/yakelin-yisel/${nomeUrl}-${valor}`;
+    
+    // Salva pedido no localStorage antes de redirecionar
+    localStorage.setItem('lastOrder', JSON.stringify(data));
+    
+    window.open(link, '_blank');
+}
+
+processStripe() {
+    if (!this.validateForm()) return;
+    
+    const data = this.getFormData();
+    
+    // AQUI VOCÊ PRECISA DE BACKEND PRA GERAR SESSION REAL
+    // Por enquanto, redireciona pra página de instruções
+    alert(`Stripe Checkout:\n\nTotal: R$ ${data.total.toFixed(2)}\n\nPra integrar Stripe de verdade, você precisa:\n1. Criar conta no Stripe\n2. Backend que gera Checkout Session\n3. Webhook pra confirmar pagamento\n\nDados do pedido salvos.`);
+    
+    localStorage.setItem('lastOrder', JSON.stringify(data));
+    
+    // Exemplo: window.location.href = '/api/create-stripe-session';
+}
+
+closeCheckout() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
 }
 
 // Inicia UMA VEZ SÓ
