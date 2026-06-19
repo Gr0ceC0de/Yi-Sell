@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" >
+    <link rel="stylesheet" href="styles.css">
+<title> shoppingchart</title>
+<style>
+   :root {
+  --rose: #C08081;
+  --rose-light: #E8C4C5;
+  --fuchsia: #D1467A;
+  --paper: #F5F5F0;
+  --ink: #1A1A1A;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Courier New', Courier, monospace; 
+    margin: 0;
+    padding: 20px;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--rose);
+    padding-bottom: 10px;
+}
+
+.product { 
+    border: 2px solid var(--rose); 
+    padding: 12px; 
+    margin: 10px; 
+    display: inline-block; 
+    width: 200px;
+    background: #ffffff;
+    box-shadow: 2px 2px 0 var(--rose-light);
+    vertical-align: top;
+}
+
+.product h3 {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-size: 14px;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rose-light);
+    padding-bottom: 4px;
+}
+
+.product .price {
+    color: var(--rose);
+    font-weight: bold;
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+.cart { 
+    margin-top: 30px; 
+    border: 3px double var(--rose); 
+    padding: 20px;
+    background: #ffffff;
+}
+
+.cart h2 {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-size: 18px;
+    margin: 0 0 15px 0;
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 1px solid var(--rose);
+    margin-bottom: 15px;
+}
+
+th { 
+    border: 1px solid var(--rose); 
+    padding: 10px; 
+    text-align: center;
+    background: var(--rose-light);
+    font-family: 'Times New Roman', serif;
+    color: var(--ink);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+td { 
+    border: 1px solid var(--rose-light); 
+    padding: 10px; 
+    text-align: center;
+    background: #ffffff;
+    font-size: 12px;
+}
+
+td input[type="number"] {
+    width: 60px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid var(--rose-light);
+}
+
+button, .btn-primary { 
+    padding: 6px 12px; 
+    cursor: pointer;
+    background: var(--rose);
+    color: #fff;
+    border: 1px solid var(--fuchsia);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+button:hover, .btn-primary:hover {
+    background: var(--fuchsia);
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--rose);
+    padding-top: 15px;
+}
+
+.cart-total {
+    font-family: 'Times New Roman', serif;
+    color: var(--fuchsia);
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+}
+
+.btn-primary {
+    font-size: 13px;
+    padding: 10px 20px;
+}
+</style>
+</head>
+<body>
+   <div id="header-placeholder"></div>
+
+    <main class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <div class="cart">
+            <h2>Items in Cart</h2>
+            <table id="cartTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price (R$)</th>
+                        <th>Quantity</th>
+                        <th>Total (R$)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="cart-footer">
+                <h3 id="cartTotal" class="cart-total">Total: R$ 0.00</h3>
+                <button id="checkout-btn" class="btn-primary">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="cart.js" defer></script>
+    <script>
+        // Carrega header e footer
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('header.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error('Error loading header:', err));
+
+            fetch('footer.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error('Error loading footer:', err));
+        });
+    </script>
+    <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script único para cargar header y footer -->
+  <script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+</body>
+</html>
+
+give me an debuggin give the errors give me a clean document and whats trouble about this actual route
