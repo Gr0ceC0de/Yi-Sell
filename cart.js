@@ -95,3 +95,140 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+class ShoppingCart {
+    constructor() {
+        this.cart = JSON.parse(localStorage.getItem('yiSellCart')) || [];
+        this.init();
+    }
+
+    init() {
+        this.renderCart();
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        document.getElementById('checkout-btn').addEventListener('click', () => this.openCheckout());
+        document.querySelector('.close').addEventListener('click', () => this.closeCheckout());
+        window.addEventListener('click', (e) => {
+            if (e.target.id === 'checkoutModal') this.closeCheckout();
+        });
+    }
+
+    addItem(product) {
+        const existing = this.cart.find(item => item.id === product.id);
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            this.cart.push({ ...product, qty: 1 });
+        }
+        this.save();
+        this.renderCart();
+    }
+
+    updateQty(id, qty) {
+        const item = this.cart.find(i => i.id === id);
+        if (item) {
+            item.qty = Math.max(1, parseInt(qty));
+            this.save();
+            this.renderCart();
+        }
+    }
+
+    removeItem(id) {
+        this.cart = this.cart.filter(item => item.id !== id);
+        this.save();
+        this.renderCart();
+    }
+
+    save() {
+        localStorage.setItem('yiSellCart', JSON.stringify(this.cart));
+    }
+
+    getTotal() {
+        return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    }
+
+    renderCart() {
+        const tbody = document.querySelector('#cartTable tbody');
+        const totalEl = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const emptyMsg = document.getElementById('empty-cart-msg');
+        const table = document.getElementById('cartTable');
+
+        tbody.innerHTML = '';
+
+        if (this.cart.length === 0) {
+            emptyMsg.style.display = 'block';
+            table.style.display = 'none';
+            checkoutBtn.disabled = true;
+            totalEl.textContent = 'Total: R$ 0.00';
+            return;
+        }
+
+        emptyMsg.style.display = 'none';
+        table.style.display = 'table';
+        checkoutBtn.disabled = false;
+
+        this.cart.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>
+                    <input type="number" value="${item.qty}" min="1" 
+                           onchange="cart.updateQty('${item.id}', this.value)">
+                </td>
+                <td>R$ ${(item.price * item.qty).toFixed(2)}</td>
+                <td>
+                    <button class="btn-remove" onclick="cart.removeItem('${item.id}')">Remove</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        totalEl.textContent = `Total: R$ ${this.getTotal().toFixed(2)}`;
+    }
+
+    openCheckout() {
+        const modal = document.getElementById('checkoutModal');
+        const optionsDiv = document.getElementById('checkout-options');
+        
+        // Se só tem 1 item com pixlink, manda direto pro PIX
+        const singleItemWithPix = this.cart.length === 1 && this.cart[0].pixlink;
+        
+        if (singleItemWithPix) {
+            window.open(this.cart[0].pixlink, '_blank');
+            return;
+        }
+
+        // Senão, mostra opções
+        let html = '';
+        
+        // Opção 1: PIX individual pra cada produto
+        this.cart.forEach(item => {
+            if (item.pixlink) {
+                html += `<a href="${item.pixlink}" target="_blank" class="checkout-option">
+                    PIX: ${item.name} - R$ ${(item.price * item.qty).toFixed(2)}
+                </a>`;
+            }
+        });
+
+        // Opção 2: WhatsApp com carrinho completo
+        const cartText = this.cart.map(i => `${i.qty}x ${i.name} - R$ ${(i.price * i.qty).toFixed(2)}`).join('%0A');
+        const total = this.getTotal().toFixed(2);
+        const waLink = `https://wa.me/5511939385258?text=Olá! Quero finalizar compra:%0A%0A${cartText}%0A%0ATotal: R$ ${total}`;
+        
+        html += `<a href="${waLink}" target="_blank" class="checkout-option">
+            WhatsApp - Finalizar Tudo (R$ ${total})
+        </a>`;
+
+        optionsDiv.innerHTML = html;
+        modal.style.display = 'block';
+    }
+
+    closeCheckout() {
+        document.getElementById('checkoutModal').style.display = 'none';
+    }
+}
+
+const cart = new ShoppingCart();
