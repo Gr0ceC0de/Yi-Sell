@@ -520,7 +520,32 @@ button, .add-to-cart, .btn {
   </script>
 <script src="cart.js"></script>
 </div>
-
+<script>
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const product = e.target.closest('.product');
+        const item = {
+            id: product.dataset.id,
+            name: product.dataset.name,
+            price: parseFloat(product.dataset.price),
+            pixlink: product.dataset.pixlink
+        };
+        
+        // Pega o cart do localStorage
+        let cart = JSON.parse(localStorage.getItem('yiSellCart')) || [];
+        const existing = cart.find(i => i.id === item.id);
+        
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({ ...item, qty: 1 });
+        }
+        
+        localStorage.setItem('yiSellCart', JSON.stringify(cart));
+        alert(`${item.name} added to cart!`);
+    });
+});
+</script>
 </body>
 </html>
     
