@@ -1,19 +1,19 @@
-// cart.js - VERSÃO ÚNICA E LIMPA - APAGA TUDO E COLA SÓ ISSO
+// cart.js - APAGA TODO SEU ARQUIVO E COLA SÓ ISSO
 class ShoppingCart {
     constructor() {
-        // USA UMA KEY SÓ: yiSellCart
+        // USA UMA KEY SÓ PRA TUDO
         this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
         this.init();
     }
 
     init() {
         this.render();
-        this.bindEvents();
         this.updateCartCount();
+        this.bindEvents();
     }
 
     bindEvents() {
-        // Adicionar ao carrinho - funciona em qualquer página
+        // 1. Botões Add to Cart - funciona em qualquer página
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('add-to-cart')) {
                 e.preventDefault();
@@ -33,13 +33,13 @@ class ShoppingCart {
             }
         });
 
-        // Checkout button
+        // 2. Botão Checkout
         const checkoutBtn = document.getElementById('checkout-btn');
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => this.openCheckout());
         }
 
-        // Modal close
+        // 3. Fechar modal
         const closeBtn = document.querySelector('.close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeCheckout());
@@ -56,7 +56,7 @@ class ShoppingCart {
     }
 
     add(item) {
-        const existing = this.items.find(i => i.id == item.id); // == pega string/number
+        const existing = this.items.find(i => i.id == item.id); // == compara string com number
         if (existing) {
             existing.qty += 1;
         } else {
@@ -93,7 +93,7 @@ class ShoppingCart {
 
     render() {
         const tbody = document.querySelector('#cartTable tbody');
-        if (!tbody) return; // Não tá na página do carrinho, vaza
+        if (!tbody) return; // Não tá na página do carrinho
 
         const totalEl = document.getElementById('cartTotal');
         const checkoutBtn = document.getElementById('checkout-btn');
@@ -144,7 +144,16 @@ class ShoppingCart {
         const modal = document.getElementById('checkoutModal');
         const optionsDiv = document.getElementById('checkout-options');
         
-        // Se só tem 1 item com pixlink, manda direto
+        if (!modal || !optionsDiv) {
+            // Se não tem modal, redireciona pro WhatsApp direto
+            const cartText = this.items.map(i => 
+                `${i.qty}x ${i.name} - R$ ${(parseFloat(i.price) * i.qty).toFixed(2)}`
+            ).join('%0A');
+            const total = this.getTotal().toFixed(2);
+            window.open(`https://wa.me/5511939385258?text=Olá! Quero finalizar compra:%0A%0A${cartText}%0A%0ATotal: R$ ${total}`, '_blank');
+            return;
+        }
+
         const singleItemWithPix = this.items.length === 1 && this.items[0].pixlink;
         
         if (singleItemWithPix) {
@@ -177,7 +186,8 @@ class ShoppingCart {
     }
 
     closeCheckout() {
-        document.getElementById('checkoutModal').style.display = 'none';
+        const modal = document.getElementById('checkoutModal');
+        if (modal) modal.style.display = 'none';
     }
 }
 
