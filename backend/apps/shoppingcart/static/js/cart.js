@@ -1,128 +1,7 @@
-<!DOCTYPE html>
-<head>
-<meta charset="UTF-8" >
-    <link rel="stylesheet" href="styles.css">
-<title>simple shoppingchart</title>
-<style>
-    :root {
-  --rose: #C08081;          /* rosa principal */
-  --rose-light: #E8C4C5;    /* rosa claro */
-  --fuchsia: #D1467A;       /* fúcsia destaque */
-  --paper: #F5F5F0;         /* papel jornal */
-  --ink: #1A1A1A;           /* texto */
-}
-
-body { 
-    font-family: 'Courier New', Courier, monospace; 
-    margin: 20px; 
-    background: var(--paper);
-    color: var(--ink);
-}
-
-.product { 
-    border: 2px solid var(--rose); 
-    padding: 12px; 
-    margin: 10px; 
-    display: inline-block; 
-    width: 200px;
-    background: #ffffff;
-    box-shadow: 2px 2px 0 var(--rose-light);
-}
-
-.product h3 {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-size: 14px;
-    margin: 0 0 8px 0;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--rose-light);
-    padding-bottom: 4px;
-}
-
-.product .price {
-    color: var(--rose);
-    font-weight: bold;
-    font-size: 13px;
-}
-
-.cart { 
-    margin-top: 30px; 
-    border-top: 3px double var(--rose); 
-    padding-top: 15px;
-    background: #ffffff;
-}
-
-.cart h2 {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-size: 18px;
-    margin: 0 0 10px 0;
-}
-
-table { 
-    width: 100%; 
-    border-collapse: collapse;
-    background: #ffffff;
-    border: 1px solid var(--rose);
-}
-
-th { 
-    border: 1px solid var(--rose); 
-    padding: 8px; 
-    text-align: center;
-    background: var(--rose-light);
-    font-family: 'Times New Roman', serif;
-    color: var(--ink);
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-td { 
-    border: 1px solid var(--rose-light); 
-    padding: 8px; 
-    text-align: center;
-    background: #ffffff;
-    font-size: 12px;
-}
-
-button { 
-    padding: 6px 12px; 
-    cursor: pointer;
-    background: var(--rose);
-    color: #fff;
-    border: 1px solid var(--fuchsia);
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-
-button:hover {
-    background: var(--fuchsia);
-}
-
-.cart-total {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-weight: bold;
-    font-size: 14px;
-    text-align: right;
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid var(--rose);
-}
-    body { font-family: 'Courier New', Courier, monospace, sans-serif; margin: 20px; }
-    .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
-    .cart { margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    button { padding: 5px 10px; cursor: pointer; }
-</style>
-</head>
-<body>
-    // cart.js - cola esse arquivo na raiz do projeto
+// backend/apps/shoppingcart/static/js/cart.js
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Adiciona evento pra todos botões "Add to Cart"
+// Evento global pra qualquer botão .add-to-cart em qualquer página
 document.addEventListener('click', e => {
     if(e.target.classList.contains('add-to-cart')) {
         const p = e.target.closest('.product');
@@ -149,33 +28,8 @@ function updateCartCount() {
     if(el) el.innerText = count;
 }
 
-// Roda quando a página carrega
-document.addEventListener('DOMContentLoaded', updateCartCount);
-
-// Funções que só rodam no shoppingcart.html
-function renderCart() {
-    if(!document.querySelector("#cartTable")) return; // Só roda se tiver tabela
-    const tbody = document.querySelector("#cartTable tbody");
-    tbody.innerHTML = "";
-    let total = 0;
-    cart.forEach(item => {
-        const row = document.createElement("tr");
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${item.price.toFixed(2)}</td>
-            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)"></td>
-            <td>${itemTotal.toFixed(2)}</td>
-            <td><button onclick="removeFromCart('${item.id}')">Remove</button></td>
-        `;
-        tbody.appendChild(row);
-    });
-    document.getElementById("cartTotal").textContent = `Total: R$ ${total.toFixed(2)}`;
-}
-
 function removeFromCart(id) {
-    cart = cart.filter(item => item.id!== id);
+    cart = cart.filter(item => item.id !== id);
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
     updateCartCount();
@@ -192,158 +46,30 @@ function updateQuantity(id, qty) {
     }
 }
 
-// Se estiver na página do carrinho, renderiza
-if(window.location.pathname.includes('shoppingcart.html')) {
-    document.addEventListener('DOMContentLoaded', renderCart);
-}
-    <header>
-     <!-- Header dinámico -->
-  <div id="header-placeholder"></div>
-
-    </header>
-<h1>Products</h1>
-<div id="products"></div>
-
-<div class="cart">
-    <h2>Shopping Cart</h2>
-    <table id="cartTable">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Price (R$)</th>
-                <th>Quantity</th>
-                <th>Total (R$)</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <h3 id="cartTotal">Total: $0.00</h3>
-</div>
-
-<script>
-// Sample product list
-const products = [
-    { id: 1, name: "Lenovo LOQ Intel Core i5-13450HX 16GB 512GB SSD Windows 11 Home RTX 3050", price: 6869.99 },
-    { id: 2, name: "Notebook ASUS Vivobook 16X (K3605)Memória RAM 8GB e 512GB SSD", price:2889.99 },
-    { id: 3, name: "Q SWITCH nd yag Laser Machine", price: 24400.99 },
-    {id:4, name: "TradingTools Trend Exponential Moving Average Analysis TREMA", price:350.00},
-    {id:5, name: "TradingTools Over_Market Overbought_Oversold Analysis OVER_MARKET", price:350.00},
-    {id:6, name: "TradingTools Money_Flow Analysis FLOW", price:350.00},
-    {id:7, name:"Financial Algorith", price: 899},
-];
-
-// Load cart from localStorage or start empty
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// Render products
-function renderProducts() {
-    const container = document.getElementById("products");
-    container.innerHTML = "";
-    products.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-            <h3>${p.name}</h3>
-            <p>Price: R$ ${p.price.toFixed(2)}</p>
-            <button onclick="addToCart(${p.id})">Add to Cart</button>
-        `;
-        container.appendChild(div);
-    });
-}
-
-// Add product to cart
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
-    if (!product) return;
-
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-        existing.quantity++;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-    saveCart();
-    renderCart();
-}
-// Remove product from cart
-function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
-    saveCart();
-    renderCart();
-}
-
-// Update quantity
-function updateQuantity(id, qty) {
-    qty = parseInt(qty);
-    if (isNaN(qty) || qty < 1) return; // Validation
-    const item = cart.find(i => i.id === id);
-    if (item) {
-        item.quantity = qty;
-        saveCart();
-        renderCart();
-    }
-}
-
-// Save cart to localStorage
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// Render cart table
 function renderCart() {
     const tbody = document.querySelector("#cartTable tbody");
+    if(!tbody) return; // Só roda se estiver no shoppingcart.html
+    
     tbody.innerHTML = "";
     let total = 0;
-
     cart.forEach(item => {
         const row = document.createElement("tr");
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-
         row.innerHTML = `
             <td>${item.name}</td>
-            <td>${item.price.toFixed(2)}</td>
-            <td>
-                <input type="number" value="${item.quantity}" min="1" 
-                    onchange="updateQuantity(${item.id}, this.value)">
-            </td>
-            <td>${itemTotal.toFixed(2)}</td>
-            <td><button onclick="removeFromCart(${item.id})">Remove</button></td>
+            <td>R$ ${item.price.toFixed(2)}</td>
+            <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)"></td>
+            <td>R$ ${itemTotal.toFixed(2)}</td>
+            <td><button onclick="removeFromCart('${item.id}')">Remove</button></td>
         `;
         tbody.appendChild(row);
     });
-
-    document.getElementById("cartTotal").textContent = `Total: $${total.toFixed(2)}`;
+    document.getElementById("cartTotal").textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
-// Initial render
-renderProducts();
-renderCart();
-</script>
-
-    <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
-
-  <!-- Script único para cargar header y footer -->
-  <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
-
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
-</body>
-</html>
-
-
+// Roda ao carregar qualquer página
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    renderCart(); // Só vai renderizar se tiver #cartTable
+});
