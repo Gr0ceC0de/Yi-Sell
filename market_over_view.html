@@ -338,12 +338,207 @@ Data displayed may be delayed, inaccurate, or obtained from third-party provider
     
   </tbody>
 </table>
+</div>
 
 <!-- LEGENDAS -->
 <p style="font-size: 12px; color: #888; margin-top: 16px;">
 * Lote mín calculado: 100 cotas x preço atual. ** Média histórica 10 anos. *** Margem requerida aprox. **** Tick mín do contrato. 
 Esta matriz é educativa. Não constitui recomendação de investimento. Risco de perda total. Rentabilidade passada não garante retorno futuro.
-</p>    
+</p>  
+     <div class="market-overview-financial_products UK">
+    <table class="market-overview-table UK"> 
+<!-- UK FINANCIAL INSTRUMENTS MATRIX - YI-SELL MARKET VIEW -->
+<style>
+  .uk-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    background: #0B0E11;
+    color: #EAECEF;
+    margin: 20px 0;
+  }
+  .uk-matrix th {
+    background: linear-gradient(90deg, #F0B90B 0%, #F8D12F 100%);
+    color: #181A20;
+    padding: 14px 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+  .uk-matrix td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #2B3139;
+    vertical-align: middle;
+  }
+  .uk-matrix tr:hover { background: #1E2329; }
+  .asset-logo { width: 24px; height: 24px; margin-right: 8px; vertical-align: middle; }
+  .risk-low { color: #0ECB81; font-weight: 600; }
+  .risk-med { color: #F0B90B; font-weight: 600; }
+  .risk-high { color: #F6465D; font-weight: 600; }
+  .risk-extreme { color: #B454F5; font-weight: 600; }
+  .disclaimer { font-size: 11px; color: #848E9C; margin-top: 12px; line-height: 1.4; }
+</style>
+
+<table class="uk-matrix">
+  <thead>
+    <tr>
+      <th>Instrument</th>
+      <th>Category</th>
+      <th>Min Investment</th>
+      <th>Min Lot Size</th>
+      <th>Expected ROI p.a.</th>
+      <th>UK Tax Rate</th>
+      <th>Risk Level</th>
+      <th>Liquidity</th>
+      <th>Regulator</th>
+      <th>£100k Example Net Return*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- HEAD: BANK OF INVESTMENTS OFFER -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/hsbc.co.uk" class="asset-logo">HSBC Fixed Term Deposit</td>
+      <td>Bank of Investments Offer</td>
+      <td>£100,000</td>
+      <td>£100,000</td>
+      <td>4.75% Gross</td>
+      <td>20% Income Tax**</td>
+      <td class="risk-low">Low</td>
+      <td>12 Month Lock</td>
+      <td>FCA + FSCS</td>
+      <td>£3,800 / year</td>
+    </tr>
+    
+    <!-- CFDs -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/ig.com" class="asset-logo">FTSE 100 CFD</td>
+      <td>CFDs</td>
+      <td>£100,000***</td>
+      <td>£2,000</td>
+      <td>Leveraged 5:1</td>
+      <td>20% CGT</td>
+      <td class="risk-extreme">Extreme</td>
+      <td>T+0</td>
+      <td>FCA</td>
+      <td>Variable ±£50k</td>
+    </tr>
+    
+    <!-- FUTURES -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/theice.com" class="asset-logo">ICE Brent Crude Future</td>
+      <td>Futures</td>
+      <td>£100,000***</td>
+      <td>£3,500</td>
+      <td>Leveraged 10:1</td>
+      <td>20% CGT</td>
+      <td class="risk-extreme">Extreme</td>
+      <td>T+0</td>
+      <td>FCA</td>
+      <td>Variable ±£100k</td>
+    </tr>
+    
+    <!-- ETFs -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/vanguard.co.uk" class="asset-logo">Vanguard FTSE 100 UCITS ETF VUKE</td>
+      <td>ETFs</td>
+      <td>£100,000</td>
+      <td>£2,100</td>
+      <td>6.50% 10Y Avg</td>
+      <td>20% CGT / 8.75% Div</td>
+      <td class="risk-med">Medium</td>
+      <td>T+2</td>
+      <td>FCA</td>
+      <td>£5,200 / year</td>
+    </tr>
+    
+    <!-- DERIVATIVES -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/lseg.com" class="asset-logo">LSE Listed Stock Options</td>
+      <td>Derivatives</td>
+      <td>£100,000***</td>
+      <td>£2,500</td>
+      <td>Non-linear</td>
+      <td>20% CGT</td>
+      <td class="risk-extreme">Extreme</td>
+      <td>T+1</td>
+      <td>FCA</td>
+      <td>Variable -£100k to +£300k</td>
+    </tr>
+    
+    <!-- REAL ASSETS -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/rightmove.co.uk" class="asset-logo">UK Buy-to-Let Property</td>
+      <td>Real Assets</td>
+      <td>£100,000</td>
+      <td>£100,000</td>
+      <td>5.20% Rental Yield</td>
+      <td>20-45% Income + 28% CGT</td>
+      <td class="risk-med">Medium</td>
+      <td>90+ Days</td>
+      <td>HMRC</td>
+      <td>£3,120 / year****</td>
+    </tr>
+    
+    <!-- RAWAS: CRYPTO IN REAL ASSETS -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/bitcoin.org" class="asset-logo">Bitcoin BTC Spot</td>
+      <td>RAWAS: Crypto</td>
+      <td>£100,000</td>
+      <td>£2,000</td>
+      <td>45.00% 5Y Avg</td>
+      <td>20% CGT</td>
+      <td class="risk-extreme">Extreme</td>
+      <td>T+0</td>
+      <td>FCA Registered</td>
+      <td>£36,000 / year*****</td>
+    </tr>
+    
+    <!-- FUNDS -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/bailliegifford.com" class="asset-logo">Baillie Gifford Global Alpha Fund</td>
+      <td>Funds</td>
+      <td>£100,000</td>
+      <td>£10,000</td>
+      <td>9.80% 10Y Avg</td>
+      <td>20% CGT</td>
+      <td class="risk-high">High</td>
+      <td>T+4</td>
+      <td>FCA</td>
+      <td>£7,840 / year</td>
+    </tr>
+    
+    <!-- LOGO: GOVERNMENT GILTS -->
+    <tr>
+      <td><img src="https://logo.clearbit.com/dmo.gov.uk" class="asset-logo">UK Gilt 4.5% 2034</td>
+      <td>Government Bonds</td>
+      <td>£100,000</td>
+      <td>£2,000</td>
+      <td>4.50% Coupon</td>
+      <td>20% Income Tax**</td>
+      <td class="risk-low">Low</td>
+      <td>T+1</td>
+      <td>DMO + FCA</td>
+      <td>£3,600 / year</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<p class="disclaimer">
+* £100k Example Net Return = Estimated annual return after UK taxes for a basic-rate taxpayer, using Oct 2026 rates. 
+** Basic Rate 20%. Higher Rate 40%. Additional Rate 45%. Assumes Personal Savings Allowance used. 
+*** Margin requirement shown as Min Investment. Actual notional exposure higher due to leverage. 
+**** After 20% income tax, 2% management, 1% maintenance. Excludes stamp duty. 
+***** Historical average. Crypto is volatile. Past performance does not guarantee future results. 
+This matrix is for educational purposes only. Not financial advice. Capital at risk. Loss may exceed deposits on leveraged products. 
+Regulated by Financial Conduct Authority. FSCS protection up to £85,000 per banking institution. 
+</p>
+     </div>
+         
+ - YI-SELL -->
+<style>
 
          <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
