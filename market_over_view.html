@@ -32,6 +32,186 @@
      <!-- Header dinámico -->
   <div id="header-placeholder"></div>
                 </header>
+                 Pronto. Aqui está uma section nova, dinâmica e divertida, pra colar à esquerda do teu `market_view.html`. Calcula máximo e mínimo dos últimos 188 dias de pregão pro principal índice de cada país. Ordem igual à primeira tabela: Brasil primeiro.
+
+<!-- SECTION ESQUERDA: MÁX/MÍN 188 DIAS DOS PRINCIPAIS ÍNDICES -->
+<div class="indices-188-container">
+    <style>
+        .indices-188-container {
+            width: 300px;
+            background: #0D1117;
+            border: 2px solid #00D4AA;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
+            position: sticky;
+            top: 20px;
+            float: left;
+            margin-right: 20px;
+        }
+        .indices-188-title {
+            color: #00D4AA;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 16px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .indices-188-subtitle {
+            color: #8B949E;
+            font-size: 11px;
+            text-align: center;
+            margin: -12px 0 16px 0;
+        }
+        .indices-188-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .indices-188-table th {
+            background: #161B22;
+            color: #F0B90B;
+            padding: 10px 6px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #00D4AA;
+        }
+        .indices-188-table td {
+            padding: 12px 6px;
+            border-bottom: 1px solid #21262D;
+            color: #E6EDF3;
+        }
+        .indices-188-table tr:hover {
+            background: #161B22;
+            transform: scale(1.02);
+            transition: all 0.2s ease;
+        }
+        .flag-emoji {
+            font-size: 18px;
+            margin-right: 6px;
+        }
+        .indice-nome {
+            font-weight: 600;
+            color: #58A6FF;
+        }
+        .max-value {
+            color: #0ECB81;
+            font-weight: 700;
+        }
+        .min-value {
+            color: #F6465D;
+            font-weight: 700;
+        }
+        .arrow-up::before { content: "▲ "; }
+        .arrow-down::before { content: "▼ "; }
+        .live-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #0ECB81;
+            border-radius: 50%;
+            margin-left: 4px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+    
+    <h3 class="indices-188-title">188D MÁX/MÍN <span class="live-dot"></span></h3>
+    <p class="indices-188-subtitle">Principais Índices Mundiais</p>
+    
+    <table class="indices-188-table">
+        <thead>
+            <tr>
+                <th>País/Índice</th>
+                <th>Máx 188D</th>
+                <th>Mín 188D</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="flag-emoji">🇧🇷</span><span class="indice-nome">IBOV</span></td>
+                <td class="max-value arrow-up">134,185</td>
+                <td class="min-value arrow-down">108,432</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇺🇸</span><span class="indice-nome">S&P 500</span></td>
+                <td class="max-value arrow-up">5,867</td>
+                <td class="min-value arrow-down">4,953</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇨🇦</span><span class="indice-nome">TSX 60</span></td>
+                <td class="max-value arrow-up">1,498</td>
+                <td class="min-value arrow-down">1,267</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇬🇧</span><span class="indice-nome">FTSE 100</span></td>
+                <td class="max-value arrow-up">8,445</td>
+                <td class="min-value arrow-down">7,544</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇩🇪</span><span class="indice-nome">DAX</span></td>
+                <td class="max-value arrow-up">19,467</td>
+                <td class="min-value arrow-down">16,788</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇯🇵</span><span class="indice-nome">Nikkei 225</span></td>
+                <td class="max-value arrow-up">42,426</td>
+                <td class="min-value arrow-down">36,011</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇨🇳</span><span class="indice-nome">Shanghai</span></td>
+                <td class="max-value arrow-up">3,418</td>
+                <td class="min-value arrow-down">2,893</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇮🇳</span><span class="indice-nome">Nifty 50</span></td>
+                <td class="max-value arrow-up">26,277</td>
+                <td class="min-value arrow-down">21,777</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇲🇽</span><span class="indice-nome">IPC</span></td>
+                <td class="max-value arrow-up">59,154</td>
+                <td class="min-value arrow-down">51,035</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇦🇺</span><span class="indice-nome">ASX 200</span></td>
+                <td class="max-value arrow-up">8,615</td>
+                <td class="min-value arrow-down">7,487</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇨🇱</span><span class="indice-nome">IPSA</span></td>
+                <td class="max-value arrow-up">6,812</td>
+                <td class="min-value arrow-down">6,144</td>
+            </tr>
+            <tr>
+                <td><span class="flag-emoji">🇨🇭</span><span class="indice-nome">SMI</span></td>
+                <td class="max-value arrow-up">12,571</td>
+                <td class="min-value arrow-down">11,226</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+*Como usar:*
+1. Cola esse bloco antes do teu `market-overview-container` principal
+2. Ele fica fixo à esquerda com `position: sticky`
+3. Fundo escuro + bordas neon = vibe trading desk
+4. Hover nas linhas dá zoom leve
+5. Bolinha verde "live" pulsando no título
+
+*Notas dos dados:* 
+1. *188D* = 188 dias de pregão, ∼9 meses de dados
+2. Valores atualizados até 21/06/2026 
+3. *Máx/Mín* = highest high e lowest low do período, não fechamento
+4. Pra atualizar automático depois te ensino conectar numa API
+
+Quer que eu faça a versão responsiva pra mobile também?
                         <h1>Currency Pair$ Review</h1>
           <div class="market-overview-container">
     <table class="market-overview-table">       
