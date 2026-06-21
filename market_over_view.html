@@ -130,6 +130,220 @@ Users are solely responsible for their investment decisions and should consult l
 <p>
 Data displayed may be delayed, inaccurate, or obtained from third-party providers including APIs, exchanges, brokers, and market data services.
 </p>
+         <div class="market-overview-financial_products">
+    <table class="market-overview-table"> 
+ MATRIZ EDUCATIVA DE PRODUTOS FINANCEIROS - YI-SELL -->
+<style>
+  .matriz-financeira {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    background: #0A0A0A;
+    color: #E0E0E0;
+  }
+  .matriz-financeira th {
+    background: #00D4AA;
+    color: #000;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+  }
+  .matriz-financeira td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #222;
+  }
+  .matriz-financeira tr:hover {
+    background: #1A1A1A;
+  }
+  .tag-risco-baixo { color: #00D4AA; font-weight: 600; }
+  .tag-risco-medio { color: #FFB800; font-weight: 600; }
+  .tag-risco-alto { color: #FF4757; font-weight: 600; }
+  .tag-risco-extremo { color: #A55EEA; font-weight: 600; }
+</style>
+
+<table class="matriz-financeira">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Produto/Ativo</th>
+      <th>Mercado</th>
+      <th>Aporte Mín</th>
+      <th>Lote Mín</th>
+      <th>Rentab. Esperada a.a.</th>
+      <th>Risco</th>
+      <th>Liquidez</th>
+      <th>IR</th>
+      <th>Proteção</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- RENDA FIXA -->
+    <tr>
+      <td>Renda Fixa</td>
+      <td>Tesouro IPCA+ 2035</td>
+      <td>TD</td>
+      <td>R$ 100.000</td>
+      <td>R$ 2.000</td>
+      <td>IPCA + 5,80%</td>
+      <td class="tag-risco-baixo">Baixo</td>
+      <td>D+1</td>
+      <td>15%</td>
+      <td>Gov. Federal</td>
+    </tr>
+    <tr>
+      <td>Renda Fixa</td>
+      <td>CDB Banco Master 125% CDI</td>
+      <td>Balcão</td>
+      <td>R$ 100.000</td>
+      <td>R$ 5.000</td>
+      <td>13,00%</td>
+      <td class="tag-risco-medio">Médio</td>
+      <td>D+1</td>
+      <td>15%</td>
+      <td>FGC</td>
+    </tr>
+    <tr>
+      <td>Renda Fixa</td>
+      <td>LCI 98% CDI 2 Anos</td>
+      <td>Balcão</td>
+      <td>R$ 100.000</td>
+      <td>R$ 10.000</td>
+      <td>10,19%</td>
+      <td class="tag-risco-baixo">Baixo</td>
+      <td>720 dias</td>
+      <td>Isento</td>
+      <td>FGC</td>
+    </tr>
+    <tr>
+      <td>Renda Fixa</td>
+      <td>Debênture Incentivada Engie</td>
+      <td>B3</td>
+      <td>R$ 100.000</td>
+      <td>R$ 2.000</td>
+      <td>IPCA + 7,10%</td>
+      <td class="tag-risco-medio">Médio</td>
+      <td>D+2</td>
+      <td>Isento</td>
+      <td>Não</td>
+    </tr>
+    
+    <!-- FUNDOS -->
+    <tr>
+      <td>Fundos</td>
+      <td>Fundo Verde FIC FIM</td>
+      <td>Fundos</td>
+      <td>R$ 100.000</td>
+      <td>R$ 5.000</td>
+      <td>14,50%</td>
+      <td class="tag-risco-alto">Alto</td>
+      <td>D+30</td>
+      <td>15%</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <td>Fundos</td>
+      <td>FII KNRI11 - Kinea Renda</td>
+      <td>B3</td>
+      <td>R$ 100.000</td>
+      <td>R$ 2.160*</td>
+      <td>9,80% DY</td>
+      <td class="tag-risco-medio">Médio</td>
+      <td>D+2</td>
+      <td>Isento DY</td>
+      <td>Não</td>
+    </tr>
+    
+    <!-- VARIÁVEL SPOT -->
+    <tr>
+      <td>Var. Spot</td>
+      <td>ETF BOVA11 - Ibovespa</td>
+      <td>B3</td>
+      <td>R$ 100.000</td>
+      <td>R$ 2.100*</td>
+      <td>12,00%**</td>
+      <td class="tag-risco-alto">Alto</td>
+      <td>D+2</td>
+      <td>15% lucro</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <td>Var. Spot</td>
+      <td>Ações VALE3</td>
+      <td>B3</td>
+      <td>R$ 100.000</td>
+      <td>R$ 2.200*</td>
+      <td>15,00%**</td>
+      <td class="tag-risco-alto">Alto</td>
+      <td>D+2</td>
+      <td>15% lucro</td>
+      <td>Não</td>
+    </tr>
+    
+    <!-- FUTUROS B3 -->
+    <tr>
+      <td>Futuros</td>
+      <td>Contrato Futuro Índice WINV26</td>
+      <td>B3</td>
+      <td>R$ 100.000***</td>
+      <td>R$ 2.000****</td>
+      <td>Alavancado</td>
+      <td class="tag-risco-extremo">Extremo</td>
+      <td>D+0</td>
+      <td>15% lucro</td>
+      <td>Margem B3</td>
+    </tr>
+    <tr>
+      <td>Futuros</td>
+      <td>Contrato Futuro Dólar DOLX26</td>
+      <td>B3</td>
+      <td>R$ 100.000***</td>
+      <td>R$ 2.500****</td>
+      <td>Alavancado</td>
+      <td class="tag-risco-extremo">Extremo</td>
+      <td>D+0</td>
+      <td>15% lucro</td>
+      <td>Margem B3</td>
+    </tr>
+    
+    <!-- ESTRUTURADOS -->
+    <tr>
+      <td>Estruturado</td>
+      <td>COE Autocall Ibov 3 Anos</td>
+      <td>Balcão</td>
+      <td>R$ 100.000</td>
+      <td>R$ 100.000</td>
+      <td>Até 18,00%</td>
+      <td class="tag-risco-alto">Alto</td>
+      <td>Vecto</td>
+      <td>15%</td>
+      <td>Banco Emissor</td>
+    </tr>
+    <tr>
+      <td>Estruturado</td>
+      <td>Nota Estruturada Dólar+</td>
+      <td>Balcão</td>
+      <td>R$ 100.000</td>
+      <td>R$ 50.000</td>
+      <td>VC + 6,00%</td>
+      <td class="tag-risco-medio">Médio</td>
+      <td>Vecto</td>
+      <td>15%</td>
+      <td>Banco Emissor</td>
+    </tr>
+    
+    <!-- ADICIONA MAIS 38 LINHAS AQUI SEGUINDO O PADRÃO -->
+    
+  </tbody>
+</table>
+
+<!-- LEGENDAS -->
+<p style="font-size: 12px; color: #888; margin-top: 16px;">
+* Lote mín calculado: 100 cotas x preço atual. ** Média histórica 10 anos. *** Margem requerida aprox. **** Tick mín do contrato. 
+Esta matriz é educativa. Não constitui recomendação de investimento. Risco de perda total. Rentabilidade passada não garante retorno futuro.
+</p>    
 
          <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
