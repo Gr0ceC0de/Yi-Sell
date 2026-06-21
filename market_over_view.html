@@ -1,57 +1,180 @@
 <!DOCTYPE html>
-     <head>
-           <meta charset="utf-8">
-          <link rel="stylesheet" href="styles.css">
-                 <title>MARKET VIEW FOREX</title>
-          <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
-             </head>
-            <body>     
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>MARKET VIEW FOREX</title>
+    <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
     <style>
-        body {
-            /* Sets the path to your image file */
-            background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg'); 
-            
-            /* Prevents the image from repeating like a grid */
-            background-repeat: repeat; 
-            
-            /* Centers the image horizontally and vertically */
-            background-position: center; 
-            
-            /* Keeps the background fixed in place during page scroll */
-            background-attachment: fixed; 
-            
-            /* Resizes the image to fully cover the browser window */
-            background-size: cover; 
-            <img src="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg" style="width:75px;height:75px;">
-            /* Fallback color if the image fails to load */
-            background-color: #cccccc; 
+        :root {
+            --bg-dark: rgba(13, 17, 23, 0.85);
+            --bg-glass: rgba(22, 27, 34, 0.7);
+            --border-neon: #00D4AA;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --hover-bg: rgba(22, 27, 34, 0.9);
         }
-    </style>    
-                
-                <header>
-     <!-- Header dinámico -->
-  <div id="header-placeholder"></div>
-                </header>
-
-
-<!-- SECTION ESQUERDA: MÁX/MÍN 188 DIAS DOS PRINCIPAIS ÍNDICES -->
-<div class="indices-188-container">
-    <style>
-        .indices-188-container {
-            width: 300px;
-            background: #0D1117;
-            border: 2px solid #00D4AA;
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg'); 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-attachment: fixed; 
+            background-size: cover; 
+            background-color: #0D1117; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            color: var(--text-primary);
+            backdrop-filter: blur(2px);
+        }
+        .main-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            align-items: flex-start;
+        }
+        .left-column {
+            flex: 0 0 320px;
+        }
+        .right-column {
+            flex: 1;
+            min-width: 0;
+        }
+        .logo-top {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 75px;
+            height: 75px;
+            z-index: 1000;
+            border-radius: 8px;
+            border: 2px solid var(--border-neon);
+        }
+        h1 {
+            text-align: center;
+            color: #58A6FF;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+        .table-container {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 170, 0.3);
             border-radius: 12px;
             padding: 16px;
-            font-family: 'Inter', sans-serif;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .table-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--border-neon);
+            text-transform: uppercase;
+        }
+        .search-input {
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid var(--border-neon);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            width: 200px;
+        }
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background: rgba(0, 212, 170, 0.15);
+            color: #F0B90B;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-neon);
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+        }
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(33, 38, 45, 0.8);
+            vertical-align: middle;
+        }
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+        tbody tr:hover {
+            background: var(--hover-bg);
+        }
+        .coin-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .chart-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 4px;
+        }
+        .risk-warning {
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .risk-warning p:first-child {
+            color: #F0B90B;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+        .matrix-view-btn {
+            background: var(--border-neon);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .matrix-view-btn:hover {
+            opacity: 0.8;
+        }
+        .hidden { display: none; }
+        
+        /* Indices 188D Container */
+        .indices-188-container {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--border-neon);
+            border-radius: 12px;
+            padding: 16px;
             box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
             position: sticky;
             top: 20px;
-            float: left;
-            margin-right: 20px;
         }
         .indices-188-title {
-            color: #00D4AA;
+            color: var(--border-neon);
             font-size: 16px;
             font-weight: 700;
             text-align: center;
@@ -60,50 +183,25 @@
             letter-spacing: 1px;
         }
         .indices-188-subtitle {
-            color: #8B949E;
+            color: var(--text-secondary);
             font-size: 11px;
             text-align: center;
             margin: -12px 0 16px 0;
         }
-        .indices-188-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
         .indices-188-table th {
-            background: #161B22;
+            background: rgba(22, 27, 34, 0.9);
             color: #F0B90B;
             padding: 10px 6px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid #00D4AA;
+            font-size: 12px;
         }
         .indices-188-table td {
+            font-size: 12px;
             padding: 12px 6px;
-            border-bottom: 1px solid #21262D;
-            color: #E6EDF3;
         }
-        .indices-188-table tr:hover {
-            background: #161B22;
-            transform: scale(1.02);
-            transition: all 0.2s ease;
-        }
-        .flag-emoji {
-            font-size: 18px;
-            margin-right: 6px;
-        }
-        .indice-nome {
-            font-weight: 600;
-            color: #58A6FF;
-        }
-        .max-value {
-            color: #0ECB81;
-            font-weight: 700;
-        }
-        .min-value {
-            color: #F6465D;
-            font-weight: 700;
-        }
+        .flag-emoji { font-size: 18px; margin-right: 6px; }
+        .indice-nome { font-weight: 600; color: #58A6FF; }
+        .max-value { color: #0ECB81; font-weight: 700; }
+        .min-value { color: #F6465D; font-weight: 700; }
         .arrow-up::before { content: "▲ "; }
         .arrow-down::before { content: "▼ "; }
         .live-dot {
@@ -120,1016 +218,537 @@
             50% { opacity: 0.3; }
             100% { opacity: 1; }
         }
-    </style>
+        
+        /* Matriz Financeira */
+        .matriz-financeira th {
+            background: rgba(0, 212, 170, 0.2);
+            color: #000;
+            font-weight: 700;
+        }
+        .tag-risco-baixo { color: #00D4AA; font-weight: 600; }
+        .tag-risco-medio { color: #FFB800; font-weight: 600; }
+        .tag-risco-alto { color: #FF4757; font-weight: 600; }
+        .tag-risco-extremo { color: #A55EEA; font-weight: 600; }
+        
+        /* UK Matrix */
+        .uk-matrix th {
+            background: linear-gradient(90deg, rgba(240, 185, 11, 0.3) 0%, rgba(248, 209, 47, 0.3) 100%);
+            color: #181A20;
+        }
+        .asset-logo { width: 24px; height: 24px; margin-right: 8px; vertical-align: middle; }
+        .risk-low { color: #0ECB81; font-weight: 600; }
+        .risk-med { color: #F0B90B; font-weight: 600; }
+        .risk-high { color: #F6465D; font-weight: 600; }
+        .risk-extreme { color: #B454F5; font-weight: 600; }
+        .disclaimer { font-size: 11px; color: #848E9C; margin-top: 12px; line-height: 1.4; }
+        
+        /* US Table */
+        .market-overview-table.US th {
+            background: rgba(41, 98, 255, 0.3);
+            color: #FFFFFF;
+        }
+        
+        /* CA Table */
+        .market-overview-table.CA th {
+            background: rgba(216, 6, 33, 0.3);
+            color: #FFFFFF;
+        }
+        .details-cell {
+            font-size: 11px;
+            color: #9DA3AF;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-wrapper { flex-direction: column; }
+            .left-column { flex: 1; width: 100%; }
+        }
+    </style>    
+</head>
+<body>     
+    <img src="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg" class="logo-top" alt="Logo">
     
-    <h3 class="indices-188-title">188D MÁX/MÍN <span class="live-dot"></span></h3>
-    <p class="indices-188-subtitle">Principais Índices Mundiais</p>
-    
-    <table class="indices-188-table">
-        <thead>
-            <tr>
-                <th>País/Índice</th>
-                <th>Máx 188D</th>
-                <th>Mín 188D</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="flag-emoji">🇧🇷</span><span class="indice-nome">IBOV</span></td>
-                <td class="max-value arrow-up">198,256</td>
-                <td class="min-value arrow-down">108,432</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇺🇸</span><span class="indice-nome">S&P 500</span></td>
-                <td class="max-value arrow-up">5,867</td>
-                <td class="min-value arrow-down">4,953</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇨🇦</span><span class="indice-nome">TSX 60</span></td>
-                <td class="max-value arrow-up">1,498</td>
-                <td class="min-value arrow-down">1,267</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇬🇧</span><span class="indice-nome">FTSE 100</span></td>
-                <td class="max-value arrow-up">8,445</td>
-                <td class="min-value arrow-down">7,544</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇩🇪</span><span class="indice-nome">DAX</span></td>
-                <td class="max-value arrow-up">19,467</td>
-                <td class="min-value arrow-down">16,788</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇯🇵</span><span class="indice-nome">Nikkei 225</span></td>
-                <td class="max-value arrow-up">42,426</td>
-                <td class="min-value arrow-down">36,011</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇨🇳</span><span class="indice-nome">Shanghai</span></td>
-                <td class="max-value arrow-up">3,418</td>
-                <td class="min-value arrow-down">2,893</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇮🇳</span><span class="indice-nome">Nifty 50</span></td>
-                <td class="max-value arrow-up">26,277</td>
-                <td class="min-value arrow-down">21,777</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇲🇽</span><span class="indice-nome">IPC</span></td>
-                <td class="max-value arrow-up">59,154</td>
-                <td class="min-value arrow-down">51,035</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇦🇺</span><span class="indice-nome">ASX 200</span></td>
-                <td class="max-value arrow-up">8,615</td>
-                <td class="min-value arrow-down">7,487</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇨🇱</span><span class="indice-nome">IPSA</span></td>
-                <td class="max-value arrow-up">6,812</td>
-                <td class="min-value arrow-down">6,144</td>
-            </tr>
-            <tr>
-                <td><span class="flag-emoji">🇨🇭</span><span class="indice-nome">SMI</span></td>
-                <td class="max-value arrow-up">12,571</td>
-                <td class="min-value arrow-down">11,226</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <header>
+        <div id="header-placeholder"></div>
+    </header>
 
-                        <h1>Currency Pair$ Review</h1>
-          <div class="market-overview-container">
-    <table class="market-overview-table">       
-        <table><td style="padding:10px;">
-            <tr>
-                <th>COIN</th>
-                <th>PAIR</th>
-                <th>SELL</th>
-                <th>BUY</th>
-                <th>CHART</th>
-</tr>
+    <div class="main-wrapper">
+        <!-- COLUNA ESQUERDA: ÍNDICES 188D -->
+        <div class="left-column">
+            <div class="indices-188-container">
+                <h3 class="indices-188-title">188D MÁX/MÍN <span class="live-dot"></span></h3>
+                <p class="indices-188-subtitle">Principais Índices Mundiais</p>
+                <input type="text" class="search-input" id="searchIndices" placeholder="Buscar índice..." onkeyup="filterTable('indices-188-table', 'searchIndices')">
+                <table class="indices-188-table" id="indices-188-table">
+                    <thead>
+                        <tr>
+                            <th>País/Índice</th>
+                            <th>Máx 188D</th>
+                            <th>Mín 188D</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="flag-emoji">🇧🇷</span><span class="indice-nome">IBOV</span></td>
+                            <td class="max-value arrow-up">198,256</td>
+                            <td class="min-value arrow-down">108,432</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇺🇸</span><span class="indice-nome">S&P 500</span></td>
+                            <td class="max-value arrow-up">5,867</td>
+                            <td class="min-value arrow-down">4,953</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇨🇦</span><span class="indice-nome">TSX 60</span></td>
+                            <td class="max-value arrow-up">1,498</td>
+                            <td class="min-value arrow-down">1,267</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇬🇧</span><span class="indice-nome">FTSE 100</span></td>
+                            <td class="max-value arrow-up">8,445</td>
+                            <td class="min-value arrow-down">7,544</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇩🇪</span><span class="indice-nome">DAX</span></td>
+                            <td class="max-value arrow-up">19,467</td>
+                            <td class="min-value arrow-down">16,788</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇯🇵</span><span class="indice-nome">Nikkei 225</span></td>
+                            <td class="max-value arrow-up">42,426</td>
+                            <td class="min-value arrow-down">36,011</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇨🇳</span><span class="indice-nome">Shanghai</span></td>
+                            <td class="max-value arrow-up">3,418</td>
+                            <td class="min-value arrow-down">2,893</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇮🇳</span><span class="indice-nome">Nifty 50</span></td>
+                            <td class="max-value arrow-up">26,277</td>
+                            <td class="min-value arrow-down">21,777</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇲🇽</span><span class="indice-nome">IPC</span></td>
+                            <td class="max-value arrow-up">59,154</td>
+                            <td class="min-value arrow-down">51,035</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇦🇺</span><span class="indice-nome">ASX 200</span></td>
+                            <td class="max-value arrow-up">8,615</td>
+                            <td class="min-value arrow-down">7,487</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇨🇱</span><span class="indice-nome">IPSA</span></td>
+                            <td class="max-value arrow-up">6,812</td>
+                            <td class="min-value arrow-down">6,144</td>
+                        </tr>
+                        <tr>
+                            <td><span class="flag-emoji">🇨🇭</span><span class="indice-nome">SMI</span></td>
+                            <td class="max-value arrow-up">12,571</td>
+                            <td class="min-value arrow-down">11,226</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<tr>
-<td><img src="docs/realdor.jfif" style="width:75px; height:75px;"></td>
-<td>USDBRL</td>
-<td>$5.2516</td>
-<td>$4.9732</td>
-<td><img src="https://charts.mql5.com/43/794/usdbrl-m15-metaquotes-ltd.png" style="width:75px;height:75px"; alt="real BRL range"</td>
-</tr>
-<tr>
-<td><img src="docs/eurcoin.JPG" style="width:75px;height:75px;"></td>
-<td>EURUSD</td>
-<td>$1.15757</td>
-<td>$1.14428</td>
-<td><img src="https://charts.mql5.com/43/794/eurusd-h1-metaquotes-ltd.png" style="width:75px;height:75px;" alt="Chart EURUSD, H4, 2026.05.26 14:43 UTC, MetaQuotes Ltd., MetaTrader 5, Demo" title="Chart EURUSD, H4, 2026.05.26 14:43 UTC, MetaQuotes Ltd., MetaTrader 5, Demo"></td>
-</tr>
+        <!-- COLUNA DIREITA: TABELAS PRINCIPAIS -->
+        <div class="right-column">
+            <h1>Currency Pair$ Review</h1>
+            
+            <!-- TABELA FOREX -->
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">FOREX & CRYPTO PAIRS</span>
+                    <input type="text" class="search-input" id="searchForex" placeholder="Buscar par..." onkeyup="filterTable('forex-table', 'searchForex')">
+                </div>
+                <table class="market-overview-table" id="forex-table">       
+                    <thead>
+                        <tr>
+                            <th>COIN</th>
+                            <th>PAIR</th>
+                            <th>SELL</th>
+                            <th>BUY</th>
+                            <th>CHART</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="docs/realdor.jfif" class="coin-img" alt="BRL"></td>
+                            <td>USDBRL</td>
+                            <td>$5.2516</td>
+                            <td>$4.9732</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdbrl-m15-metaquotes-ltd.png" class="chart-img" alt="real BRL range"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/eurcoin.JPG" class="coin-img" alt="EUR"></td>
+                            <td>EURUSD</td>
+                            <td>$1.15757</td>
+                            <td>$1.14428</td>
+                            <td><img src="https://charts.mql5.com/43/794/eurusd-h1-metaquotes-ltd.png" class="chart-img" alt="Chart EURUSD" title="Chart EURUSD, H4, 2026.05.26 14:43 UTC, MetaQuotes Ltd., MetaTrader 5, Demo"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/Bitcoin.jpg" class="coin-img" alt="bitcoin"></td>
+                            <td>BTCUSD</td>
+                            <td>$67,505.00</td>
+                            <td>$53,348.00</td>
+                            <td>CHART</td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/elizabeth pound.jpg" class="coin-img" alt="GBP"></td>
+                            <td>GBPUSD</td>
+                            <td>$1.3400</td>
+                            <td>$1.3300</td>
+                            <td><img src="https://charts.mql5.com/43/794/gbpusd-h1-metaquotes-ltd.png" class="chart-img" alt="GBPUSD"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/mxn.JPG" class="coin-img" alt="MXN"></td>
+                            <td>USDMXN</td>
+                            <td>$17.686</td>
+                            <td>$17.404</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdmxn-h1-metaquotes-ltd.png" class="chart-img" alt="USDMXN"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/litecoin.JPG" class="coin-img" alt="LTC"></td>
+                            <td>LTCUSD</td>
+                            <td>$76.87</td>
+                            <td>$41.00</td>
+                            <td>CHART</td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/AUD Canguro.jpg" class="coin-img" alt="AUD"></td>
+                            <td>AUDUSD</td>
+                            <td>$0.71199</td>
+                            <td>$0.69800</td>
+                            <td><img src="https://charts.mql5.com/43/794/audusd-h1-metaquotes-ltd.png" class="chart-img" alt="AUDUSD"></td>
+                        </tr>
+                        <tr>           
+                            <td><img src="docs/pesochileno.jfif" class="coin-img" alt="CLP"></td>
+                            <td>USDCLP</td>
+                            <td>$926.06</td>
+                            <td>$906.34</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdclp-d1-metaquotes-ltd.png" class="chart-img" alt="USDCLP"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<tr>
-<td><img src="docs/Bitcoin.jpg" style="width:75px;height:75px;" alt="bitcoin"></td>
-<td>BTCUSD</td>
-<td>$67,505.00</td>
-<td>$53,348.00</td>
-<td>CHART</td>
-</tr>
+            <!-- MATRIZ EDUCATIVA BR -->
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">MATRIZ EDUCATIVA DE PRODUTOS FINANCEIROS - YI-SELL</span>
+                    <button class="matrix-view-btn" onclick="toggleMatrixView('matriz-br')">Toggle Matrix</button>
+                    <input type="text" class="search-input" id="searchBR" placeholder="Buscar ativo..." onkeyup="filterTable('matriz-br', 'searchBR')">
+                </div>
+                <table class="matriz-financeira" id="matriz-br">
+                    <thead>
+                        <tr>
+                            <th>Classe</th>
+                            <th>Produto/Ativo</th>
+                            <th>Mercado</th>
+                            <th>Aporte Mín</th>
+                            <th>Lote Mín</th>
+                            <th>Rentab. Esperada a.a.</th>
+                            <th>Risco</th>
+                            <th>Liquidez</th>
+                            <th>IR</th>
+                            <th>Proteção</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Renda Fixa</td>
+                            <td>Tesouro IPCA+ 2035</td>
+                            <td>TD</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 2.000</td>
+                            <td>IPCA + 5,80%</td>
+                            <td class="tag-risco-baixo">Baixo</td>
+                            <td>D+1</td>
+                            <td>15%</td>
+                            <td>Gov. Federal</td>
+                        </tr>
+                        <tr>
+                            <td>Renda Fixa</td>
+                            <td>CDB Banco Master 125% CDI</td>
+                            <td>Balcão</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 5.000</td>
+                            <td>13,00%</td>
+                            <td class="tag-risco-medio">Médio</td>
+                            <td>D+1</td>
+                            <td>15%</td>
+                            <td>FGC</td>
+                        </tr>
+                        <tr>
+                            <td>Renda Fixa</td>
+                            <td>LCI 98% CDI 2 Anos</td>
+                            <td>Balcão</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 10.000</td>
+                            <td>10,19%</td>
+                            <td class="tag-risco-baixo">Baixo</td>
+                            <td>720 dias</td>
+                            <td>Isento</td>
+                            <td>FGC</td>
+                        </tr>
+                        <tr>
+                            <td>Renda Fixa</td>
+                            <td>Debênture Incentivada Engie</td>
+                            <td>B3</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 2.000</td>
+                            <td>IPCA + 7,10%</td>
+                            <td class="tag-risco-medio">Médio</td>
+                            <td>D+2</td>
+                            <td>Isento</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr>
+                            <td>Fundos</td>
+                            <td>Fundo Verde FIC FIM</td>
+                            <td>Fundos</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 5.000</td>
+                            <td>14,50%</td>
+                            <td class="tag-risco-alto">Alto</td>
+                            <td>D+30</td>
+                            <td>15%</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr>
+                            <td>Fundos</td>
+                            <td>FII KNRI11 - Kinea Renda</td>
+                            <td>B3</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 2.160*</td>
+                            <td>9,80% DY</td>
+                            <td class="tag-risco-medio">Médio</td>
+                            <td>D+2</td>
+                            <td>Isento DY</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr>
+                            <td>Var. Spot</td>
+                            <td>ETF BOVA11 - Ibovespa</td>
+                            <td>B3</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 2.100*</td>
+                            <td>12,00%**</td>
+                            <td class="tag-risco-alto">Alto</td>
+                            <td>D+2</td>
+                            <td>15% lucro</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr>
+                            <td>Var. Spot</td>
+                            <td>Ações VALE3</td>
+                            <td>B3</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 2.200*</td>
+                            <td>15,00%**</td>
+                            <td class="tag-risco-alto">Alto</td>
+                            <td>D+2</td>
+                            <td>15% lucro</td>
+                            <td>Não</td>
+                        </tr>
+                        <tr>
+                            <td>Futuros</td>
+                            <td>Contrato Futuro Índice WINV26</td>
+                            <td>B3</td>
+                            <td>R$ 100.000***</td>
+                            <td>R$ 2.000****</td>
+                            <td>Alavancado</td>
+                            <td class="tag-risco-extremo">Extremo</td>
+                            <td>D+0</td>
+                            <td>15% lucro</td>
+                            <td>Margem B3</td>
+                        </tr>
+                        <tr>
+                            <td>Futuros</td>
+                            <td>Contrato Futuro Dólar DOLX26</td>
+                            <td>B3</td>
+                            <td>R$ 100.000***</td>
+                            <td>R$ 2.500****</td>
+                            <td>Alavancado</td>
+                            <td class="tag-risco-extremo">Extremo</td>
+                            <td>D+0</td>
+                            <td>15% lucro</td>
+                            <td>Margem B3</td>
+                        </tr>
+                        <tr>
+                            <td>Estruturado</td>
+                            <td>COE Autocall Ibov 3 Anos</td>
+                            <td>Balcão</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 100.000</td>
+                            <td>Até 18,00%</td>
+                            <td class="tag-risco-alto">Alto</td>
+                            <td>Vecto</td>
+                            <td>15%</td>
+                            <td>Banco Emissor</td>
+                        </tr>
+                        <tr>
+                            <td>Estruturado</td>
+                            <td>Nota Estruturada Dólar+</td>
+                            <td>Balcão</td>
+                            <td>R$ 100.000</td>
+                            <td>R$ 50.000</td>
+                            <td>VC + 6,00%</td>
+                            <td class="tag-risco-medio">Médio</td>
+                            <td>Vecto</td>
+                            <td>15%</td>
+                            <td>Banco Emissor</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 12px; color: #888; margin-top: 16px;">
+                * Lote mín calculado: 100 cotas x preço atual. ** Média histórica 10 anos. *** Margem requerida aprox. **** Tick mín do contrato. 
+                Esta matriz é educativa. Não constitui recomendação de investimento. Risco de perda total. Rentabilidade passada não garante retorno futuro.
+                </p>
+            </div>
 
-<tr>
-<td><img src="docs/elizabeth pound.jpg"style="width:75px;height:75px;"></td>
-<td>GBPUSD</td>
-<td>$1.3400</td>
-<td>$1.3300</td>
-<td><img src="https://charts.mql5.com/43/794/gbpusd-h1-metaquotes-ltd.png" style="width:75px;height:75px;"></td>
-</tr>
-
-<tr>
-<td><img src="docs/mxn.JPG" style="width:75px;height:75px;"></td>
-<td>USDMXN</td>
-<td>$17.686</td>
-<td>$17.404</td>
-<td><img src="https://charts.mql5.com/43/794/usdmxn-h1-metaquotes-ltd.png" style="width:75px;height:75px;"></td>
-</tr>
-
-<tr>
-<td><img src="docs/litecoin.JPG" style="width:75px;height:75px;"></td>
-<td>LTCUSD</td>
-<td>$76.87</td>
-<td>$41.00</td>
-<td>CHART</td>
-</tr>
-
-<tr>
-<td><img src="docs/AUD Canguro.jpg style="width:75px;height:75px;"></td>
-<td>AUDUSD</td>
-<td>$0.71199</td>
-<td>$0.69800</td>
-<td><img src="https://charts.mql5.com/43/794/audusd-h1-metaquotes-ltd.png style="width:75px;height:75px;"></td>
-</tr>
-<tr>           
-<td><img src="docs/pesochileno.jfif" style="width:75px;height:75px;"></td>
-<td>USDCLP</td>
-<td>$926.06</td>
-<td>$906.34</td>
-<td><img src="https://charts.mql5.com/43/794/usdclp-d1-metaquotes-ltd.png" style="width:75px;height:75px;"
-         ></td>
-</tr>
-</table>
-          </div>
+            <!-- UK MATRIX -->
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">UK FINANCIAL INSTRUMENTS MATRIX</span>
+                    <input type="text" class="search-input" id="searchUK" placeholder="Search instrument..." onkeyup="filterTable('uk-matrix', 'searchUK')">
+                </div>
+                <table class="uk-matrix" id="uk-matrix">
+                    <thead>
+                        <tr>
+                            <th>Instrument</th>
+                            <th>Category</th>
+                            <th>Min Investment</th>
+                            <th>Min Lot Size</th>
+                            <th>Expected ROI p.a.</th>
+                            <th>UK Tax Rate</th>
+                            <th>Risk Level</th>
+                            <th>Liquidity</th>
+                            <th>Regulator</th>
+                            <th>£100k Example Net Return*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/hsbc.co.uk" class="asset-logo">HSBC Fixed Term Deposit</td>
+                            <td>Bank of Investments Offer</td>
+                            <td>£100,000</td>
+                            <td>£100,000</td>
+                            <td>4.75% Gross</td>
+                            <td>20% Income Tax**</td>
+                            <td class="risk-low">Low</td>
+                            <td>12 Month Lock</td>
+                            <td>FCA + FSCS</td>
+                            <td>£3,800 / year</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/ig.com" class="asset-logo">FTSE 100 CFD</td>
+                            <td>CFDs</td>
+                            <td>£100,000***</td>
+                            <td>£2,000</td>
+                            <td>Leveraged 5:1</td>
+                            <td>20% CGT</td>
+                            <td class="risk-extreme">Extreme</td>
+                            <td>T+0</td>
+                            <td>FCA</td>
+                            <td>Variable ±£50k</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/theice.com" class="asset-logo">ICE Brent Crude Future</td>
+                            <td>Futures</td>
+                            <td>£100,000***</td>
+                            <td>£3,500</td>
+                            <td>Leveraged 10:1</td>
+                            <td>20% CGT</td>
+                            <td class="risk-extreme">Extreme</td>
+                            <td>T+0</td>
+                            <td>FCA</td>
+                            <td>Variable ±£100k</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/vanguard.co.uk" class="asset-logo">Vanguard FTSE 100 UCITS ETF VUKE</td>
+                            <td>ETFs</td>
+                            <td>£100,000</td>
+                            <td>£2,100</td>
+                            <td>6.50% 10Y Avg</td>
+                            <td>20% CGT / 8.75% Div</td>
+                            <td class="risk-med">Medium</td>
+                            <td>T+2</td>
+                            <td>FCA</td>
+                            <td>£5,200 / year</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/lseg.com" class="asset-logo">LSE Listed Stock Options</td>
+                            <td>Derivatives</td>
+                            <td>£100,000***</td>
+                            <td>£2,500</td>
+                            <td>Non-linear</td>
+                            <td>20% CGT</td>
+                            <td class="risk-extreme">Extreme</td>
+                            <td>T+1</td>
+                            <td>FCA</td>
+                            <td>Variable -£100k to +£300k</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/rightmove.co.uk" class="asset-logo">UK Buy-to-Let Property</td>
+                            <td>Real Assets</td>
+                            <td>£100,000</td>
+                            <td>£100,000</td>
+                            <td>5.20% Rental Yield</td>
+                            <td>20-45% Income + 28% CGT</td>
+                            <td class="risk-med">Medium</td>
+                            <td>90+ Days</td>
+                            <td>HMRC</td>
+                            <td>£3,120 / year****</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/bitcoin.org" class="asset-logo">Bitcoin BTC Spot</td>
+                            <td>RAWAS: Crypto</td>
+                            <td>£100,000</td>
+                            <td>£2,000</td>
+                            <td>45.00% 5Y Avg</td>
+                            <td>20% CGT</td>
+                            <td class="risk-extreme">Extreme</td>
+                            <td>T+0</td>
+                            <td>FCA Registered</td>
+                            <td>£36,000 / year*****</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/bailliegifford.com" class="asset-logo">Baillie Gifford Global Alpha Fund</td>
+                            <td>Funds</td>
+                            <td>£100,000</td>
+                            <td>£10,000</td>
+                            <td>9.80% 10Y Avg</td>
+                            <td>20% CGT</td>
+                            <td class="risk-high">High</td>
+                            <td>T+4</td>
+                            <td>FCA</td>
+                            <td>£7,840 / year</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://logo.clearbit.com/dmo.gov.uk" class="asset-logo">UK Gilt 4.5% 2034</td>
+                            <td>Government Bonds</td>
+                            <td>£100,000</td>
+                            <td>£2,000</td>
+                            <td>4.50% Coupon</td>
+                            <td>20% Income Tax**</td>
+                            <td class="risk-low">Low</td>
+                            <td>T+1</td>
+                            <td>DMO + FCA</td>
+                            <td>£3,600 / year</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="disclaimer">
+                * £100k Example Net Return = Estimated annual return after UK taxes for a basic-rate taxpayer, using Oct 2026 rates. 
+                ** Basic Rate 20%. Higher Rate 40%. Additional Rate 45%. Assumes Personal Savings Allowance used. 
+                *** Margin requirement shown as Min Investment. Actual notional exposure higher due to leverage. 
+                **** After 20% income tax, 2% management, 1% maintenance. Excludes stamp duty. 
+                ***** Historical average. Crypto is volatile. Past performance does not guarantee future results. 
+                This matrix is for educational purposes only. Not financial advice. Capital at risk. Loss may exceed deposits on leveraged products. 
+                Regulated by Financial Conduct Authority. FSCS protection up to £85,000 per banking institution. 
+                </p>
+            </div>
         </body>
-    <section class="risk-warning">
-<section style="color: green; text-align: center; font-size: smaller;">
-    <p><style="color:yellow;">Risk Disclosure</p>
-<p>
-Trading foreign exchange, cryptocurrencies, commodities, and leveraged financial products involves substantial risk and may not be suitable for all investors.
-</p>
-<p>
-Market prices are highly volatile and may result in significant losses, including the possible loss of all invested capital.
-</p>
-<p>
-The information provided on this platform is for informational and educational purposes only and does not constitute financial, investment, legal, or tax advice.
-</p>
-<p>
-Past performance does not guarantee future results.
-</p>
-<p>
-Users are solely responsible for their investment decisions and should consult licensed financial professionals before engaging in trading activities.
-</p>
-<p>
-Data displayed may be delayed, inaccurate, or obtained from third-party providers including APIs, exchanges, brokers, and market data services.
-</p>
-         <div class="market-overview-financial_products">
-    <table class="market-overview-table"> 
- MATRIZ EDUCATIVA DE PRODUTOS FINANCEIROS - YI-SELL -->
-<style>
-  .matriz-financeira {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    background: #0A0A0A;
-    color: #E0E0E0;
-  }
-  .matriz-financeira th {
-    background: #00D4AA;
-    color: #000;
-    padding: 12px 8px;
-    text-align: left;
-    font-weight: 600;
-    position: sticky;
-    top: 0;
-  }
-  .matriz-financeira td {
-    padding: 10px 8px;
-    border-bottom: 1px solid #222;
-  }
-  .matriz-financeira tr:hover {
-    background: #1A1A1A;
-  }
-  .tag-risco-baixo { color: #00D4AA; font-weight: 600; }
-  .tag-risco-medio { color: #FFB800; font-weight: 600; }
-  .tag-risco-alto { color: #FF4757; font-weight: 600; }
-  .tag-risco-extremo { color: #A55EEA; font-weight: 600; }
-</style>
-
-<table class="matriz-financeira">
-  <thead>
-    <tr>
-      <th>Classe</th>
-      <th>Produto/Ativo</th>
-      <th>Mercado</th>
-      <th>Aporte Mín</th>
-      <th>Lote Mín</th>
-      <th>Rentab. Esperada a.a.</th>
-      <th>Risco</th>
-      <th>Liquidez</th>
-      <th>IR</th>
-      <th>Proteção</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- RENDA FIXA -->
-    <tr>
-      <td>Renda Fixa</td>
-      <td>Tesouro IPCA+ 2035</td>
-      <td>TD</td>
-      <td>R$ 100.000</td>
-      <td>R$ 2.000</td>
-      <td>IPCA + 5,80%</td>
-      <td class="tag-risco-baixo">Baixo</td>
-      <td>D+1</td>
-      <td>15%</td>
-      <td>Gov. Federal</td>
-    </tr>
-    <tr>
-      <td>Renda Fixa</td>
-      <td>CDB Banco Master 125% CDI</td>
-      <td>Balcão</td>
-      <td>R$ 100.000</td>
-      <td>R$ 5.000</td>
-      <td>13,00%</td>
-      <td class="tag-risco-medio">Médio</td>
-      <td>D+1</td>
-      <td>15%</td>
-      <td>FGC</td>
-    </tr>
-    <tr>
-      <td>Renda Fixa</td>
-      <td>LCI 98% CDI 2 Anos</td>
-      <td>Balcão</td>
-      <td>R$ 100.000</td>
-      <td>R$ 10.000</td>
-      <td>10,19%</td>
-      <td class="tag-risco-baixo">Baixo</td>
-      <td>720 dias</td>
-      <td>Isento</td>
-      <td>FGC</td>
-    </tr>
-    <tr>
-      <td>Renda Fixa</td>
-      <td>Debênture Incentivada Engie</td>
-      <td>B3</td>
-      <td>R$ 100.000</td>
-      <td>R$ 2.000</td>
-      <td>IPCA + 7,10%</td>
-      <td class="tag-risco-medio">Médio</td>
-      <td>D+2</td>
-      <td>Isento</td>
-      <td>Não</td>
-    </tr>
-    
-    <!-- FUNDOS -->
-    <tr>
-      <td>Fundos</td>
-      <td>Fundo Verde FIC FIM</td>
-      <td>Fundos</td>
-      <td>R$ 100.000</td>
-      <td>R$ 5.000</td>
-      <td>14,50%</td>
-      <td class="tag-risco-alto">Alto</td>
-      <td>D+30</td>
-      <td>15%</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <td>Fundos</td>
-      <td>FII KNRI11 - Kinea Renda</td>
-      <td>B3</td>
-      <td>R$ 100.000</td>
-      <td>R$ 2.160*</td>
-      <td>9,80% DY</td>
-      <td class="tag-risco-medio">Médio</td>
-      <td>D+2</td>
-      <td>Isento DY</td>
-      <td>Não</td>
-    </tr>
-    
-    <!-- VARIÁVEL SPOT -->
-    <tr>
-      <td>Var. Spot</td>
-      <td>ETF BOVA11 - Ibovespa</td>
-      <td>B3</td>
-      <td>R$ 100.000</td>
-      <td>R$ 2.100*</td>
-      <td>12,00%**</td>
-      <td class="tag-risco-alto">Alto</td>
-      <td>D+2</td>
-      <td>15% lucro</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <td>Var. Spot</td>
-      <td>Ações VALE3</td>
-      <td>B3</td>
-      <td>R$ 100.000</td>
-      <td>R$ 2.200*</td>
-      <td>15,00%**</td>
-      <td class="tag-risco-alto">Alto</td>
-      <td>D+2</td>
-      <td>15% lucro</td>
-      <td>Não</td>
-    </tr>
-    
-    <!-- FUTUROS B3 -->
-    <tr>
-      <td>Futuros</td>
-      <td>Contrato Futuro Índice WINV26</td>
-      <td>B3</td>
-      <td>R$ 100.000***</td>
-      <td>R$ 2.000****</td>
-      <td>Alavancado</td>
-      <td class="tag-risco-extremo">Extremo</td>
-      <td>D+0</td>
-      <td>15% lucro</td>
-      <td>Margem B3</td>
-    </tr>
-    <tr>
-      <td>Futuros</td>
-      <td>Contrato Futuro Dólar DOLX26</td>
-      <td>B3</td>
-      <td>R$ 100.000***</td>
-      <td>R$ 2.500****</td>
-      <td>Alavancado</td>
-      <td class="tag-risco-extremo">Extremo</td>
-      <td>D+0</td>
-      <td>15% lucro</td>
-      <td>Margem B3</td>
-    </tr>
-    
-    <!-- ESTRUTURADOS -->
-    <tr>
-      <td>Estruturado</td>
-      <td>COE Autocall Ibov 3 Anos</td>
-      <td>Balcão</td>
-      <td>R$ 100.000</td>
-      <td>R$ 100.000</td>
-      <td>Até 18,00%</td>
-      <td class="tag-risco-alto">Alto</td>
-      <td>Vecto</td>
-      <td>15%</td>
-      <td>Banco Emissor</td>
-    </tr>
-    <tr>
-      <td>Estruturado</td>
-      <td>Nota Estruturada Dólar+</td>
-      <td>Balcão</td>
-      <td>R$ 100.000</td>
-      <td>R$ 50.000</td>
-      <td>VC + 6,00%</td>
-      <td class="tag-risco-medio">Médio</td>
-      <td>Vecto</td>
-      <td>15%</td>
-      <td>Banco Emissor</td>
-    </tr>
-    
-    <!-- ADICIONA MAIS 38 LINHAS AQUI SEGUINDO O PADRÃO -->
-    
-  </tbody>
-</table>
-</div>
-
-<!-- LEGENDAS -->
-<p style="font-size: 12px; color: #888; margin-top: 16px;">
-* Lote mín calculado: 100 cotas x preço atual. ** Média histórica 10 anos. *** Margem requerida aprox. **** Tick mín do contrato. 
-Esta matriz é educativa. Não constitui recomendação de investimento. Risco de perda total. Rentabilidade passada não garante retorno futuro.
-</p>  
-     <div class="market-overview-financial_products UK">
-    <table class="market-overview-table UK"> 
-<!-- UK FINANCIAL INSTRUMENTS MATRIX - YI-SELL MARKET VIEW -->
-<style>
-  .uk-matrix {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 14px;
-    background: #0B0E11;
-    color: #EAECEF;
-    margin: 20px 0;
-  }
-  .uk-matrix th {
-    background: linear-gradient(90deg, #F0B90B 0%, #F8D12F 100%);
-    color: #181A20;
-    padding: 14px 10px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 13px;
-    text-transform: uppercase;
-  }
-  .uk-matrix td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #2B3139;
-    vertical-align: middle;
-  }
-  .uk-matrix tr:hover { background: #1E2329; }
-  .asset-logo { width: 24px; height: 24px; margin-right: 8px; vertical-align: middle; }
-  .risk-low { color: #0ECB81; font-weight: 600; }
-  .risk-med { color: #F0B90B; font-weight: 600; }
-  .risk-high { color: #F6465D; font-weight: 600; }
-  .risk-extreme { color: #B454F5; font-weight: 600; }
-  .disclaimer { font-size: 11px; color: #848E9C; margin-top: 12px; line-height: 1.4; }
-</style>
-
-<table class="uk-matrix">
-  <thead>
-    <tr>
-      <th>Instrument</th>
-      <th>Category</th>
-      <th>Min Investment</th>
-      <th>Min Lot Size</th>
-      <th>Expected ROI p.a.</th>
-      <th>UK Tax Rate</th>
-      <th>Risk Level</th>
-      <th>Liquidity</th>
-      <th>Regulator</th>
-      <th>£100k Example Net Return*</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- HEAD: BANK OF INVESTMENTS OFFER -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/hsbc.co.uk" class="asset-logo">HSBC Fixed Term Deposit</td>
-      <td>Bank of Investments Offer</td>
-      <td>£100,000</td>
-      <td>£100,000</td>
-      <td>4.75% Gross</td>
-      <td>20% Income Tax**</td>
-      <td class="risk-low">Low</td>
-      <td>12 Month Lock</td>
-      <td>FCA + FSCS</td>
-      <td>£3,800 / year</td>
-    </tr>
-    
-    <!-- CFDs -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/ig.com" class="asset-logo">FTSE 100 CFD</td>
-      <td>CFDs</td>
-      <td>£100,000***</td>
-      <td>£2,000</td>
-      <td>Leveraged 5:1</td>
-      <td>20% CGT</td>
-      <td class="risk-extreme">Extreme</td>
-      <td>T+0</td>
-      <td>FCA</td>
-      <td>Variable ±£50k</td>
-    </tr>
-    
-    <!-- FUTURES -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/theice.com" class="asset-logo">ICE Brent Crude Future</td>
-      <td>Futures</td>
-      <td>£100,000***</td>
-      <td>£3,500</td>
-      <td>Leveraged 10:1</td>
-      <td>20% CGT</td>
-      <td class="risk-extreme">Extreme</td>
-      <td>T+0</td>
-      <td>FCA</td>
-      <td>Variable ±£100k</td>
-    </tr>
-    
-    <!-- ETFs -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/vanguard.co.uk" class="asset-logo">Vanguard FTSE 100 UCITS ETF VUKE</td>
-      <td>ETFs</td>
-      <td>£100,000</td>
-      <td>£2,100</td>
-      <td>6.50% 10Y Avg</td>
-      <td>20% CGT / 8.75% Div</td>
-      <td class="risk-med">Medium</td>
-      <td>T+2</td>
-      <td>FCA</td>
-      <td>£5,200 / year</td>
-    </tr>
-    
-    <!-- DERIVATIVES -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/lseg.com" class="asset-logo">LSE Listed Stock Options</td>
-      <td>Derivatives</td>
-      <td>£100,000***</td>
-      <td>£2,500</td>
-      <td>Non-linear</td>
-      <td>20% CGT</td>
-      <td class="risk-extreme">Extreme</td>
-      <td>T+1</td>
-      <td>FCA</td>
-      <td>Variable -£100k to +£300k</td>
-    </tr>
-    
-    <!-- REAL ASSETS -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/rightmove.co.uk" class="asset-logo">UK Buy-to-Let Property</td>
-      <td>Real Assets</td>
-      <td>£100,000</td>
-      <td>£100,000</td>
-      <td>5.20% Rental Yield</td>
-      <td>20-45% Income + 28% CGT</td>
-      <td class="risk-med">Medium</td>
-      <td>90+ Days</td>
-      <td>HMRC</td>
-      <td>£3,120 / year****</td>
-    </tr>
-    
-    <!-- RAWAS: CRYPTO IN REAL ASSETS -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/bitcoin.org" class="asset-logo">Bitcoin BTC Spot</td>
-      <td>RAWAS: Crypto</td>
-      <td>£100,000</td>
-      <td>£2,000</td>
-      <td>45.00% 5Y Avg</td>
-      <td>20% CGT</td>
-      <td class="risk-extreme">Extreme</td>
-      <td>T+0</td>
-      <td>FCA Registered</td>
-      <td>£36,000 / year*****</td>
-    </tr>
-    
-    <!-- FUNDS -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/bailliegifford.com" class="asset-logo">Baillie Gifford Global Alpha Fund</td>
-      <td>Funds</td>
-      <td>£100,000</td>
-      <td>£10,000</td>
-      <td>9.80% 10Y Avg</td>
-      <td>20% CGT</td>
-      <td class="risk-high">High</td>
-      <td>T+4</td>
-      <td>FCA</td>
-      <td>£7,840 / year</td>
-    </tr>
-    
-    <!-- LOGO: GOVERNMENT GILTS -->
-    <tr>
-      <td><img src="https://logo.clearbit.com/dmo.gov.uk" class="asset-logo">UK Gilt 4.5% 2034</td>
-      <td>Government Bonds</td>
-      <td>£100,000</td>
-      <td>£2,000</td>
-      <td>4.50% Coupon</td>
-      <td>20% Income Tax**</td>
-      <td class="risk-low">Low</td>
-      <td>T+1</td>
-      <td>DMO + FCA</td>
-      <td>£3,600 / year</td>
-    </tr>
-    
-  </tbody>
-</table>
-
-<p class="disclaimer">
-* £100k Example Net Return = Estimated annual return after UK taxes for a basic-rate taxpayer, using Oct 2026 rates. 
-** Basic Rate 20%. Higher Rate 40%. Additional Rate 45%. Assumes Personal Savings Allowance used. 
-*** Margin requirement shown as Min Investment. Actual notional exposure higher due to leverage. 
-**** After 20% income tax, 2% management, 1% maintenance. Excludes stamp duty. 
-***** Historical average. Crypto is volatile. Past performance does not guarantee future results. 
-This matrix is for educational purposes only. Not financial advice. Capital at risk. Loss may exceed deposits on leveraged products. 
-Regulated by Financial Conduct Authority. FSCS protection up to £85,000 per banking institution. 
-</p>
-     </div>       
- - YI-SELL -->
-<div class="market-overview-financial_products US">
-  <table class="market-overview-table US">
-    <style>
-      .market-overview-financial_products.US {
-        width: 100%;
-        overflow-x: auto;
-        background: #0A0A0A;
-        padding: 20px;
-      }
-      .market-overview-table.US {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
-        color: #E0E0E0;
-      }
-      .market-overview-table.US th {
-        background: #2962FF;
-        color: #FFFFFF;
-        padding: 14px 10px;
-        text-align: left;
-        font-weight: 700;
-        font-size: 13px;
-        text-transform: uppercase;
-        border-bottom: 2px solid #1E222D;
-      }
-      .market-overview-table.US td {
-        padding: 12px 10px;
-        border-bottom: 1px solid #1E222D;
-        vertical-align: middle;
-      }
-      .market-overview-table.US tbody tr:hover {
-        background: #131722;
-      }
-    </style>
-    <thead>
-      <tr>
-        <th>Instrument</th>
-        <th>Category</th>
-        <th>Min Investment</th>
-        <th>Min Lot Size</th>
-        <th>Expected ROI p.a.</th>
-        <th>US Tax Rate</th>
-        <th>Risk Level</th>
-        <th>Liquidity</th>
-        <th>Regulator</th>
-        <th>$100k Example Net Return</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Apple Inc. AAPL</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,300</td>
-        <td>11.20% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>High</td>
-        <td>T+2</td>
-        <td>SEC</td>
-        <td>$9,520 / year</td>
-      </tr>
-      <tr>
-        <td>Microsoft Corp. MSFT</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,100</td>
-        <td>12.50% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>High</td>
-        <td>T+2</td>
-        <td>SEC</td>
-        <td>$10,625 / year</td>
-      </tr>
-      <tr>
-        <td>NVIDIA Corp. NVDA</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>28.40% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>High</td>
-        <td>T+2</td>
-        <td>SEC</td>
-        <td>$24,140 / year</td>
-      </tr>
-      <tr>
-        <td>SPDR S&P 500 ETF SPY</td>
-        <td>Spot: ETFs</td>
-        <td>$100,000</td>
-        <td>$2,200</td>
-        <td>10.30% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>Medium</td>
-        <td>T+2</td>
-        <td>SEC</td>
-        <td>$8,755 / year</td>
-      </tr>
-      <tr>
-        <td>Invesco QQQ ETF</td>
-        <td>Spot: ETFs</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>14.10% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>Medium</td>
-        <td>T+2</td>
-        <td>SEC</td>
-        <td>$11,985 / year</td>
-      </tr>
-      <tr>
-        <td>US 10-Year Treasury Note</td>
-        <td>Spot: Bonds</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>4.25% Coupon</td>
-        <td>24% Federal</td>
-        <td>Low</td>
-        <td>T+1</td>
-        <td>US Treasury</td>
-        <td>$3,230 / year</td>
-      </tr>
-      <tr>
-        <td>E-mini S&P 500 Future ES</td>
-        <td>Derivatives: Futures</td>
-        <td>$100,000</td>
-        <td>$13,200</td>
-        <td>Leveraged 15:1</td>
-        <td>23% Blended 60/40</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>CFTC</td>
-        <td>Variable</td>
-      </tr>
-      <tr>
-        <td>Gold Future GC</td>
-        <td>Derivatives: Futures</td>
-        <td>$100,000</td>
-        <td>$10,800</td>
-        <td>Leveraged 15:1</td>
-        <td>23% Blended 60/40</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>CFTC</td>
-        <td>Variable</td>
-      </tr>
-      <tr>
-        <td>SPY Options</td>
-        <td>Derivatives: Options</td>
-        <td>$100,000</td>
-        <td>$2,500</td>
-        <td>Non-linear</td>
-        <td>STCG/LTCG</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>SEC</td>
-        <td>Variable</td>
-      </tr>
-      <tr>
-        <td>Gold XAU/USD CFD</td>
-        <td>CFDs</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>Leveraged 20:1</td>
-        <td>Ordinary Income</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>NFA</td>
-        <td>Variable</td>
-      </tr>
-      <tr>
-        <td>Bitcoin BTC Spot</td>
-        <td>RAWAS: Cryptos</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>55.00% 5Y Avg</td>
-        <td>15% LTCG</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>SEC</td>
-        <td>$46,750 / year</td>
-      </tr>
-      <tr>
-        <td>Ethereum ETH Spot</td>
-        <td>RAWAS: Cryptos</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>62.00% 5Y Avg</td>
-        <td>15% LTCG</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>SEC</td>
-        <td>$52,700 / year</td>
-      </tr>
-      <tr>
-        <td>Fidelity 500 Index FXAIX</td>
-        <td>Mutual Funds</td>
-        <td>$100,000</td>
-        <td>$2,500</td>
-        <td>10.15% 10Y Avg</td>
-        <td>15% LTCG</td>
-        <td>Medium</td>
-        <td>T+1</td>
-        <td>SEC</td>
-        <td>$8,628 / year</td>
-      </tr>
-      <tr>
-        <td>Market-Linked CD 5Y</td>
-        <td>Structured Products</td>
-        <td>$100,000</td>
-        <td>$100,000</td>
-        <td>0% to 12.00% Capped</td>
-        <td>Ordinary Income</td>
-        <td>Medium</td>
-        <td>5 Year Lock</td>
-        <td>SEC + FDIC</td>
-        <td>$0 to $7,560 / year</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-     <div class="market-overview-financial_products CA">
-  <table class="market-overview-table CA">
-    <style>
-      .market-overview-financial_products.CA {
-        width: 100%;
-        overflow-x: auto;
-        background: #0A0A0A;
-        padding: 20px;
-      }
-      .market-overview-table.CA {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-        color: #E0E0E0;
-      }
-      .market-overview-table.CA th {
-        background: #D80621;
-        color: #FFFFFF;
-        padding: 14px 8px;
-        text-align: left;
-        font-weight: 700;
-        font-size: 12px;
-        text-transform: uppercase;
-        border-bottom: 2px solid #1E222D;
-      }
-      .market-overview-table.CA td {
-        padding: 12px 8px;
-        border-bottom: 1px solid #1E222D;
-        vertical-align: top;
-        line-height: 1.4;
-      }
-      .market-overview-table.CA tbody tr:hover {
-        background: #131722;
-      }
-      .details-cell {
-        font-size: 11px;
-        color: #9DA3AF;
-      }
-    </style>
-    <thead>
-      <tr>
-        <th>Instrument</th>
-        <th>Category</th>
-        <th>Min Investment</th>
-        <th>Min Lot</th>
-        <th>Expected ROI p.a.</th>
-        <th>CAD Tax Rate</th>
-        <th>Risk</th>
-        <th>Liquidity</th>
-        <th>Regulator</th>
-        <th>$100k CAD Net Return</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Royal Bank RY.TO</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,100</td>
-        <td>9.80% 10Y Avg</td>
-        <td>50% Capital Gain Inc</td>
-        <td>Medium</td>
-        <td>T+2</td>
-        <td>OSC + CIRO</td>
-        <td>$8,526 / year</td>
-        <td class="details-cell">1. Eligible dividend tax credit applies<br>2. CDIC does not cover stocks<br>3. Only 50% of capital gain taxed<br>4. Subject to withholding on US divs<br>5. T+2 settlement cycle in Canada</td>
-      </tr>
-      <tr>
-        <td>Shopify Inc. SHOP.TO</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>18.40% 5Y Avg</td>
-        <td>50% Capital Gain Inc</td>
-        <td>High</td>
-        <td>T+2</td>
-        <td>OSC + CIRO</td>
-        <td>$16,004 / year</td>
-        <td class="details-cell">1. High growth tech sector exposure<br>2. No dividend paid historically<br>3. Dual-class share structure risk<br>4. TSX listed, CAD denominated<br>5. Losses offset gains at 50% rate</td>
-      </tr>
-      <tr>
-        <td>Enbridge Inc. ENB.TO</td>
-        <td>Spot: Stocks</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>7.20% Div Yield</td>
-        <td>Eligible Div Credit</td>
-        <td>Medium</td>
-        <td>T+2</td>
-        <td>OSC + CIRO</td>
-        <td>$6,192 / year</td>
-        <td class="details-cell">1. Eligible dividends reduce tax rate<br>2. Pipeline infrastructure exposure<br>3. Interest rate sensitive asset<br>4. DRIP available for compounding<br>5. Foreign income 15% withholding</td>
-      </tr>
-      <tr>
-        <td>iShares S&P/TSX 60 ETF XIU.TO</td>
-        <td>Spot: ETFs</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>8.90% 10Y Avg</td>
-        <td>50% Capital Gain Inc</td>
-        <td>Medium</td>
-        <td>T+2</td>
-        <td>OSC</td>
-        <td>$7,742 / year</td>
-        <td class="details-cell">1. Tracks 60 largest TSX companies<br>2. MER 0.18% annually<br>3. Distributions taxed as income/dividends<br>4. Phantom distributions possible Dec<br>5. CIPF protects up to $1M CAD</td>
-      </tr>
-      <tr>
-        <td>BMO Aggregate Bond ETF ZAG.TO</td>
-        <td>Spot: ETFs</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>3.80% Yield</td>
-        <td>Interest Income</td>
-        <td>Low</td>
-        <td>T+2</td>
-        <td>OSC</td>
-        <td>$2,622 / year</td>
-        <td class="details-cell">1. 100% interest income, no tax credit<br>2. Duration risk if rates rise<br>3. Monthly distributions<br>4. Holds federal + corporate bonds<br>5. Best held in TFSA/RRSP</td>
-      </tr>
-      <tr>
-        <td>Government of Canada 10Y Bond</td>
-        <td>Spot: Bonds</td>
-        <td>$100,000</td>
-        <td>$2,000</td>
-        <td>3.50% Coupon</td>
-        <td>Interest Income</td>
-        <td>Low</td>
-        <td>T+1</td>
-        <td>Bank of Canada</td>
-        <td>$2,415 / year</td>
-        <td class="details-cell">1. Backed by full faith of Gov of Canada<br>2. Exempt from provincial tax<br>3. Capital gains if sold before maturity<br>4. Accrued interest taxable to seller<br>5. No CDIC, sovereign risk only</td>
-      </tr>
-      <tr>
-        <td>Canada 2Y GIC</td>
-        <td>Bank Offer</td>
-        <td>$100,000</td>
-        <td>$100,000</td>
-        <td>4.75% Gross</td>
-        <td>Interest Income</td>
-        <td>Low</td>
-        <td>2 Year Lock</td>
-        <td>OSFI + CDIC</td>
-        <td>$3,278 / year</td>
-        <td class="details-cell">1. CDIC insures up to $100k per bank<br>2. Interest fully taxed annually<br>3. Non-redeemable before maturity<br>4. Use TFSA to shelter tax<br>5. Rate locked for 2 years</td>
-      </tr>
-      <tr>
-        <td>S&P/TSX 60 Index Future SXF</td>
-        <td>Derivatives: Futures</td>
-        <td>$100,000</td>
-        <td>$8,500</td>
-        <td>Leveraged 20:1</td>
-        <td>50% Capital Gain Inc</td>
-        <td>Extreme</td>
-        <td>T+0</td>
-        <td>OSC + MX</td>
-        <td>Variable</td<  <tr>
-        <td>RBC Select Growth Portfolio</td>
-        <td>Mutual Funds</td>
-        <td>$100,000</td>
-        <td>$5,000</td>
-        <td>7.80% 10Y Avg</td>
-        <td>50% Capital Gain Inc</td>
-        <td>Medium</td>
-        <td>T+1</td>
-        <td>OSC</td>
-        <td>$6,786 / year</td>
-      </tr>
-      <tr>
-        <td>Principal Protected Note TSX</td>
-        <td>Structured Products</td>
-        <td>$100,000</td>
-        <td>$100,000</td>
-        <td>0% to 8.00% Capped</td>
-        <td>Interest Income</td>
-        <td>Low</td>
-        <td>3 Year Lock</td>
-        <td>OSC + CDIC</td>
-        <td>$0 to $5,520 / year</td>
-        <td class="details-cell">1. Principal guaranteed if held to maturity<br>2. Linked to TSX performance<br>3. Return treated as interest income<br>4. No secondary market liquidity<br>5. Issuer credit risk only</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-    
-         <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
-
-  <!-- Script único para cargar header y footer -->
-  <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
-
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
-</body>
-</html>
+        </html
