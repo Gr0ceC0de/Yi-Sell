@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+    <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
+<title>Global Technology, Fintech & Crypto Headlines</title>
+
+<meta name="description" content="Quarterly global headlines covering technology, fintech, cryptocurrencies, digital banking, artificial intelligence, financial markets, and innovation.">
+
+<style>
+    :root {
+        --paper: #F5F5F0;
+        --ink: #1A1A1A;
+        --rose: #C08081;
+        --rose-light: #C080811A;
+        --border: #1A1A1A33;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3, .serif {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+    
+    .masthead {
+        border-bottom: 3px double var(--ink);
+        position: relative;
+    }
+    
+    .masthead::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .tagline {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rose);
+    }
+    
+    .city-filter {
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+    }
+    
+    .city-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .city-btn:hover, .city-btn.active {
+        background: var(--rose);
+        color: var(--paper);
+        border-color: var(--rose);
+    }
+    
+    .classifieds-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0;
+        border-left: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+    }
+    
+    @media (min-width: 640px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .ad-box {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        position: relative;
+        background: var(--paper);
+        transition: background 0.2s ease;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .ad-box:hover {
+        background: var(--rose-light);
+    }
+    
+    .box-number {
+        font-family: 'Times New Roman', serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose);
+        border-bottom: 1px solid var(--rose);
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .city-tag {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        padding: 2px 6px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+    }
+    
+    .ad-header {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    
+    .ad-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        stroke: var(--rose);
+        stroke-width: 1.5;
+        fill: none;
+        margin-top: 2px;
+    }
+    
+    .ad-title {
+        font-family: 'Times New Roman', serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+    }
+    
+    .ad-desc {
+        font-size: 11px;
+        line-height: 1.4;
+        margin: 8px 0;
+        flex-grow: 1;
+        hyphens: auto;
+    }
+    
+    .ad-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: auto;
+        padding-top: 8px;
+    }
+    
+    .ad-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        padding: 5px 8px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .ad-btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+    }
+    
+    .ad-btn.primary {
+        border-color: var(--rose);
+        color: var(--rose);
+    }
+    
+    .ad-btn.primary:hover {
+        background: var(--rose);
+        color: var(--paper);
+    }
+    
+    .footer-bar {
+        border-top: 3px double var(--ink);
+        margin-top: 24px;
+        padding: 16px 0;
+        text-align: center;
+        position: relative;
+    }
+    
+    .footer-bar::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .footer-text {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+    
+    .footer-accent {
+        color: var(--rose);
+        font-weight: 700;
+    }
+    
+    .disclaimer {
+        font-size: 9px;
+        color: #666;
+        margin-top: 12px;
+        font-style: italic;
+    }
+    
+    @media (max-width: 639px) {
+        body {
+            font-size: 12px;
+        }
+        .ad-title {
+            font-size: 13px;
+        }
+        .ad-desc {
+            font-size: 10px;
+        }
+        .masthead h1 {
+            font-size: 24px;
+        }
+        .tagline {
+            font-size: 9px;
+        }
+    }
+    
+    .ad-box.hidden {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+   <header>
+      <div id="header-placeholder"></div>
+                        <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      });
+  </script>
+                </header>
+<h1>📰 Global Headlines – Technology, Fintech & Crypto</h1>
+
+<p class="subtitle">
+Most relevant quarterly developments by country
+</p>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+<tr>
+<th>Country</th>
+<th>Top Quarterly Headlines</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="country"><span>🇧🇷</span>Brazil</td>
+<td class="headline">PIX expansion, Open Finance growth, AI adoption in banking, digital asset regulation advances.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇺🇸</span>USA</td>
+<td class="headline">Generative AI investments, fintech consolidation, Bitcoin ETF activity, cloud infrastructure expansion.Compiled from: Democracy Now!, The Intercept, ProPublica, CounterPunch, Common Dreams, The Gray Zone, MintPress News, Truthout, In These Times, Jacobin, The Real News, Black Agenda Report, Mother Jones, AlterNet, FreeSpeech.org, NASA, MIT News, Caltech, Stanford News, MIT Lincoln Laboratory
+
+1. Bitcoin & Cryptocurrencies
+SEC increases enforcement on crypto exchanges as 2026 election cycle begins, citing consumer protection.
+Bitcoin ETF inflows stabilize post-halving, but retail interest remains below 2021 peaks.
+Central Bank Digital Currencies gain traction in BRICS nations, raising privacy debates.
+2. Financial Products & Fintech
+BNPL providers face new CFPB rules on late fees and credit reporting.
+AI-driven robo-advisors under scrutiny after algorithmic bias lawsuits.
+FedNow adoption grows among regional banks, challenging legacy ACH systems.
+3. Space & Aircraft Technology
+NASA Artemis III mission timeline slips to late 2027 due to Starship HLS testing delays.
+MIT Lincoln Lab demos new AI for autonomous satellite collision avoidance.
+Boom Supersonic completes first XB-1 supersonic test flight without afterburner.
+4. Technology
+Open-weight AI models from academia challenge closed corporate systems on benchmarks.
+Right-to-repair laws expand to farm equipment and medical devices in 12 states.
+Quantum computing: Caltech reports 99.9% 2-qubit gate fidelity on new superconducting chip.
+5. Industry Statistics
+US manufacturing PMI hovers near 50, signaling flat growth amid high rates.
+Tech layoffs slow in Q2 2026, but AI-related hiring offsets only 30% of cuts.
+Renewable energy jobs outpace fossil fuel jobs 3:1 in new BLS report.
+6. Economic Growth, Production & Consumer Behavior
+US GDP growth revised to 1.8% for Q1 2026, driven by services, not goods.
+“Shrinkflation” complaints to FTC up 40% YoY as package sizes drop.
+Gen Z spending shifts to used goods and repair, per Stanford consumer study.
+7. Political Panorama & Elections
+2026 US midterms: Early polling shows House control as toss-up, with crypto PAC spending up 300%.
+EU Parliament elections see far-right gains tied to cost-of-living protests.
+Campaign finance: ProPublica tracks rise of AI-generated ads with minimal disclosure.
+8. Important Headlines About Lawyers
+DOJ antitrust lawyers file new case against algorithmic price-fixing in rental markets.
+Class-action suits over data broker sales to law enforcement reach Supreme Court docket.
+Legal aid funding cuts contested in 9 states amid eviction case backlog.
+9. Business Opportunities
+CHIPS Act funding opens Phase 2 for packaging and advanced materials startups.
+Carbon capture tax credits drive new DAC projects in Midwest.
+Small satellite launch demand creates openings for rideshare integrators.
+10. Forex & Currency Issues
+USD strength continues as Fed holds rates; yen intervention risks rise.
+Argentina peso devaluation accelerates ahead of October election.
+BRICS mBridge CBDC pilot settles first cross-border oil trade without USD. Sources: democracynow/theintercept/propublica/counterpunch/commomdreams/thegrayzone/mintpressnews/truthout/inthesetimes/jacobin/therealnews/blackagendareport/motherjones/alternet/freespech/nasa/newsmit/caltech/straford.edu/ll.mit.edu/</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇨🇦</span>Canada</td>
+<td class="headline">Digital banking innovation, AI ecosystem growth, fintech funding recovery, blockchain research initiatives.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇲🇽</span>Mexico</td>
+<td class="headline">Fintech inclusion projects, digital payments acceleration, crypto adoption trends, startup ecosystem growth. México, 2026: Crónica de un año que soñó despierto
+
+El año empezó con un peso que respiraba hondo. En junio, los mercados lo vieron estable, rondando los 17.20 por dólar, mientras Estados Unidos e Irán firmaban un memorando que calmaba el estrecho de Ormuz y el petróleo dejaba de arder. La Fed, ya con Kevin Warsh al timón, mantuvo tasas en 3.50%-3.75% y la bolsa mexicana se puso a volar por quinta sesión seguida, empujada por aerolíneas y aeropuertos que festejaban el crudo barato. 
+
+Economía y finanzas: el sueño de los engranes lentos
+Hacienda anunció que las necesidades de financiamiento del sector público bajarían a 16.6% del PIB, 2.2 puntos menos que en 2025. Aun así, el Banco de México susurró en mayo: recortó su previsión de crecimiento de 1.6% a 1.1% para 2026. La inflación, mientras tanto, se dejó caer como hoja seca hasta 3.94% en mayo, según Inegi, y el gobierno presumía el Pacic como talismán contra la carestía. 
+
+Pero en las calles, un bearded man de “Buenas Noticias” decía que no había recesión declarada, aunque las PyMES sentían la demanda flaca, las tasas mordían y el consumidor guardaba la cartera. Solo el Mundial 2026 aparecía como inyección de vida, un gol que tal vez reactivara el gasto. 
+
+Bitcoin, criptos y fintech: el código que ya bailaba
+El Bitcoin, que en 2025 coqueteó con los 119 mil dólares, amaneció el año rondando los 65,921.99 USD. México, mientras, seguía tejiendo su propio telar digital. SPEI, CoDi y DiMo ya eran viejos conocidos: transferencias en segundos, QR en el puesto de tacos, dinero con solo un número de celular. La narrativa oficial los vendía como el sistema que EE.UU. aún intenta construir. Y 2026 trajo más: la tokenización de activos reales dejó de ser promesa y se volvió infraestructura en Europa y Asia; en México, el Open Finance seguía esperando las piezas finales de regulación para soltar los datos agregados. El GENIUS Act y MiCA afuera, y la CNBV adentro, vigilando que el cumplimiento fuera ventaja competitiva. 
+
+Industria y el vuelo del capital de riesgo
+Con la sequía de inversiones globales, México lanzó la caña. Ebrard salió a pescar capital privado para 100 emprendimientos: semiconductores, medicamentos de última generación, IA. AMEXCAP contó 1,614 millones de dólares para startups mexicanas en 2025 y 525 millones solo en el primer trimestre de 2026. La Secretaría de Economía lo dijo con científicos en bata y alas de avión de fondo: había talento en biotecnología, drones y aeroespacial, faltaba riesgo que se atreviera a soñar. El Plan México y el T-MEC querían subir a más empresas al tren de las cadenas norteamericanas, con inversión pública en trenes, puertos, energía renovable y vivienda. 
+
+Leyes y política: el reloj de arena laboral
+2026 fue año de relojes rotos y reconstruidos. El Congreso aprobó una reforma constitucional que acorta la semana laboral, consagra el derecho a desconectarse y prohíbe bajar sueldos. 411 votos a favor, 58 en contra. El salario mínimo ya había subido el 1 de enero: 315.04 pesos diarios, 440.87 en la frontera norte. Desde 2017, el mínimo real se triplicó, y la “Dignified Vacations” duplicó los días de descanso. Repartidores de Didi, Rappi y Uber entraron al seguro social con aguinaldo. Del otro lado del río, el salario federal estadounidense seguía congelado en 7.25 la hora desde 2009. 
+
+La política comercial fue espejo y espada. EE.UU. debatía agricultura y energía con México, mientras Trump ponía en duda el T-MEC y se peleaba por el control energético de Pemex. Analistas veían el primer semestre de 2026 dominado por la revisión del tratado: aranceles como garrote, migración y fentanilo en la mesa. Aun así, Monex pronosticó 1.3% de crecimiento si la negociación salía bien, con el Mundial como viento a favor. 
+
+Espacio y aeronaves: cielos que se ensanchan
+La inversión privada buscaba semiconductores, pero también drones y aeroespacial. El sector aéreo local fue el niño mimado de la bolsa: Volaris subió 5.95%, Asur 4.45% cuando el petróleo se replegó. GAP también despegó 3.34%. Y mientras Wall Street miraba el debut de SpaceX, México preparaba su pista: la inversión pública apuntaba a infraestructura ferroviaria, portuaria y carretera para conectar manufactura avanzada. El Mundial no solo traería turistas; Visa y la Secretaría de Economía proyectaban 4 mil millones de dólares en transacciones digitales en 50 días. 
+
+Epílogo: el país que se soñaba en dos tiempos
+México 2026 fue un ajolote económico: mitad calma de inflación domada, mitad sobresalto de pronósticos recortados. Mitad código QR en el mercado, mitad miedo a que el gasto no regrese. Mitad reforma que hace digno el descanso, mitad negociación con un vecino que amenaza con aranceles. 
+
+Y sobre todo eso, el Mundial como luna llena: unos lo ven como fiesta que cura, otros como espejismo que distrae. Pero el año siguió, terco, avanzando en SPEI, en salarios que suben, en leyes que desconectan para volver a conectar con lo humano.
+
+México no despertó del sueño. Aprendió a soñarlo con los ojos abiertos.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇨🇱</span>Chile</td>
+<td class="headline">Open banking initiatives, fintech regulation progress, digital investment platforms, cybersecurity focus.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇩🇪</span>Germany</td>
+<td class="headline">Industrial AI deployment, fintech innovation hubs, digital euro discussions, enterprise technology upgrades.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇪🇸</span>Spain</td>
+<td class="headline">Banking digitization, startup ecosystem expansion, AI applications in finance, crypto compliance updates.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇬🇧</span>United Kingdom</td>
+<td class="headline">London fintech leadership, AI regulation debate, blockchain adoption, financial technology investments.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇵🇱</span>Poland</td>
+<td class="headline">Cybersecurity innovation, digital banking growth, fintech scaling, technology infrastructure modernization.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇫🇷</span>France</td>
+<td class="headline">AI startups attract funding, fintech ecosystem growth, crypto compliance frameworks, digital economy expansion.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇨🇳</span>China</td>
+<td class="headline">AI model competition, digital yuan deployment, fintech platform evolution, semiconductor investments.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇯🇵</span>Japan</td>
+<td class="headline">Robotics innovation, digital finance modernization, Web3 initiatives, enterprise AI implementation.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇦🇺</span>Australia</td>
+<td class="headline">Fintech funding recovery, digital payments growth, crypto regulation discussions, AI adoption in business.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇳🇿</span>New Zealand</td>
+<td class="headline">Technology startup development, fintech innovation, sustainable digital finance, cybersecurity investments.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇨🇭</span>Switzerland</td>
+<td class="headline">Crypto valley expansion, blockchain finance leadership, tokenization projects, digital asset custody services.</td>
+</tr>
+
+<tr>
+<td class="country"><span>🇮🇳</span>India</td>
+<td class="headline">UPI growth, fintech scale-up ecosystem, AI innovation surge, digital public infrastructure expansion.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+   <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+<script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+</body>
+</html>
+ 

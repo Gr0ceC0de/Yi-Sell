@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CLASSIFIED | Trading Assistant - 100 Digital Categories | Newspaper-style fantasy marketplace">
+<title>CLASSIFIED | Trading Assistant</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
+<style>
+    :root {
+        --paper: #F5F5F0;
+        --ink: #1A1A1A;
+        --rose: #C08081;
+        --rose-light: #C080811A;
+        --border: #1A1A1A33;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3, .serif {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+    
+    .masthead {
+        border-bottom: 3px double var(--ink);
+        position: relative;
+    }
+    
+    .masthead::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .tagline {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rose);
+    }
+    
+    .city-filter {
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+    }
+    
+    .city-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .city-btn:hover, .city-btn.active {
+        background: var(--rose);
+        color: var(--paper);
+        border-color: var(--rose);
+    }
+    
+    .classifieds-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0;
+        border-left: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+    }
+    
+    @media (min-width: 640px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .classifieds-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .ad-box {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        position: relative;
+        background: var(--paper);
+        transition: background 0.2s ease;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .ad-box:hover {
+        background: var(--rose-light);
+    }
+    
+    .box-number {
+        font-family: 'Times New Roman', serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose);
+        border-bottom: 1px solid var(--rose);
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .city-tag {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        padding: 2px 6px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+    }
+    
+    .ad-header {
+        display: flex;
+        align-items: start;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    
+    .ad-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        stroke: var(--rose);
+        stroke-width: 1.5;
+        fill: none;
+        margin-top: 2px;
+    }
+    
+    .ad-title {
+        font-family: 'Times New Roman', serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+    }
+    
+    .ad-desc {
+        font-size: 11px;
+        line-height: 1.4;
+        margin: 8px 0;
+        flex-grow: 1;
+        hyphens: auto;
+    }
+    
+    .ad-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: auto;
+        padding-top: 8px;
+    }
+    
+    .ad-btn {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        padding: 5px 8px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .ad-btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+    }
+    
+    .ad-btn.primary {
+        border-color: var(--rose);
+        color: var(--rose);
+    }
+    
+    .ad-btn.primary:hover {
+        background: var(--rose);
+        color: var(--paper);
+    }
+    
+    .footer-bar {
+        border-top: 3px double var(--ink);
+        margin-top: 24px;
+        padding: 16px 0;
+        text-align: center;
+        position: relative;
+    }
+    
+    .footer-bar::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--rose);
+    }
+    
+    .footer-text {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+    
+    .footer-accent {
+        color: var(--rose);
+        font-weight: 700;
+    }
+    
+    .disclaimer {
+        font-size: 9px;
+        color: #666;
+        margin-top: 12px;
+        font-style: italic;
+    }
+    
+    @media (max-width: 639px) {
+        body {
+            font-size: 12px;
+        }
+        .ad-title {
+            font-size: 13px;
+        }
+        .ad-desc {
+            font-size: 10px;
+        }
+        .masthead h1 {
+            font-size: 24px;
+        }
+        .tagline {
+            font-size: 9px;
+        }
+    }
+    
+    .ad-box.hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <header class="masthead pb-4 mb-4">
+            <div class="text-center">
+          
+                <h1 class="serif text-4xl md:text-5xl mb-2">CLASSIFIEDS | Trading Tools</h1>
+                <p class="serif text-sm md:text-base">100 Traditional and Digital Categories | 1 Item Each | $10/mo Affiliate Slots</p>
+            </div>
+        </header>
+
+        <div class="city-filter" id="cityFilter">
+            <button class="city-btn active" data-city="all">ALL</button>
+            <button class="city-btn" data-city="SP">[SP]</button>
+            <button class="city-btn" data-city="NYC">[NYC]</button>
+            <button class="city-btn" data-city="LON">[LON]</button>
+            <button class="city-btn" data-city="TYO">[TYO]</button>
+            <button class="city-btn" data-city="DXB">[DXB]</button>
+            <button class="city-btn" data-city="BSB">[BSB]</button>
+            <button class="city-btn" data-city="CCS">[CCS]</button>
+            <button class="city-btn" data-city="LIS">[LIS]</button>
+            <button class="city-btn" data-city="BER">[BER]</button>
+            <button class="city-btn" data-city="SYD">[SYD]</button>
+        </div>
+
+        <main class="classifieds-grid" id="classifiedsGrid">
+            <!-- BOX 001 -->
+            <article class="ad-box" data-city="SP">
+                <div class="box-number">
+                    <span>BOX NO. 001</span>
+                    <span class="city-tag">[SP] SÃO PAULO</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="12" rx="1"/>
+                        <line x1="2" y1="20" x2="22" y2="20"/>
+                    </svg>
+                    <h2 class="ad-title">LOQ Intel Laptops</h2>
+                </div>
+                <p class="ad-desc">Core i5/i3 certified units. Business-ready specs. Bulk affiliate slot available for hardware resellers.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('001')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('001')">OFFERING</button>
+                </div>
+            </article>
+
+            <!-- BOX 002 -->
+            <article class="ad-box" data-city="NYC">
+                <div class="box-number">
+                    <span>BOX NO. 002</span>
+                    <span class="city-tag">[NYC] NEW YORK</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/>
+                        <rect x="9" y="9" width="2" height="2"/>
+                        <rect x="13" y="13" width="2" height="2"/>
+                    </svg>
+                    <h2 class="ad-title">Apartments 40-500m²</h2>
+                </div>
+                <p class="ad-desc">Digital property listings database. Real estate simulation assets. Premium metro locations catalog.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('002')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('002')">BUY</button>
+                </div>
+            </article>
+
+            <!-- BOX 003 -->
+            <article class="ad-box" data-city="LON">
+                <div class="box-number">
+                    <span>BOX NO. 003</span>
+                    <span class="city-tag">[LON] LONDON</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="8"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="12" y1="2" x2="12" y2="4"/>
+                        <line x1="12" y1="20" x2="12" y2="22"/>
+                    </svg>
+                    <h2 class="ad-title">Q-SWITCH Nd:Yag Laser</h2>
+                </div>
+                <p class="ad-desc">Medical aesthetic equipment specs. B2B supplier directory. Technical data sheets for distributors.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('003')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('003')">OFFERING</button>
+                </div>
+            </article>
+
+            <!-- BOX 004 -->
+            <article class="ad-box" data-city="TYO">
+                <div class="box-number">
+                    <span>BOX NO. 004</span>
+                    <span class="city-tag">[TYO] TOKYO</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="13" y2="16"/>
+                    </svg>
+                    <h2 class="ad-title">ISO 10002 Surveys</h2>
+                </div>
+                <p class="ad-desc">Customer satisfaction methodology. Compliance templates pack. QA consulting slot for service bureaus.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('004')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('004')">BUY</button>
+                </div>
+            </article>
+
+            <!-- BOX 005 -->
+            <article class="ad-box" data-city="DXB">
+                <div class="box-number">
+                    <span>BOX NO. 005</span>
+                    <span class="city-tag">[DXB] DUBAI</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                        <polyline points="2 17 12 22 22 17"/>
+                        <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                    <h2 class="ad-title">Gemstone & Crystals</h2>
+                </div>
+                <p class="ad-desc">Wholesale sourcing intel. Import/export guides. Digital catalog of certified stones inventory.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('005')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('005')">OFFERING</button>
+                </div>
+            </article>
+
+            <!-- BOX 006 -->
+            <article class="ad-box" data-city="BSB">
+                <div class="box-number">
+                    <span>BOX NO. 006</span>
+                    <span class="city-tag">[BSB] BRASÍLIA</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    <h2 class="ad-title">.mql5 Forex Robot</h2>
+                </div>
+                <p class="ad-desc">Trend advisory EA algorithms. Backtest data reports. Automated trading system license slots.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('006')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('006')">BUY</button>
+                </div>
+            </article>
+
+            <!-- BOX 007 -->
+            <article class="ad-box" data-city="CCS">
+                <div class="box-number">
+                    <span>BOX NO. 007</span>
+                    <span class="city-tag">[CCS] CARACAS</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                    <h2 class="ad-title">Trading Assistant FOREX</h2>
+                </div>
+                <p class="ad-desc">Professional signals dashboard. Risk management toolkit. Premium advisory access subscription.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('007')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('007')">OFFERING</button>
+                </div>
+            </article>
+
+            <!-- BOX 008 -->
+            <article class="ad-box" data-city="LIS">
+                <div class="box-number">
+                    <span>BOX NO. 008</span>
+                    <span class="city-tag">[LIS] LISBON</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0-7.78z"/>
+                    </svg>
+                    <h2 class="ad-title">Massagens & Wellness</h2>
+                </div>
+                <p class="ad-desc">Spa franchise operations manual. Booking systems affiliate. Premium wellness services directory.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('008')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('008')">BUY</button>
+                </div>
+            </article>
+
+            <!-- BOX 009 -->
+            <article class="ad-box" data-city="BER">
+                <div class="box-number">
+                    <span>BOX NO. 009</span>
+                    <span class="city-tag">[BER] BERLIN</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <path d="M4 19.5A2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        <line x1="10" y1="8" x2="16" y2="8"/>
+                        <line x1="10" y1="12" x2="16" y2="12"/>
+                    </svg>
+                    <h2 class="ad-title">Digital Info Products</h2>
+                </div>
+                <p class="ad-desc">PLR content bundles ready. Course creation frameworks. Info-product distribution rights catalog.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('009')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('009')">OFFERING</button>
+                </div>
+            </article>
+
+            <!-- BOX 010 -->
+            <article class="ad-box" data-city="SYD">
+                <div class="box-number">
+                    <span>BOX NO. 010</span>
+                    <span class="city-tag">[SYD] SYDNEY</span>
+                </div>
+                <div class="ad-header">
+                    <svg class="ad-icon" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                        <circle cx="11" cy="11" r="3"/>
+                    </svg>
+                    <h2 class="ad-title">Crypto Trading Signals</h2>
+                </div>
+                <p class="ad-desc">Algorithmic BTC/ETH alerts feed. Portfolio tracking dashboard. API access for signal resellers.</p>
+                <div class="ad-actions">
+                    <button class="ad-btn" onclick="handleDetail('010')">DETAILS</button>
+                    <button class="ad-btn primary" onclick="handleBuy('010')">BUY</button>
+                </div>
+            </article>
+        </main>
+
+        <footer class="footer-bar">
+            <div class="footer-text">
+                <p class="serif text-base mb-2"><span class="footer-accent">1 Category = $100/month</span> | <span class="footer-accent">Lock 12 months for Box Premium</span></p>
+                <p>Digital classifieds simulation. 100 categories planned. Contact: classifieds@trading.assistant</p>
+                <p class="disclaimer">Listings for entertainment purposes. Digital economy simulation. No actual goods or services offered. All trading involves risk.</p>
+            </div>
+        </footer>
+    </div>
+
+<script>
+    // City Filter System
+    const cityBtns = document.querySelectorAll('.city-btn');
+    const adBoxes = document.querySelectorAll('.ad-box');
+    
+    cityBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedCity = btn.dataset.city;
+            
+            // Update active button
+            cityBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter ads
+            adBoxes.forEach(box => {
+                if (selectedCity === 'all' || box.dataset.city === selectedCity) {
+                    box.classList.remove('hidden');
+                } else {
+                    box.classList.add('hidden');
+                }
+            });
+        });
+    });
+    
+    // Action Handlers
+    function handleDetail(boxNum) {
+        alert(`BOX ${boxNum} DETAILS\n\nThis is a fantasy business simulation listing.\n\nIn production: Modal with full specs, pricing tiers, and affiliate terms.\n\nCategory reservation: $100/mo\nPremium 12-mo lock available.`);
+    }
+    
+    function handleBuy(boxNum) {
+        alert(`BOX ${boxNum} INQUIRY\n\nThis is a digital economy simulation.\n\nIn production: Secure checkout + affiliate onboarding.\n\nContact: classifieds@trading.assistant\nSubject: Box ${boxNum} Reservation`);
+    }
+    
+    // Scalability: Template for boxes 011-100
+    // const boxTemplate = (num, city, cityName, title, desc, icon, action) => `...`;
+    // Future: Load boxes from JSON, render 100 slots dynamically
+</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+    <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script único para cargar header y footer -->
+  <script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+</body>
+</html>

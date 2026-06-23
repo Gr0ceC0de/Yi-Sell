@@ -1,0 +1,1059 @@
+//* ======================================================
+   YI-SELL ULTRA LUXURY DESIGN SYSTEM
+   Finance • News • Trading • Marketplace
+   Feminine Edition
+====================================================== */
+
+/* ======================================================
+   GLOBAL RESPONSIVE & ROBUSTNESS FRAMEWORK
+====================================================== */
+
+/* 1. ROOT VARIABLES */
+/* 2. RESET */
+/* 3. GLOBAL LAYOUT */
+/* 4. OVERFLOW PROTECTION */
+/* 5. TYPOGRAPHY */
+/* 6. CONTAINERS */
+/* 7. NAVIGATION */
+/* 8. BUTTONS */
+/* 9. CARDS */
+/* 10. MARKET COMPONENTS */
+/* 11. TABLES */
+/* 12. CHARTS */
+/* 13. IMAGES */
+/* 14. FOOTER */
+/* 15. ACCESSIBILITY */
+/* 16. RESPONSIVE BREAKPOINTS */
+/* 17. REDUCED MOTION */
+/* 18. SAFE AREA SUPPORT */
+/* ======================================================
+   YI-SELL ULTRA LUXURY DESIGN SYSTEM
+   Finance • News • Trading • Marketplace
+   Feminine Edition v2.0 - Cleaned & Ordered
+====================================================== */
+
+/* ======================================================
+   1. ROOT VARIABLES
+====================================================== */
+:root {
+     --font-console: "JetBrains Mono", "Fira Code", "Cascadia Code", "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
+  
+  /* Base Colors */
+  --bg-dark: #120918;
+  --bg-card: rgba(28, 15, 38, 0.82);
+  
+  /* Brand Colors */
+  --fuchsia: #d63384;
+  --rose: #ff5ea8;
+  --pink: #ffd6eb;
+  --violet: #8a2be2;
+  --cyan: #00f7ff;
+  
+  /* Text Colors - White Console on Rose */
+  --white: #ffffff;
+  --soft-white: #fff8fc;
+  --text: #fdf7fb;
+  --text-console: #ffffff;
+  --muted: #cba9ba;
+  
+  /* Headlines - Brilliant */
+  --headline-main: #ffffff;
+  --headline-secondary: #ffd6eb;
+  --headline-accent: #00f7ff;
+  --old-rose-500: #d63384;
+  
+  /* UI */
+  --border: rgba(255, 255, 255, 0.15);
+  --container-max: 1600px;
+  
+  /* Spacing - Fluid */
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+  --space-md: clamp(0.75rem, 1.5vw, 1rem);
+  --space-lg: clamp(1rem, 2vw, 1.5rem);
+  --space-xl: clamp(1.5rem, 3vw, 2rem);
+  --space-xxl: clamp(2rem, 5vw, 4rem);
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius: 24px;
+  
+  /* Shadows */
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 20px 60px rgba(214, 51, 132, 0.35);
+  
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ======================================================
+   HEADER - CENTRADO Y RESPONSIVE
+====================================================== */
+header {
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
+
+/* ======================================================
+   2. RESET & BASE - CONSOLE FONT APPLIED
+====================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  max-width:
+  /* Base Colors */
+  --bg-dark: #120918;
+  --bg-card: rgba(28, 15, 38, 0.82);
+  --bg-newspaper: rgba(245, 240, 232, 0.96);
+  
+  /* Brand Colors */
+  --fuchsia: #d63384;
+  --rose: #ff5ea8;
+  --pink: #ffd6eb;
+  --violet: #8a2be2;
+  --cyan: #00f7ff;
+  
+  /* Text Colors - White Console on Rose */
+  --white: #ffffff;
+  --soft-white: #fff8fc;
+  --text: #fdf7fb;
+  --text-console: #ffffff;
+  --muted: #cba9ba;
+  --ink-primary: #1a1a1a;
+  
+  /* Headlines - Brilliant */
+  --headline-main: #ffffff;
+  --headline-secondary: #ffd6eb;
+  --headline-accent: #00f7ff;
+  --old-rose-500: #d63384;
+  
+  /* UI */
+  --border: rgba(255, 255, 255, 0.15);
+  --border-dark: #333;
+  --container-max: 1600px;
+  
+  /* Spacing - Fluid */
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+  --space-md: clamp(0.75rem, 1.5vw, 1rem);
+  --space-lg: clamp(1rem, 2vw, 1.5rem);
+  --space-xl: clamp(1.5rem, 3vw, 2rem);
+  --space-xxl: clamp(2rem, 5vw, 4rem);
+  
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius: 24px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.18);
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 20px 60px rgba(214, 51, 132, 0.35);
+  
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* ======================================================
+   2. RESET & BASE
+====================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: "Segoe UI", Inter, "Libre Baskerville", serif;
+  color: var(--text-console);
+  background: 
+    linear-gradient(rgba(18, 9, 24, 0.82), rgba(18, 9, 24, 0.90)),
+    url("8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Safe area support */
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+.auth-area {
+  position: relative;
+  display: inline-block;
+}
+
+.signup-trigger {
+  background: #1e88e5;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.signup-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 300px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+.signup-dropdown[hidden] { display: none; }
+
+.signup-dropdown h3 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  text-align: center;
+}
+
+.signup-dropdown label {
+  display: block;
+  margin: 0.75rem 0 0.25rem 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.signup-dropdown input {
+  width: 100%;
+  padding: 0.5rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.signup-dropdown button[type="submit"] {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+}
+
+.form-message {
+  margin: 0.75rem 0 0 0;
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 1.2em;
+  color: #fff;
+}
+/* ======================================================
+   3. GLOBAL OVERFLOW PROTECTION
+====================================================== */
+body,
+main,
+section,
+article,
+div {
+  max-width: 100%;
+}
+
+body * {
+  max-width: 100%;
+}
+
+img,
+svg,
+canvas,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+pre,
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+p,
+h1, h2, h3, h4, h5, h6,
+span, a, td, th {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Flex & Grid Safety */
+.flex, .row, .market-row, .card-row {
+  min-width: 0;
+}
+
+.flex > *, .row > *, .market-row > *, .card-row > * {
+  min-width: 0;
+}
+
+/* ======================================================
+   4. TYPOGRAPHY - WHITE CONSOLE + BRILLIANT TITLES
+====================================================== */
+h1 {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--white);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--pink);
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  color: var(--rose);
+  margin-bottom: 10px;
+}
+
+p, li, button, input, select {
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.7;
+}
+
+/* Brilliant Title System */
+.site-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--headline-main);
+  text-shadow: 
+    0 0 8px rgba(0, 247, 255, 0.8),
+    0 0 20px rgba(0, 247, 255, 0.6),
+    0 0 40px rgba(0, 247, 255, 0.4);
+  text-align: center;
+}
+
+.section-title {
+  color: var(--headline-secondary);
+  border-bottom: 3px solid var(--old-rose-500);
+  padding-bottom: 0.5rem;
+}
+
+.tech-space-tagline {
+  color: var(--headline-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 35px;
+  font-size: 1.1rem;
+}
+
+.logo {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--rose);
+  text-shadow: 0 0 25px rgba(255, 94, 168, 0.6);
+}
+
+/* ======================================================
+   5. LAYOUT & CONTAINERS
+====================================================== */
+.container,
+.wrapper,
+.content,
+.main-content,
+.market-overview-container {
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 32px);
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 35px;
+}
+
+section {
+  padding: 60px 20px;
+  border-top: 1px solid var(--border-dark);
+}
+
+/* Section Colors */
+#headlines { background: #1a1a1a; }
+#classified { background: #141414; }
+#market { background: #101010; }
+#properties { background: #0d0d0d; }
+#shopping { background: #080808; }
+
+/* ======================================================
+   6. GRID SYSTEM
+====================================================== */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+.market-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ======================================================
+   7. NAVIGATION
+====================================================== */
+header {
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--white);
+  background: #222;
+  padding: 14px 22px;
+  border-radius: 18px;
+  font-weight: 600;
+  transition: var(--transition);
+  white-space: nowrap;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+nav a:hover {
+  background: linear-gradient(135deg, var(--fuchsia), var(--rose));
+  transform: translateY(-3px);
+}
+
+/* ======================================================
+   8. CARDS
+====================================================== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  width: 100%;
+  min-width: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.market-card,
+.coin-card,
+.currency-card,
+.asset-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(12px, 2vw, 24px);
+}
+
+.market-card:hover,
+.coin-card:hover,
+.currency-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.market-card img,
+.chart-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.market-info {
+  padding: 16px;
+}
+
+.market-pair {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.buy-price {
+  color: #0c9b45;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sell-price {
+  color: #d62828;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ======================================================
+   9. TABLES
+====================================================== */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 25px;
+}
+
+table,
+.market-table,
+.market-overview-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 12px;
+  min-width: 900px;
+  display: block;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+table::-webkit-scrollbar,
+.market-table::-webkit-scrollbar {
+  height: 8px;
+}
+
+table::-webkit-scrollbar-thumb,
+.market-table::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: var(--rose);
+}
+
+th {
+  background: linear-gradient(135deg, var(--fuchsia), var(--rose));
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 18px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(214, 51, 132, 0.25);
+}
+
+td {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
+  line-height: 1.7;
+  vertical-align: top;
+  text-align: left;
+  transition: var(--transition);
+}
+
+tr:hover td {
+  background: rgba(255, 94, 168, 0.18);
+  transform: scale(1.01);
+}
+
+.country {
+  font-weight: 700;
+  color: var(--pink);
+  white-space: nowrap;
+}
+
+.market-overview-table th,
+.market-overview-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.market-overview-table img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.price, .quote, .symbol, .pair {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ======================================================
+   10. BUTTONS & FORMS
+====================================================== */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.btn,
+.ripple-btn {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px 28px;
+  border-radius: 18px;
+  color: var(--white);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--fuchsia), var(--rose));
+  transition: var(--transition);
+}
+
+.btn:hover,
+.ripple-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.4);
+}
+
+.ripple-btn {
+  background: transparent;
+}
+
+.ripple-btn img {
+  display: block;
+  height: 55px;
+  width: auto;
+  transition: 0.25s;
+}
+
+.ripple-btn img:hover {
+  transform: scale(1.08);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* ======================================================
+   11. CHARTS
+====================================================== */
+.chart,
+.chart-box,
+.chart-container,
+.tradingview-widget-container {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.chart iframe,
+.chart canvas,
+.chart svg,
+.chart-container iframe,
+.tradingview-widget-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ======================================================
+   12. FOOTER
+====================================================== */
+footer {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ======================================================
+   13. SCROLLBAR
+====================================================== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #180f22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rose);
+  border-radius: 999px;
+}
+
+/* ======================================================
+   14. ACCESSIBILITY
+====================================================== */
+:focus-visible {
+  outline: 3px solid #00d4ff;
+  outline-offset: 3px;
+}
+
+/* ======================================================
+   15. RESPONSIVE BREAKPOINTS
+====================================================== */
+/* Large Desktop */
+@media (min-width: 1920px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .container {
+    max-width: 1800px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  
+  .chart,
+  .chart-container {
+    aspect-ratio: 16/10;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 18px;
+  }
+  
+  .logo {
+    font-size: 2.6rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  nav {
+    gap: 10px;
+  }
+  
+  nav a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .row, .flex {
+    flex-direction: column;
+  }
+  
+  .chart,
+  .chart-container {
+    aspect-ratio: 4/3;
+  }
+  
+  table {
+    border-spacing: 8px;
+  }
+  
+  td, th {
+    padding: 14px;
+  }
+  
+  .market-card img,
+  .chart-image {
+    height: 180px;
+  }
+  
+  .market-overview-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .market-overview-table img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  h1 {
+    line-height: 1.15;
+  }
+  
+  .chart,
+  .chart-container {
+    aspect-ratio: 1/1;
+  }
+  
+  .market-card,
+  .coin-card,
+  .currency-card {
+    padding: 14px;
+  }
+}
+
+/* Landscape Phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chart,
+  .chart-container {
+    aspect-ratio: 21/9;
+  }
+}
+
+/* ======================================================
+   16. REDUCED MOTION
+====================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Carrinho no header */
+.cart-icon {
+    display: flex;
+    align-items: center;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'Inter', 'Courier New', monospace;
+    font-size: 16px; /* Medium - antes tava 11px ou 12px */
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.cart-link:hover {
+    color: var(--fuchsia);
+}
+
+.cart-gif {
+    width: 28px;  /* ajusta o tamanho do gif */
+    height: 28px;
+    object-fit: contain;
+}
+
+.cart-text {
+    font-size: 16px; /* Medium */
+    letter-spacing: 0.5px;
+}
+
+#cart-count {
+    font-weight: 700;
+    color: var(--fuchsia);
+}
+
+/* Aumenta fonte medium geral do site se quiser */
+body, p, .product p {
+    font-size: 14px; /* era 12px */
+    line-height: 1.5;
+}
+
+button, .add-to-cart {
+    font-size: 13px; /* era 11px */
+}
+.cart-fixed {
+    position: fixed; /* Fica preso na tela */
+    top: 20px; /* 20px do topo */
+    left: 20px; /* 20px da esquerda */
+    z-index: 999; /* Fica na frente de tudo */
+    background: #fff;
+    padding: 10px 15px;
+    border: 2px solid var(--rose);
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.cart-fixed.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-fixed.cart-gif {
+    width: 35px;
+    height: 35px;
+}
+.product {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    max-width: 400px;
+}
+
+.product-title {
+    font-size: 20px;
+    margin: 0 0 16px 0;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.description {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+}
+
+.product-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.price span {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Botões rosa igual ao Request */
+.add-to-cart, .btn-whatsapp {
+    width: 100%;
+    padding: 14px 24px;
+    background: #E91E63;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.add-to-cart:hover, .btn-whatsapp:hover {
+    background: #C2185B;
+    transform: translateY(-2px);
+}
+
+

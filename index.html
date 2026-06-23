@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yi-Sell Navigation Index</title>
+  <meta name="description" content="Yi-Sell Trading Tools, Market Overview, Headlines and Classified Ads">
+  <link rel="stylesheet" href="styles.css">
+  <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
+</head>
+<body>
+  <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
+
+  <main class="container">
+    <div class="page-intro">
+      <h1 class="section-title">Yi-Sell Navigation Index</h1>
+      <p class="page-subtitle">Click a section to explore</p>
+    </div>
+
+    <div class="nav-grid">
+      <section id="trading-tools" class="nav-card">
+        <h2>Trading Tools</h2>
+        <a href="TradingTools.html" class="ripple-btn card-link">
+          <img src="docs/TreMA.jpg" alt="Trend Advisory Forex Robot">
+          <p>Trading Tools: Script .mql5 This is not a moving average. This is an interrogation entity. TreMA describes why price is about to move: institutional imbalance, not lagging math.
+              Output: Visual warnings + sound alerts. No auto-trades. You stay in control</p>
+        </a>
+      </section>
+
+      <section id="financial-algorithm" class="nav-card">
+        <h2>Financial Algorithms</h2>
+        <a href="TradingTools.html" target="_blank" rel="noopener noreferrer" class="ripple-btn card-link">
+          <img src="docs/Adas.gif" alt="Financial Algorithm">
+          <p>Advanced Trading Algorithms. Market Description + Execution Engine
+            This entity reads order flow, news sentiment, and liquidity grabs, then translates them into action. Two modes:Auto-Pilot: Executes entries, SL, and TP based on the same logic. You set risk, it handles war./
+            Advisor: Describes market intent in plain English. Autonomous Trading Entity"</p>
+        </a>
+      </section>
+
+      <section id="market" class="nav-card">
+        <h2>Market Overview</h2>
+        <a href="market-over-view.html" class="ripple-btn card-link">
+          <img src="docs/exchanges.gif" alt="Market Rates">
+          <p>Live Forex & Crypto Rates</p>
+        </a>
+      </section>
+
+      <section id="headlines" class="nav-card">
+        <h2>Headlines</h2>
+        <a href="headlines.html" class="ripple-btn card-link">
+          <img src="docs/headtitle.gif" alt="Financial News Headlines">
+          <p>Breaking Financial News</p>
+        </a>
+      </section>
+
+      <section id="classified" class="nav-card">
+        <h2>Classified Ads</h2>
+        <a href="classifieds.html" class="ripple-btn card-link">
+          <img src="docs/classsified.gif" alt="Classified Ads">
+          <p>Marketplace & Opportunities</p>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script único para cargar header y footer -->
+  <script>
+    // Cargar header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    // Cargar footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+</body>
+</html>
