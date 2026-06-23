@@ -243,18 +243,23 @@ class ShoppingCart {
         return true;
     }
 
-    processInfinitePay() {
-        if (!this.validateForm()) return;
-        
-        const data = this.getFormData();
-        const valor = data.total.toFixed(2).replace('.', ',');
-        const nomeUrl = encodeURIComponent(data.name);
-        const link = `https://link.infinitepay.io/yakelin-yisel/${nomeUrl}-${valor}`;
-        
-        localStorage.setItem('lastOrder', JSON.stringify(data));
-        window.open(link, '_blank');
-    }
-
+   processInfinitePay() {
+    if (!this.validateForm()) return;
+    
+    const data = this.getFormData();
+    const valor = data.total.toFixed(2).replace('.', ',');
+    const nomeUrl = encodeURIComponent(data.name);
+    const link = `https://link.infinitepay.io/yakelin-yisel/${nomeUrl}-${valor}`;
+    
+    localStorage.setItem('lastOrder', JSON.stringify(data));
+    
+    const a = document.createElement('a');
+    a.href = link;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
     // STRIPE DE VERDADE - CHAMA SEU BACKEND NO RENDER
     async processStripe() {
         if (!this.validateForm()) return;
