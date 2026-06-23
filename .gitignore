@@ -1,0 +1,11 @@
+.env
+certs/
+arquivos/yi-sell.ex5
+*.pem
+__pycache__/
+*.py[cod]
+venv/
+db.sqlite3
+*.log
+static/
+media/

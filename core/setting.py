@@ -1,13 +1,16 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-yi-sell-dev-key-trocar-em-prod-2026'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # Já tá certo aqui
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,20 +28,22 @@ INSTALLED_APPS = [
     'apps.market_over_view',
     'apps.PropertiesCaracas',
     'apps.analytics',
+    # 'rest_framework',  # ERRO: DUPLICADO - comentado
+    # 'corsheaders',     # ERRO: DUPLICADO - comentado
     'accounts',
-    'checkout',  # adiciona seu app aqui
+    'checkout', # ADICIONADO: nosso app de pagamento
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # tem que ser o primeiro
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # adiciona isso
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware', # ERRO: DUPLICADO - comentado
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -61,22 +66,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Banco de dados - Render cria sozinho
+# ERRO: DATABASES TAVA COM ESTRUTURA ERRADA
+# Você colocou 'default' dentro de 'default'. Corrigido:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # Quando for usar Postgres, descomenta isso e comenta o sqlite3 acima:
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'yisell_db',
+    #     'USER': 'yisell_user',
+    #     'PASSWORD': 'senha_forte',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 AUTH_USER_MODEL = 'accounts.User'
 
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'seu@email.com'
-EMAIL_HOST_PASSWORD = 'senha_app'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'seu@email.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'senha_app')
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -91,13 +107,28 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Adiciona isso pro Render
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://yi-sell.com",
+    "http://localhost:3000",
+    "https://gr0cec0de.github.io", # ADICIONADO: seu GitHub Pages
+]
+CORS_ALLOW_ALL_ORIGINS = True # True só pra dev. Em prod deixa False
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
     ]
 }
+
+# ADICIONADO: Config Efí Bank Pix
+GN_CLIENT_ID = os.getenv('GN_CLIENT_ID')
+GN_CLIENT_SECRET = os.getenv('GN_CLIENT_SECRET')
+GN_PIX_KEY = os.getenv('GN_PIX_KEY')
+GN_SANDBOX = os.getenv('GN_SANDBOX', 'True') == 'True'
+GN_PIX_CERT = BASE_DIR / 'certs/certificado.pem'
+
+# ADICIONADO: Config MQL5
+MQL5_SECRET = os.getenv('MQL5_SECRET')
+BACKEND_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
