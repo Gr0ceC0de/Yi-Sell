@@ -1,13 +1,13 @@
-# DB, CORS, installed apps
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-yi-sell-dev-key-trocar-em-prod-2026'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']  # Já tá certo aqui
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,21 +25,20 @@ INSTALLED_APPS = [
     'apps.market_over_view',
     'apps.PropertiesCaracas',
     'apps.analytics',
-    'rest_framework',
-    'corsheaders',
     'accounts',
+    'checkout',  # adiciona seu app aqui
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # adiciona isso
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -62,22 +61,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Banco de dados - Render cria sozinho
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'yisell_db',
-        'USER': 'yisell_user',
-        'PASSWORD': 'senha_forte',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
     }
 }
+
 AUTH_USER_MODEL = 'accounts.User'
-# Email
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -98,12 +91,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Adiciona isso pro Render
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "https://yi-sell.com",
-    "http://localhost:3000",
-]
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
