@@ -1,4 +1,6 @@
 // server.js
+const cors = require('cors');
+app.use(cors()); // ← SEM ISSO O GITHUB PAGES NÃO CONSEGUE CHAMAR
 const stripe = require('stripe')('sk_live_...');
 
 app.post('/create-checkout-session', async (req, res) => {
