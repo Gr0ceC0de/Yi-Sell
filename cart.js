@@ -1,6 +1,8 @@
+// cart.js - Yi-Sell v1.0 Final
 class ShoppingCart {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
+        this.TAX_RATE = 0.08; // 8% taxa
         this.init();
     }
 
@@ -11,6 +13,7 @@ class ShoppingCart {
     }
 
     bindEvents() {
+        // Add to Cart
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('add-to-cart')) {
                 e.preventDefault();
@@ -29,11 +32,13 @@ class ShoppingCart {
             }
         });
 
+        // Checkout Button
         const checkoutBtn = document.getElementById('checkout-btn');
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => this.openCheckout());
         }
 
+        // Close Modal
         const closeBtn = document.querySelector('.close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeCheckout());
@@ -75,8 +80,22 @@ class ShoppingCart {
         this.render();
     }
 
-    getTotal() {
+    clearCart() {
+        this.items = [];
+        this.save();
+        this.render();
+    }
+
+    getSubtotal() {
         return this.items.reduce((sum, i) => sum + (parseFloat(i.price) * i.qty), 0);
+    }
+
+    getTaxes() {
+        return this.getSubtotal() * this.TAX_RATE;
+    }
+
+    getTotal() {
+        return this.getSubtotal() + this.getTaxes();
     }
 
     updateCartCount() {
@@ -100,7 +119,7 @@ class ShoppingCart {
             if (emptyMsg) emptyMsg.style.display = 'block';
             if (table) table.style.display = 'none';
             if (checkoutBtn) checkoutBtn.disabled = true;
-            if (totalEl) totalEl.textContent = 'Total: R$ 0.00';
+            if (totalEl) totalEl.textContent = 'Total: R$ 0,00';
             return;
         }
 
@@ -113,23 +132,22 @@ class ShoppingCart {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.name}</td>
-                <td>${price.toFixed(2)}</td>
+                <td>R$ ${price.toFixed(2).replace('.', ',')}</td>
                 <td>
                     <input type="number" value="${item.qty}" min="1" 
                            onchange="cart.updateQty('${item.id}', this.value)">
                 </td>
-                <td>R$ ${(price * item.qty).toFixed(2)}</td>
+                <td>R$ ${(price * item.qty).toFixed(2).replace('.', ',')}</td>
                 <td>
-                    <button class="btn-remove" onclick="cart.remove('${item.id}')">Remove</button>
+                    <button class="btn-remove" onclick="cart.remove('${item.id}')">Remover</button>
                 </td>
             `;
             tbody.appendChild(row);
         });
 
-        if (totalEl) totalEl.textContent = `Total: R$ ${this.getTotal().toFixed(2)}`;
+        if (totalEl) totalEl.textContent = `Total: R$ ${this.getSubtotal().toFixed(2).replace('.', ',')}`;
     }
 
-    // ABRE MODAL - VERSÃO CORRETA
     openCheckout() {
         if (this.items.length === 0) {
             alert('Seu carrinho está vazio!');
@@ -138,7 +156,7 @@ class ShoppingCart {
 
         const modal = document.getElementById('checkoutModal');
         if (!modal) {
-            alert('Erro: Modal não encontrado');
+            alert('Erro: Modal de checkout não encontrado no HTML');
             return;
         }
 
@@ -151,25 +169,24 @@ class ShoppingCart {
         const itemsDiv = document.getElementById('orderItems');
         if (!itemsDiv) return;
 
-        const subtotal = this.getTotal();
-        const taxRate = 0.08;
-        const taxes = subtotal * taxRate;
-        const total = subtotal + taxes;
+        const subtotal = this.getSubtotal();
+        const taxes = this.getTaxes();
+        const total = this.getTotal();
 
         let html = '';
         this.items.forEach(item => {
             html += `
                 <div class="summary-line">
                     <span>${item.qty}x ${item.name}</span>
-                    <span>R$ ${(parseFloat(item.price) * item.qty).toFixed(2)}</span>
+                    <span>R$ ${(parseFloat(item.price) * item.qty).toFixed(2).replace('.', ',')}</span>
                 </div>
             `;
         });
         
         itemsDiv.innerHTML = html;
-        document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
-        document.getElementById('taxes').textContent = `R$ ${taxes.toFixed(2)}`;
-        document.getElementById('finalTotal').textContent = `R$ ${total.toFixed(2)}`;
+        document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+        document.getElementById('taxes').textContent = `R$ ${taxes.toFixed(2).replace('.', ',')}`;
+        document.getElementById('finalTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
     }
 
     bindCheckoutEvents() {
@@ -184,9 +201,10 @@ class ShoppingCart {
                     const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
                     const data = await res.json();
                     if (!data.erro) {
-                        document.getElementById('endereco').value = data.logradouro;
-                        document.getElementById('cidade').value = data.localidade;
-                        document.getElementById('estado').value = data.uf;
+                        document.getElementById('endereco').value = data.logradouro || '';
+                        document.getElementById('cidade').value = data.localidade || '';
+                        document.getElementById('estado').value = data.uf || '';
+                        document.getElementById('numero').focus();
                     }
                 } catch (err) {
                     console.error('Erro ao buscar CEP:', err);
@@ -214,28 +232,25 @@ class ShoppingCart {
     }
 
     getFormData() {
-        const subtotal = this.getTotal();
-        const taxes = subtotal * 0.08;
-        const total = subtotal + taxes;
-
         return {
-            name: document.getElementById('customerName').value,
-            email: document.getElementById('email').value,
-            cep: document.getElementById('cep').value,
-            endereco: document.getElementById('endereco').value,
-            numero: document.getElementById('numero').value,
-            complemento: document.getElementById('complemento').value,
-            cidade: document.getElementById('cidade').value,
-            estado: document.getElementById('estado').value,
+            name: document.getElementById('customerName')?.value || '',
+            email: document.getElementById('email')?.value || '',
+            cep: document.getElementById('cep')?.value || '',
+            endereco: document.getElementById('endereco')?.value || '',
+            numero: document.getElementById('numero')?.value || '',
+            complemento: document.getElementById('complemento')?.value || '',
+            cidade: document.getElementById('cidade')?.value || '',
+            estado: document.getElementById('estado')?.value || '',
             items: this.items,
-            subtotal: subtotal,
-            taxes: taxes,
-            total: total
+            subtotal: this.getSubtotal(),
+            taxes: this.getTaxes(),
+            total: this.getTotal()
         };
     }
 
     validateForm() {
         const form = document.getElementById('checkoutForm');
+        if (!form) return true;
         if (!form.checkValidity()) {
             form.reportValidity();
             return false;
@@ -243,29 +258,33 @@ class ShoppingCart {
         return true;
     }
 
-   processInfinitePay() {
-    if (!this.validateForm()) return;
-    
-    const data = this.getFormData();
-    const valor = data.total.toFixed(2).replace('.', ',');
-    
-    // LINK SIMPLES, SEM NOME NEM CÓDIGO
-    const link = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
-    
-    localStorage.setItem('lastOrder', JSON.stringify(data));
-    window.location.href = link;
-}
-    // STRIPE DE VERDADE - CHAMA SEU BACKEND NO RENDER
+    processInfinitePay() {
+        if (!this.validateForm()) return;
+        
+        const btn = document.getElementById('payInfinitePay');
+        if (btn.disabled) return;
+        btn.disabled = true;
+        
+        const data = this.getFormData();
+        const valor = data.total.toFixed(2).replace('.', ',');
+        const link = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
+        
+        localStorage.setItem('lastOrder', JSON.stringify(data));
+        this.clearCart();
+        
+        window.location.href = link;
+    }
+
     async processStripe() {
         if (!this.validateForm()) return;
         
-        const data = this.getFormData();
         const btn = document.getElementById('payStripe');
+        if (btn.disabled) return;
         btn.disabled = true;
         btn.textContent = 'Processando...';
 
         try {
-            // TROCA AQUI PELA URL DO SEU RENDER
+            const data = this.getFormData();
             const response = await fetch('https://yi-sell.onrender.com/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -278,24 +297,30 @@ class ShoppingCart {
                     customer: {
                         name: data.name,
                         email: data.email
+                    },
+                    metadata: {
+                        cep: data.cep,
+                        endereco: `${data.endereco}, ${data.numero}`,
+                        cidade: data.cidade,
+                        estado: data.estado
                     }
                 })
             });
 
-            if (!response.ok) throw new Error('Erro no servidor');
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Erro no servidor');
+            }
 
             const session = await response.json();
             localStorage.setItem('lastOrder', JSON.stringify(data));
-            
-            // Limpa carrinho e redireciona pro Stripe
-            this.items = [];
-            this.save();
+            this.clearCart();
             window.location.href = session.url;
 
         } catch (error) {
             alert('Erro ao processar pagamento: ' + error.message);
             btn.disabled = false;
-            btn.textContent = 'Pagar com Stripe';
+            btn.textContent = 'Pagar com Cartão';
         }
     }
 
