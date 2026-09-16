@@ -127,4 +127,31 @@
         border:none;
     }
 }
+
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:center;      /* antes: space-between */
+    flex-wrap:wrap;
+    gap:30px;
+    padding:0 20px 30px;
+    text-align:center;           /* nuevo: centra el texto */
+}
+
+.footer-section{
+    flex:1;
+    min-width:220px;
+    display:flex;                /* nuevo */
+    flex-direction:column;       /* nuevo */
+    align-items:center;          /* nuevo: centra los elementos hijos */
+}
+
+.footer-section a{
+    color:#d1d5db;
+    text-decoration:none;
+    margin:8px 0;
+    transition:.3s;
+    /* quitá "display:block" o dejalo, ya no importa porque el padre está centrado con align-items */
+}
 </style>
