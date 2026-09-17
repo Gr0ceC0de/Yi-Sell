@@ -1,399 +1,89 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" >
-  <html lang="en">
-    <link rel="stylesheet" href="styles.css">
-<title> shoppingchart</title>
-<style>
-   :root {
-  --rose: #C08081;
-  --rose-light: #E8C4C5;
-  --fuchsia: #D1467A;
-  --paper: #F5F5F0;
-  --ink: #1A1A1A;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body { 
-    font-family: 'Courier New', Courier, monospace; 
-    margin: 0;
-    padding: 20px;
-    background: var(--paper);
-    color: var(--ink);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h1 {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--rose);
-    padding-bottom: 10px;
-}
-
-.product { 
-    border: 2px solid var(--rose); 
-    padding: 12px; 
-    margin: 10px; 
-    display: inline-block; 
-    width: 200px;
-    background: #ffffff;
-    box-shadow: 2px 2px 0 var(--rose-light);
-    vertical-align: top;
-}
-
-.product h3 {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-size: 14px;
-    margin: 0 0 8px 0;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--rose-light);
-    padding-bottom: 4px;
-}
-
-.product .price {
-    color: var(--rose);
-    font-weight: bold;
-    font-size: 13px;
-    margin: 8px 0;
-}
-
-.cart { 
-    margin-top: 30px; 
-    border: 3px double var(--rose); 
-    padding: 20px;
-    background: #ffffff;
-}
-
-.cart h2 {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-size: 18px;
-    margin: 0 0 15px 0;
-}
-
-table { 
-    width: 100%; 
-    border-collapse: collapse;
-    background: #ffffff;
-    border: 1px solid var(--rose);
-    margin-bottom: 15px;
-}
-
-th { 
-    border: 1px solid var(--rose); 
-    padding: 10px; 
-    text-align: center;
-    background: var(--rose-light);
-    font-family: 'Times New Roman', serif;
-    color: var(--ink);
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-td { 
-    border: 1px solid var(--rose-light); 
-    padding: 10px; 
-    text-align: center;
-    background: #ffffff;
-    font-size: 12px;
-}
-
-td input[type="number"] {
-    width: 60px;
-    padding: 4px;
-    text-align: center;
-    border: 1px solid var(--rose-light);
-}
-
-button, .btn-primary { 
-    padding: 6px 12px; 
-    cursor: pointer;
-    background: var(--rose);
-    color: #fff;
-    border: 1px solid var(--fuchsia);
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    transition: background 0.2s;
-}
-
-button:hover, .btn-primary:hover {
-    background: var(--fuchsia);
-}
-
-.cart-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--rose);
-    padding-top: 15px;
-}
-
-.cart-total {
-    font-family: 'Times New Roman', serif;
-    color: var(--fuchsia);
-    font-weight: bold;
-    font-size: 18px;
-    margin: 0;
-}
-
-.btn-primary {
-    font-size: 13px;
-    padding: 10px 20px;
-}
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    overflow-y: auto;
-}
-
-.modal-content {
-    background: #fff;
-    margin: 3% auto;
-    padding: 30px;
-    border: 3px solid var(--rose);
-    border-radius: 12px;
-    width: 90%;
-}
-
-.close {
-    float: right;
-    font-size: 32px;
-    cursor: pointer;
-    color: #999;
-}
-
-.close:hover { color: #000; }
-
-.form-group {
-    margin-bottom: 16px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--ink);
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--rose-light);
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.order-summary {
-    background: var(--paper);
-    padding: 20px;
-    border-radius: 8px;
-    margin: 20px 0;
-    border: 1px solid var(--rose-light);
-}
-
-.order-summary h4 {
-    margin: 0 0 12px 0;
-    color: var(--fuchsia);
-}
-
-.summary-line {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    font-size: 14px;
-}
-
-.summary-line.total {
-    border-top: 2px solid var(--rose);
-    margin-top: 8px;
-    padding-top: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--fuchsia);
-}
-
-.payment-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.btn-pay {
-    width: 100%;
-    padding: 16px;
-    background: #00A859;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-pay:hover {
-    background: #008a48;
-    transform: translateY(-2px);
-}
-
-.btn-pay.stripe {
-    background: #635BFF;
-}
-
-.btn-pay.stripe:hover {
-    background: #5147d9;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Yi-Sell</title>
+  <style>
+   :root { --rose:#C08081; --rose-light:#E8C4C5; --fuchsia:#D1467A; --paper:#F5F5F0; --ink:#1A1A1A; }
+   *{box-sizing:border-box} body{font-family:'Courier New',monospace;margin:0;padding:20px;background:var(--paper);color:var(--ink)}
+   .container{max-width:1200px;margin:0 auto} h1{font-family:'Times New Roman',serif;color:var(--fuchsia);text-transform:uppercase;border-bottom:2px solid var(--rose);padding-bottom:10px}
+   .cart{margin-top:30px;border:3px double var(--rose);padding:20px;background:#fff}
+   table{width:100%;border-collapse:collapse;border:1px solid var(--rose)} th{border:1px solid var(--rose);padding:10px;text-align:center;background:var(--rose-light);text-transform:uppercase;font-size:12px} td{border:1px solid var(--rose-light);padding:10px;text-align:center;font-size:12px}
+   button,.btn-primary{padding:6px 12px;cursor:pointer;background:var(--rose);color:#fff;border:1px solid var(--fuchsia);font-size:11px;text-transform:uppercase}
+   button:hover{background:var(--fuchsia)} .cart-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rose);padding-top:15px}
+   .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.7);overflow-y:auto}
+   .modal-content{background:#fff;margin:3% auto;padding:30px;border:3px solid var(--rose);border-radius:12px;width:90%;max-width:600px}
+   .close{float:right;font-size:32px;cursor:pointer;color:#999} .form-group{margin-bottom:16px} .form-group label{display:block;margin-bottom:6px;font-weight:600;font-size:14px}
+   .form-group input{width:100%;padding:12px;border:1px solid var(--rose-light);border-radius:6px;font-size:14px}
+   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px} .order-summary{background:var(--paper);padding:20px;border-radius:8px;margin:20px 0;border:1px solid var(--rose-light)}
+   .summary-line{display:flex;justify-content:space-between;padding:8px 0;font-size:14px} .summary-line.total{border-top:2px solid var(--rose);margin-top:8px;padding-top:12px;font-size:18px;font-weight:700;color:var(--fuchsia)}
+   .btn-pay{width:100%;padding:16px;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer} .btn-pay.infinite{background:#00A859} .btn-pay.pix{background:#32BCAD}
+   .pix-box{display:none;background:#fff;border:2px dashed #32BCAD;padding:15px;border-radius:8px;margin-top:10px;word-break:break-all;font-size:13px} .pix-key{font-weight:bold;background:#e0f7f4;padding:4px 6px;border-radius:4px}
+   .error-msg{color:var(--fuchsia);font-size:11px;margin-top:4px;display:none}
+  </style>
 </head>
 <body>
-   <div id="header-placeholder"></div>
+<div id="header-placeholder"></div>
+<main class="container">
+  <h1>Your Shopping Cart</h1>
+  <div class="cart">
+    <h2>Items in Cart</h2>
+    <table id="cartTable"><thead><tr><th>Product</th><th>Price (R$)</th><th>Quantity</th><th>Total (R$)</th><th>Action</th></tr></thead><tbody></tbody></table>
+    <div class="cart-footer"><h3 id="cartTotal">Total: R$ 0.00</h3><button id="checkout-btn" class="btn-primary">Proceed to Checkout</button></div>
+  </div>
+</main>
+<div id="footer-placeholder"></div>
 
-    <main class="container">
-        <h1>Your Shopping Cart</h1>
-
-        <div class="cart">
-            <h2>Items in Cart</h2>
-            <table id="cartTable">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price (R$)</th>
-                        <th>Quantity</th>
-                        <th>Total (R$)</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div class="cart-footer">
-                <h3 id="cartTotal" class="cart-total">Total: R$ 0.00</h3>
-                <button id="checkout-btn" class="btn-primary">Proceed to Checkout</button>
-            </div>
-        </div>
-    </main>
-
-    <div id="footer-placeholder"></div>
-
-    <script src="cart.js" defer></script>
-    <script>
-        // Carrega header e footer
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error('Error loading header:', err));
-
-            fetch('footer.html')
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error('Error loading footer:', err));
-        });
-    </script>
-    <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
-
-  <!-- Script único para cargar header y footer -->
-  <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
-
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
-  <script src="cart.js"></script>
-ating B&W Image
-<!-- Modal Checkout Completo -->
 <div id="checkoutModal" class="modal">
-    <div class="modal-content" style="max-width: 600px;">
-        <span class="close">&times;</span>
-        <h3>Finalizar Compra</h3>
-        
-        <form id="checkoutForm">
-            <div class="form-group">
-                <label>Nome Completo *</label>
-                <input type="text" id="customerName" required>
-            </div>
-
-           
-                <div class="form-group">
-        
-            </div>
-
-            </div>
-
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="email" required>
-            </div>
-
-            <div class="order-summary">
-                <h4>Resumo do Pedido</h4>
-                <div id="orderItems"></div>
-                <div class="summary-line">
-                    <span>Subtotal:</span>
-                    <span id="subtotal">R$ 0.00</span>
-                </div>
-                <div class="summary-line">
-                    <span>Taxas (8%):</span>
-                    <span id="taxes">R$ 0.00</span>
-                </div>
-                <div class="summary-line total">
-                    <span>Total:</span>
-                    <span id="finalTotal">R$ 0.00</span>
-                </div>
-            </div>
-
-            <div class="payment-buttons">
-                <button type="button" class="btn-pay" id="payInfinitePay">
-                    Pagar com InfinitePay
-                </button>
-                <button type="button" class="btn-pay stripe" id="payStripe">
-                    Pagar com Stripe
-                </button>
-            </div>
-        </form>
-    </div>
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;">Finalizar Compra</h3>
+    <form id="checkoutForm" novalidate>
+      <div class="form-group">
+        <label>Nome Completo *</label>
+        <input type="text" id="customerName" placeholder="Ex: Maria Silva Santos" required minlength="3">
+        <div class="error-msg" id="nameError">Digite nome completo (nome + sobrenome)</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Telefone / WhatsApp *</label><input type="tel" id="phone" placeholder="(11) 99999-9999" required><div class="error-msg" id="phoneError">Telefone obrigatório</div></div>
+        <div class="form-group"><label>E-mail *</label><input type="email" id="email" placeholder="seu@email.com" required><div class="error-msg" id="emailError">E-mail válido obrigatório</div></div>
+      </div>
+      <div class="order-summary">
+        <h4>Resumo</h4><div id="orderItems"></div>
+        <div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div>
+        <div class="summary-line"><span>Taxas (8%):</span><span id="taxes">R$ 0.00</span></div>
+        <div class="summary-line total"><span>Total:</span><span id="finalTotal">R$ 0.00</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <button type="button" class="btn-pay infinite" id="payInfinitePay">Pagar com InfinitePay</button>
+        <button type="button" class="btn-pay pix" id="payPix">Pagar com PIX</button>
+        <div id="pixBox" class="pix-box">
+          <p><strong>Chave PIX:</strong></p>
+          <p class="pix-key">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</p>
+          <button type="button" class="btn-primary" style="width:100%;margin-top:10px" onclick="navigator.clipboard.writeText('41a2bc9e-5854-43ab-bc8a-b9f13addd96d').then(()=>alert('Copiado!'))">📋 Copiar Chave PIX</button>
+          <p style="font-size:11px;margin-top:10px;">Após pagar, envie comprovante no WhatsApp com seu nome.</p>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
+<script>
+const PIX_KEY="41a2bc9e-5854-43ab-bc8a-b9f13addd96d";
+let cart=JSON.parse(localStorage.getItem('yi_cart')||'[{"name":"TREMA Bot","price":147,"qty":1}]');
+function saveCart(){localStorage.setItem('yi_cart',JSON.stringify(cart))}
+function renderCart(){const tb=document.querySelector('#cartTable tbody');tb.innerHTML='';let t=0;cart.forEach((it,i)=>{const l=it.price*it.qty;t+=l;tb.innerHTML+=`<tr><td>${it.name}</td><td>R$ ${it.price.toFixed(2)}</td><td><input type="number" min="1" value="${it.qty}" onchange="cart[${i}].qty=Math.max(1,parseInt(this.value)||1);saveCart();renderCart()"></td><td>R$ ${l.toFixed(2)}</td><td><button onclick="cart.splice(${i},1);saveCart();renderCart()">X</button></td></tr>`});document.getElementById('cartTotal').innerText=`Total: R$ ${t.toFixed(2)}`;if(!cart.length)tb.innerHTML='<tr><td colspan="5">Vazio</td></tr>'}
+function validate(){const n=document.getElementById('customerName').value.trim(),p=document.getElementById('phone').value.trim(),e=document.getElementById('email').value.trim();let v=true;document.querySelectorAll('.error-msg').forEach(x=>x.style.display='none');if(n.length<3||n.split(' ').length<2){document.getElementById('nameError').style.display='block';v=false}if(p.length<10){document.getElementById('phoneError').style.display='block';v=false}if(!e.includes('@')){document.getElementById('emailError').style.display='block';v=false}return v}
+document.addEventListener('DOMContentLoaded',()=>{renderCart();
+  fetch('header.html').then(r=>r.text()).then(d=>{document.getElementById('header-placeholder').innerHTML=d}).catch(()=>{});
+  fetch('footer.html').then(r=>r.text()).then(d=>{document.getElementById('footer-placeholder').innerHTML=d}).catch(()=>{});
+  document.getElementById('checkout-btn').onclick=()=>{if(!cart.length){alert('Carrinho vazio');return}let tot=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById('orderItems').innerHTML=cart.map(i=>`<div class=summary-line><span>${i.name} x${i.qty}</span><span>R$ ${(i.price*i.qty).toFixed(2)}</span></div>`).join('');document.getElementById('subtotal').innerText=`R$ ${tot.toFixed(2)}`;document.getElementById('taxes').innerText=`R$ ${(tot*0.08).toFixed(2)}`;document.getElementById('finalTotal').innerText=`R$ ${(tot*1.08).toFixed(2)}`;document.getElementById('checkoutModal').style.display='block'};
+  document.getElementById('closeModal').onclick=()=>document.getElementById('checkoutModal').style.display='none';
+  window.onclick=(e)=>{if(e.target==document.getElementById('checkoutModal'))document.getElementById('checkoutModal').style.display='none'};
+  document.getElementById('payInfinitePay').onclick=()=>{if(!validate())return;alert('Redirecionando InfinitePay - Cliente: '+document.getElementById('customerName').value); /* window.open('SEU_LINK_INFINITEPAY','_blank') */ };
+  document.getElementById('payPix').onclick=()=>{if(!validate())return;document.getElementById('pixBox').style.display='block'};
+});
+</script>
 </body>
 </html>
-
-give me an debuggin give the errors give me a clean document and whats trouble about this actual route
