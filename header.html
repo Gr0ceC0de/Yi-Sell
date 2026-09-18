@@ -9,10 +9,27 @@
      target="_blank" 
      rel="noopener noreferrer"
      class="ripple-btn signup-trigger" 
-     id="signupToggle">
-    <span>Sign Up. Before risking your money 💰 try o 🐇🐰</span>
+     id="signupToggle"
+     style="
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       text-decoration: none;
+       color: #fff;
+       background-color: #2563eb;
+       border-radius: 12px;
+       padding: 14px 24px;
+       font-weight: 600;
+       width: 100%;
+       max-width: 400px;
+       margin: 0 auto;
+       box-sizing: border-box;
+       transition: background-color 0.3s ease, transform 0.2s ease;
+     ">
+    <span style="font-size: 1rem; line-height: 1.4;">Sign Up. Before risking your money 💰 try o 🐇🐰</span>
   </a>
-</h2>  
+</h2>
 
   <div id="signupDropdown" class="signup-dropdown" hidden>
     <form id="headerSignupForm" action="/api/register" method="POST">
