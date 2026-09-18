@@ -1,4 +1,3 @@
-
  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -232,8 +231,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // COLOQUE SEU LINK INFINITEPAY AQUI
     console.log('Checkout:', {name, email, phone: document.getElementById('phone').value, total, cart: getCartData(), pix: PIX_KEY});
     alert(`InfinitePay - Cliente: ${name}\nTotal: ${total}\n\nConfigure seu link de pagamento InfinitePay nesta função.`);
-    // window.open('https://SEU_LINK_INFINITEPAY.com?amount='+total, '_blank');
-  });
+    // 
+
+<script>
+const fmt=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function getCart(){
+  // Lee TODAS las claves posibles
+  let keys=['yi_cart','cart','cartItems','shopping_cart'];
+  for(let k of keys){
+    try{
+      let v=JSON.parse(localStorage.getItem(k)||'[]');
+      if(Array.isArray(v)&&v.length) return v.map(o=>({
+        name:o.name||o.product||o.title||'Produto',
+        price:parseFloat(String(o.price||0).replace(/[^\d,.-]/g,'').replace(',','.'))||0,
+        qty:parseInt(o.qty||o.quantity||1)||1
+      }));
+    }catch(e){}
+  }
+  return [];
+}
+function save(d){ localStorage.setItem('yi_cart',JSON.stringify(d)); localStorage.setItem('cart',JSON.stringify(d)); }
+
+function render(){
+  let data=getCart();
+  let tb=document.getElementById('cartTbody');
+  if(!data.length){
+    tb.innerHTML='<tr><td colspan="5" style="color:var(--rose)">Carrinho vazio - adicione produtos em TradingTools.html</td></tr>';
+    document.getElementById('cartTotal').textContent='Total: '+fmt(0);
+    return;
+  }
+  let tot=0;
+  tb.innerHTML=data.map((it,i)=>{
+    let line=it.price*it.qty; tot+=line;
+    return `<tr><td>${it.name}</td><td>${fmt(it.price)}</td><td><button onclick="chg(${i},-1)">-</button> ${it.qty} <button onclick="chg(${i},1)">+</button></td><td>${fmt(line)}</td><td><button onclick="del(${i})">X</button></td></tr>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent='Total: '+fmt(tot);
+}
+function chg(i,d){ let c=getCart(); c[i].qty+=d; if(c[i].qty<1) c.splice(i,1); save(c); render(); }
+function del(i){ let c=getCart(); c.splice(i,1); save(c); render(); }
+
+function openCheckout(){
+  let data=getCart();
+  if(!data.length){ alert('Carrinho vazio!'); return; }
+  let sub=data.reduce((s,i)=>s+i.price*i.qty,0);
+  let tax=sub*0.08, tot=sub+tax;
+  document.getElementById('orderItems').innerHTML=data.map(i=>`<div class="summary-line"><span>${i.name} x${i.qty}</span><span>${fmt(i.price*i.qty)}</span></div>`).join('');
+  document.getElementById('subtotal').textContent=fmt(sub);
+  document.getElementById('taxes').textContent=fmt(tax);
+  document.getElementById('finalTotal').textContent=fmt(tot);
+  document.getElementById('checkoutModal').style.display='block';
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  render();
+  document.getElementById('checkout-btn').onclick=e=>{ e.preventDefault(); openCheckout(); };
+  document.getElementById('closeModal').onclick=()=>document.getElementById('checkoutModal').style.display='none';
+  window.onclick=e=>{ if(e.target==document.getElementById('checkoutModal')) document.getElementById('checkoutModal').style.display='none'; };
+  const copy=(t,b)=>{ let ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); let o=b.textContent; b.textContent='COPIADO!'; setTimeout(()=>b.textContent=o,1500); };
+  document.getElementById('copyPix').onclick=function(){ copy('41a2bc9e-5854-43ab-bc8a-b9f13addd96d',this); };
+  document.getElementById('copyEth').onclick=function(){ copy('0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C',this); };
+  document.getElementById('payPix').onclick=()=>{ document.getElementById('ethBox').style.display='none'; document.getElementById('pixBox').style.display='block'; };
+  document.getElementById('payEth').onclick=()=>{ document.getElementById('pixBox').style.display='none'; document.getElementById('ethBox').style.display='block'; };
+  document.getElementById('payInfinite').onclick=()=>{ window.open('https://www.infinitepay.io/','_blank'); };
 });
 </script>
 </body>
