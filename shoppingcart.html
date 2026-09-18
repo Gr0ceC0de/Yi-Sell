@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- =================================================================== -->
-<!-- SECCIÓN 1: HEAD - CONFIGURACIÓN GLOBAL Y PALETA ROSA VIEJA [L1-60]  -->
+<!-- SHOPPING CART - YI-SELL | VERSÃO FINAL COMPLETA                     -->
+<!-- Inclui: InfinitePay, PIX Copia e Cola, Ethereum (ETH 3D)            -->
 <!-- =================================================================== -->
 <html lang="pt-BR">
 <head>
@@ -9,65 +10,316 @@
   <title>Shopping Cart - Yi-Sell</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* [L10-20] Variables - Paleta Rosa Vieja Sobria Romántica Sofisticada */
+    /* =============================================================== */
+    /* VARIÁVEIS - PALETA ROSA VIEJA SOBRIA ROMÂNTICA SOFISTICADA     */
+    /* =============================================================== */
     :root { 
-      --rose:#C08081; --rose-light:#E8C4C5; --rose-dark:#A86869; 
-      --fuchsia:#D1467A; --paper:#F5F5F0; --blush:#FFF8F8; --ink:#1A1A1A; 
+      --rose:#C08081; 
+      --rose-light:#E8C4C5; 
+      --rose-dark:#A86869; 
+      --fuchsia:#D1467A; 
+      --paper:#F5F5F0; 
+      --blush:#FFF8F8; 
+      --ink:#1A1A1A; 
     }
     *{box-sizing:border-box}
-    body{font-family:'Courier New',monospace;margin:0;padding:20px;background:var(--paper);color:var(--ink)}
+    body{
+      font-family:'Courier New',monospace;
+      margin:0;
+      padding:20px;
+      background:var(--paper);
+      color:var(--ink);
+    }
     .container{max-width:1200px;margin:0 auto;min-height:70vh}
-    h1{font-family:'Times New Roman',serif;color:var(--fuchsia);text-transform:uppercase;letter-spacing:2px;border-bottom:2px solid var(--rose);padding-bottom:12px;font-weight:300}
+    h1{
+      font-family:'Times New Roman',serif;
+      color:var(--fuchsia);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      border-bottom:2px solid var(--rose);
+      padding-bottom:12px;
+      font-weight:300;
+    }
     
-    /* [L21-40] SECCIÓN 2: CART TABLE - RESPONSIVO */
-    .cart{margin-top:30px;border:1.5px solid var(--rose);padding:24px;background:#fff;box-shadow:0 2px 20px rgba(192,128,129,.08)}
-    .cart h2{font-family:'Times New Roman',serif;color:var(--rose-dark);font-size:16px;margin:0 0 18px;text-transform:uppercase;letter-spacing:1.5px;font-weight:400}
+    /* =============================================================== */
+    /* CART TABLE - RESPONSIVO                                        */
+    /* =============================================================== */
+    .cart{
+      margin-top:30px;
+      border:1.5px solid var(--rose);
+      padding:24px;
+      background:#fff;
+      box-shadow:0 2px 20px rgba(192,128,129,.08);
+    }
+    .cart h2{
+      font-family:'Times New Roman',serif;
+      color:var(--rose-dark);
+      font-size:16px;
+      margin:0 0 18px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      font-weight:400;
+    }
     .table-wrapper{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{width:100%;border-collapse:collapse;border:1px solid var(--rose-light);min-width:500px}
-    th{border:1px solid var(--rose-light);padding:12px;text-align:center;background:var(--blush);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--rose-dark)}
-    td{border:1px solid var(--rose-light);padding:12px;text-align:center;font-size:12px;background:#fff}
-    td input[type="number"]{width:60px;padding:6px;text-align:center;border:1px solid var(--rose-light);background:var(--blush)}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      border:1px solid var(--rose-light);
+      min-width:500px;
+    }
+    th{
+      border:1px solid var(--rose-light);
+      padding:12px;
+      text-align:center;
+      background:var(--blush);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--rose-dark);
+    }
+    td{
+      border:1px solid var(--rose-light);
+      padding:12px;
+      text-align:center;
+      font-size:12px;
+      background:#fff;
+    }
+    td input[type="number"]{
+      width:60px;
+      padding:6px;
+      text-align:center;
+      border:1px solid var(--rose-light);
+      background:var(--blush);
+    }
     
-    /* [L41-50] SECCIÓN 3: BOTONES - CONSISTENCIA ROSA VIEJA [MEJORA 3] */
-    button,.btn-primary{padding:10px 18px;cursor:pointer;background:var(--rose);color:#fff;border:1px solid var(--rose);font-size:11px;text-transform:uppercase;letter-spacing:1px;transition:.3s}
+    /* =============================================================== */
+    /* BOTÕES - CONSISTÊNCIA ROSA VIEJA                               */
+    /* =============================================================== */
+    button,.btn-primary{
+      padding:10px 18px;
+      cursor:pointer;
+      background:var(--rose);
+      color:#fff;
+      border:1px solid var(--rose);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:.3s;
+    }
     button:hover{background:var(--fuchsia);border-color:var(--fuchsia)}
-    .cart-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rose-light);padding-top:18px;margin-top:18px;gap:10px;flex-wrap:wrap}
-    .cart-total{font-family:'Times New Roman',serif;color:var(--fuchsia);font-weight:300;font-size:22px;margin:0}
+    .cart-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-top:1px solid var(--rose-light);
+      padding-top:18px;
+      margin-top:18px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .cart-total{
+      font-family:'Times New Roman',serif;
+      color:var(--fuchsia);
+      font-weight:300;
+      font-size:22px;
+      margin:0;
+    }
 
-    /* [L51-55] SECCIÓN 4: FOOTER FIX - NO TAPA CHECKOUT [MEJORA 4] */
-    #footer-placeholder{position:relative;z-index:1!important;margin-top:60px;clear:both;display:block;width:100%}
+    /* =============================================================== */
+    /* FOOTER FIX - NÃO TAPA O CHECKOUT                               */
+    /* =============================================================== */
+    #footer-placeholder{
+      position:relative;
+      z-index:1!important;
+      margin-top:60px;
+      clear:both;
+      display:block;
+      width:100%;
+    }
 
-    /* [L56-75] SECCIÓN 5: MODAL CHECKOUT - INDEXADO Y TARGET BLANK [MEJORA 2 y 4] */
-    .modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(26,26,26,.45);backdrop-filter:blur(3px);overflow-y:auto;padding:20px}
-    .modal-content{background:#fff;margin:2% auto;padding:36px;border:1px solid var(--rose);width:100%;max-width:620px;position:relative;z-index:10000;box-shadow:0 10px 40px rgba(192,128,129,.2)}
-    .close{float:right;font-size:28px;cursor:pointer;color:var(--rose-light);line-height:1}
+    /* =============================================================== */
+    /* MODAL CHECKOUT - INDEXADO E TARGET BLANK                       */
+    /* =============================================================== */
+    .modal{
+      display:none;
+      position:fixed;
+      z-index:9999;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      background:rgba(26,26,26,.45);
+      backdrop-filter:blur(3px);
+      overflow-y:auto;
+      padding:20px;
+    }
+    .modal-content{
+      background:#fff;
+      margin:2% auto;
+      padding:36px;
+      border:1px solid var(--rose);
+      width:100%;
+      max-width:620px;
+      position:relative;
+      z-index:10000;
+      box-shadow:0 10px 40px rgba(192,128,129,.2);
+    }
+    .close{
+      float:right;
+      font-size:28px;
+      cursor:pointer;
+      color:var(--rose-light);
+      line-height:1;
+    }
     .close:hover{color:var(--fuchsia)}
     .form-group{margin-bottom:18px}
-    .form-group label{display:block;margin-bottom:8px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--rose-dark)}
-    .form-group input{width:100%;padding:12px 14px;border:1px solid var(--rose-light);font-size:13px;background:var(--blush)}
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--rose-dark);
+    }
+    .form-group input{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid var(--rose-light);
+      font-size:13px;
+      background:var(--blush);
+    }
     .form-group input:focus{outline:none;border-color:var(--rose);background:#fff}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .order-summary{background:var(--paper);padding:22px;margin:22px 0;border:1px solid var(--rose-light)}
-    .order-summary h4{margin:0 0 14px;color:var(--rose-dark);font-family:'Times New Roman',serif;text-transform:uppercase;letter-spacing:1.5px;font-size:13px;font-weight:400}
-    .summary-line{display:flex;justify-content:space-between;padding:8px 0;font-size:12px;border-bottom:1px dotted var(--rose-light)}
-    .summary-line.total{border-top:1px solid var(--rose);border-bottom:none;margin-top:10px;padding-top:14px;font-size:16px;font-weight:600;color:var(--fuchsia);font-family:'Times New Roman',serif}
+    .order-summary{
+      background:var(--paper);
+      padding:22px;
+      margin:22px 0;
+      border:1px solid var(--rose-light);
+    }
+    .order-summary h4{
+      margin:0 0 14px;
+      color:var(--rose-dark);
+      font-family:'Times New Roman',serif;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      font-size:13px;
+      font-weight:400;
+    }
+    .summary-line{
+      display:flex;
+      justify-content:space-between;
+      padding:8px 0;
+      font-size:12px;
+      border-bottom:1px dotted var(--rose-light);
+    }
+    .summary-line.total{
+      border-top:1px solid var(--rose);
+      border-bottom:none;
+      margin-top:10px;
+      padding-top:14px;
+      font-size:16px;
+      font-weight:600;
+      color:var(--fuchsia);
+      font-family:'Times New Roman',serif;
+    }
 
-    /* [L76-95] SECCIÓN 6: MÉTODOS DE PAGO - PALETA UNIFICADA + ETH 3D [MEJORA 1 y 3] */
-    .btn-pay{width:100%;padding:16px;color:#fff;border:1px solid var(--rose);font-size:11px;font-weight:600;cursor:pointer;text-transform:uppercase;letter-spacing:1.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:.3s;background:var(--rose)}
-    .btn-pay:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(192,128,129,.2)}
-    .btn-pay.infinite{background:var(--rose)} .btn-pay.infinite:hover{background:var(--rose-dark)}
-    .btn-pay.pix{background:#fff;color:var(--rose-dark);border:1.5px solid var(--rose)} .btn-pay.pix:hover{background:var(--blush)}
-    .btn-pay.eth{background:var(--fuchsia);border-color:var(--fuchsia)} .btn-pay.eth:hover{background:var(--rose-dark)}
-    .pay-box{display:none;background:var(--blush);border:1px solid var(--rose-light);padding:20px;margin-top:12px}
-    .pay-key{display:block;background:#fff;padding:12px;border:1px solid var(--rose-light);font-family:monospace;font-size:11px;word-break:break-all;margin:12px 0;text-align:center;font-weight:600}
-    .error-msg{color:var(--fuchsia);font-size:10px;display:none;font-weight:600;margin-top:6px}
-    @media(max-width:768px){.form-row{grid-template-columns:1fr}.cart-footer{flex-direction:column;align-items:stretch}body{padding:12px}}
+    /* =============================================================== */
+    /* MÉTODOS DE PAGAMENTO - PALETA UNIFICADA + ETH 3D               */
+    /* =============================================================== */
+    .btn-pay{
+      width:100%;
+      padding:16px;
+      color:#fff;
+      border:1px solid var(--rose);
+      font-size:11px;
+      font-weight:600;
+      cursor:pointer;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition:.3s;
+      background:var(--rose);
+    }
+    .btn-pay:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(192,128,129,.2);
+    }
+    .btn-pay.infinite{background:var(--rose)}
+    .btn-pay.infinite:hover{background:var(--rose-dark)}
+    .btn-pay.pix{
+      background:#fff;
+      color:var(--rose-dark);
+      border:1.5px solid var(--rose);
+    }
+    .btn-pay.pix:hover{background:var(--blush)}
+    
+    /* ETHEREUM - 3D LINDO */
+    .btn-pay.eth{
+      background:linear-gradient(145deg, #D1467A 0%, #A86869 100%);
+      border-color:var(--fuchsia);
+      position:relative;
+      overflow:hidden;
+    }
+    .btn-pay.eth:hover{
+      background:linear-gradient(145deg, #A86869 0%, #D1467A 100%);
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(209,70,122,.4);
+    }
+    .eth-icon-3d{
+      display:inline-block;
+      width:22px;
+      height:28px;
+      position:relative;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
+      animation:ethFloat 3s ease-in-out infinite;
+    }
+    @keyframes ethFloat{
+      0%,100%{transform:translateY(0) rotateY(0deg)}
+      50%{transform:translateY(-2px) rotateY(10deg)}
+    }
+    .eth-icon-3d svg{
+      width:100%;
+      height:100%;
+      filter:drop-shadow(0 1px 2px rgba(255,255,255,.3));
+    }
+    
+    .pay-box{
+      display:none;
+      background:var(--blush);
+      border:1px solid var(--rose-light);
+      padding:20px;
+      margin-top:12px;
+    }
+    .pay-key{
+      display:block;
+      background:#fff;
+      padding:12px;
+      border:1px solid var(--rose-light);
+      font-family:monospace;
+      font-size:11px;
+      word-break:break-all;
+      margin:12px 0;
+      text-align:center;
+      font-weight:600;
+    }
+    .error-msg{
+      color:var(--fuchsia);
+      font-size:10px;
+      display:none;
+      font-weight:600;
+      margin-top:6px;
+    }
+    @media(max-width:768px){
+      .form-row{grid-template-columns:1fr}
+      .cart-footer{flex-direction:column;align-items:stretch}
+      body{padding:12px}
+    }
   </style>
 </head>
 
-<!-- =================================================================== -->
-<!-- SECCIÓN 7: BODY - ESTRUCTURA PRINCIPAL [L100-120]                  -->
-<!-- =================================================================== -->
 <body>
 <div id="header-placeholder"></div>
 
@@ -77,7 +329,15 @@
     <h2>Items in Cart</h2>
     <div class="table-wrapper">
       <table id="cartTable">
-        <thead><tr><th>Product</th><th>Price (R$)</th><th>Quantity</th><th>Total (R$)</th><th>Action</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price (R$)</th>
+            <th>Quantity</th>
+            <th>Total (R$)</th>
+            <th>Action</th>
+          </tr>
+        </thead>
         <tbody id="cartBody"></tbody>
       </table>
     </div>
@@ -88,23 +348,35 @@
   </div>
 </main>
 
-<!-- [L121-125] SECCIÓN 8: FOOTER - SEPARADO Y ORDENADO -->
 <div id="footer-placeholder"></div>
 
-<!-- =================================================================== -->
-<!-- SECCIÓN 9: MODAL CHECKOUT - FORM + 3 PAGOS [L126-200]              -->
-<!-- =================================================================== -->
+<!-- =============================================================== -->
+<!-- MODAL CHECKOUT - FORM + 3 PAGAMENTOS                           -->
+<!-- =============================================================== -->
 <div id="checkoutModal" class="modal">
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
-    <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;margin-top:0;font-weight:300;letter-spacing:2px;text-transform:uppercase">Finalizar Compra</h3>
+    <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;margin-top:0;font-weight:300;letter-spacing:2px;text-transform:uppercase">
+      Finalizar Compra
+    </h3>
     
-    <!-- FORM con target="_blank" para no tapar [MEJORA 4] -->
     <form id="checkoutForm" novalidate target="_blank">
-      <div class="form-group"><label>Nome Completo *</label><input id="customerName" placeholder="Maria Silva Santos" required><div class="error-msg" id="nameError">Digite nome completo</div></div>
+      <div class="form-group">
+        <label>Nome Completo *</label>
+        <input id="customerName" placeholder="Maria Silva Santos" required>
+        <div class="error-msg" id="nameError">Digite nome completo</div>
+      </div>
       <div class="form-row">
-        <div class="form-group"><label>Telefone / WhatsApp *</label><input id="phone" placeholder="(11) 99999-9999" required><div class="error-msg" id="phoneError">Telefone obrigatório</div></div>
-        <div class="form-group"><label>E-mail *</label><input id="email" type="email" placeholder="seu@email.com" required><div class="error-msg" id="emailError">E-mail válido</div></div>
+        <div class="form-group">
+          <label>Telefone / WhatsApp *</label>
+          <input id="phone" placeholder="(11) 99999-9999" required>
+          <div class="error-msg" id="phoneError">Telefone obrigatório</div>
+        </div>
+        <div class="form-group">
+          <label>E-mail *</label>
+          <input id="email" type="email" placeholder="seu@email.com" required>
+          <div class="error-msg" id="emailError">E-mail válido</div>
+        </div>
       </div>
 
       <div class="order-summary">
@@ -115,127 +387,306 @@
         <div class="summary-line total"><span>Total Final:</span><span id="finalTotal">R$ 0.00</span></div>
       </div>
 
-      <!-- [L160-195] BOTONES PAGO - ROSA VIEJA CONSISTENTE -->
+      <!-- ========================================================= -->
+      <!-- BOTÕES DE PAGAMENTO - 3 MÉTODOS                          -->
+      <!-- ========================================================= -->
       <div style="display:flex;flex-direction:column;gap:10px">
-        <button type="button" class="btn-pay infinite" id="payInfinitePay">Pagar com InfinitePay</button>
-        <button type="button" class="btn-pay pix" id="payPix">Pagar com PIX Copia e Cola</button>
         
-        <!-- [MEJORA 1] ETHEREUM 3D LINDO + WALLET -->
+        <!-- InfinitePay -->
+        <button type="button" class="btn-pay infinite" id="payInfinitePay">
+          Pagar com InfinitePay
+        </button>
+        
+        <!-- PIX Copia e Cola -->
+        <button type="button" class="btn-pay pix" id="payPix">
+          Pagar com PIX Copia e Cola
+        </button>
+        
+        <!-- ETHEREUM 3D LINDO -->
         <button type="button" class="btn-pay eth" id="payEth">
-          <svg width="14" height="18" viewBox="0 0 32 40" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))"><path fill="currentColor" d="M16 2L5 17l11 5 11-5L16 2zm0 11l-6-3 6-6 6 6-6 3zm-11 7l11 5 11-5-2 3-9 12-9-12-2-3z"/></svg>
+          <span class="eth-icon-3d">
+            <svg viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ethGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#E8C4C5;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="ethGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:.9" />
+                  <stop offset="100%" style="stop-color:#C08081;stop-opacity:.7" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#ethGrad1)" d="M16 2L5 17l11 5 11-5L16 2z"/>
+              <path fill="url(#ethGrad2)" d="M16 13l-6-3 6-6 6 6-6 3z"/>
+              <path fill="url(#ethGrad1)" d="M5 20l11 5 11-5-2 3-9 12-9-12-2-3z"/>
+            </svg>
+          </span>
           Pagar com Ethereum
         </button>
         
+        <!-- PIX BOX -->
         <div id="pixBox" class="pay-box">
-          <p style="margin:0;font-size:11px;text-transform:uppercase;text-align:center;color:var(--rose-dark)">PIX Copia e Cola</p>
+          <p style="margin:0;font-size:11px;text-transform:uppercase;text-align:center;color:var(--rose-dark)">
+            PIX Copia e Cola
+          </p>
           <code class="pay-key">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</code>
-          <button type="button" class="btn-primary" style="width:100%" id="copyPixBtn">Copiar Chave PIX</button>
+          <button type="button" class="btn-primary" style="width:100%" id="copyPixBtn">
+            Copiar Chave PIX
+          </button>
+          <p style="font-size:10px;margin-top:8px;text-align:center;color:var(--rose)">
+            1. Copie a chave acima<br>
+            2. Abra seu banco > PIX > Copia e Cola<br>
+            3. Cole e pague<br>
+            4. Envie comprovante no WhatsApp
+          </p>
         </div>
 
+        <!-- ETH BOX -->
         <div id="ethBox" class="pay-box">
-          <p style="margin:0;font-size:11px;text-transform:uppercase;text-align:center;color:var(--rose-dark)">Ethereum — ERC20</p>
-          <code class="pay-key" id="ethKeyDisplay">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</code>
-          <button type="button" class="btn-primary" style="width:100%" id="copyEthBtn">Copiar Wallet ETH</button>
-          <p style="font-size:10px;margin-top:8px;text-align:center;color:var(--rose)">Rede ERC20 — Apenas ETH<br>Envie hash após pagar</p>
+          <p style="margin:0;font-size:11px;text-transform:uppercase;text-align:center;color:var(--rose-dark)">
+            Ethereum — ERC20
+          </p>
+          <code class="pay-key" id="ethKeyDisplay">
+            0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C
+          </code>
+          <button type="button" class="btn-primary" style="width:100%" id="copyEthBtn">
+            Copiar Wallet ETH
+          </button>
+          <p style="font-size:10px;margin-top:8px;text-align:center;color:var(--rose)">
+            Rede ERC20 — Apenas ETH<br>
+            Envie o hash da transação após pagar
+          </p>
         </div>
+        
       </div>
     </form>
   </div>
 </div>
 
-<!-- =================================================================== -->
-<!-- SECCIÓN 10: JAVASCRIPT ROBUSTO - 4 MEJORAS APLICADAS [L201-300]     -->
-<!-- =================================================================== -->
+<!-- =============================================================== -->
+<!-- JAVASCRIPT - CARRINHO + CHECKOUT + PAGAMENTOS                  -->
+<!-- =============================================================== -->
 <script>
 const PIX_KEY = "41a2bc9e-5854-43ab-bc8a-b9f13addd96d";
 const ETH_WALLET = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Header/Footer carga
-  fetch('header.html').then(r=>r.text()).then(d=>{const el=document.getElementById('header-placeholder'); if(el) el.innerHTML=d}).catch(()=>{});
-  fetch('footer.html').then(r=>r.text()).then(d=>{const el=document.getElementById('footer-placeholder'); if(el) el.innerHTML=d}).catch(()=>{});
+  
+  // =============================================================
+  // HEADER / FOOTER - CARGA
+  // =============================================================
+  fetch('header.html')
+    .then(r => r.text())
+    .then(d => {
+      const el = document.getElementById('header-placeholder');
+      if (el) el.innerHTML = d;
+    })
+    .catch(() => {});
+  
+  fetch('footer.html')
+    .then(r => r.text())
+    .then(d => {
+      const el = document.getElementById('footer-placeholder');
+      if (el) el.innerHTML = d;
+    })
+    .catch(() => {});
 
-  // [L215-240] CART LOGIC - ROBUSTO
-  function getCartData(){
-    let data = JSON.parse(localStorage.getItem('yi_cart') || localStorage.getItem('cart') || '[]');
-    if(!data.length){ data = [{name:"TREMA Bot", price:147, qty:1}]; }
+  // =============================================================
+  // CART LOGIC - ROBUSTO
+  // =============================================================
+  function getCartData() {
+    let data = JSON.parse(
+      localStorage.getItem('yi_cart') || 
+      localStorage.getItem('cart') || 
+      '[]'
+    );
+    if (!data.length) {
+      data = [{ name: "TREMA Bot", price: 147, qty: 1 }];
+    }
     return data;
   }
-  function saveCart(d){ localStorage.setItem('yi_cart', JSON.stringify(d)); localStorage.setItem('cart', JSON.stringify(d)); }
-  function renderCart(){
+  
+  function saveCart(d) {
+    localStorage.setItem('yi_cart', JSON.stringify(d));
+    localStorage.setItem('cart', JSON.stringify(d));
+  }
+  
+  function renderCart() {
     const data = getCartData();
     const tbody = document.getElementById('cartBody');
-    let total=0;
-    tbody.innerHTML = data.map((it,i)=>{
-      const qty=it.qty||it.quantity||1; const price=parseFloat(it.price)||0; total+=price*qty;
-      return `<tr><td>${it.name||it.product}</td><td>R$ ${price.toFixed(2)}</td><td><input type="number" min="1" value="${qty}" onchange="let d=JSON.parse(localStorage.getItem('yi_cart'));d[${i}].qty=this.value;localStorage.setItem('yi_cart',JSON.stringify(d));location.reload()"></td><td>R$ ${(price*qty).toFixed(2)}</td><td><button onclick="let d=JSON.parse(localStorage.getItem('yi_cart'));d.splice(${i},1);localStorage.setItem('yi_cart',JSON.stringify(d));location.reload()">X</button></td></tr>`;
+    let total = 0;
+    
+    tbody.innerHTML = data.map((it, i) => {
+      const qty = it.qty || it.quantity || 1;
+      const price = parseFloat(it.price) || 0;
+      total += price * qty;
+      return `
+        <tr>
+          <td>${it.name || it.product}</td>
+          <td>R$ ${price.toFixed(2)}</td>
+          <td>
+            <input type="number" min="1" value="${qty}" 
+              onchange="
+                let d = JSON.parse(localStorage.getItem('yi_cart') || '[]');
+                d[${i}].qty = this.value;
+                localStorage.setItem('yi_cart', JSON.stringify(d));
+                localStorage.setItem('cart', JSON.stringify(d));
+                location.reload();
+              ">
+          </td>
+          <td>R$ ${(price * qty).toFixed(2)}</td>
+          <td>
+            <button onclick="
+              let d = JSON.parse(localStorage.getItem('yi_cart') || '[]');
+              d.splice(${i}, 1);
+              localStorage.setItem('yi_cart', JSON.stringify(d));
+              localStorage.setItem('cart', JSON.stringify(d));
+              location.reload();
+            ">X</button>
+          </td>
+        </tr>
+      `;
     }).join('');
+    
     document.getElementById('cartTotal').textContent = `Total: R$ ${total.toFixed(2)}`;
   }
+  
   renderCart();
 
+  // =============================================================
+  // MODAL E VALIDAÇÃO
+  // =============================================================
   const modal = document.getElementById('checkoutModal');
   const btn = document.getElementById('checkout-btn');
   const close = document.getElementById('closeModal');
 
-  function validateForm(){
+  function validateForm() {
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const email = document.getElementById('email').value.trim();
     let ok = true;
-    document.querySelectorAll('.error-msg').forEach(e=>e.style.display='none');
-    if(name.length<3 || name.split(' ').filter(Boolean).length<2){document.getElementById('nameError').style.display='block'; ok=false}
-    if(phone.replace(/\D/g,'').length<10){document.getElementById('phoneError').style.display='block'; ok=false}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('emailError').style.display='block'; ok=false}
+    
+    document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+    
+    if (name.length < 3 || name.split(' ').filter(Boolean).length < 2) {
+      document.getElementById('nameError').style.display = 'block';
+      ok = false;
+    }
+    if (phone.replace(/\D/g, '').length < 10) {
+      document.getElementById('phoneError').style.display = 'block';
+      ok = false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('emailError').style.display = 'block';
+      ok = false;
+    }
     return ok;
   }
 
-  // [MEJORA 2] CHECKOUT SIN MENSAJE - VA DIRECTO AL FORM
-  btn.addEventListener('click', (e)=>{
+  // =============================================================
+  // ABRIR CHECKOUT
+  // =============================================================
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
     const cartData = getCartData();
-    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity)||1), 0);
-    document.getElementById('orderItems').innerHTML = cartData.map(i=>`<div class="summary-line"><span>${i.name||i.product} x${i.qty||i.quantity||1}</span><span>R$ ${((parseFloat(i.price)||0)*(i.qty||i.quantity||1)).toFixed(2)}</span></div>`).join('');
+    
+    if (!cartData.length) {
+      alert('Carrinho vazio! Adicione produtos primeiro.');
+      return;
+    }
+    
+    let subtotal = cartData.reduce((s, i) => 
+      s + (parseFloat(i.price) || 0) * (parseInt(i.qty || i.quantity) || 1), 
+      0
+    );
+    
+    document.getElementById('orderItems').innerHTML = cartData.map(i => {
+      const qty = i.qty || i.quantity || 1;
+      const price = parseFloat(i.price) || 0;
+      return `
+        <div class="summary-line">
+          <span>${i.name || i.product} x${qty}</span>
+          <span>R$ ${(price * qty).toFixed(2)}</span>
+        </div>
+      `;
+    }).join('');
+    
     document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
-    document.getElementById('taxes').textContent = `R$ ${(subtotal*0.08).toFixed(2)}`;
-    document.getElementById('finalTotal').textContent = `R$ ${(subtotal*1.08).toFixed(2)}`;
-    modal.style.display='block';
-    document.getElementById('pixBox').style.display='none';
-    document.getElementById('ethBox').style.display='none';
+    document.getElementById('taxes').textContent = `R$ ${(subtotal * 0.08).toFixed(2)}`;
+    document.getElementById('finalTotal').textContent = `R$ ${(subtotal * 1.08).toFixed(2)}`;
+    
+    modal.style.display = 'block';
+    document.getElementById('pixBox').style.display = 'none';
+    document.getElementById('ethBox').style.display = 'none';
   });
 
-  close.onclick = ()=> modal.style.display='none';
-  window.onclick = (e)=>{ if(e.target==modal) modal.style.display='none' };
+  // =============================================================
+  // FECHAR MODAL
+  // =============================================================
+  close.onclick = () => modal.style.display = 'none';
+  window.onclick = (e) => {
+    if (e.target == modal) modal.style.display = 'none';
+  };
 
-  function copyText(text, btnEl){
-    navigator.clipboard.writeText(text).then(()=>{
-      const old = btnEl.textContent; btnEl.textContent = 'COPIADO'; setTimeout(()=> btnEl.textContent = old, 2000);
+  // =============================================================
+  // COPIAR TEXTO (PIX / ETH)
+  // =============================================================
+  function copyText(text, btnEl) {
+    navigator.clipboard.writeText(text).then(() => {
+      const old = btnEl.textContent;
+      btnEl.textContent = 'COPIADO!';
+      setTimeout(() => btnEl.textContent = old, 2000);
+    }).catch(() => {
+      const aux = document.createElement('input');
+      aux.value = text;
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand('copy');
+      document.body.removeChild(aux);
+      alert('Copiado: ' + text);
     });
   }
 
-  // PIX
-  document.getElementById('payPix').addEventListener('click', ()=>{
-    if(!validateForm()) return;
-    document.getElementById('ethBox').style.display='none';
-    document.getElementById('pixBox').style.display='block';
-    document.getElementById('pixBox').scrollIntoView({behavior:'smooth'});
+  // =============================================================
+  // PAGAMENTO PIX
+  // =============================================================
+  document.getElementById('payPix').addEventListener('click', () => {
+    if (!validateForm()) return;
+    document.getElementById('ethBox').style.display = 'none';
+    document.getElementById('pixBox').style.display = 'block';
+    document.getElementById('pixBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
-  document.getElementById('copyPixBtn').addEventListener('click', function(){ copyText(PIX_KEY, this) });
-
-  // [MEJORA 1] ETH - BLOQUE CRYPTO
-  document.getElementById('payEth').addEventListener('click', ()=>{
-    if(!validateForm()) return;
-    document.getElementById('pixBox').style.display='none';
-    document.getElementById('ethBox').style.display='block';
-    document.getElementById('ethBox').scrollIntoView({behavior:'smooth'});
+  
+  document.getElementById('copyPixBtn').addEventListener('click', function() {
+    copyText(PIX_KEY, this);
   });
-  document.getElementById('copyEthBtn').addEventListener('click', function(){ copyText(ETH_WALLET, this) });
 
-  // InfinitePay con target blank
-  document.getElementById('payInfinitePay').addEventListener('click', ()=>{
-    if(!validateForm()) return;
+  // =============================================================
+  // PAGAMENTO ETHEREUM
+  // =============================================================
+  document.getElementById('payEth').addEventListener('click', () => {
+    if (!validateForm()) return;
+    document.getElementById('pixBox').style.display = 'none';
+    document.getElementById('ethBox').style.display = 'block';
+    document.getElementById('ethBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  
+  document.getElementById('copyEthBtn').addEventListener('click', function() {
+    copyText(ETH_WALLET, this);
+  });
+
+  // =============================================================
+  // PAGAMENTO INFINITEPAY
+  // =============================================================
+  document.getElementById('payInfinitePay').addEventListener('click', () => {
+    if (!validateForm()) return;
+    const total = document.getElementById('finalTotal').textContent;
+    const name = document.getElementById('customerName').value;
+    
+    alert(`InfinitePay\nCliente: ${name}\nTotal: ${total}\n\nRedirecionando para pagamento...`);
     window.open('https://www.infinitepay.io/', '_blank');
   });
+
 });
 </script>
 </body>
