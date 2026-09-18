@@ -203,35 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const old = btn.textContent;
       btn.textContent = '✅ COPIADO!';
       setTimeout(()=> btn.textContent = old, 2000);
-    }).catch(()=>{
-      // Fallback
-      const aux = document.createElement('input');
-      aux.value = PIX_KEY;
-      document.body.appendChild(aux);
-      aux.select();
-      document.execCommand('copy');
-      document.body.removeChild(aux);
-      alert('Chave PIX copiada: '+PIX_KEY);
-    });
-  });
-
-  document.getElementById('payPix').addEventListener('click', ()=>{
-    if(!validateForm()) return;
-    document.getElementById('pixBox').style.display='block';
-    document.getElementById('pixKeyDisplay').textContent = PIX_KEY;
-    // Scroll para ver
-    document.getElementById('pixBox').scrollIntoView({behavior:'smooth', block:'center'});
-  });
-
-  document.getElementById('payInfinitePay').addEventListener('click', ()=>{
-    if(!validateForm()) return;
-    const name = document.getElementById('customerName').value;
-    const email = document.getElementById('email').value;
-    const total = document.getElementById('finalTotal').textContent;
-    // COLOQUE SEU LINK INFINITEPAY AQUI
-    console.log('Checkout:', {name, email, phone: document.getElementById('phone').value, total, cart: getCartData(), pix: PIX_KEY});
-    alert(`InfinitePay - Cliente: ${name}\nTotal: ${total}\n\nConfigure seu link de pagamento InfinitePay nesta função.`);
-    // 
+    }).catch(()
 
 <script>
 const fmt=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
