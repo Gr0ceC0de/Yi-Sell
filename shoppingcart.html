@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,26 +53,26 @@
 <div id="checkoutModal" class="modal">
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
-    <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;margin-top:0">Finalizar Compra</h3>
+    <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;margin-top:0">Complete Purchase</h3>
     <form id="checkoutForm" novalidate target="_blank">
-      <div class="form-group"><label>Nome Completo *</label><input type="text" id="customerName" placeholder="Ex: Maria Silva Santos" required><div class="error-msg" id="nameError">Digite nome completo</div></div>
+      <div class="form-group"><label>Full Name *</label><input type="text" id="customerName" placeholder="Ex: John Michael Smith" required><div class="error-msg" id="nameError">Please enter full name</div></div>
       <div class="form-row">
-        <div class="form-group"><label>Telefone / WhatsApp *</label><input type="tel" id="phone" placeholder="(11) 99999-9999" required><div class="error-msg" id="phoneError">Telefone obrigatório</div></div>
-        <div class="form-group"><label>E-mail *</label><input type="email" id="email" placeholder="seu@email.com" required><div class="error-msg" id="emailError">E-mail válido obrigatório</div></div>
+        <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" id="phone" placeholder="(555) 123-4567" required><div class="error-msg" id="phoneError">Phone number required</div></div>
+        <div class="form-group"><label>Email *</label><input type="email" id="email" placeholder="your@email.com" required><div class="error-msg" id="emailError">Valid email required</div></div>
       </div>
-      <div class="order-summary"><h4>Resumo do Pedido</h4><div id="orderItems"></div><div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div><div class="summary-line"><span>Taxas (8%):</span><span id="taxes">R$ 0.00</span></div><div class="summary-line total"><span>Total Final:</span><span id="finalTotal">R$ 0.00</span></div></div>
+      <div class="order-summary"><h4>Order Summary</h4><div id="orderItems"></div><div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div><div class="summary-line"><span>Fees (8%):</span><span id="taxes">R$ 0.00</span></div><div class="summary-line total"><span>Final Total:</span><span id="finalTotal">R$ 0.00</span></div></div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <button type="button" class="btn-pay infinite" id="payInfinitePay">💳 Pagar com InfinitePay</button>
-        <button type="button" class="btn-pay pix" id="payPix">⚡ PIX Copia e Cola</button>
+        <button type="button" class="btn-pay infinite" id="payInfinitePay">💳 Pay with InfinitePay</button>
+        <button type="button" class="btn-pay pix" id="payPix">⚡ Pay with PIX</button>
         <button type="button" class="btn-pay eth" id="payEth">
           <svg width="20" height="20" viewBox="0 0 32 32" style="filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))"><g><polygon fill="#fff" points="16,2 6,16.5 16,20 26,16.5"/><polygon fill="#C0C9E8" points="16,2 6,16.5 16,12"/><polygon fill="#E6E9F5" points="16,2 26,16.5 16,12"/><polygon fill="#fff" points="16,20 6,16.5 6,21 16,30"/><polygon fill="#8A9BE0" points="16,20 26,16.5 26,21 16,30"/><polygon fill="#C0C9E8" points="6,16.5 16,12 16,20"/><polygon fill="#AAB6E6" points="26,16.5 16,12 16,20"/></g></svg>
-          Pagar com Ethereum
+          Pay with Ethereum
         </button>
 
         <div id="pixBox" class="pay-box pix">
-          <p style="margin:0;font-weight:800;color:#0a8a7a;">PIX Copia e Cola</p>
+          <p style="margin:0;font-weight:800;color:#0a8a7a;">PIX Copy &amp; Paste</p>
           <code class="pay-key" id="pixKeyDisplay">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</code>
-          <button type="button" class="btn-primary" style="width:100%;background:#32BCAD" id="copyPixBtn">📋 COPIAR CHAVE PIX</button>
+          <button type="button" class="btn-primary" style="width:100%;background:#32BCAD" id="copyPixBtn">📋 COPY PIX KEY</button>
         </div>
 
         <div id="ethBox" class="pay-box eth">
@@ -81,8 +81,8 @@
             ETH - ERC20
           </p>
           <code class="pay-key" id="ethKeyDisplay">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</code>
-          <button type="button" class="btn-primary" style="width:100%;background:#627EEA;border-color:#627EEA" id="copyEthBtn">📋 COPIAR WALLET ETH</button>
-          <p style="font-size:10px;margin:8px 0 0;text-align:center;color:#666">Rede: Ethereum ERC20 - Envie apenas ETH<br>Após pagar, envie hash + comprovante</p>
+          <button type="button" class="btn-primary" style="width:100%;background:#627EEA;border-color:#627EEA" id="copyEthBtn">📋 COPY ETH WALLET</button>
+          <p style="font-size:10px;margin:8px 0 0;text-align:center;color:#666">Network: Ethereum ERC20 - Send ETH only<br>After paying, send the transaction hash + receipt</p>
         </div>
       </div>
     </form>
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email').value.trim();
     let ok = true;
     document.querySelectorAll('.error-msg').forEach(e=>e.style.display='none');
-    if(name.length<3 || name.split(' ').filter(Boolean).length<2){document.getElementById('nameError').style.display='block'; ok=false}
-    if(phone.replace(/\D/g,'').length<10){document.getElementById('phoneError').style.display='block'; ok=false}
+    if(name.trim().length<3){document.getElementById('nameError').style.display='block'; ok=false}
+    if(phone.replace(/\D/g,'').length<8){document.getElementById('phoneError').style.display='block'; ok=false}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('emailError').style.display='block'; ok=false}
     return ok;
   }
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function copyText(text, btnEl){
     navigator.clipboard.writeText(text).then(()=>{
       const old = btnEl.textContent;
-      btnEl.textContent = '✅ COPIADO!';
+      btnEl.textContent = '✅ COPIED!';
       setTimeout(()=> btnEl.textContent = old, 2000);
     }).catch(()=>{
       const aux = document.createElement('input');
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       aux.select();
       document.execCommand('copy');
       document.body.removeChild(aux);
-      alert('Copiado: '+text);
+      alert('Copied: '+text);
     });
   }
 
