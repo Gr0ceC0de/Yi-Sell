@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- =================================================================== -->
 <!-- SECCIÓN 1: HEAD - CONFIGURACIÓN GLOBAL Y PALETA ROSA VIEJA [L1-60]  -->
 <!-- =================================================================== -->
@@ -194,4 +194,49 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.addEventListener('click', (e)=>{
     e.preventDefault();
     const cartData = getCartData();
-    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||
+    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity)||1), 0);
+    document.getElementById('orderItems').innerHTML = cartData.map(i=>`<div class="summary-line"><span>${i.name||i.product} x${i.qty||i.quantity||1}</span><span>R$ ${((parseFloat(i.price)||0)*(i.qty||i.quantity||1)).toFixed(2)}</span></div>`).join('');
+    document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+    document.getElementById('taxes').textContent = `R$ ${(subtotal*0.08).toFixed(2)}`;
+    document.getElementById('finalTotal').textContent = `R$ ${(subtotal*1.08).toFixed(2)}`;
+    modal.style.display='block';
+    document.getElementById('pixBox').style.display='none';
+    document.getElementById('ethBox').style.display='none';
+  });
+
+  close.onclick = ()=> modal.style.display='none';
+  window.onclick = (e)=>{ if(e.target==modal) modal.style.display='none' };
+
+  function copyText(text, btnEl){
+    navigator.clipboard.writeText(text).then(()=>{
+      const old = btnEl.textContent; btnEl.textContent = 'COPIADO'; setTimeout(()=> btnEl.textContent = old, 2000);
+    });
+  }
+
+  // PIX
+  document.getElementById('payPix').addEventListener('click', ()=>{
+    if(!validateForm()) return;
+    document.getElementById('ethBox').style.display='none';
+    document.getElementById('pixBox').style.display='block';
+    document.getElementById('pixBox').scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('copyPixBtn').addEventListener('click', function(){ copyText(PIX_KEY, this) });
+
+  // [MEJORA 1] ETH - BLOQUE CRYPTO
+  document.getElementById('payEth').addEventListener('click', ()=>{
+    if(!validateForm()) return;
+    document.getElementById('pixBox').style.display='none';
+    document.getElementById('ethBox').style.display='block';
+    document.getElementById('ethBox').scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('copyEthBtn').addEventListener('click', function(){ copyText(ETH_WALLET, this) });
+
+  // InfinitePay con target blank
+  document.getElementById('payInfinitePay').addEventListener('click', ()=>{
+    if(!validateForm()) return;
+    window.open('https://www.infinitepay.io/', '_blank');
+  });
+});
+</script>
+</body>
+</html>
