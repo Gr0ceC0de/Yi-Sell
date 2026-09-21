@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -70,45 +70,54 @@
     <span class="close" id="closeModal">&times;</span>
     <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;">Finalizar Compra</h3>
     <form id="checkoutForm" novalidate>
-      <div class="form-group">
-        <label for="customerName">Nome Completo *</label>
-        <input type="text" id="customerName" placeholder="Ex: Maria Silva Santos" required>
-        <div class="error-msg" id="nameError">Digite nome completo (nome + sobrenome)</div>
-      </div>
-      <div class="form-row">
+
+      <!-- PASO 1: datos do cliente -->
+      <div id="checkoutStep1">
         <div class="form-group">
-          <label for="phone">Telefone / WhatsApp *</label>
-          <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
-          <div class="error-msg" id="phoneError">Telefone obrigatório</div>
+          <label for="customerName">Nome Completo *</label>
+          <input type="text" id="customerName" placeholder="Ex: Maria Silva Santos" required>
+          <div class="error-msg" id="nameError">Digite nome completo (nome + sobrenome)</div>
         </div>
-        <div class="form-group">
-          <label for="email">E-mail *</label>
-          <input type="email" id="email" placeholder="seu@email.com" required>
-          <div class="error-msg" id="emailError">E-mail válido obrigatório</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Telefone / WhatsApp *</label>
+            <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
+            <div class="error-msg" id="phoneError">Telefone obrigatório</div>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" placeholder="seu@email.com" required>
+            <div class="error-msg" id="emailError">E-mail válido obrigatório</div>
+          </div>
         </div>
+        <button type="button" class="btn-pay" id="confirmDataBtn">Confirmar e Continuar</button>
       </div>
-      <div class="order-summary">
-        <h4>Resumo do Pedido</h4>
-        <div id="orderItems"></div>
-        <div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div>
-        <div class="summary-line"><span>Taxas (8%):</span><span id="taxes">R$ 0.00</span></div>
-        <div class="summary-line total"><span>Total Final:</span><span id="finalTotal">R$ 0.00</span></div>
-      </div>
 
-      <!-- Las 3 formas de pago, siempre visibles, sin scroll ni toggle -->
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <button type="button" class="btn-pay" id="payInfinitePay">Pagar com InfinitePay</button>
-
-        <div class="pay-box">
-          <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">PIX COPIA E COLA</p>
-          <code class="pay-key" id="pixKeyDisplay">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</code>
-          <button type="button" class="btn-primary btn-copy" id="copyPixBtn">COPIAR CHAVE PIX</button>
+      <!-- PASO 2: resumo + pagamento (oculto hasta confirmar os dados) -->
+      <div id="checkoutStep2" style="display:none">
+        <div class="order-summary">
+          <h4>Resumo do Pedido</h4>
+          <div id="orderItems"></div>
+          <div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div>
+          <div class="summary-line"><span>Taxas (8%):</span><span id="taxes">R$ 0.00</span></div>
+          <div class="summary-line total"><span>Total Final:</span><span id="finalTotal">R$ 0.00</span></div>
         </div>
 
-        <div class="pay-box">
-          <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">ETHEREUM - ERC20 - METAMASK</p>
-          <code class="pay-key" id="ethKeyDisplay">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</code>
-          <button type="button" class="btn-primary btn-copy" id="copyEthBtn">COPIAR WALLET ETH</button>
+        <!-- Las 3 formas de pago, siempre visibles, sin scroll ni toggle -->
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button type="button" class="btn-pay" id="payInfinitePay">Pagar com InfinitePay</button>
+
+          <div class="pay-box">
+            <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">PIX COPIA E COLA</p>
+            <code class="pay-key" id="pixKeyDisplay">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</code>
+            <button type="button" class="btn-primary btn-copy" id="copyPixBtn">COPIAR CHAVE PIX</button>
+          </div>
+
+          <div class="pay-box">
+            <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">ETHEREUM - ERC20 - METAMASK</p>
+            <code class="pay-key" id="ethKeyDisplay">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</code>
+            <button type="button" class="btn-primary btn-copy" id="copyEthBtn">COPIAR WALLET ETH</button>
+          </div>
         </div>
       </div>
     </form>
@@ -134,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('checkoutModal');
   const btn = document.getElementById('checkout-btn');
   const close = document.getElementById('closeModal');
+  const step1 = document.getElementById('checkoutStep1');
+  const step2 = document.getElementById('checkoutStep2');
 
   function getCartData(){
     let raw = localStorage.getItem('yi_cart') || localStorage.getItem('cart') || '[]';
@@ -152,9 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return ok;
   }
 
-  btn.addEventListener('click', ()=>{
+  function renderOrderSummary(){
     const cartData = getCartData();
-    if(!cartData.length){ alert('Carrinho vazio! Adicione produtos em TradingTools.html'); return; }
     let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity)||1), 0);
     let taxes = subtotal*0.08;
     let total = subtotal+taxes;
@@ -166,6 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('subtotal').textContent = fmtBRL(subtotal);
     document.getElementById('taxes').textContent = fmtBRL(taxes);
     document.getElementById('finalTotal').textContent = fmtBRL(total);
+  }
+
+  btn.addEventListener('click', ()=>{
+    const cartData = getCartData();
+    if(!cartData.length){ alert('Carrinho vazio! Adicione produtos em TradingTools.html'); return; }
+    step1.style.display='block';
+    step2.style.display='none';
     modal.style.display='block';
   });
 
@@ -182,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copyPixBtn').onclick=function(){ copyText(PIX_KEY, this); };
   document.getElementById('copyEthBtn').onclick=function(){ copyText(ETH_WALLET, this); };
 
-  // Envía los datos del cliente por email vía EmailJS antes de abrir InfinitePay
+  // Envía los datos del cliente por email vía EmailJS
   function sendOrderEmail(){
     const cartData = getCartData();
     const itemsText = cartData.map(i=>{
@@ -201,11 +218,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
   }
 
-  document.getElementById('payInfinitePay').onclick=()=>{
+  // PASO 1 -> PASO 2: valida datos, calcula el resumen, envía el email y muestra el pago
+  const confirmDataBtn = document.getElementById('confirmDataBtn');
+  confirmDataBtn.addEventListener('click', ()=>{
     if(!validateForm()) return;
+
+    renderOrderSummary();
+
+    confirmDataBtn.disabled = true;
+    confirmDataBtn.textContent = 'Enviando...';
+
     sendOrderEmail()
       .then(()=> console.log('Email de pedido enviado'))
-      .catch((err)=> console.error('Error enviando email de pedido:', err));
+      .catch((err)=> console.error('Error enviando email de pedido:', err))
+      .finally(()=>{
+        confirmDataBtn.disabled = false;
+        confirmDataBtn.textContent = 'Confirmar e Continuar';
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+      });
+  });
+
+  document.getElementById('payInfinitePay').onclick=()=>{
     window.open('https://www.infinitepay.io/','_blank');
   };
 });
