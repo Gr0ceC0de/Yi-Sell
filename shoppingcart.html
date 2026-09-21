@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart - Yi-Sell</title>
+  <title>Carrito de Compras - Yi-Sell</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     :root { --rose:#C08081; --rose-light:#E8C4C5; --fuchsia:#D1467A; --paper:#F5F5F0; --ink:#1A1A1A; }
@@ -35,31 +35,33 @@
     .order-summary h4{margin:0 0 12px 0;color:var(--fuchsia);font-family:'Times New Roman',serif;text-transform:uppercase}
     .summary-line{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px dotted var(--rose-light)}
     .summary-line.total{border-top:2px solid var(--rose);border-bottom:none;margin-top:8px;padding-top:12px;font-size:18px;font-weight:800;color:var(--fuchsia)}
-    /* --- BOTONES DE PAGO: FUCSIA CON LUCES, TODOS VISIBLES, SIN TOGGLE --- */
     .btn-pay{width:100%;padding:14px;color:#fff;border:1px solid var(--fuchsia);border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:1px;background:var(--fuchsia);box-shadow:0 0 14px rgba(209,70,122,.55),0 4px 18px rgba(209,70,122,.35);transition:.25s}
     .btn-pay:hover{background:#E85A8F;box-shadow:0 0 22px rgba(209,70,122,.85),0 6px 22px rgba(209,70,122,.45);transform:translateY(-1px)}
     .pay-box{background:#FFF8FA;border:1.5px solid var(--rose-light);padding:12px;border-radius:8px;margin-top:6px}
     .pay-key{display:block;background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:11px;word-break:break-all;border:1px solid var(--rose-light);margin:6px 0;font-weight:bold;text-align:center}
     .btn-copy{width:100%;margin-top:4px;background:var(--fuchsia);box-shadow:0 0 12px rgba(209,70,122,.45);border-color:var(--fuchsia);padding:10px}
     .error-msg{color:var(--fuchsia);font-size:11px;margin-top:4px;display:none;font-weight:bold}
+    .alert-msg{padding:12px;border-radius:6px;margin:12px 0;font-size:13px;font-weight:bold;display:none}
+    .alert-msg.success{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
+    .alert-msg.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
     @media(max-width:768px){body{padding:10px}.form-row{grid-template-columns:1fr}.cart{padding:12px}.cart-footer{flex-direction:column;align-items:stretch}.modal-content{margin:5% auto;padding:18px}}
   </style>
 </head>
 <body>
 <div id="header-placeholder"></div>
 <main class="container">
-  <h1>Your Shopping Cart</h1>
+  <h1>Tu Carrito de Compras</h1>
   <div class="cart">
-    <h2>Items in Cart</h2>
+    <h2>Artículos en el Carrito</h2>
     <div class="table-wrapper">
       <table id="cartTable">
-        <thead><tr><th>Product</th><th>Price (R$)</th><th>Quantity</th><th>Total (R$)</th><th>Action</th></tr></thead>
+        <thead><tr><th>Producto</th><th>Precio (R$)</th><th>Cantidad</th><th>Total (R$)</th><th>Acción</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
     <div class="cart-footer">
       <h3 id="cartTotal" class="cart-total">Total: R$ 0.00</h3>
-      <button id="checkout-btn" class="btn-primary">Proceed to Checkout</button>
+      <button id="checkout-btn" class="btn-primary">Proceder al Pago</button>
     </div>
   </div>
 </main>
@@ -71,46 +73,46 @@
     <h3 style="color:var(--fuchsia);font-family:'Times New Roman',serif;">Finalizar Compra</h3>
     <form id="checkoutForm" novalidate>
 
-      <!-- PASO 1: datos do cliente -->
+      <!-- PASO 1: datos del cliente -->
       <div id="checkoutStep1">
         <div class="form-group">
-          <label for="customerName">Nome Completo *</label>
-          <input type="text" id="customerName" placeholder="Ex: Maria Silva Santos" required>
-          <div class="error-msg" id="nameError">Digite nome completo (nome + sobrenome)</div>
+          <label for="customerName">Nombre Completo *</label>
+          <input type="text" id="customerName" placeholder="Ej: María Silva Santos" required>
+          <div class="error-msg" id="nameError">Ingresa nombre completo (nombre + apellido)</div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="phone">Telefone / WhatsApp *</label>
+            <label for="phone">Teléfono / WhatsApp *</label>
             <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
-            <div class="error-msg" id="phoneError">Telefone obrigatório</div>
+            <div class="error-msg" id="phoneError">Teléfono obligatorio</div>
           </div>
           <div class="form-group">
-            <label for="email">E-mail *</label>
-            <input type="email" id="email" placeholder="seu@email.com" required>
-            <div class="error-msg" id="emailError">E-mail válido obrigatório</div>
+            <label for="email">Correo Electrónico *</label>
+            <input type="email" id="email" placeholder="tu@email.com" required>
+            <div class="error-msg" id="emailError">Correo electrónico válido obligatorio</div>
           </div>
         </div>
-        <button type="button" class="btn-pay" id="confirmDataBtn">Confirmar e Continuar</button>
+        <div id="step1Alert" class="alert-msg"></div>
+        <button type="button" class="btn-pay" id="confirmDataBtn">Confirmar y Continuar</button>
       </div>
 
-      <!-- PASO 2: resumo + pagamento (oculto hasta confirmar os dados) -->
+      <!-- PASO 2: resumen + pago -->
       <div id="checkoutStep2" style="display:none">
         <div class="order-summary">
-          <h4>Resumo do Pedido</h4>
+          <h4>Resumen del Pedido</h4>
           <div id="orderItems"></div>
           <div class="summary-line"><span>Subtotal:</span><span id="subtotal">R$ 0.00</span></div>
-          <div class="summary-line"><span>Taxas (8%):</span><span id="taxes">R$ 0.00</span></div>
+          <div class="summary-line"><span>Impuestos (8%):</span><span id="taxes">R$ 0.00</span></div>
           <div class="summary-line total"><span>Total Final:</span><span id="finalTotal">R$ 0.00</span></div>
         </div>
 
-        <!-- Las 3 formas de pago, siempre visibles, sin scroll ni toggle -->
         <div style="display:flex;flex-direction:column;gap:10px">
-          <button type="button" class="btn-pay" id="payInfinitePay">Pagar com InfinitePay</button>
+          <button type="button" class="btn-pay" id="payInfinitePay">Pagar con InfinitePay</button>
 
           <div class="pay-box">
-            <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">PIX COPIA E COLA</p>
+            <p style="margin:0;font-size:10px;font-weight:800;color:var(--fuchsia);text-align:center;letter-spacing:1px">PIX COPIA Y PEGA</p>
             <code class="pay-key" id="pixKeyDisplay">41a2bc9e-5854-43ab-bc8a-b9f13addd96d</code>
-            <button type="button" class="btn-primary btn-copy" id="copyPixBtn">COPIAR CHAVE PIX</button>
+            <button type="button" class="btn-primary btn-copy" id="copyPixBtn">COPIAR CLAVE PIX</button>
           </div>
 
           <div class="pay-box">
@@ -119,6 +121,7 @@
             <button type="button" class="btn-primary btn-copy" id="copyEthBtn">COPIAR WALLET ETH</button>
           </div>
         </div>
+        <div id="step2Alert" class="alert-msg"></div>
       </div>
     </form>
   </div>
@@ -145,8 +148,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const step1 = document.getElementById('checkoutStep1');
   const step2 = document.getElementById('checkoutStep2');
 
-  // --- FIX: lee cualquier key que use tu cart.js ---
+  // Lee datos del carrito desde múltiples fuentes
   function getCartData(){
+    // 1. Intentar leer de la tabla DOM del carrito (más confiable)
+    const tableRows = document.querySelectorAll('#cartTable tbody tr');
+    if(tableRows.length > 0){
+      const items = [];
+      tableRows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if(cells.length >= 4){
+          const name = cells[0].textContent.trim();
+          const price = parseFloat(cells[1].textContent.replace(/[^\d.,]/g,'').replace(',','.')) || 0;
+          const qtyInput = cells[2].querySelector('input[type="number"]');
+          const qty = qtyInput ? parseInt(qtyInput.value) || 1 : (parseInt(cells[2].textContent) || 1);
+          if(name && name !== 'Producto'){
+            items.push({ name, price, qty, quantity: qty });
+          }
+        }
+      });
+      if(items.length > 0) return items;
+    }
+
+    // 2. Fallback: leer de localStorage
     const keys = ['yi_cart','cart','yi_sell_cart','shoppingCart','yiCart'];
     for(let k of keys){
       try{
@@ -157,7 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }catch(e){}
     }
-    // fallback: si cart.js expone variable global
+
+    // 3. Fallback: variables globales
     if(window.cart && Array.isArray(window.cart) && window.cart.length) return window.cart;
     if(window.cartItems && Array.isArray(window.cartItems) && window.cartItems.length) return window.cartItems;
     return [];
@@ -175,7 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return ok;
   }
 
-  // --- FIX: render robusto que no deja vacío ---
+  function showAlert(elementId, message, type){
+    const alertEl = document.getElementById(elementId);
+    alertEl.textContent = message;
+    alertEl.className = 'alert-msg ' + type;
+    alertEl.style.display = 'block';
+    if(type === 'success'){
+      setTimeout(()=>{ alertEl.style.display = 'none'; }, 5000);
+    }
+  }
+
   function renderOrderSummary(){
     const cartData = getCartData();
     let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity||1)), 0);
@@ -183,12 +216,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let total = subtotal+taxes;
 
     if(!cartData.length){
-      document.getElementById('orderItems').innerHTML = '<div class="summary-line"><span>Carrinho vazio</span></div>';
+      document.getElementById('orderItems').innerHTML = '<div class="summary-line"><span>Carrito vacío</span></div>';
     } else {
       document.getElementById('orderItems').innerHTML = cartData.map(i=>{
         const qty = i.qty || i.quantity || 1;
         const price = parseFloat(i.price)||0;
-        const name = i.name || i.product || i.title || 'Produto';
+        const name = i.name || i.product || i.title || 'Producto';
         return `<div class="summary-line"><span>${name} x${qty}</span><span>${fmtBRL(price*qty)}</span></div>`;
       }).join('');
     }
@@ -199,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('click', ()=>{
     const cartData = getCartData();
-    if(!cartData.length){ alert('Carrinho vazio! Adicione produtos em TradingTools.html'); return; }
+    if(!cartData.length){ alert('¡Carrito vacío! Agrega productos en TradingTools.html'); return; }
     step1.style.display='block';
     step2.style.display='none';
     modal.style.display='block';
@@ -211,7 +244,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function copyText(text, btnEl){
     navigator.clipboard.writeText(text).then(()=>{
       const old = btnEl.textContent;
-      btnEl.textContent = 'COPIADO!';
+      btnEl.textContent = '¡COPIADO!';
+      setTimeout(()=> btnEl.textContent = old, 1500);
+    }).catch(()=>{
+      // Fallback para navegadores antiguos
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      const old = btnEl.textContent;
+      btnEl.textContent = '¡COPIADO!';
       setTimeout(()=> btnEl.textContent = old, 1500);
     });
   }
@@ -222,36 +266,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartData = getCartData();
     const itemsText = cartData.map(i=>{
       const qty = i.qty || i.quantity || 1;
-      const name = i.name || i.product || i.title || 'Produto';
-      return `${name} x${qty}`;
-    }).join(', ');
+      const name = i.name || i.product || i.title || 'Producto';
+      const price = parseFloat(i.price)||0;
+      return `${name} x${qty} - ${fmtBRL(price*qty)}`;
+    }).join('\n');
+
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerPhone = document.getElementById('phone').value.trim();
+    const customerEmail = document.getElementById('email').value.trim();
+    const totalAmount = document.getElementById('finalTotal').textContent;
 
     const params = {
-      nombre: document.getElementById('customerName').value.trim(),
-      telefono: document.getElementById('phone').value.trim(),
-      email: document.getElementById('email').value.trim(),
+      from_name: customerName,
+      reply_to: customerEmail,
+      nombre: customerName,
+      telefono: customerPhone,
+      email: customerEmail,
+      phone: customerPhone,
       items: itemsText,
-      total: document.getElementById('finalTotal').textContent
+      message: `Nuevo pedido de ${customerName}\n\nTeléfono: ${customerPhone}\nEmail: ${customerEmail}\n\nArtículos:\n${itemsText}\n\nTotal: ${totalAmount}`,
+      total: totalAmount
     };
+
+    console.log('Enviando email con parámetros:', params);
+
     return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
   }
 
   const confirmDataBtn = document.getElementById('confirmDataBtn');
   confirmDataBtn.addEventListener('click', ()=>{
     if(!validateForm()) return;
-    renderOrderSummary(); // <- ahora sí carga antes de enviar
+
+    const cartData = getCartData();
+    if(!cartData.length){
+      showAlert('step1Alert', '¡Carrito vacío! Agrega productos antes de continuar.', 'error');
+      return;
+    }
+
+    renderOrderSummary();
 
     confirmDataBtn.disabled = true;
     confirmDataBtn.textContent = 'Enviando...';
 
     sendOrderEmail()
-      .then(()=> console.log('Email de pedido enviado'))
-      .catch((err)=> console.error('Error enviando email de pedido:', err))
-      .finally(()=>{
+      .then((response)=>{
+        console.log('Email enviado exitosamente:', response);
+        showAlert('step1Alert', '¡Pedido enviado correctamente! Revisa tu correo.', 'success');
+        setTimeout(()=>{
+          step1.style.display = 'none';
+          step2.style.display = 'block';
+        }, 1000);
+      })
+      .catch((err)=>{
+        console.error('Error enviando email:', err);
+        showAlert('step1Alert', 'Error al enviar el pedido. Por favor, intenta nuevamente o contacta soporte.', 'error');
         confirmDataBtn.disabled = false;
-        confirmDataBtn.textContent = 'Confirmar e Continuar';
-        step1.style.display = 'none';
-        step2.style.display = 'block';
+        confirmDataBtn.textContent = 'Confirmar y Continuar';
       });
   });
 
@@ -262,3 +332,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+ 
