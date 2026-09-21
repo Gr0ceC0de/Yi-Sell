@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -116,10 +116,16 @@
 </div>
 
 <script src="cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 const PIX_KEY = "41a2bc9e-5854-43ab-bc8a-b9f13addd96d";
 const ETH_WALLET = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
 const fmtBRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+// --- EmailJS: recibir los datos del checkout por email ---
+emailjs.init("2fsLYqtr1QY0q5Jbn");
+const EMAILJS_SERVICE_ID = "service_56lcpfp";
+const EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('header.html').then(r=>r.text()).then(d=>{const el=document.getElementById('header-placeholder'); if(el) el.innerHTML=d}).catch(()=>{});
@@ -176,8 +182,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copyPixBtn').onclick=function(){ copyText(PIX_KEY, this); };
   document.getElementById('copyEthBtn').onclick=function(){ copyText(ETH_WALLET, this); };
 
+  // Envía los datos del cliente por email vía EmailJS antes de abrir InfinitePay
+  function sendOrderEmail(){
+    const cartData = getCartData();
+    const itemsText = cartData.map(i=>{
+      const qty = i.qty || i.quantity || 1;
+      return `${i.name||i.product} x${qty}`;
+    }).join(', ');
+
+    const params = {
+      nombre: document.getElementById('customerName').value.trim(),
+      telefono: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      items: itemsText,
+      total: document.getElementById('finalTotal').textContent
+    };
+
+    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+  }
+
   document.getElementById('payInfinitePay').onclick=()=>{
     if(!validateForm()) return;
+    sendOrderEmail()
+      .then(()=> console.log('Email de pedido enviado'))
+      .catch((err)=> console.error('Error enviando email de pedido:', err));
     window.open('https://www.infinitepay.io/','_blank');
   };
 });
