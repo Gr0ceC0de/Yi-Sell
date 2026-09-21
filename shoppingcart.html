@@ -131,7 +131,6 @@ const PIX_KEY = "41a2bc9e-5854-43ab-bc8a-b9f13addd96d";
 const ETH_WALLET = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
 const fmtBRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 
-// --- EmailJS: recibir los datos del checkout por email ---
 emailjs.init("2fsLYqtr1QY0q5Jbn");
 const EMAILJS_SERVICE_ID = "service_56lcpfp";
 const EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
@@ -146,9 +145,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const step1 = document.getElementById('checkoutStep1');
   const step2 = document.getElementById('checkoutStep2');
 
+  // --- FIX: lee cualquier key que use tu cart.js ---
   function getCartData(){
-    let raw = localStorage.getItem('yi_cart') || localStorage.getItem('cart') || '[]';
-    try{ return JSON.parse(raw); }catch(e){ return []; }
+    const keys = ['yi_cart','cart','yi_sell_cart','shoppingCart','yiCart'];
+    for(let k of keys){
+      try{
+        let raw = localStorage.getItem(k);
+        if(raw){
+          let data = JSON.parse(raw);
+          if(Array.isArray(data) && data.length>0) return data;
+        }
+      }catch(e){}
+    }
+    // fallback: si cart.js expone variable global
+    if(window.cart && Array.isArray(window.cart) && window.cart.length) return window.cart;
+    if(window.cartItems && Array.isArray(window.cartItems) && window.cartItems.length) return window.cartItems;
+    return [];
   }
 
   function validateForm(){
@@ -163,16 +175,23 @@ document.addEventListener('DOMContentLoaded', () => {
     return ok;
   }
 
+  // --- FIX: render robusto que no deja vacío ---
   function renderOrderSummary(){
     const cartData = getCartData();
-    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity)||1), 0);
+    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity||1)), 0);
     let taxes = subtotal*0.08;
     let total = subtotal+taxes;
-    document.getElementById('orderItems').innerHTML = cartData.map(i=>{
-      const qty = i.qty || i.quantity || 1;
-      const price = parseFloat(i.price)||0;
-      return `<div class="summary-line"><span>${i.name||i.product} x${qty}</span><span>${fmtBRL(price*qty)}</span></div>`;
-    }).join('');
+
+    if(!cartData.length){
+      document.getElementById('orderItems').innerHTML = '<div class="summary-line"><span>Carrinho vazio</span></div>';
+    } else {
+      document.getElementById('orderItems').innerHTML = cartData.map(i=>{
+        const qty = i.qty || i.quantity || 1;
+        const price = parseFloat(i.price)||0;
+        const name = i.name || i.product || i.title || 'Produto';
+        return `<div class="summary-line"><span>${name} x${qty}</span><span>${fmtBRL(price*qty)}</span></div>`;
+      }).join('');
+    }
     document.getElementById('subtotal').textContent = fmtBRL(subtotal);
     document.getElementById('taxes').textContent = fmtBRL(taxes);
     document.getElementById('finalTotal').textContent = fmtBRL(total);
@@ -199,12 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copyPixBtn').onclick=function(){ copyText(PIX_KEY, this); };
   document.getElementById('copyEthBtn').onclick=function(){ copyText(ETH_WALLET, this); };
 
-  // Envía los datos del cliente por email vía EmailJS
   function sendOrderEmail(){
     const cartData = getCartData();
     const itemsText = cartData.map(i=>{
       const qty = i.qty || i.quantity || 1;
-      return `${i.name||i.product} x${qty}`;
+      const name = i.name || i.product || i.title || 'Produto';
+      return `${name} x${qty}`;
     }).join(', ');
 
     const params = {
@@ -214,16 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
       items: itemsText,
       total: document.getElementById('finalTotal').textContent
     };
-
     return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
   }
 
-  // PASO 1 -> PASO 2: valida datos, calcula el resumen, envía el email y muestra el pago
   const confirmDataBtn = document.getElementById('confirmDataBtn');
   confirmDataBtn.addEventListener('click', ()=>{
     if(!validateForm()) return;
-
-    renderOrderSummary();
+    renderOrderSummary(); // <- ahora sí carga antes de enviar
 
     confirmDataBtn.disabled = true;
     confirmDataBtn.textContent = 'Enviando...';
