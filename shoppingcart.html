@@ -172,11 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const close = document.getElementById('closeModal');
   const step1 = document.getElementById('checkoutStep1');
   const step2 = document.getElementById('checkoutStep2');
-  const form  = document.getElementById('checkoutForm');
 
   // ==================== OBTENER DATOS DEL CARRITO ====================
   function getCartData(){
-    // 1. Desde la tabla DOM
     const tableRows = document.querySelectorAll('#cartTable tbody tr');
     if(tableRows.length > 0){
       const items = [];
@@ -196,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(items.length > 0) return items;
     }
 
-    // 2. Desde localStorage
     const keys = ['yi_cart','cart','yi_sell_cart','shoppingCart','yiCart','shopping_cart'];
     for(let k of keys){
       try{
@@ -208,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }catch(e){}
     }
 
-    // 3. Variables globales
     if(window.cart && Array.isArray(window.cart) && window.cart.length) return window.cart;
     if(window.cartItems && Array.isArray(window.cartItems) && window.cartItems.length) return window.cartItems;
     return [];
@@ -221,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email').value.trim();
     let ok = true;
     document.querySelectorAll('.error-msg').forEach(e=>e.style.display='none');
+    
     if(name.length<3 || name.split(' ').filter(Boolean).length<2){
       document.getElementById('nameError').style.display='block'; ok=false;
     }
@@ -247,8 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateEmailStatus(state, text){
     const dot  = document.getElementById('emailStatusDot');
     const txt  = document.getElementById('emailStatusText');
-    dot.className = 'status-dot ' + state;
-    txt.textContent = text;
+    if(dot) dot.className = 'status-dot ' + state;
+    if(txt) txt.textContent = text;
   }
 
   // ==================== RESUMEN DEL PEDIDO ====================
@@ -275,11 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return { cartData, subtotal, taxes, total };
   }
 
-  // ==================== PREPARAR Y ENVIAR EMAIL ====================
+  // ==================== PREPARAR Y ENVIAR EMAIL (MÉTODO DIRECTO Y SEGURO) ====================
   function prepareAndSendEmail(){
     const { cartData, subtotal, taxes, total } = renderOrderSummary();
 
-    // Construir texto de items
     const itemsText = cartData.map(i=>{
       const qty = i.qty || i.quantity || 1;
       const name = i.name || i.product || i.title || 'Producto';
@@ -290,37 +286,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const customerName  = document.getElementById('customerName').value.trim();
     const customerPhone = document.getElementById('phone').value.trim();
     const customerEmail = document.getElementById('email').value.trim();
+    
+    // Generar un ID de pedido único (por si tu plantilla aún lo usa en el asunto)
+    const orderId = 'YI-' + Date.now().toString().slice(-6);
 
-    // Llenar campos ocultos del formulario (emailjs.sendForm los leerá)
-    document.getElementById('hiddenItems').value     = itemsText;
-    document.getElementById('hiddenTotal').value     = fmtBRL(total);
-    document.getElementById('hiddenSubtotal').value  = fmtBRL(subtotal);
-    document.getElementById('hiddenTaxes').value     = fmtBRL(taxes);
-    document.getElementById('hiddenMessage').value   =
-`NUEVO PEDIDO - Yi-Sell
-========================
-Cliente: ${customerName}
-Teléfono: ${customerPhone}
-Email: ${customerEmail}
+    // Objeto de parámetros EXACTO al que funcionó en tu prueba de consola
+    const templateParams = {
+      order_id: orderId,
+      nombre: customerName,
+      telefono: customerPhone,
+      email: customerEmail,
+      items: itemsText,
+      subtotal: fmtBRL(subtotal),
+      taxes: fmtBRL(taxes),
+      total: fmtBRL(total),
+      message: `Nuevo pedido de ${customerName}\nTel: ${customerPhone}\nEmail: ${customerEmail}\n\nArtículos:\n${itemsText}\n\nTotal Final: ${fmtBRL(total)}`
+    };
 
-ARTÍCULOS:
-${itemsText}
+    console.log('=== ENVIANDO EMAIL CON PARÁMETROS ===');
+    console.log(templateParams);
 
-Subtotal: ${fmtBRL(subtotal)}
-Impuestos (8%): ${fmtBRL(taxes)}
-TOTAL FINAL: ${fmtBRL(total)}
-========================`;
-
-    console.log('=== DATOS A ENVIAR ===');
-    console.log('Servicio:', EMAILJS_SERVICE_ID);
-    console.log('Plantilla:', EMAILJS_TEMPLATE_ID);
-    console.log('Items:', itemsText);
-    console.log('Total:', fmtBRL(total));
-
-    // Usar sendForm - es más confiable porque lee los campos con atributo name
-    return emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, {
-      publicKey: EMAILJS_PUBLIC_KEY
-    });
+    // Usamos emailjs.send con el objeto directo (más confiable que sendForm)
+    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
   }
 
   // ==================== ABRIR MODAL ====================
@@ -347,14 +334,12 @@ TOTAL FINAL: ${fmtBRL(total)}
       setTimeout(()=> btnEl.textContent = old, 1500);
     };
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done).catch(()=>{
-        fallbackCopy(text); done();
-      });
+      navigator.clipboard.writeText(text).then(done).catch(()=> fallbackCopy(text, done));
     } else {
-      fallbackCopy(text); done();
+      fallbackCopy(text, done);
     }
   }
-  function fallbackCopy(text){
+  function fallbackCopy(text, callback){
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.position = 'fixed';
@@ -363,6 +348,7 @@ TOTAL FINAL: ${fmtBRL(total)}
     ta.select();
     try{ document.execCommand('copy'); }catch(e){}
     document.body.removeChild(ta);
+    callback();
   }
   document.getElementById('copyPixBtn').onclick = function(){ copyText(PIX_KEY, this); };
   document.getElementById('copyEthBtn').onclick = function(){ copyText(ETH_WALLET, this); };
@@ -370,7 +356,6 @@ TOTAL FINAL: ${fmtBRL(total)}
   // ==================== BOTÓN CONFIRMAR ====================
   const confirmDataBtn = document.getElementById('confirmDataBtn');
   confirmDataBtn.addEventListener('click', ()=>{
-    // Ocultar alertas previas
     document.getElementById('step1Alert').style.display='none';
 
     if(!validateForm()) return;
@@ -381,7 +366,6 @@ TOTAL FINAL: ${fmtBRL(total)}
       return;
     }
 
-    // Renderizar resumen ANTES de pasar al paso 2
     renderOrderSummary();
 
     confirmDataBtn.disabled = true;
@@ -389,29 +373,26 @@ TOTAL FINAL: ${fmtBRL(total)}
 
     prepareAndSendEmail()
       .then((response)=>{
-        console.log('✅ Email enviado:', response.status, response.text);
+        console.log('✅ Email enviado exitosamente:', response.status, response.text);
         showAlert('step1Alert', '✅ ¡Pedido enviado correctamente! Revisa tu correo.', 'success');
 
         setTimeout(()=>{
           step1.style.display = 'none';
           step2.style.display = 'block';
-          updateEmailStatus('ok', 'Estado del envío: ✅ Email enviado correctamente');
-        }, 900);
+          updateEmailStatus('ok', 'Estado del envío: ✅ Email enviado correctamente a tu Gmail');
+        }, 1000);
       })
       .catch((err)=>{
         console.error('❌ Error EmailJS:', err);
         const errorMsg = err?.text || err?.message || JSON.stringify(err) || 'Error desconocido';
-        console.error('Detalle del error:', errorMsg);
-
-        // Mostrar error detallado al usuario
+        
         showAlert('step1Alert',
           `⚠️ No se pudo enviar el email automáticamente.<br>
            <small style="font-weight:normal;display:block;margin-top:6px;">
            Error: ${errorMsg}<br><br>
-           <b>Esto no bloquea tu compra.</b> Puedes continuar con el pago y enviar los datos manualmente a <b>yi-sell@support.com</b> copiando el resumen del pedido.`,
+           <b>Esto no bloquea tu compra.</b> Puedes continuar con el pago y enviar los datos manualmente copiando el resumen.</small>`,
           'warning');
 
-        // Continuar al paso 2 de todos modos (el usuario puede pagar)
         setTimeout(()=>{
           step1.style.display = 'none';
           step2.style.display = 'block';
@@ -424,16 +405,11 @@ TOTAL FINAL: ${fmtBRL(total)}
       });
   });
 
-  // ==================== INFINITEPAY ====================
   document.getElementById('payInfinitePay').onclick = ()=>{
     window.open('https://www.infinitepay.io/','_blank');
   };
-
-  // ==================== LOG DE INICIO ====================
-  console.log('🛒 Shopping Cart cargado');
-  console.log('📧 EmailJS inicializado con clave:', EMAILJS_PUBLIC_KEY);
-  console.log('📦 Datos del carrito:', getCartData());
 });
 </script>
+
 </body>
 </html>
