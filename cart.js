@@ -18,7 +18,7 @@ class ShoppingCart {
         this.items = this.loadCart();
         this.TAX_RATE = 0.00;
 
-        this.EMAILJS_SERVICE_ID = 'service_56lcpfp';
+  this.EMAILJS_SERVICE_ID = 'service_56lcpfp un';
         this.EMAILJS_TEMPLATE_ID = 'template_7eo6ywr';
 
         this.orderConfirmed = false;
