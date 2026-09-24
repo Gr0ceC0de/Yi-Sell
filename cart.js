@@ -1,24 +1,21 @@
-// cart.js - Yi-Sell v1.0 Final
+// cart.js - Yi-Sell v1.0 Final + EmailJS
 
-// ===============================
-// EmailJS - Inicialización
-// ===============================
-const EMAILJS_PUBLIC_KEY = "2fsLYqtr1QYq5Jbn";
-const EMAILJS_SERVICE_ID = "service_56lcpfp";
-const EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
-
-emailjs.init({
-    publicKey: EMAILJS_PUBLIC_KEY
-});
-
+// 1. INICIALIZACIÓN DE EmailJS
+(function() {
+    emailjs.init({
+        publicKey: "2fsLYqtr1QY0q5Jbn",
+    });
+})();
 
 class ShoppingCart {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
-        this.TAX_RATE = 0.00; // 8% taxa
+        this.TAX_RATE = 0.00;
+        this.EMAILJS_SERVICE_ID = "service_56lcpfp";
+        this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
         this.init();
     }
-
+    
     init() {
         this.render();
         this.updateCartCount();
@@ -26,32 +23,27 @@ class ShoppingCart {
     }
 
     bindEvents() {
-        // Add to Cart
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('add-to-cart')) {
                 e.preventDefault();
                 const p = e.target.closest('.product');
                 if (!p) return;
-
                 const item = {
                     id: p.dataset.id,
                     name: p.dataset.name,
                     price: parseFloat(p.dataset.price) || 0,
                 };
-
                 this.add(item);
                 e.target.innerText = 'Added ✓';
                 setTimeout(() => { e.target.innerText = 'Add to Cart'; }, 1500);
             }
         });
 
-        // Checkout Button
         const checkoutBtn = document.getElementById('checkout-btn');
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => this.openCheckout());
         }
 
-        // Close Modal
         const closeBtn = document.querySelector('.close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.closeCheckout());
@@ -120,14 +112,11 @@ class ShoppingCart {
     render() {
         const tbody = document.querySelector('#cartTable tbody');
         if (!tbody) return;
-
         const totalEl = document.getElementById('cartTotal');
         const checkoutBtn = document.getElementById('checkout-btn');
         const emptyMsg = document.getElementById('empty-cart-msg');
         const table = document.getElementById('cartTable');
-
         tbody.innerHTML = '';
-
         if (this.items.length === 0) {
             if (emptyMsg) emptyMsg.style.display = 'block';
             if (table) table.style.display = 'none';
@@ -135,29 +124,21 @@ class ShoppingCart {
             if (totalEl) totalEl.textContent = 'Total: R$ 0,00';
             return;
         }
-
         if (emptyMsg) emptyMsg.style.display = 'none';
         if (table) table.style.display = 'table';
         if (checkoutBtn) checkoutBtn.disabled = false;
-
         this.items.forEach(item => {
             const price = parseFloat(item.price);
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.name}</td>
                 <td>R$ ${price.toFixed(2).replace('.', ',')}</td>
-                <td>
-                    <input type="number" value="${item.qty}" min="1" 
-                           onchange="cart.updateQty('${item.id}', this.value)">
-                </td>
+                <td><input type="number" value="${item.qty}" min="1" onchange="cart.updateQty('${item.id}', this.value)"></td>
                 <td>R$ ${(price * item.qty).toFixed(2).replace('.', ',')}</td>
-                <td>
-                    <button class="btn-remove" onclick="cart.remove('${item.id}')">Remover</button>
-                </td>
+                <td><button class="btn-remove" onclick="cart.remove('${item.id}')">Remover</button></td>
             `;
             tbody.appendChild(row);
         });
-
         if (totalEl) totalEl.textContent = `Total: R$ ${this.getSubtotal().toFixed(2).replace('.', ',')}`;
     }
 
@@ -166,13 +147,11 @@ class ShoppingCart {
             alert('Seu carrinho está vazio!');
             return;
         }
-
         const modal = document.getElementById('checkoutModal');
         if (!modal) {
             alert('Erro: Modal de checkout não encontrado no HTML');
             return;
         }
-
         this.renderOrderSummary();
         this.bindCheckoutEvents();
         modal.style.display = 'block';
@@ -181,11 +160,9 @@ class ShoppingCart {
     renderOrderSummary() {
         const itemsDiv = document.getElementById('orderItems');
         if (!itemsDiv) return;
-
         const subtotal = this.getSubtotal();
         const taxes = this.getTaxes();
         const total = this.getTotal();
-
         let html = '';
         this.items.forEach(item => {
             html += `
@@ -195,7 +172,6 @@ class ShoppingCart {
                 </div>
             `;
         });
-
         itemsDiv.innerHTML = html;
         document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
         document.getElementById('taxes').textContent = `R$ ${taxes.toFixed(2).replace('.', ',')}`;
@@ -209,7 +185,6 @@ class ShoppingCart {
             cepInput.addEventListener('blur', async (e) => {
                 const cep = e.target.value.replace(/\D/g, '');
                 if (cep.length !== 8) return;
-
                 try {
                     const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
                     const data = await res.json();
@@ -223,7 +198,6 @@ class ShoppingCart {
                     console.error('Erro ao buscar CEP:', err);
                 }
             });
-
             cepInput.addEventListener('input', (e) => {
                 let v = e.target.value.replace(/\D/g, '');
                 if (v.length > 5) v = v.slice(0,5) + '-' + v.slice(5,8);
@@ -244,14 +218,12 @@ class ShoppingCart {
         }
     }
 
+    // 2. TELEFONO EN getFormData()
     getFormData() {
         return {
             name: document.getElementById('customerName')?.value || '',
-
-            // EmailJS - telefone
-            telefono: document.getElementById('phone')?.value || '',
-
             email: document.getElementById('email')?.value || '',
+            telefono: document.getElementById('telefono')?.value || document.getElementById('phone')?.value || '',
             cep: document.getElementById('cep')?.value || '',
             endereco: document.getElementById('endereco')?.value || '',
             numero: document.getElementById('numero')?.value || '',
@@ -265,45 +237,6 @@ class ShoppingCart {
         };
     }
 
-    // ===============================
-    // EmailJS - Enviar dados checkout
-    // ===============================
-    async sendCheckoutEmail(data) {
-
-        const templateParams = {
-            nombre: data.name,
-            telefono: data.telefono,
-            email: data.email,
-            total: `R$ ${data.total.toFixed(2).replace('.', ',')}`
-        };
-
-        try {
-
-            const response = await emailjs.send(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_TEMPLATE_ID,
-                templateParams
-            );
-
-            console.log(
-                'EmailJS enviado correctamente:',
-                response.status,
-                response.text
-            );
-
-            return true;
-
-        } catch (error) {
-
-            console.error(
-                'Error EmailJS:',
-                error
-            );
-
-            return false;
-        }
-    }
-
     validateForm() {
         const form = document.getElementById('checkoutForm');
         if (!form) return true;
@@ -314,40 +247,64 @@ class ShoppingCart {
         return true;
     }
 
+    // 3. EL MÉTODO sendCheckoutEmail()
+    async sendCheckoutEmail(data, metodoPago) {
+        const itemsTexto = data.items.map(i => `${i.qty}x ${i.name} - R$ ${(parseFloat(i.price) * i.qty).toFixed(2)}`).join('\n');
+
+        const templateParams = {
+            customer_name: data.name,
+            customer_email: data.email,
+            customer_telefono: data.telefono,
+            telefono: data.telefono,
+            customer_address: `${data.endereco}, ${data.numero} - ${data.cidade}/${data.estado} - CEP: ${data.cep}`,
+            order_items: itemsTexto,
+            order_total: `R$ ${data.total.toFixed(2).replace('.', ',')}`,
+            payment_method: metodoPago,
+            to_email: data.email,
+            from_name: "Yi-Sell"
+        };
+
+        try {
+            const res = await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID, templateParams);
+            console.log('EmailJS enviado:', res.status);
+            return true;
+        } catch (error) {
+            console.error('Erro EmailJS:', error);
+            return false;
+        }
+    }
+
+    // 4. LLAMADA A EmailJS ANTES DE InfinitePay
     async processInfinitePay() {
         if (!this.validateForm()) return;
-
         const btn = document.getElementById('payInfinitePay');
         if (btn.disabled) return;
         btn.disabled = true;
+        btn.textContent = 'Enviando email...';
 
         const data = this.getFormData();
-
-        // EmailJS - enviar antes de InfinitePay
-        await this.sendCheckoutEmail(data);
+        await this.sendCheckoutEmail(data, 'InfinitePay');
 
         const valor = data.total.toFixed(2).replace('.', ',');
         const link = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
-
         localStorage.setItem('lastOrder', JSON.stringify(data));
         this.clearCart();
-
         window.location.href = link;
     }
 
+    // 5. LLAMADA A EmailJS ANTES DE Stripe
     async processStripe() {
         if (!this.validateForm()) return;
-
         const btn = document.getElementById('payStripe');
         if (btn.disabled) return;
         btn.disabled = true;
-        btn.textContent = 'Processando...';
+        btn.textContent = 'Enviando email...';
 
         try {
             const data = this.getFormData();
+            await this.sendCheckoutEmail(data, 'Stripe');
 
-            // EmailJS - enviar antes de Stripe
-            await this.sendCheckoutEmail(data);
+            btn.textContent = 'Processando pagamento...';
 
             const response = await fetch('https://yi-sell.onrender.com/create-checkout-session', {
                 method: 'POST',
@@ -360,13 +317,15 @@ class ShoppingCart {
                     })),
                     customer: {
                         name: data.name,
-                        email: data.email
+                        email: data.email,
+                        phone: data.telefono
                     },
                     metadata: {
                         cep: data.cep,
                         endereco: `${data.endereco}, ${data.numero}`,
                         cidade: data.cidade,
-                        estado: data.estado
+                        estado: data.estado,
+                        telefono: data.telefono
                     }
                 })
             });
