@@ -149,265 +149,801 @@
   </div>
 </div>
 
+
+
 <script src="cart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
 const PIX_KEY = "41a2bc9e-5854-43ab-bc8a-b9f13addd96d";
 const ETH_WALLET = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
-const fmtBRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+const fmtBRL = n =>
+  n.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  });
+
+/* =========================
+   EMAILJS
+========================= */
 
 const EMAILJS_PUBLIC_KEY = "2fsLYqtr1QY0q5Jbn";
-const EMAILJS_SERVICE_ID  = "service_56lcpfp";
+const EMAILJS_SERVICE_ID = "service_56lcpfp";
 const EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
 
-// Inicializar EmailJS
-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+emailjs.init({
+  publicKey: EMAILJS_PUBLIC_KEY
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('header.html').then(r=>r.text()).then(d=>{const el=document.getElementById('header-placeholder'); if(el) el.innerHTML=d}).catch(()=>{});
-  fetch('footer.html').then(r=>r.text()).then(d=>{const el=document.getElementById('footer-placeholder'); if(el) el.innerHTML=d}).catch(()=>{});
+
+  /* =========================
+     HEADER / FOOTER
+  ========================= */
+
+  fetch('header.html')
+    .then(r => r.text())
+    .then(d => {
+      const el = document.getElementById('header-placeholder');
+      if (el) el.innerHTML = d;
+    })
+    .catch(() => {});
+
+  fetch('footer.html')
+    .then(r => r.text())
+    .then(d => {
+      const el = document.getElementById('footer-placeholder');
+      if (el) el.innerHTML = d;
+    })
+    .catch(() => {});
+
+
+  /* =========================
+     ELEMENTOS CHECKOUT
+  ========================= */
 
   const modal = document.getElementById('checkoutModal');
   const btn = document.getElementById('checkout-btn');
   const close = document.getElementById('closeModal');
+
   const step1 = document.getElementById('checkoutStep1');
   const step2 = document.getElementById('checkoutStep2');
 
-  // ==================== OBTENER DATOS DEL CARRITO ====================
-  function getCartData(){
-    const tableRows = document.querySelectorAll('#cartTable tbody tr');
-    if(tableRows.length > 0){
+
+  /* =========================
+     OBTENER CARRITO
+  ========================= */
+
+  function getCartData() {
+
+    const tableRows =
+      document.querySelectorAll('#cartTable tbody tr');
+
+    if (tableRows.length > 0) {
+
       const items = [];
+
       tableRows.forEach(row => {
+
         const cells = row.querySelectorAll('td');
-        if(cells.length >= 4){
-          const name = cells[0].textContent.trim();
-          const priceText = cells[1].textContent.replace(/[^\d.,]/g,'').replace(',','.');
-          const price = parseFloat(priceText) || 0;
-          const qtyInput = cells[2].querySelector('input[type="number"]');
-          const qty = qtyInput ? parseInt(qtyInput.value) || 1 : (parseInt(cells[2].textContent) || 1);
-          if(name && name !== 'Producto' && name !== ''){
-            items.push({ name, price, qty });
+
+        if (cells.length >= 4) {
+
+          const name =
+            cells[0].textContent.trim();
+
+          const priceText =
+            cells[1]
+              .textContent
+              .replace(/[^\d.,]/g, '')
+              .replace(',', '.');
+
+          const price =
+            parseFloat(priceText) || 0;
+
+          const qtyInput =
+            cells[2].querySelector('input[type="number"]');
+
+          const qty =
+            qtyInput
+              ? parseInt(qtyInput.value) || 1
+              : (parseInt(cells[2].textContent) || 1);
+
+          if (
+            name &&
+            name !== 'Producto'
+          ) {
+
+            items.push({
+              name,
+              price,
+              qty
+            });
+
           }
+
         }
+
       });
-      if(items.length > 0) return items;
+
+      if (items.length > 0) {
+        return items;
+      }
+
     }
 
-    const keys = ['yi_cart','cart','yi_sell_cart','shoppingCart','yiCart','shopping_cart'];
-    for(let k of keys){
-      try{
-        let raw = localStorage.getItem(k);
-        if(raw){
-          let data = JSON.parse(raw);
-          if(Array.isArray(data) && data.length>0) return data;
+
+    const keys = [
+      'yi_cart',
+      'cart',
+      'yi_sell_cart',
+      'shoppingCart',
+      'yiCart',
+      'shopping_cart'
+    ];
+
+    for (let k of keys) {
+
+      try {
+
+        const raw =
+          localStorage.getItem(k);
+
+        if (raw) {
+
+          const data =
+            JSON.parse(raw);
+
+          if (
+            Array.isArray(data) &&
+            data.length > 0
+          ) {
+
+            return data;
+
+          }
+
         }
-      }catch(e){}
+
+      } catch (e) {}
+
     }
 
-    if(window.cart && Array.isArray(window.cart) && window.cart.length) return window.cart;
-    if(window.cartItems && Array.isArray(window.cartItems) && window.cartItems.length) return window.cartItems;
+
+    if (
+      window.cart &&
+      Array.isArray(window.cart) &&
+      window.cart.length
+    ) {
+      return window.cart;
+    }
+
+
+    if (
+      window.cartItems &&
+      Array.isArray(window.cartItems) &&
+      window.cartItems.length
+    ) {
+      return window.cartItems;
+    }
+
+
     return [];
+
   }
 
-  // ==================== VALIDACIÓN ====================
-  function validateForm(){
-    const name  = document.getElementById('customerName').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
+
+  /* =========================
+     VALIDAR FORMULARIO
+  ========================= */
+
+  function validateForm() {
+
+    const name =
+      document.getElementById('customerName')
+        .value.trim();
+
+    const phone =
+      document.getElementById('phone')
+        .value.trim();
+
+    const email =
+      document.getElementById('email')
+        .value.trim();
+
     let ok = true;
-    document.querySelectorAll('.error-msg').forEach(e=>e.style.display='none');
-    
-    if(name.length<3 || name.split(' ').filter(Boolean).length<2){
-      document.getElementById('nameError').style.display='block'; ok=false;
+
+
+    document
+      .querySelectorAll('.error-msg')
+      .forEach(e => {
+        e.style.display = 'none';
+      });
+
+
+    if (
+      name.length < 3 ||
+      name.split(' ').filter(Boolean).length < 2
+    ) {
+
+      document.getElementById('nameError')
+        .style.display = 'block';
+
+      ok = false;
+
     }
-    if(phone.replace(/\D/g,'').length<10){
-      document.getElementById('phoneError').style.display='block'; ok=false;
+
+
+    if (
+      phone.replace(/\D/g, '').length < 10
+    ) {
+
+      document.getElementById('phoneError')
+        .style.display = 'block';
+
+      ok = false;
+
     }
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      document.getElementById('emailError').style.display='block'; ok=false;
+
+
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+
+      document.getElementById('emailError')
+        .style.display = 'block';
+
+      ok = false;
+
     }
+
+
     return ok;
+
   }
 
-  // ==================== ALERTAS ====================
-  function showAlert(elementId, message, type){
-    const alertEl = document.getElementById(elementId);
+
+  /* =========================
+     ALERTAS
+  ========================= */
+
+  function showAlert(
+    elementId,
+    message,
+    type
+  ) {
+
+    const alertEl =
+      document.getElementById(elementId);
+
     alertEl.innerHTML = message;
-    alertEl.className = 'alert-msg ' + type;
+
+    alertEl.className =
+      'alert-msg ' + type;
+
     alertEl.style.display = 'block';
-    if(type === 'success'){
-      setTimeout(()=>{ alertEl.style.display = 'none'; }, 6000);
+
+  }
+
+
+  function updateEmailStatus(
+    state,
+    text
+  ) {
+
+    const dot =
+      document.getElementById(
+        'emailStatusDot'
+      );
+
+    const txt =
+      document.getElementById(
+        'emailStatusText'
+      );
+
+    if (dot) {
+      dot.className =
+        'status-dot ' + state;
     }
+
+    if (txt) {
+      txt.textContent = text;
+    }
+
   }
 
-  function updateEmailStatus(state, text){
-    const dot  = document.getElementById('emailStatusDot');
-    const txt  = document.getElementById('emailStatusText');
-    if(dot) dot.className = 'status-dot ' + state;
-    if(txt) txt.textContent = text;
-  }
 
-  // ==================== RESUMEN DEL PEDIDO ====================
-  function renderOrderSummary(){
-    const cartData = getCartData();
-    let subtotal = cartData.reduce((s,i)=> s + (parseFloat(i.price)||0)*(parseInt(i.qty||i.quantity||1)), 0);
-    let taxes = subtotal*0.08;
-    let total = subtotal+taxes;
+  /* =========================
+     RESUMEN DEL PEDIDO
+  ========================= */
 
-    if(!cartData.length){
-      document.getElementById('orderItems').innerHTML = '<div class="summary-line"><span>Carrito vacío</span></div>';
+  function renderOrderSummary() {
+
+    const cartData =
+      getCartData();
+
+
+    const subtotal =
+      cartData.reduce(
+        (s, i) =>
+          s +
+          (parseFloat(i.price) || 0) *
+          (parseInt(
+            i.qty ||
+            i.quantity ||
+            1
+          )),
+        0
+      );
+
+
+    const taxes =
+      subtotal * 0.08;
+
+
+    const total =
+      subtotal + taxes;
+
+
+    if (!cartData.length) {
+
+      document.getElementById(
+        'orderItems'
+      ).innerHTML =
+        '<div class="summary-line">' +
+        '<span>Carrito vacío</span>' +
+        '</div>';
+
     } else {
-      document.getElementById('orderItems').innerHTML = cartData.map(i=>{
-        const qty = i.qty || i.quantity || 1;
-        const price = parseFloat(i.price)||0;
-        const name = i.name || i.product || i.title || 'Producto';
-        return `<div class="summary-line"><span>${name} x${qty}</span><span>${fmtBRL(price*qty)}</span></div>`;
-      }).join('');
+
+      document.getElementById(
+        'orderItems'
+      ).innerHTML =
+        cartData.map(i => {
+
+          const qty =
+            i.qty ||
+            i.quantity ||
+            1;
+
+          const price =
+            parseFloat(i.price) || 0;
+
+          const name =
+            i.name ||
+            i.product ||
+            i.title ||
+            'Producto';
+
+          return `
+            <div class="summary-line">
+              <span>${name} x${qty}</span>
+              <span>${fmtBRL(price * qty)}</span>
+            </div>
+          `;
+
+        }).join('');
+
     }
-    document.getElementById('subtotal').textContent   = fmtBRL(subtotal);
-    document.getElementById('taxes').textContent      = fmtBRL(taxes);
-    document.getElementById('finalTotal').textContent = fmtBRL(total);
 
-    return { cartData, subtotal, taxes, total };
-  }
 
-  // ==================== PREPARAR Y ENVIAR EMAIL (MÉTODO DIRECTO Y SEGURO) ====================
-  function prepareAndSendEmail(){
-    const { cartData, subtotal, taxes, total } = renderOrderSummary();
+    document.getElementById(
+      'subtotal'
+    ).textContent =
+      fmtBRL(subtotal);
 
-    const itemsText = cartData.map(i=>{
-      const qty = i.qty || i.quantity || 1;
-      const name = i.name || i.product || i.title || 'Producto';
-      const price = parseFloat(i.price)||0;
-      return `• ${name} x${qty} = ${fmtBRL(price*qty)}`;
-    }).join('\n');
 
-    const customerName  = document.getElementById('customerName').value.trim();
-    const customerPhone = document.getElementById('phone').value.trim();
-    const customerEmail = document.getElementById('email').value.trim();
-    
-    // Generar un ID de pedido único (por si tu plantilla aún lo usa en el asunto)
-    const orderId = 'YI-' + Date.now().toString().slice(-6);
+    document.getElementById(
+      'taxes'
+    ).textContent =
+      fmtBRL(taxes);
 
-    // Objeto de parámetros EXACTO al que funcionó en tu prueba de consola
-    const templateParams = {
-      order_id: orderId,
-      nombre: customerName,
-      telefono: customerPhone,
-      email: customerEmail,
-      items: itemsText,
-      subtotal: fmtBRL(subtotal),
-      taxes: fmtBRL(taxes),
-      total: fmtBRL(total),
-      message: `Nuevo pedido de ${customerName}\nTel: ${customerPhone}\nEmail: ${customerEmail}\n\nArtículos:\n${itemsText}\n\nTotal Final: ${fmtBRL(total)}`
+
+    document.getElementById(
+      'finalTotal'
+    ).textContent =
+      fmtBRL(total);
+
+
+    return {
+      cartData,
+      subtotal,
+      taxes,
+      total
     };
 
-    console.log('=== ENVIANDO EMAIL CON PARÁMETROS ===');
+  }
+
+
+  /* =========================
+     ENVIAR PEDIDO A GMAIL
+  ========================= */
+
+  function prepareAndSendEmail() {
+
+    const {
+      cartData,
+      subtotal,
+      taxes,
+      total
+    } = renderOrderSummary();
+
+
+    const customerName =
+      document.getElementById(
+        'customerName'
+      ).value.trim();
+
+
+    const customerPhone =
+      document.getElementById(
+        'phone'
+      ).value.trim();
+
+
+    const customerEmail =
+      document.getElementById(
+        'email'
+      ).value.trim();
+
+
+    /*
+      Estos son exactamente los nombres
+      utilizados por tu Template de EmailJS:
+      
+      {{nombre}}
+      {{telefono}}
+      {{email}}
+      {{total}}
+    */
+
+    const templateParams = {
+
+      nombre: customerName,
+
+      telefono: customerPhone,
+
+      email: customerEmail,
+
+      total: fmtBRL(total)
+
+    };
+
+
+    console.log(
+      '=== DATOS ENVIADOS A EMAILJS ==='
+    );
+
     console.log(templateParams);
 
-    // Usamos emailjs.send con el objeto directo (más confiable que sendForm)
-    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
+
+    return emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
+
   }
 
-  // ==================== ABRIR MODAL ====================
-  btn.addEventListener('click', ()=>{
-    const cartData = getCartData();
-    if(!cartData.length){
-      alert('¡Carrito vacío! Agrega productos antes de continuar.');
-      return;
+
+  /* =========================
+     ABRIR CHECKOUT
+  ========================= */
+
+  btn.addEventListener(
+    'click',
+    () => {
+
+      const cartData =
+        getCartData();
+
+
+      if (!cartData.length) {
+
+        alert(
+          '¡Carrito vacío! Agrega productos antes de continuar.'
+        );
+
+        return;
+
+      }
+
+
+      step1.style.display = 'block';
+
+      step2.style.display = 'none';
+
+
+      document.getElementById(
+        'step1Alert'
+      ).style.display = 'none';
+
+
+      modal.style.display = 'block';
+
     }
-    step1.style.display='block';
-    step2.style.display='none';
-    document.getElementById('step1Alert').style.display='none';
-    modal.style.display='block';
-  });
+  );
 
-  close.onclick = ()=> modal.style.display='none';
-  window.onclick = (e)=>{ if(e.target==modal) modal.style.display='none' };
 
-  // ==================== COPIAR AL PORTAPAPELES ====================
-  function copyText(text, btnEl){
-    const done = ()=>{
-      const old = btnEl.textContent;
-      btnEl.textContent = '¡COPIADO!';
-      setTimeout(()=> btnEl.textContent = old, 1500);
+  /* =========================
+     CERRAR CHECKOUT
+  ========================= */
+
+  close.onclick =
+    () => {
+      modal.style.display = 'none';
     };
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done).catch(()=> fallbackCopy(text, done));
+
+
+  window.onclick =
+    (e) => {
+
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+
+    };
+
+
+  /* =========================
+     COPIAR PIX / ETH
+  ========================= */
+
+  function copyText(
+    text,
+    btnEl
+  ) {
+
+    const done = () => {
+
+      const old =
+        btnEl.textContent;
+
+      btnEl.textContent =
+        '¡COPIADO!';
+
+      setTimeout(
+        () => {
+          btnEl.textContent = old;
+        },
+        1500
+      );
+
+    };
+
+
+    if (
+      navigator.clipboard &&
+      navigator.clipboard.writeText
+    ) {
+
+      navigator.clipboard
+        .writeText(text)
+        .then(done)
+        .catch(
+          () => fallbackCopy(text, done)
+        );
+
     } else {
-      fallbackCopy(text, done);
+
+      fallbackCopy(
+        text,
+        done
+      );
+
     }
+
   }
-  function fallbackCopy(text, callback){
-    const ta = document.createElement('textarea');
+
+
+  function fallbackCopy(
+    text,
+    callback
+  ) {
+
+    const ta =
+      document.createElement(
+        'textarea'
+      );
+
     ta.value = text;
+
     ta.style.position = 'fixed';
     ta.style.left = '-9999px';
+
     document.body.appendChild(ta);
+
     ta.select();
-    try{ document.execCommand('copy'); }catch(e){}
+
+    try {
+      document.execCommand('copy');
+    } catch (e) {}
+
     document.body.removeChild(ta);
+
     callback();
+
   }
-  document.getElementById('copyPixBtn').onclick = function(){ copyText(PIX_KEY, this); };
-  document.getElementById('copyEthBtn').onclick = function(){ copyText(ETH_WALLET, this); };
 
-  // ==================== BOTÓN CONFIRMAR ====================
-  const confirmDataBtn = document.getElementById('confirmDataBtn');
-  confirmDataBtn.addEventListener('click', ()=>{
-    document.getElementById('step1Alert').style.display='none';
 
-    if(!validateForm()) return;
+  document.getElementById(
+    'copyPixBtn'
+  ).onclick =
+    function () {
+      copyText(
+        PIX_KEY,
+        this
+      );
+    };
 
-    const cartData = getCartData();
-    if(!cartData.length){
-      showAlert('step1Alert', '¡Carrito vacío! Agrega productos antes de continuar.', 'error');
-      return;
-    }
 
-    renderOrderSummary();
+  document.getElementById(
+    'copyEthBtn'
+  ).onclick =
+    function () {
+      copyText(
+        ETH_WALLET,
+        this
+      );
+    };
 
-    confirmDataBtn.disabled = true;
-    confirmDataBtn.textContent = 'Enviando pedido...';
 
-    prepareAndSendEmail()
-      .then((response)=>{
-        console.log('✅ Email enviado exitosamente:', response.status, response.text);
-        showAlert('step1Alert', '✅ ¡Pedido enviado correctamente! Revisa tu correo.', 'success');
+  /* =========================
+     CONFIRMAR PEDIDO
+  ========================= */
 
-        setTimeout(()=>{
-          step1.style.display = 'none';
-          step2.style.display = 'block';
-          updateEmailStatus('ok', 'Estado del envío: ✅ Email enviado correctamente a tu Gmail');
-        }, 1000);
-      })
-      .catch((err)=>{
-        console.error('❌ Error EmailJS:', err);
-        const errorMsg = err?.text || err?.message || JSON.stringify(err) || 'Error desconocido';
-        
-        showAlert('step1Alert',
-          `⚠️ No se pudo enviar el email automáticamente.<br>
-           <small style="font-weight:normal;display:block;margin-top:6px;">
-           Error: ${errorMsg}<br><br>
-           <b>Esto no bloquea tu compra.</b> Puedes continuar con el pago y enviar los datos manualmente copiando el resumen.</small>`,
-          'warning');
+  const confirmDataBtn =
+    document.getElementById(
+      'confirmDataBtn'
+    );
 
-        setTimeout(()=>{
-          step1.style.display = 'none';
-          step2.style.display = 'block';
-          updateEmailStatus('err', 'Estado del envío: ❌ Falló - Usa los datos de pago abajo');
-        }, 2500);
-      })
-      .finally(()=>{
-        confirmDataBtn.disabled = false;
-        confirmDataBtn.textContent = 'Confirmar y Continuar';
-      });
-  });
 
-  document.getElementById('payInfinitePay').onclick = ()=>{
-    window.open('https://www.infinitepay.io/','_blank');
-  };
+  confirmDataBtn.addEventListener(
+    'click',
+    () => {
+
+      document.getElementById(
+        'step1Alert'
+      ).style.display = 'none';
+
+
+      if (!validateForm()) {
+        return;
+      }
+
+
+      const cartData =
+        getCartData();
+
+
+      if (!cartData.length) {
+
+        showAlert(
+          'step1Alert',
+          '¡Carrito vacío! Agrega productos antes de continuar.',
+          'error'
+        );
+
+        return;
+
+      }
+
+
+      renderOrderSummary();
+
+
+      confirmDataBtn.disabled = true;
+
+      confirmDataBtn.textContent =
+        'Enviando pedido...';
+
+
+      prepareAndSendEmail()
+
+        .then(response => {
+
+          console.log(
+            'EMAILJS OK:',
+            response.status,
+            response.text
+          );
+
+
+          showAlert(
+            'step1Alert',
+            '✅ ¡Pedido enviado correctamente a Yi-Sell Trading Tools!',
+            'success'
+          );
+
+
+          updateEmailStatus(
+            'ok',
+            'Estado del envío: ✅ Pedido enviado correctamente a tu Gmail'
+          );
+
+
+          setTimeout(
+            () => {
+
+              step1.style.display =
+                'none';
+
+              step2.style.display =
+                'block';
+
+            },
+            1000
+          );
+
+        })
+
+
+        .catch(err => {
+
+          console.error(
+            'EMAILJS ERROR:',
+            err
+          );
+
+
+          const errorMsg =
+            err?.text ||
+            err?.message ||
+            JSON.stringify(err) ||
+            'Error desconocido';
+
+
+          showAlert(
+            'step1Alert',
+
+            `⚠️ No se pudo enviar el pedido por email.<br>
+            <small style="font-weight:normal;display:block;margin-top:6px;">
+            Error: ${errorMsg}
+            </small>`,
+
+            'error'
+          );
+
+
+          updateEmailStatus(
+            'err',
+            'Estado del envío: ❌ Error al enviar el pedido'
+          );
+
+        })
+
+
+        .finally(() => {
+
+          confirmDataBtn.disabled =
+            false;
+
+          confirmDataBtn.textContent =
+            'Confirmar y Continuar';
+
+        });
+
+    });
+
+
+  /* =========================
+     INFINITEPAY
+  ========================= */
+
+  document.getElementById(
+    'payInfinitePay'
+  ).onclick =
+    () => {
+
+      window.open(
+        'https://www.infinitepay.io/',
+        '_blank'
+      );
+
+    };
+
 });
 </script>
 
