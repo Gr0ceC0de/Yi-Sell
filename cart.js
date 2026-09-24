@@ -1,3 +1,4 @@
+
 // ==========================================
 // 1. INICIALIZACIÓN DE EmailJS
 // ==========================================
@@ -12,39 +13,20 @@
 
 class ShoppingCart {
     constructor() {
-        // 1. Detectar automáticamente la clave real que usa tu catálogo
-        this.STORAGE_KEY = this.findCartKey();
-
-        // 2. Cargar los items usando esa clave exacta
+        // CLAVE MAESTRA: Usamos una sola clave para evitar inconsistencias
+        this.STORAGE_KEY = 'yiSellCart';
+        
+        // Cargar items
         this.items = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
-
+        
+        // Configuración
         this.TAX_RATE = 0.00; 
         this.EMAILJS_SERVICE_ID = "service_56lcpfp";
         this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
         this.orderConfirmed = false;
-
-        console.log(`🛒 Carrito cargado desde: "${this.STORAGE_KEY}" con ${this.items.length} items.`);
+        
+        console.log(`🛒 Carrito cargado desde "${this.STORAGE_KEY}" con ${this.items.length} items.`);
         this.init();
-    }
-
-    // Método inteligente para encontrar la clave correcta
-    findCartKey() {
-        const possibleKeys = [
-            'yiSellCart',      
-            'yiCart',          
-            'yi_sell_cart',    
-            'cart',            
-            'shoppingCart',    
-            'shopping_cart'    
-        ];
-
-        for (let key of possibleKeys) {
-            if (localStorage.getItem(key)) {
-                console.log(`✅ Clave del carrito encontrada y unificada: "${key}"`);
-                return key;
-            }
-        }
-        return 'yiSellCart'; // Clave por defecto si no encuentra ninguna
     }
 
     init() {
@@ -54,7 +36,7 @@ class ShoppingCart {
     }
 
     bindEvents() {
-        // 1. Add to Cart
+        // 1. Add to Cart (Robusto)
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.add-to-cart');
             if (btn) {
@@ -104,7 +86,7 @@ class ShoppingCart {
         if (copyEthBtn) copyEthBtn.addEventListener('click', () => this.copyToClipboard('0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C', copyEthBtn));
     }
 
-    // ✅ CORREGIDO: Ahora usa la clave detectada, no un nombre fijo
+    // GUARDAR: Usa la clave maestra consistente
     save() {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
         this.updateCartCount();
@@ -287,43 +269,35 @@ class ShoppingCart {
 
     async sendCheckoutEmail(data) {
         if (typeof emailjs === 'undefined') {
-            alert("⚠️ Error crítico: La librería de EmailJS no se cargó. Revisa tu conexión a internet.");
+            alert("⚠️ Error crítico: La librería de EmailJS no se cargó.");
             return false;
         }
 
-        // ✅ COMPATIBILIDAD TOTAL CON TU PLANTILLA: {{nombre}}, {{telefono}}, {{email}}, {{total}}
+        // COMPATIBILIDAD EXACTA CON TU PLANTILLA: {{nombre}}, {{telefono}}, {{email}}, {{total}}
         const templateParams = {
             nombre: data.name,
             telefono: data.telefono,
             email: data.email,
             total: `R$ ${data.total.toFixed(2).replace('.', ',')}`,
-            items: data.items.map(i => `${i.qty}x ${i.name}`).join(' | '),
-            payment_method: 'Pendiente'
+            items: data.items.map(i => `${i.qty}x ${i.name}`).join(' | ') // Extra por si la plantilla lo muestra
         };
 
         try {
-            console.log("📤 Parámetros enviados a EmailJS:", templateParams);
+            console.log("📤 Enviando a EmailJS con params:", templateParams);
             const res = await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID, templateParams);
             console.log('✅ EmailJS respuesta exitosa:', res);
             return true;
         } catch (error) {
             console.error('❌ Error detallado de EmailJS:', error);
-
-            let errorMsg = "Error de red o configuración desconocida.";
-            if (error.text) {
-                errorMsg = error.text; 
-            } else if (error.message) {
-                errorMsg = error.message;
-            }
-
-            alert(`❌ Error al enviar los datos:\n\n"${errorMsg}"\n\n💡 Solución: Revisa que los IDs en cart.js coincidan exactamente con los de tu panel de EmailJS.`);
+            let errorMsg = error.text || error.message || "Error desconocido";
+            alert(`❌ Error al enviar:\n\n"${errorMsg}"`);
             return false;
         }
     }
 
     async handleOrderConfirmation() {
         if (!this.validateForm()) {
-            alert("⚠️ Por favor, corrige los errores marcados en rojo en el formulario antes de continuar.");
+            alert("⚠️ Por favor, corrige los errores marcados en rojo.");
             return;
         }
 
@@ -361,7 +335,7 @@ class ShoppingCart {
 
     async processInfinitePay() {
         if (!this.orderConfirmed) {
-            alert('⚠️ Por favor, primero haz clic en "Confirmar y Enviar Datos" para registrar tu pedido.');
+            alert('⚠️ Primero debes hacer clic en "Confirmar y Enviar Datos".');
             return;
         }
         const btn = document.getElementById('payInfinitePay');
@@ -393,7 +367,7 @@ class ShoppingCart {
                 btn.textContent = '✅ ¡COPIADO!';
                 setTimeout(() => { btn.textContent = originalText; }, 2000);
             } catch (err) {
-                btn.textContent = '❌ Error al copiar';
+                btn.textContent = '❌ Error';
             }
             document.body.removeChild(ta);
         });
