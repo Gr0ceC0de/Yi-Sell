@@ -27,7 +27,6 @@ class CheckoutRequest(BaseModel):
 @app.post("/api/checkout/ai-helper")
 async def ai_helper(data: CheckoutRequest):
     try:
-        # Prompt optimizado para ser directo, sin formato Markdown y rápido
         prompt = f"""
         Você é um assistente de checkout especializado do Yi-Sell. Seja direto, persuasivo e profissional.
         Produto: {data.produto}
@@ -40,7 +39,6 @@ async def ai_helper(data: CheckoutRequest):
         - Responda APENAS com texto puro. NÃO use markdown, negrito ou emojis.
         """
 
-        # 5. Llamada real a la API de Together (Usando Llama 3 8B por su velocidad y bajo costo)
         response = client.chat.completions.create(
             model="meta-llama/Meta-Llama-3-8B-Instruct", 
             messages=[
@@ -48,10 +46,9 @@ async def ai_helper(data: CheckoutRequest):
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7,
-            max_tokens=100 # Limitamos la respuesta para que sea rápida y corta
+            max_tokens=100
         )
 
-        # 6. Extraer y limpiar la respuesta
         ai_message = response.choices[0].message.content.strip()
 
         return {
@@ -60,7 +57,6 @@ async def ai_helper(data: CheckoutRequest):
         }
 
     except Exception as e:
-        # Manejo de errores transparente y seguro (sin exponer datos sensibles)
         print(f"[ERROR] Fallo en AI Helper: {str(e)}")
         raise HTTPException(
             status_code=500, 
