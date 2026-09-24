@@ -10,33 +10,32 @@
     }
 })();
 
-  class ShoppingCart {
+class ShoppingCart {
     constructor() {
         // 1. Detectar automáticamente la clave real que usa tu catálogo
         this.STORAGE_KEY = this.findCartKey();
-        
+
         // 2. Cargar los items usando esa clave exacta
         this.items = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
-        
+
         this.TAX_RATE = 0.00; 
         this.EMAILJS_SERVICE_ID = "service_56lcpfp";
         this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
         this.orderConfirmed = false;
-        
+
         console.log(`🛒 Carrito cargado desde: "${this.STORAGE_KEY}" con ${this.items.length} items.`);
         this.init();
     }
 
     // Método inteligente para encontrar la clave correcta
     findCartKey() {
-        // Lista de las claves más probables que tu catálogo podría estar usando
         const possibleKeys = [
-            'yiSellCart',      // La que usábamos
-            'yiCart',          // Muy común
-            'yi_sell_cart',    // La que estaba en tu fallback anterior
-            'cart',            // Genérica
-            'shoppingCart',    // Genérica
-            'shopping_cart'    // Genérica
+            'yiSellCart',      
+            'yiCart',          
+            'yi_sell_cart',    
+            'cart',            
+            'shoppingCart',    
+            'shopping_cart'    
         ];
 
         for (let key of possibleKeys) {
@@ -45,30 +44,7 @@
                 return key;
             }
         }
-        
-        // Si no encuentra ninguna, usa esta por defecto para empezar de cero limpio
-        return 'yiSellCart';
-    }
-
-    init() {
-        this.render();
-        this.updateCartCount();
-        this.bindEvents();
-    }
-
-    // ... (aquí van tus otros métodos: bindEvents, add, updateQty, etc.) ...
-
-    save() {
-        // 3. Guardar SIEMPRE en la clave que detectamos como válida
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
-        this.updateCartCount();
-    }
-
-    // ... (el resto de tu código sigue igual) ...
-        this.EMAILJS_SERVICE_ID = service_56lcpfp un";
-        this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
-        this.orderConfirmed = false;
-        this.init();
+        return 'yiSellCart'; // Clave por defecto si no encuentra ninguna
     }
 
     init() {
@@ -128,8 +104,9 @@
         if (copyEthBtn) copyEthBtn.addEventListener('click', () => this.copyToClipboard('0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C', copyEthBtn));
     }
 
+    // ✅ CORREGIDO: Ahora usa la clave detectada, no un nombre fijo
     save() {
-        localStorage.setItem('yiSellCart', JSON.stringify(this.items));
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
         this.updateCartCount();
     }
 
@@ -170,8 +147,13 @@
         return this.items.reduce((sum, i) => sum + (parseFloat(i.price) * i.qty), 0);
     }
 
-    getTaxes() { return this.getSubtotal() * this.TAX_RATE; }
-    getTotal() { return this.getSubtotal() + this.getTaxes(); }
+    getTaxes() { 
+        return this.getSubtotal() * this.TAX_RATE; 
+    }
+    
+    getTotal() { 
+        return this.getSubtotal() + this.getTaxes(); 
+    }
 
     updateCartCount() {
         const count = this.items.reduce((sum, item) => sum + item.qty, 0);
@@ -220,17 +202,17 @@
         const modal = document.getElementById('checkoutModal');
         const step1 = document.getElementById('checkoutStep1');
         const step2 = document.getElementById('checkoutStep2');
-        
+
         if (modal) {
             this.orderConfirmed = false;
             if (step1) step1.style.display = 'block';
             if (step2) step2.style.display = 'none';
-            
+
             const emailStatusDot = document.getElementById('emailStatusDot');
             const emailStatusText = document.getElementById('emailStatusText');
             if (emailStatusDot) emailStatusDot.className = 'status-dot pending';
             if (emailStatusText) emailStatusText.textContent = 'Estado del envío: pendiente';
-            
+
             const confirmBtn = document.getElementById('confirmDataBtn');
             if (confirmBtn) {
                 confirmBtn.disabled = false;
@@ -252,7 +234,7 @@
             html += `<div class="summary-line"><span>${item.qty}x ${item.name}</span><span>R$ ${(parseFloat(item.price) * item.qty).toFixed(2).replace('.', ',')}</span></div>`;
         });
         itemsDiv.innerHTML = html;
-        
+
         document.getElementById('subtotal').textContent = `R$ ${this.getSubtotal().toFixed(2).replace('.', ',')}`;
         document.getElementById('taxes').textContent = `R$ ${this.getTaxes().toFixed(2).replace('.', ',')}`;
         document.getElementById('finalTotal').textContent = `R$ ${this.getTotal().toFixed(2).replace('.', ',')}`;
@@ -274,10 +256,9 @@
         const email = document.getElementById('email')?.value.trim() || '';
         let isValid = true;
 
-        // Limpiar errores previos
         document.querySelectorAll('.error-msg').forEach(e => {
             e.style.display = 'none';
-            e.textContent = ''; // Limpiar texto personalizado
+            e.textContent = '';
         });
 
         if (name.length < 3) {
@@ -286,22 +267,21 @@
             err.style.display = 'block';
             isValid = false;
         }
-        
-        // Validación flexible de teléfono (al menos 8 dígitos numéricos)
+
         if (phone.replace(/\D/g, '').length < 8) {
             const err = document.getElementById('phoneError');
             err.textContent = "Ingresa un teléfono válido (mínimo 8 dígitos).";
             err.style.display = 'block';
             isValid = false;
         }
-        
+
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             const err = document.getElementById('emailError');
             err.textContent = "Ingresa un correo electrónico válido (ej: tu@email.com).";
             err.style.display = 'block';
             isValid = false;
         }
-        
+
         return isValid;
     }
 
@@ -311,6 +291,7 @@
             return false;
         }
 
+        // ✅ COMPATIBILIDAD TOTAL CON TU PLANTILLA: {{nombre}}, {{telefono}}, {{email}}, {{total}}
         const templateParams = {
             nombre: data.name,
             telefono: data.telefono,
@@ -327,8 +308,7 @@
             return true;
         } catch (error) {
             console.error('❌ Error detallado de EmailJS:', error);
-            
-            // EmailJS suele devolver el motivo exacto en error.text
+
             let errorMsg = "Error de red o configuración desconocida.";
             if (error.text) {
                 errorMsg = error.text; 
@@ -336,13 +316,12 @@
                 errorMsg = error.message;
             }
 
-            alert(`❌ Error al enviar los datos a Gmail:\n\n"${errorMsg}"\n\n💡 Solución: Revisa que los IDs de servicio y plantilla en cart.js coincidan exactamente con los de tu panel de EmailJS.`);
+            alert(`❌ Error al enviar los datos:\n\n"${errorMsg}"\n\n💡 Solución: Revisa que los IDs en cart.js coincidan exactamente con los de tu panel de EmailJS.`);
             return false;
         }
     }
 
     async handleOrderConfirmation() {
-        // 1. Validar formulario
         if (!this.validateForm()) {
             alert("⚠️ Por favor, corrige los errores marcados en rojo en el formulario antes de continuar.");
             return;
@@ -357,28 +336,24 @@
             return;
         }
 
-        // 2. Cambiar estado del botón
         const originalText = btn.textContent;
         btn.disabled = true;
-        btn.textContent = '⏳ Enviando datos a Gmail...';
+        btn.textContent = '⏳ Enviando datos...';
 
-        // 3. Enviar correo
         const emailSent = await this.sendCheckoutEmail(data);
 
-        // 4. Manejar resultado
         if (emailSent) {
             document.getElementById('checkoutStep1').style.display = 'none';
             document.getElementById('checkoutStep2').style.display = 'block';
-            
+
             const dot = document.getElementById('emailStatusDot');
             const txt = document.getElementById('emailStatusText');
             if (dot) dot.className = 'status-dot ok';
-            if (txt) txt.textContent = '✅ Estado: Datos recibidos correctamente en Gmail';
-            
+            if (txt) txt.textContent = '✅ Estado: Datos recibidos correctamente';
+
             this.orderConfirmed = true;
             this.renderOrderSummary();
         } else {
-            // Si falló, restaurar el botón para que el usuario pueda reintentar
             btn.disabled = false;
             btn.textContent = originalText;
         }
@@ -395,7 +370,7 @@
 
         const data = this.getFormData();
         const valor = data.total.toFixed(2).replace('.', ',');
-        
+
         localStorage.setItem('lastOrder', JSON.stringify(data));
         this.clearCart();
         window.location.href = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
@@ -407,7 +382,6 @@
             btn.textContent = '✅ ¡COPIADO!';
             setTimeout(() => { btn.textContent = originalText; }, 2000);
         }).catch(() => {
-            // Fallback para navegadores antiguos o sin HTTPS
             const ta = document.createElement('textarea');
             ta.value = text;
             ta.style.position = 'fixed';
