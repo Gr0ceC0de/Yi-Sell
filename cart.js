@@ -1,4 +1,4 @@
-// ==========================================
+  // ==========================================
 // 1. INICIALIZACIÓN DE EmailJS (Segura y sin spam)
 // ==========================================
 (function() {
@@ -6,9 +6,9 @@
         emailjs.init({
             publicKey: "2fsLYqtr1QY0q5Jbn",
         });
-        console.log("EmailJS inicializado correctamente.");
+        console.log("✅ EmailJS inicializado correctamente.");
     } else {
-        console.warn("EmailJS no detectado. Asegúrate de incluir el script en el <head> de tu HTML.");
+        console.warn("⚠️ EmailJS no detectado. El envío de correos no funcionará, pero el checkout sí.");
     }
 })();
 
@@ -16,14 +16,14 @@ class ShoppingCart {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
         this.TAX_RATE = 0.00; 
-        
+
         // Configuración de EmailJS
         this.EMAILJS_SERVICE_ID = "service_56lcpfp";
         this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
-        
+
         // Estado del flujo de compra
         this.orderConfirmed = false;
-        
+
         this.init();
     }
 
@@ -49,7 +49,7 @@ class ShoppingCart {
                 };
 
                 this.add(item);
-                
+
                 const originalText = btn.innerText;
                 btn.innerText = 'Added ✓';
                 btn.disabled = true;
@@ -110,7 +110,7 @@ class ShoppingCart {
 
     clearCart() {
         this.items = [];
-        this.orderConfirmed = false; // Resetear estado al vaciar
+        this.orderConfirmed = false;
         this.save();
         this.render();
     }
@@ -159,7 +159,6 @@ class ShoppingCart {
         this.items.forEach(item => {
             const price = parseFloat(item.price);
             const row = document.createElement('tr');
-            // CORREGIDO: Sintaxis de template literal completa
             row.innerHTML = `
                 <td>${item.name}</td>
                 <td>R$ ${price.toFixed(2).replace('.', ',')}</td>
@@ -192,7 +191,6 @@ class ShoppingCart {
             return;
         }
 
-        // Resetear estado de confirmación al abrir un nuevo checkout
         this.orderConfirmed = false;
         this.togglePaymentButtons(false);
 
@@ -235,7 +233,6 @@ class ShoppingCart {
                 if (cep.length !== 8) return;
 
                 try {
-                    // CORREGIDO: URL completa y sintaxis correcta
                     const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
                     const data = await res.json();
                     if (!data.erro) {
@@ -256,14 +253,14 @@ class ShoppingCart {
             });
         }
 
-        // PASO 1: Botón Confirmar y Continuar (Envía Email)
+        // PASO 1: Botón Confirmar y Continuar
         const confirmBtn = document.getElementById('confirm-order-btn');
         if (confirmBtn && !confirmBtn.dataset.bound) {
             confirmBtn.dataset.bound = 'true';
             confirmBtn.addEventListener('click', () => this.handleOrderConfirmation());
         }
 
-        // PASO 2: Botones de Pago (Solo funcionan si orderConfirmed === true)
+        // PASO 2: Botones de Pago
         const payStripeBtn = document.getElementById('payStripe');
         if (payStripeBtn && !payStripeBtn.dataset.bound) {
             payStripeBtn.dataset.bound = 'true';
@@ -277,9 +274,6 @@ class ShoppingCart {
         }
     }
 
-    // ==========================================
-    // 2. TELÉFONO EN getFormData()
-    // ==========================================
     getFormData() {
         return {
             name: document.getElementById('customerName')?.value || '',
@@ -309,12 +303,13 @@ class ShoppingCart {
     }
 
     // ==========================================
-    // 3. MÉTODO sendCheckoutEmail()
+    // 3. MÉTODO sendCheckoutEmail() - BLINDADO
     // ==========================================
     async sendCheckoutEmail(data, metodoPago) {
+        // Si EmailJS no está cargado, retornamos true para no bloquear
         if (typeof emailjs === 'undefined') {
-            console.warn("EmailJS no está disponible.");
-            return false;
+            console.warn("⚠️ EmailJS no disponible. Continuando sin envío de correo.");
+            return true;
         }
 
         const itemsTexto = data.items.map(i => 
@@ -330,53 +325,55 @@ class ShoppingCart {
             order_items: itemsTexto,
             order_total: `R$ ${data.total.toFixed(2).replace('.', ',')}`,
             payment_method: metodoPago,
-            to_email: data.email, // O tu correo de Gmail si la plantilla lo usa así
+            to_email: data.email,
             from_name: "Yi-Sell"
         };
 
         try {
+            console.log("📤 Enviando email con params:", templateParams);
             const res = await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID, templateParams);
-            console.log('EmailJS enviado con éxito:', res.status);
+            console.log('✅ EmailJS enviado con éxito:', res.status, res.text);
             return true;
         } catch (error) {
-            console.error('Erro ao enviar EmailJS:', error);
-            alert('Error al enviar la confirmación por correo. Inténtalo de nuevo.');
-            return false;
+            console.error('❌ Error EmailJS:', error);
+            console.error('Service ID:', this.EMAILJS_SERVICE_ID);
+            console.error('Template ID:', this.EMAILJS_TEMPLATE_ID);
+            // IMPORTANTE: Retornamos true aunque falle, para no bloquear el checkout
+            return true;
         }
     }
 
     // ==========================================
-    // 4. PASO 1: Manejar Confirmación y Envío de Email
+    // 4. PASO 1: Manejar Confirmación (NO BLOQUEANTE)
     // ==========================================
     async handleOrderConfirmation() {
         if (!this.validateForm()) return;
-        
+
         const btn = document.getElementById('confirm-order-btn');
         if (!btn || btn.disabled) return;
-        
+
         btn.disabled = true;
         btn.textContent = 'Enviando confirmación...';
 
         const data = this.getFormData();
-        
-        // Enviar correo
-        const emailSent = await this.sendCheckoutEmail(data, 'Confirmado - Pendiente de Pago');
 
-        if (emailSent) {
-            this.orderConfirmed = true;
-            btn.textContent = '¡Confirmado! ✓';
-            btn.style.backgroundColor = '#28a745'; // Verde de éxito
-            
-            // Habilitar botones de pago
-            this.togglePaymentButtons(true);
-        } else {
-            btn.disabled = false;
-            btn.textContent = 'Confirmar y Continuar';
-        }
+        // Enviar correo (no bloqueante - siempre retorna true)
+        await this.sendCheckoutEmail(data, 'Confirmado - Pendiente de Pago');
+
+        // SIEMPRE habilitamos los botones de pago, incluso si el email falló
+        this.orderConfirmed = true;
+        btn.textContent = '¡Confirmado! ✓';
+        btn.style.backgroundColor = '#28a745';
+        btn.style.color = '#fff';
+
+        // Habilitar botones de pago
+        this.togglePaymentButtons(true);
+        
+        console.log("✅ Pedido confirmado. Botones de pago habilitados.");
     }
 
     // ==========================================
-    // 5. PASO 2: Procesar Pagos (Solo si está confirmado)
+    // 5. PASO 2: Procesar Pagos
     // ==========================================
     async processInfinitePay() {
         if (!this.orderConfirmed) {
@@ -391,10 +388,10 @@ class ShoppingCart {
         const data = this.getFormData();
         const valor = data.total.toFixed(2).replace('.', ',');
         const link = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
-        
+
         localStorage.setItem('lastOrder', JSON.stringify(data));
         this.clearCart();
-        
+
         window.location.href = link;
     }
 
@@ -443,7 +440,7 @@ class ShoppingCart {
             const session = await response.json();
             localStorage.setItem('lastOrder', JSON.stringify(data));
             this.clearCart();
-            
+
             window.location.href = session.url;
 
         } catch (error) {
@@ -454,13 +451,11 @@ class ShoppingCart {
         }
     }
 
-    // Utilidad para mostrar/ocultar botones de pago
     togglePaymentButtons(show) {
         const paymentContainer = document.getElementById('payment-buttons-container');
         if (paymentContainer) {
             paymentContainer.style.display = show ? 'block' : 'none';
         } else {
-            // Fallback si no hay contenedor: mostrar los botones individuales
             const stripeBtn = document.getElementById('payStripe');
             const infiniteBtn = document.getElementById('payInfinitePay');
             if (stripeBtn) stripeBtn.style.display = show ? 'inline-block' : 'none';
@@ -475,4 +470,4 @@ class ShoppingCart {
 }
 
 // Inicialización global
-const cart = new ShoppingCart();
+const cart = new ShoppingCart(); 
