@@ -10,10 +10,61 @@
     }
 })();
 
-class ShoppingCart {
+  class ShoppingCart {
     constructor() {
-        this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
+        // 1. Detectar automáticamente la clave real que usa tu catálogo
+        this.STORAGE_KEY = this.findCartKey();
         
+        // 2. Cargar los items usando esa clave exacta
+        this.items = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+        
+        this.TAX_RATE = 0.00; 
+        this.EMAILJS_SERVICE_ID = "service_56lcpfp";
+        this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
+        this.orderConfirmed = false;
+        
+        console.log(`🛒 Carrito cargado desde: "${this.STORAGE_KEY}" con ${this.items.length} items.`);
+        this.init();
+    }
+
+    // Método inteligente para encontrar la clave correcta
+    findCartKey() {
+        // Lista de las claves más probables que tu catálogo podría estar usando
+        const possibleKeys = [
+            'yiSellCart',      // La que usábamos
+            'yiCart',          // Muy común
+            'yi_sell_cart',    // La que estaba en tu fallback anterior
+            'cart',            // Genérica
+            'shoppingCart',    // Genérica
+            'shopping_cart'    // Genérica
+        ];
+
+        for (let key of possibleKeys) {
+            if (localStorage.getItem(key)) {
+                console.log(`✅ Clave del carrito encontrada y unificada: "${key}"`);
+                return key;
+            }
+        }
+        
+        // Si no encuentra ninguna, usa esta por defecto para empezar de cero limpio
+        return 'yiSellCart';
+    }
+
+    init() {
+        this.render();
+        this.updateCartCount();
+        this.bindEvents();
+    }
+
+    // ... (aquí van tus otros métodos: bindEvents, add, updateQty, etc.) ...
+
+    save() {
+        // 3. Guardar SIEMPRE en la clave que detectamos como válida
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
+        this.updateCartCount();
+    }
+
+    // ... (el resto de tu código sigue igual) ...
         this.EMAILJS_SERVICE_ID = service_56lcpfp un";
         this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
         this.orderConfirmed = false;
