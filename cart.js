@@ -2,7 +2,7 @@
 class ShoppingCart {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('yiSellCart')) || [];
-        this.TAX_RATE = 0.08; // 8% taxa
+        this.TAX_RATE = 0.00; // 8% taxa
         this.init();
     }
 
