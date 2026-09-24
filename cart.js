@@ -1,383 +1,957 @@
+ ============================================================
+// cart.js - Yi-Sell v1.0 Final
+// BASE: versión original funcional
+// EmailJS integrado sin alterar la arquitectura del carrito
+// ============================================================
 
-// ==========================================
+
+// ============================================================
 // 1. INICIALIZACIÓN DE EmailJS
-// ==========================================
-(function() {
+// ============================================================
+
+(function () {
     if (typeof emailjs !== 'undefined') {
-        emailjs.init({ publicKey: "2fsLYqtr1QY0q5Jbn" });
+
+        emailjs.init({
+            publicKey: "2fsLYqtr1QY0q5Jbn"
+        });
+
         console.log("✅ EmailJS inicializado correctamente.");
+
     } else {
-        console.error("❌ CRÍTICO: EmailJS no se cargó. Revisa tu conexión o el script en el <head>.");
+
+        console.error(
+            "❌ CRÍTICO: EmailJS no se cargó. " +
+            "Revisa el script de EmailJS en el <head>."
+        );
     }
 })();
 
+
+// ============================================================
+// 2. SHOPPING CART
+// ============================================================
+
 class ShoppingCart {
+
     constructor() {
-        // CLAVE MAESTRA: Usamos una sola clave para evitar inconsistencias
+
+        // ----------------------------------------------------
+        // IMPORTANTE:
+        // Se conserva EXACTAMENTE la clave original.
+        // No usamos findCartKey().
+        // ----------------------------------------------------
+
         this.STORAGE_KEY = 'yiSellCart';
-        
-        // Cargar items
-        this.items = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
-        
-        // Configuración
-        this.TAX_RATE = 0.00; 
+
+        this.items = this.loadCart();
+
+        this.TAX_RATE = 0.00;
+
+        // ----------------------------------------------------
+        // CONFIGURACIÓN EmailJS
+        // ----------------------------------------------------
+
         this.EMAILJS_SERVICE_ID = "service_56lcpfp";
         this.EMAILJS_TEMPLATE_ID = "template_7eo6ywr";
+
         this.orderConfirmed = false;
-        
-        console.log(`🛒 Carrito cargado desde "${this.STORAGE_KEY}" con ${this.items.length} items.`);
+
+        console.log(
+            `🛒 Carrito iniciado. ` +
+            `Storage: "${this.STORAGE_KEY}" | ` +
+            `Items: ${this.items.length}`
+        );
+
+        this.debugCart("CONSTRUCTOR");
+
         this.init();
     }
 
-    init() {
-        this.render();
-        this.updateCartCount();
-        this.bindEvents();
+
+    // ========================================================
+    // 3. CARGAR CARRITO
+    // ========================================================
+
+    loadCart() {
+
+        try {
+
+            const stored = localStorage.getItem(this.STORAGE_KEY);
+
+            if (!stored) {
+                console.log("🛒 No existe carrito guardado. Se inicia vacío.");
+                return [];
+            }
+
+            const parsed = JSON.parse(stored);
+
+            if (!Array.isArray(parsed)) {
+
+                console.error(
+                    "❌ El contenido de yiSellCart no es un array."
+                );
+
+                return [];
+            }
+
+            console.log(
+                `✅ ${parsed.length} línea(s) cargadas desde localStorage.`
+            );
+
+            return parsed;
+
+        } catch (error) {
+
+            console.error(
+                "❌ Error leyendo yiSellCart:",
+                error
+            );
+
+            return [];
+        }
     }
+
+
+    // ========================================================
+    // 4. DEBUG DEL CARRITO
+    // ========================================================
+
+    debugCart(action = "DEBUG") {
+
+        console.group(`🛒 DEBUG CARRITO — ${action}`);
+
+        console.log("Storage Key:", this.STORAGE_KEY);
+        console.log("Items:", this.items);
+        console.log("Cantidad de líneas:", this.items.length);
+        console.log(
+            "Cantidad total:",
+            this.items.reduce(
+                (sum, item) => sum + (Number(item.qty) || 0),
+                0
+            )
+        );
+
+        console.log(
+            "Subtotal:",
+            this.getSubtotal()
+        );
+
+        console.log(
+            "Total:",
+            this.getTotal()
+        );
+
+        console.log(
+            "localStorage:",
+            localStorage.getItem(this.STORAGE_KEY)
+        );
+
+        console.groupEnd();
+    }
+
+
+    // ========================================================
+    // 5. INIT
+    // ========================================================
+
+    init() {
+
+        this.render();
+
+        this.updateCartCount();
+
+        this.bindEvents();
+
+        this.debugCart("INIT");
+    }
+
+
+    // ========================================================
+    // 6. EVENTOS
+    // ========================================================
 
     bindEvents() {
-        // 1. Add to Cart (Robusto)
+
+        // ----------------------------------------------------
+        // ADD TO CART
+        // ----------------------------------------------------
+
         document.addEventListener('click', (e) => {
+
             const btn = e.target.closest('.add-to-cart');
-            if (btn) {
-                e.preventDefault();
-                const p = btn.closest('.product');
-                if (!p) return;
 
-                this.add({
-                    id: p.dataset.id,
-                    name: p.dataset.name,
-                    price: parseFloat(p.dataset.price) || 0,
-                });
+            if (!btn) return;
 
-                const originalText = btn.innerText;
-                btn.innerText = 'Added ✓';
-                btn.disabled = true;
-                setTimeout(() => { 
-                    btn.innerText = originalText || 'Add to Cart'; 
-                    btn.disabled = false;
-                }, 1500);
+            e.preventDefault();
+
+            const p = btn.closest('.product');
+
+            if (!p) {
+
+                console.error(
+                    "❌ Botón Add to Cart sin elemento .product."
+                );
+
+                return;
             }
+
+            const item = {
+
+                id: p.dataset.id,
+
+                name: p.dataset.name,
+
+                price: parseFloat(p.dataset.price) || 0
+            };
+
+
+            console.log(
+                "➕ Agregando producto:",
+                item
+            );
+
+
+            this.add(item);
+
+
+            const originalText =
+                btn.innerText || 'Add to Cart';
+
+            btn.innerText = 'Added ✓';
+
+            btn.disabled = true;
+
+
+            setTimeout(() => {
+
+                btn.innerText = originalText;
+
+                btn.disabled = false;
+
+            }, 1500);
+
         });
 
-        // 2. Abrir Checkout
-        const checkoutBtn = document.getElementById('checkout-btn');
-        if (checkoutBtn) checkoutBtn.addEventListener('click', () => this.openCheckout());
 
-        // 3. Cerrar Modal
-        const closeBtn = document.getElementById('closeModal');
-        if (closeBtn) closeBtn.addEventListener('click', () => this.closeCheckout());
+        // ----------------------------------------------------
+        // CHECKOUT
+        // ----------------------------------------------------
+
+        const checkoutBtn =
+            document.getElementById('checkout-btn');
+
+        if (checkoutBtn) {
+
+            checkoutBtn.addEventListener(
+                'click',
+                () => this.openCheckout()
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // CLOSE MODAL
+        // ----------------------------------------------------
+
+        const closeBtn =
+            document.querySelector('.close');
+
+        if (closeBtn) {
+
+            closeBtn.addEventListener(
+                'click',
+                () => this.closeCheckout()
+            );
+        }
+
+
         window.addEventListener('click', (e) => {
-            if (e.target.id === 'checkoutModal') this.closeCheckout();
+
+            if (e.target.id === 'checkoutModal') {
+
+                this.closeCheckout();
+            }
+
         });
 
-        // 4. PASO 1: Confirmar y Enviar Datos
-        const confirmBtn = document.getElementById('confirmDataBtn');
-        if (confirmBtn) confirmBtn.addEventListener('click', () => this.handleOrderConfirmation());
 
-        // 5. PASO 2: Botones de Pago y Copiado
-        const payInfiniteBtn = document.getElementById('payInfinitePay');
-        if (payInfiniteBtn) payInfiniteBtn.addEventListener('click', () => this.processInfinitePay());
+        // ----------------------------------------------------
+        // CONFIRMAR PEDIDO / EMAILJS
+        // ----------------------------------------------------
 
-        const copyPixBtn = document.getElementById('copyPixBtn');
-        if (copyPixBtn) copyPixBtn.addEventListener('click', () => this.copyToClipboard('41a2bc9e-5854-43ab-bc8a-b9f13addd96d', copyPixBtn));
+        const confirmBtn =
+            document.getElementById('confirmDataBtn');
 
-        const copyEthBtn = document.getElementById('copyEthBtn');
-        if (copyEthBtn) copyEthBtn.addEventListener('click', () => this.copyToClipboard('0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C', copyEthBtn));
+        if (confirmBtn) {
+
+            confirmBtn.addEventListener(
+                'click',
+                () => this.handleOrderConfirmation()
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // INFINITEPAY
+        // ----------------------------------------------------
+
+        const payInfiniteBtn =
+            document.getElementById('payInfinitePay');
+
+        if (payInfiniteBtn) {
+
+            payInfiniteBtn.addEventListener(
+                'click',
+                () => this.processInfinitePay()
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // STRIPE
+        // ----------------------------------------------------
+
+        const payStripeBtn =
+            document.getElementById('payStripe');
+
+        if (payStripeBtn) {
+
+            payStripeBtn.addEventListener(
+                'click',
+                () => this.processStripe()
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // PIX
+        // ----------------------------------------------------
+
+        const copyPixBtn =
+            document.getElementById('copyPixBtn');
+
+        if (copyPixBtn) {
+
+            copyPixBtn.addEventListener(
+                'click',
+                () => this.copyToClipboard(
+                    '41a2bc9e-5854-43ab-bc8a-b9f13addd96d',
+                    copyPixBtn
+                )
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // ETH
+        // ----------------------------------------------------
+
+        const copyEthBtn =
+            document.getElementById('copyEthBtn');
+
+        if (copyEthBtn) {
+
+            copyEthBtn.addEventListener(
+                'click',
+                () => this.copyToClipboard(
+                    '0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C',
+                    copyEthBtn
+                )
+            );
+        }
     }
 
-    // GUARDAR: Usa la clave maestra consistente
+
+    // ========================================================
+    // 7. SAVE
+    // ========================================================
+
     save() {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
-        this.updateCartCount();
+
+        try {
+
+            localStorage.setItem(
+                this.STORAGE_KEY,
+                JSON.stringify(this.items)
+            );
+
+            console.log(
+                `💾 Carrito guardado en "${this.STORAGE_KEY}".`
+            );
+
+            this.updateCartCount();
+
+            this.debugCart("SAVE");
+
+        } catch (error) {
+
+            console.error(
+                "❌ Error guardando carrito:",
+                error
+            );
+        }
     }
+
+
+    // ========================================================
+    // 8. ADD
+    // ========================================================
 
     add(item) {
-        const existing = this.items.find(i => i.id == item.id);
+
+        console.log(
+            "➕ ADD antes:",
+            this.items
+        );
+
+
+        const existing =
+            this.items.find(
+                i => i.id == item.id
+            );
+
+
         if (existing) {
+
             existing.qty += 1;
+
+            console.log(
+                `🔄 Producto existente. Nueva cantidad: ${existing.qty}`
+            );
+
         } else {
-            this.items.push({ ...item, qty: 1 });
+
+            this.items.push({
+                ...item,
+                qty: 1
+            });
+
+            console.log(
+                "🆕 Producto nuevo agregado."
+            );
         }
+
+
         this.save();
+
         this.render();
+
+        this.debugCart("ADD DESPUÉS");
     }
+
+
+    // ========================================================
+    // 9. UPDATE QUANTITY
+    // ========================================================
 
     updateQty(id, qty) {
-        const item = this.items.find(i => i.id == id);
-        if (item) {
-            item.qty = Math.max(1, parseInt(qty) || 1);
-            this.save();
-            this.render();
+
+        console.log(
+            "✏️ UPDATE QTY:",
+            id,
+            qty
+        );
+
+
+        const item =
+            this.items.find(
+                i => i.id == id
+            );
+
+
+        if (!item) {
+
+            console.error(
+                "❌ No se encontró producto:",
+                id
+            );
+
+            return;
         }
+
+
+        item.qty =
+            Math.max(
+                1,
+                parseInt(qty) || 1
+            );
+
+
+        this.save();
+
+        this.render();
+
+        this.debugCart("UPDATE QTY");
     }
+
+
+    // ========================================================
+    // 10. REMOVE
+    // ========================================================
 
     remove(id) {
-        this.items = this.items.filter(i => i.id != id);
+
+        console.log(
+            "🗑️ REMOVE:",
+            id
+        );
+
+
+        const before =
+            this.items.length;
+
+
+        this.items =
+            this.items.filter(
+                i => i.id != id
+            );
+
+
+        const after =
+            this.items.length;
+
+
+        console.log(
+            `🗑️ Líneas: ${before} → ${after}`
+        );
+
+
         this.save();
+
         this.render();
+
+        this.debugCart("REMOVE");
     }
+
+
+    // ========================================================
+    // 11. CLEAR CART
+    // ========================================================
 
     clearCart() {
+
+        console.log(
+            "🧹 CLEAR CART"
+        );
+
+
         this.items = [];
+
         this.orderConfirmed = false;
+
         this.save();
+
         this.render();
+
+        this.debugCart("CLEAR CART");
     }
+
+
+    // ========================================================
+    // 12. SUBTOTAL
+    // ========================================================
 
     getSubtotal() {
-        return this.items.reduce((sum, i) => sum + (parseFloat(i.price) * i.qty), 0);
+
+        return this.items.reduce(
+            (sum, i) =>
+                sum +
+                (
+                    parseFloat(i.price) *
+                    Number(i.qty)
+                ),
+            0
+        );
     }
 
-    getTaxes() { 
-        return this.getSubtotal() * this.TAX_RATE; 
+
+    // ========================================================
+    // 13. TAXES
+    // ========================================================
+
+    getTaxes() {
+
+        return this.getSubtotal() *
+            this.TAX_RATE;
     }
-    
-    getTotal() { 
-        return this.getSubtotal() + this.getTaxes(); 
+
+
+    // ========================================================
+    // 14. TOTAL
+    // ========================================================
+
+    getTotal() {
+
+        return (
+            this.getSubtotal() +
+            this.getTaxes()
+        );
     }
+
+
+    // ========================================================
+    // 15. CART COUNT
+    // ========================================================
 
     updateCartCount() {
-        const count = this.items.reduce((sum, item) => sum + item.qty, 0);
-        const el = document.querySelector('#cart-count');
-        if (el) el.innerText = count;
+
+        const count =
+            this.items.reduce(
+                (sum, item) =>
+                    sum + Number(item.qty || 0),
+                0
+            );
+
+
+        const el =
+            document.querySelector('#cart-count');
+
+
+        if (el) {
+
+            el.innerText = count;
+        }
+
+
+        console.log(
+            "🔢 Cart count:",
+            count
+        );
     }
 
-    render() {
-        const tbody = document.querySelector('#cartTable tbody');
-        if (!tbody) return;
 
-        const totalEl = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkout-btn');
+    // ========================================================
+    // 16. RENDER CARRITO
+    // ========================================================
+
+    render() {
+
+        const tbody =
+            document.querySelector(
+                '#cartTable tbody'
+            );
+
+
+        if (!tbody) {
+
+            console.warn(
+                "⚠️ #cartTable tbody no existe en esta página."
+            );
+
+            return;
+        }
+
+
+        const totalEl =
+            document.getElementById(
+                'cartTotal'
+            );
+
+
+        const checkoutBtn =
+            document.getElementById(
+                'checkout-btn'
+            );
+
+
+        const emptyMsg =
+            document.getElementById(
+                'empty-cart-msg'
+            );
+
+
+        const table =
+            document.getElementById(
+                'cartTable'
+            );
+
 
         tbody.innerHTML = '';
 
+
+        // ----------------------------------------------------
+        // CARRITO VACÍO
+        // ----------------------------------------------------
+
         if (this.items.length === 0) {
-            if (checkoutBtn) checkoutBtn.disabled = true;
-            if (totalEl) totalEl.textContent = 'Total: R$ 0,00';
+
+            if (emptyMsg)
+                emptyMsg.style.display = 'block';
+
+            if (table)
+                table.style.display = 'none';
+
+            if (checkoutBtn)
+                checkoutBtn.disabled = true;
+
+            if (totalEl)
+                totalEl.textContent =
+                    'Total: R$ 0,00';
+
             return;
         }
 
-        if (checkoutBtn) checkoutBtn.disabled = false;
+
+        // ----------------------------------------------------
+        // CARRITO CON PRODUCTOS
+        // ----------------------------------------------------
+
+        if (emptyMsg)
+            emptyMsg.style.display = 'none';
+
+        if (table)
+            table.style.display = 'table';
+
+        if (checkoutBtn)
+            checkoutBtn.disabled = false;
+
 
         this.items.forEach(item => {
-            const price = parseFloat(item.price);
-            const row = document.createElement('tr');
+
+            const price =
+                parseFloat(item.price) || 0;
+
+
+            const qty =
+                Number(item.qty) || 1;
+
+
+            const row =
+                document.createElement('tr');
+
+
             row.innerHTML = `
-                <td>${item.name}</td>
-                <td>R$ ${price.toFixed(2).replace('.', ',')}</td>
-                <td><input type="number" value="${item.qty}" min="1" onchange="cart.updateQty('${item.id}', this.value)"></td>
-                <td>R$ ${(price * item.qty).toFixed(2).replace('.', ',')}</td>
-                <td><button class="btn-remove" onclick="cart.remove('${item.id}')">Remover</button></td>
+
+                <td>
+                    ${item.name}
+                </td>
+
+                <td>
+                    R$ ${price
+                        .toFixed(2)
+                        .replace('.', ',')}
+                </td>
+
+                <td>
+
+                    <input
+                        type="number"
+                        value="${qty}"
+                        min="1"
+                        onchange="cart.updateQty('${item.id}', this.value)"
+                    >
+
+                </td>
+
+                <td>
+                    R$ ${(price * qty)
+                        .toFixed(2)
+                        .replace('.', ',')}
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn-remove"
+                        onclick="cart.remove('${item.id}')"
+                    >
+                        Remover
+                    </button>
+
+                </td>
             `;
+
+
             tbody.appendChild(row);
+
         });
 
-        if (totalEl) totalEl.textContent = `Total: R$ ${this.getSubtotal().toFixed(2).replace('.', ',')}`;
+
+        if (totalEl) {
+
+            totalEl.textContent =
+                `Total: R$ ${this
+                    .getSubtotal()
+                    .toFixed(2)
+                    .replace('.', ',')}`;
+        }
+
+
+        console.log(
+            "🎨 Render carrito completado."
+        );
     }
+
+
+    // ========================================================
+    // 17. OPEN CHECKOUT
+    // ========================================================
 
     openCheckout() {
+
         if (this.items.length === 0) {
-            alert('¡Carrito vacío! Agrega productos antes de continuar.');
+
+            alert(
+                'Seu carrinho está vazio!'
+            );
+
             return;
         }
-        const modal = document.getElementById('checkoutModal');
-        const step1 = document.getElementById('checkoutStep1');
-        const step2 = document.getElementById('checkoutStep2');
 
-        if (modal) {
-            this.orderConfirmed = false;
-            if (step1) step1.style.display = 'block';
-            if (step2) step2.style.display = 'none';
 
-            const emailStatusDot = document.getElementById('emailStatusDot');
-            const emailStatusText = document.getElementById('emailStatusText');
-            if (emailStatusDot) emailStatusDot.className = 'status-dot pending';
-            if (emailStatusText) emailStatusText.textContent = 'Estado del envío: pendiente';
+        const modal =
+            document.getElementById(
+                'checkoutModal'
+            );
 
-            const confirmBtn = document.getElementById('confirmDataBtn');
-            if (confirmBtn) {
-                confirmBtn.disabled = false;
-                confirmBtn.textContent = 'Confirmar y Enviar Datos';
-                confirmBtn.style.backgroundColor = '';
-            }
 
-            this.renderOrderSummary();
-            modal.style.display = 'block';
+        if (!modal) {
+
+            alert(
+                'Erro: Modal de checkout não encontrado no HTML'
+            );
+
+            return;
         }
+
+
+        this.orderConfirmed = false;
+
+
+        // ----------------------------------------------------
+        // PASO 1 / PASO 2
+        // ----------------------------------------------------
+
+        const step1 =
+            document.getElementById(
+                'checkoutStep1'
+            );
+
+
+        const step2 =
+            document.getElementById(
+                'checkoutStep2'
+            );
+
+
+        if (step1)
+            step1.style.display = 'block';
+
+
+        if (step2)
+            step2.style.display = 'none';
+
+
+        // ----------------------------------------------------
+        // ESTADO EMAILJS
+        // ----------------------------------------------------
+
+        const emailStatusDot =
+            document.getElementById(
+                'emailStatusDot'
+            );
+
+
+        const emailStatusText =
+            document.getElementById(
+                'emailStatusText'
+            );
+
+
+        if (emailStatusDot)
+            emailStatusDot.className =
+                'status-dot pending';
+
+
+        if (emailStatusText)
+            emailStatusText.textContent =
+                'Estado do envio: pendente';
+
+
+        const confirmBtn =
+            document.getElementById(
+                'confirmDataBtn'
+            );
+
+
+        if (confirmBtn) {
+
+            confirmBtn.disabled = false;
+
+            confirmBtn.textContent =
+                'Confirmar y Enviar Datos';
+
+            confirmBtn.style.backgroundColor =
+                '';
+        }
+
+
+        this.renderOrderSummary();
+
+
+        modal.style.display = 'block';
+
+
+        console.log(
+            "🧾 Checkout abierto."
+        );
     }
+
+
+    // ========================================================
+    // 18. ORDER SUMMARY
+    // ========================================================
 
     renderOrderSummary() {
-        const itemsDiv = document.getElementById('orderItems');
-        if (!itemsDiv) return;
+
+        const itemsDiv =
+            document.getElementById(
+                'orderItems'
+            );
+
+
+        if (!itemsDiv) {
+
+            console.warn(
+                "⚠️ #orderItems no existe."
+            );
+
+            return;
+        }
+
+
+        const subtotal =
+            this.getSubtotal();
+
+
+        const taxes =
+            this.getTaxes();
+
+
+        const total =
+            this.getTotal();
+
 
         let html = '';
+
+
         this.items.forEach(item => {
-            html += `<div class="summary-line"><span>${item.qty}x ${item.name}</span><span>R$ ${(parseFloat(item.price) * item.qty).toFixed(2).replace('.', ',')}</span></div>`;
-        });
-        itemsDiv.innerHTML = html;
 
-        document.getElementById('subtotal').textContent = `R$ ${this.getSubtotal().toFixed(2).replace('.', ',')}`;
-        document.getElementById('taxes').textContent = `R$ ${this.getTaxes().toFixed(2).replace('.', ',')}`;
-        document.getElementById('finalTotal').textContent = `R$ ${this.getTotal().toFixed(2).replace('.', ',')}`;
-    }
+            html += `
 
-    getFormData() {
-        return {
-            name: document.getElementById('customerName')?.value.trim() || '',
-            telefono: document.getElementById('phone')?.value.trim() || '',
-            email: document.getElementById('email')?.value.trim() || '',
-            items: this.items,
-            total: this.getTotal()
-        };
-    }
+                <div class="summary-line">
 
-    validateForm() {
-        const name = document.getElementById('customerName')?.value.trim() || '';
-        const phone = document.getElementById('phone')?.value.trim() || '';
-        const email = document.getElementById('email')?.value.trim() || '';
-        let isValid = true;
+                    <span>
+                        ${item.qty}x ${item.name}
+                    </span>
 
-        document.querySelectorAll('.error-msg').forEach(e => {
-            e.style.display = 'none';
-            e.textContent = '';
-        });
+                    <span>
+                        R$ ${(parseFloat(item.price) *
+                            item.qty)
+                            .toFixed(2)
+                            .replace('.', ',')}
+                    </span>
 
-        if (name.length < 3) {
-            const err = document.getElementById('nameError');
-            err.textContent = "El nombre debe tener al menos 3 caracteres.";
-            err.style.display = 'block';
-            isValid = false;
-        }
-
-        if (phone.replace(/\D/g, '').length < 8) {
-            const err = document.getElementById('phoneError');
-            err.textContent = "Ingresa un teléfono válido (mínimo 8 dígitos).";
-            err.style.display = 'block';
-            isValid = false;
-        }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            const err = document.getElementById('emailError');
-            err.textContent = "Ingresa un correo electrónico válido (ej: tu@email.com).";
-            err.style.display = 'block';
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    async sendCheckoutEmail(data) {
-        if (typeof emailjs === 'undefined') {
-            alert("⚠️ Error crítico: La librería de EmailJS no se cargó.");
-            return false;
-        }
-
-        // COMPATIBILIDAD EXACTA CON TU PLANTILLA: {{nombre}}, {{telefono}}, {{email}}, {{total}}
-        const templateParams = {
-            nombre: data.name,
-            telefono: data.telefono,
-            email: data.email,
-            total: `R$ ${data.total.toFixed(2).replace('.', ',')}`,
-            items: data.items.map(i => `${i.qty}x ${i.name}`).join(' | ') // Extra por si la plantilla lo muestra
-        };
-
-        try {
-            console.log("📤 Enviando a EmailJS con params:", templateParams);
-            const res = await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID, templateParams);
-            console.log('✅ EmailJS respuesta exitosa:', res);
-            return true;
-        } catch (error) {
-            console.error('❌ Error detallado de EmailJS:', error);
-            let errorMsg = error.text || error.message || "Error desconocido";
-            alert(`❌ Error al enviar:\n\n"${errorMsg}"`);
-            return false;
-        }
-    }
-
-    async handleOrderConfirmation() {
-        if (!this.validateForm()) {
-            alert("⚠️ Por favor, corrige los errores marcados en rojo.");
-            return;
-        }
-
-        const btn = document.getElementById('confirmDataBtn');
-        if (!btn || btn.disabled) return;
-
-        const data = this.getFormData();
-        if (!data.items || data.items.length === 0) {
-            alert("⚠️ El carrito está vacío.");
-            return;
-        }
-
-        const originalText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = '⏳ Enviando datos...';
-
-        const emailSent = await this.sendCheckoutEmail(data);
-
-        if (emailSent) {
-            document.getElementById('checkoutStep1').style.display = 'none';
-            document.getElementById('checkoutStep2').style.display = 'block';
-
-            const dot = document.getElementById('emailStatusDot');
-            const txt = document.getElementById('emailStatusText');
-            if (dot) dot.className = 'status-dot ok';
-            if (txt) txt.textContent = '✅ Estado: Datos recibidos correctamente';
-
-            this.orderConfirmed = true;
-            this.renderOrderSummary();
-        } else {
-            btn.disabled = false;
-            btn.textContent = originalText;
-        }
-    }
-
-    async processInfinitePay() {
-        if (!this.orderConfirmed) {
-            alert('⚠️ Primero debes hacer clic en "Confirmar y Enviar Datos".');
-            return;
-        }
-        const btn = document.getElementById('payInfinitePay');
-        btn.disabled = true;
-        btn.textContent = 'Redirigiendo...';
-
-        const data = this.getFormData();
-        const valor = data.total.toFixed(2).replace('.', ',');
-
-        localStorage.setItem('lastOrder', JSON.stringify(data));
-        this.clearCart();
-        window.location.href = `https://link.infinitepay.io/yakelin-yisel/${valor}`;
-    }
-
-    copyToClipboard(text, btn) {
-        const originalText = btn.textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            btn.textContent = '✅ ¡COPIADO!';
-            setTimeout(() => { btn.textContent = originalText; }, 2000);
-        }).catch(() => {
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.left = '-9999px';
-            document.body.appendChild(ta);
-            ta.select();
-            try {
-                document.execCommand('copy');
-                btn.textContent = '✅ ¡COPIADO!';
-                setTimeout(() => { btn.textContent = originalText; }, 2000);
-            } catch (err) {
-                btn.textContent = '❌ Error';
-            }
-            document.body.removeChild(ta);
-        });
-    }
-
-    closeCheckout() {
-        const modal = document.getElementById('checkoutModal');
-        if (modal) modal.style.display = 'none';
-    }
-}
-
-// Inicialización global
-const cart = new ShoppingCart();
+                </div>
+       
