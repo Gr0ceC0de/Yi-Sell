@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yi Sell Tools – trema.mql5</title>
+<style>
+  :root {
+    --bg: #07030f;
+    --violet: #8a2be2;
+    --fuchsia: #ff3dd8;
+    --pix: #1fe3b0;
+    --eth: #00e5ff;
+    --ink: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); font-family: "Courier New", monospace; color: var(--ink); }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .card-container {
+    width: 100%;
+    max-width: 420px;
+    background: radial-gradient(circle at 50% 20%, #1a0838, var(--bg) 85%);
+    border: 2px solid var(--fuchsia);
+    border-radius: 24px;
+    box-shadow: 0 0 25px rgba(255, 61, 216, 0.3), inset 0 0 15px rgba(138, 43, 226, 0.4);
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  /* Cabeçalho na ordem solicitada */
+  .url-header {
+    display: block;
+    color: var(--eth);
+    font-size: 11px;
+    text-decoration: none;
+    word-break: break-all;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .url-header:hover { text-decoration: underline; opacity: 1; }
+
+  .title {
+    color: var(--ink);
+    font-size: 26px;
+    font-weight: 800;
+    margin: 4px 0;
+    text-shadow: 0 0 10px var(--fuchsia);
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    color: var(--pix);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  /* Áreas de Código QR e Pagamento */
+  .qr-box {
+    background: rgba(13, 6, 26, 0.8);
+    border: 1px solid var(--violet);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .qr-box img {
+    width: 170px;
+    height: 170px;
+    border-radius: 12px;
+    border: 1px solid var(--fuchsia);
+    margin: 10px 0;
+  }
+
+  .price-tag {
+    color: var(--fuchsia);
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 0 12px var(--fuchsia);
+    margin: 10px 0;
+  }
+
+  /* Funcionalidade 2: Link Target Blank */
+  .btn-main {
+    display: block;
+    width: 100%;
+    background: var(--fuchsia);
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 0 15px var(--fuchsia);
+    margin-bottom: 12px;
+  }
+
+  /* Funcionalidade 1: Botões Copia e Cola */
+  .btn-copy {
+    width: 100%;
+    background: transparent;
+    color: var(--pix);
+    border: 2px solid var(--pix);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(31, 227, 176, 0.2);
+    margin-top: 8px;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-copy.eth-style {
+    color: var(--eth);
+    border-color: var(--eth);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+  }
+
+  .handle-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Ordem do texto do cabeçalho -->
+    <a href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener" class="url-header">
+      https://gr0cec0de.github.io/Yi-Sell/TradingTools.html
+    </a>
+    <div class="title">Yi Sell Tools</div>
+    <div class="subtitle">trema.mql5</div>
+
+    <!-- Painel de Pagamento com QR Code -->
+    <div class="qr-box">
+      <div style="color: var(--eth); font-size: 13px; font-weight: bold;">SELECCIONE EL MÉTODO DE PAGO</div>
+      <img src="https://gr0cec0de.github.io/Yi-Sell/3445.jpg" alt="QR Code Pix/PicPay">
+      <div class="price-tag">R$ 350,00</div>
+
+      <!-- Link URL Target Blank -->
+      <a class="btn-main" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">
+        CLICK PARA PAGAR
+      </a>
+
+      <!-- Botões de Copia e Cola -->
+      <button class="btn-copy" id="copyPix" type="button">Copiar Pix Copia e Cola</button>
+      <button class="btn-copy eth-style" id="copyEth" type="button">Copiar Wallet ETH</button>
+    </div>
+
+    <a class="handle-link" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">@yiselltools</a>
+  </div>
+
+  <script>
+    var PIX_CODE = "00020126360014br.gov.bcb.pix0114+55619817923905204000053039865406350.005802BR5925Yakelin Yisel Diaz Rondon6009Sao Paulo62290525REC6ABE7A67CC3722389755066304DBD3";
+    var ETH_CODE = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
+
+    function copyToClipboard(text, element, defaultText) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+          element.textContent = "Copiado ✓";
+          setTimeout(function() { element.textContent = defaultText; }, 2500);
+        });
+      } else {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          element.textContent = "Copiado ✓";
+        } catch (err) {
+          element.textContent = "Error al copiar";
+        }
+        setTimeout(function() { element.textContent = defaultText; }, 2500);
+        document.body.removeChild(textArea);
+      }
+    }
+
+    document.getElementById("copyPix").addEventListener("click", function() {
+      copyToClipboard(PIX_CODE, this, "Copiar Pix Copia e Cola");
+    });
+
+    document.getElementById("copyEth").addEventListener("click", function() {
+      copyToClipboard(ETH_CODE, this, "Copiar Wallet ETH");
+    });
+  </script>
+</body>
+</html>
