@@ -3,17 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>buycard</title>
+<title>Trema.Mql5 – Yi-Sell Tools</title>
 <style>
-  :root {
-    --bg: #07030f;
-    --violet: #8a2be2;
-    --fuchsia: #ff3dd8;
-    --pix: #1fe3b0;
-    --eth: #00e5ff;
-    --ink: #ffffff;
-  }
+  :root { --pink:#ff9ee6; --mint:#8ff7c8; --lilac:#c9b8ff; }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: "Courier New", monospace; color: var(--ink); }
+  html, body { margin: 0; background: #000; color: #fff; font-family: Consolas, "Lucida Console", "Courier New", monospace; }
+  button { font: inherit; }
+  body { display: flex; justify-content: center; padding: 12px; }
 
-  body {
+  /* Marco de luz de todo el documento */
+  .frame { width: 100%; max-width: 860px; padding: 22px 16px; text-align: center; border: 1px solid #fff; border-radius: 22px;
+           background: radial-gradient(70% 28% at 50% 0, rgba(255,158,230,.16), transparent),
+                       radial-gradient(60% 30% at 100% 100%, rgba(201,184,255,.12), transparent), #000;
+           box-shadow: 0 0 3px #fff, 0 0 12px var(--pink), 0 0 30px rgba(255,158,230,.45), inset 0 0 3px #fff, inset 0 0 18px rgba(255,158,230,.3); }
+  section, .row { margin-top: 14px; }
+
+  /* Texto: títulos normales en blanco, texto pequeño en fucsia */
+  h1 { margin: 6px 0 2px; font-size: 18px; }
+  h2 { margin: 0 0 6px; font-size: 13px; }
+  p, small, .sm { margin: 0; font-size: 11px; line-height: 1.5; color: var(--pink); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  /* Cabecera */
+  .hexo { width: 130px; height: 150px; margin: 0 auto 10px; filter: drop-shadow(0 0 5px var(--pink)) drop-shadow(0 0 14px var(--lilac)); }
+  .hex, .hex i { clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+  .hex { width: 100%; height: 100%; display: grid; place-items: center; background: linear-gradient(160deg, var(--pink), var(--lilac)); }
+  .hex i { display: block; width: calc(100% - 8px); height: calc(100% - 8px); background: #fff; }
+  .hex img { display: block; width: 100%; height: 100%; object-fit: cover; } /* Cambiado a cover para adaptar la imagen */
+  .badge { display: inline-block; margin: 6px 0; padding: 2px 8px; border: 1px solid var(--pink); border-radius: 6px; font-size: 10px; color: var(--pink); }
+  .url { display: block; font-size: 10px; color: var(--pink); word-break: break-all; }
+
+  /* Cajas y columnas */
+  .box { padding: 12px; border: 1px solid rgba(255,158,230,.6); border-radius: 12px; background: rgba(255,158,230,.05); box-shadow: 0 0 10px rgba(255,158,230,.2); }
+  .cols, .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .pay { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cols .box { text-align: left; }
+  .cols p { font-size: clamp(9.5px, 2.5vw, 11px); }
+  .tag { margin-top: 8px; font-size: 10px; opacity: .85; }
+
+  /* Paquete y pago */
+  .price { margin: 8px 0; font-size: 18px; font-weight: 700; color: var(--mint); text-shadow: 0 0 10px rgba(143,247,200,.5); }
+  .cta { display: block; padding: 10px 14px; border-radius: 999px; background: var(--pink); color: #000; font-size: 12px; font-weight: 700; text-decoration: none; box-shadow: 0 0 14px rgba(255,158,230,.6); }
+  .eth { --c: var(--lilac); }
+  .pix { --c: var(--mint); }
+  .qr { width: 100%; max-width: 190px; aspect-ratio: 1; margin: 8px auto; overflow: hidden; background: #fff; border: 2px solid var(--c); border-radius: 10px; box-shadow: 0 0 12px var(--c); }
+  .qr img, .qr svg { display: block; width: 100%; height: 100%; object-fit: contain; } /* Asegura que la imagen quepa bien */
+  .addr { margin-bottom: 8px; font-size: 9.5px; word-break: break-all; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px 6px; cursor: pointer; text-decoration: none;
+         border: 1px solid var(--pink); border-radius: 999px; background: transparent; color: var(--pink); font-size: 11px; box-shadow: 0 0 8px rgba(255,158,230,.35); }
+  .btn svg { width: 14px; height: 14px; flex: none; }
+
+  /* Enlaces */
+  .links a { display: block; padding: 10px 6px; text-decoration: none; font-size: 12px; overflow-wrap: anywhere; }
+  .links small { display: block; margin-bottom: 4px; font-size: 10px; }
+  .links svg { width: 20px; height: 20px; vertical-align: middle; }
+  .foot { margin-top: 16px; font-size: 10px; }
+</style>
+</head>
+<body>
+<main class="frame">
+
+  <!-- Imagen 1 adaptada al contenedor hexagonal -->
+  <div class="hexo"><div class="hex"><i><img src="https://i.ibb.co/6P9wW6z/robot.jpg" alt="Robot Trema"></i></div></div>
+  <h1>Trema.Mql5</h1>
+  <h2>Yi-Sell Tools</h2>
+  <p>Trading Tools &amp; Automated Solutions</p>
+  <span class="badge">MQL5 OFFICIAL</span>
+  <a class="url" href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener">https://gr0cec0de.github.io/Yi-Sell/TradingTools.html</a>
+
+  <section class="box">
+    <h2>TREMA.MQL5</h2>
+    <p>Detecta tendencias alcistas y bajistas en segundos.</p>
+    <p>Multimercados · Multi-timeframes</p>
+  </section>
+
+  <section class="cols">
+    <div class="box">
+      <h2>[01] RECURSO</h2>
+      <!-- Texto modificado -->
+      <p>Activo digital brinda fidelidad y precisión de análisis de data.</p>
+      <p class="tag">// SYSTEM READY</p>
+    </div>
+    <div class="box">
+      <h2>[02] ACCESO</h2>
+      <!-- Texto modificado -->
+      <p>Licencia digital con integración instantánea.</p>
+      <p class="tag">// INSTANT PAY</p>
+    </div>
+    <div class="box">
+      <h2>[03] SOPORTE</h2>
+      <!-- Texto modificado -->
+      <p>Instalación y optimización para convertir en sistemas automatizados.</p>
+      <p class="tag">// VERIFIED LINK</p>
+    </div>
+  </section>
+
+  <section class="box">
+    <p>PAQUETE ESPECIAL</p>
+    <h2>trema.mql5</h2>
+    <p>.mql5 Tools / Trading Suite</p>
+    <div class="price">R$350,00</div>
+    <a class="cta" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">CLICK PARA PAGAR VIA PICPAY</a>
+  </section>
+
+  <section class="pay">
+    <div class="box eth">
+      <h2>ETHEREUM</h2>
+      <div class="qr">
+        <!-- Imagen 2 (QR) insertada en la columna de Ethereum -->
+        <img src="https://i.ibb.co/3s9QZ4R/qr-code.jpg" alt="QR Ethereum">
+      </div>
+      <p class="addr">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</p>
+      <button class="btn" type="button" data-copy="0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C" data-label="Copiar Wallet ETH"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar Wallet ETH</span></button>
+    </div>
+    <div class="box pix">
+      <h2>PIX</h2>
+      <!-- La imagen del QR de Pix se mantiene según tu código original (qr-pix.jpg) -->
+      <div class="qr"><img src="qr-pix.jpg" alt="QR Pix"></div>
+      <p class="addr">Chave Pix · Copia e Cola</p>
+      <button class="btn" type="button" data-label="Copiar Pix Copia e Cola"
+        data-copy="00020126360014br.gov.bcb.pix0114+55619817923905204000053039865406350.005802BR5925Yakelin Yisel Diaz Rondon6009Sao Paulo62290525REC6ABE7A67CC3722389755066304DBD3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar Pix Copia e Cola</span></button>
+    </div>
+  </section>
+
+  <section class="links">
+    <a class="box" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener"><small>PicPay Handle</small>@yiselltools →</a>
+    <a class="box" href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener"><small>GitHub Web Page</small>TradingTools.html →</a>
+    <a class="box" href="https://wa.me/5561981792390" target="_blank" rel="noopener"><small>WhatsApp</small><svg viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M16.6 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.65.15-.2.3-.75.95-.9 1.15-.17.2-.33.2-.62.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.5h-.55c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.47 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg> 61981792390</a>
+  </section>
+  <a class="box" href="https://1drv.ms/w/c/ad7965b7f3c5d0f8/IQDHLE4LLoK3SJBy8OrKULTxAWo38Y8nbm9BqefmQqX2jho?e=Hkd3BR" target="_blank" rel="noopener" style="display:block;margin-top:8px;color:#fff;text-decoration:none;font-size:12px"><small style="display:block;color:var(--pink);font-size:10px">Documento de Respaldo OneDrive</small>Acceder al Documento Word Adjunto →</a>
+
+  <div class="row"><button class="btn" type="button" data-copy="61981792390" data-label="Copiar chave Pix · 61981792390"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar chave Pix · 61981792390</span></button></div>
+
+  <p class="foot">Yi-Sell Tools © 2026 · Yakelin Yisel Diaz Rondon</p>
+</main>
+
+<script>
+  // Botones de copiar
+  function fallback(t) {
+    var a = document.createElement("textarea");
+    a.value = t; a.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(a); a.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(a);
+    return ok;
+  }
+  function copy(t) {
+    if (navigator.clipboard && window.isSecureContext)
+      return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return fallback(t); });
+    return Promise.resolve(fallback(t));
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var s = b.querySelector("span");
+      copy(b.dataset.copy).then(function (ok) {
+        s.textContent = ok ? "Copiado ✓" : "Mantén presionado el texto";
+        setTimeout(function () { s.textContent = b.dataset.label; }, 2500);
+      });
+    });
+  });
+</script>
+</body>
+</html>
