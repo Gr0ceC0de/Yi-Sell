@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Divulgación de Riesgos">
+    <title>Advertencia de riesgos - MetaQuotes</title>
+    <style>
+        /* Estilos base y reseteo */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1e1e1e; /* Fondo oscuro exterior (Marco) */
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal simulando una ventana/ventana de documento */
+        .document-window {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para resaltar sobre el fondo oscuro */
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        /* Barra superior estilo ventana de Windows/Microsoft */
+        .window-header {
+            background-color: #f3f2f1;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e1dfdd;
+            gap: 15px;
+        }
+
+        .window-header svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .window-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            letter-spacing: 0.5px;
+        }
+
+        /* Área de contenido principal */
+        .content-area {
+            padding: 40px 50px;
+        }
+
+        /* Tipografía y elementos de texto */
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #201f1e;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+            text-align: center; /* Centrado como en el correo original */
+        }
+
+        p {
+            font-size: 15px;
+            color: #323130;
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        /* Listas */
+        ul {
+            list-style-type: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        li {
+            font-size: 15px;
+            color: #323130;
+            margin-bottom: 8px;
+            padding-left: 4px;
+            text-align: justify;
+        }
+
+        /* Separadores y bloques especiales */
+        .divider {
+            height: 1px;
+            background-color: #edebe9;
+            margin: 32px 0;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 600px) {
+            .content-area {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            p, li {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-window">
+        <!-- Encabezado de la ventana con el logo de MetaTrader -->
+        <header class="window-header">
+            <!-- Logotipo de MetaTrader (Representación vectorial del ícono) -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="#2b2b2b"/>
+                <path d="M 25 70 L 50 30 L 75 70 Z" fill="#00a651" opacity="0.9"/>
+                <path d="M 35 70 L 50 45 L 65 70 Z" fill="#0078d4" opacity="0.9"/>
+                <path d="M 42 70 L 50 55 L 58 70 Z" fill="#ffffff" opacity="0.9"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+            </svg>
+            <span class="window-title">Trading Platform</span>
+        </header>
+
+        <!-- Contenido del documento -->
+        <main class="content-area">
+            <h1>Advertencia de riesgos</h1>
+            
+            <p>Recuerde que el comercio en la plataforma implica riesgos financieros. Usted podría perder parte o la totalidad de su inversión. Por consiguiente, antes de tomar una decisión, le recomendamos evaluar los riesgos, los costes y los objetivos de la inversión, así como sus experiencias y otros factores. Consulte con un profesional si fuera necesario.</p>
+            
+            <p>Tenga cuidado con las personas que haya conocido recientemente en Internet, especialmente en las redes sociales Tinder, WeChat, Facebook y otras.</p>
+            
+            <p>Para evitar exponer su inversión a riesgos innecesarios, le recomendamos seguir estas reglas:</p>
+            
+            <ul>
+                <li>No comercie ni invierta siguiendo los consejos de personas que no conoce o que no estén acreditadas.</li>
+                <li>No realice actividades financieras con personas u organizaciones de las que no sepa nada o sobre las que no pueda verificar información.</li>
+                <li>No revele su situación financiera a nadie.</li>
+                <li>No se fíe de quienes le hablan de "oportunidades de inversión exclusivas" y le apresuran a tomar una decisión.</li>
+                <li>No facilite los datos de su cuenta, sus números de identificación y otra información confidencial a personas sospechosas.</li>
+                <li>No confíe en los proyectos que prometen una rentabilidad inusualmente alta.</li>
+                <li>No facilite nunca los datos de su cuenta a nadie.</li>
+            </ul>
+
+            <p>Yisell es el desarrollador del software de la plataforma comercial. La empresa no presta servicios financieros, de inversión o de corretaje. Yisell no participa, controla o influye en las operaciones comerciales, ni tampoco abre ni proporciona cuentas comerciales reales.</p>
+            
+            <p>La información contenida en el anexo no supone un asesoramiento en materia de inversión. Yisell no se hace responsable de las decisiones de inversión que usted tome.</p>
+            
+            <p>El desarrollador de la plataforma comercial:</p>
+            
+            <ul>
+                <li>no dispone de acceso a su cuenta</li>
+                <li>no dispone de acceso a la información sobre sus cuentas, incluidos el estado y el saldo de la misma</li>
+                <li>no dispone de información sobre sus transacciones comerciales</li>
+                <li>no participa en los depósitos y retiradas en la plataforma comercial</li>
+            </ul>
+            
+        </main>
+    </div>
+
+</body>
+</html>
