@@ -69,9 +69,15 @@
 
     .nav-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr;
       gap: var(--gap);
       align-items: stretch;
+    }
+
+    @media (min-width: 700px) {
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .nav-card {
@@ -136,20 +142,6 @@
       border-radius: 10px;
     }
 
-    @media (max-width: 600px) {
-      main.container {
-        padding-block: 1.75rem 2.5rem;
-      }
-
-      .nav-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card-link img {
-        aspect-ratio: 16 / 9;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -205,7 +197,7 @@
       <section id="classified" class="nav-card" aria-labelledby="classified-title">
         <h2 id="classified-title">Classified Ads</h2>
         <a href="classifieds.html" class="ripple-btn card-link">
-          <img src="docs/classsifiedad.jpg" alt="Classified Ads" loading="lazy" decoding="async">
+          <img src="docs/classifiedad.jpg" alt="Classified Ads" loading="lazy" decoding="async">
           <p>Marketplace &amp; Opportunities. It's about monetizing a wishlist.</p>
         </a>
       </section>
