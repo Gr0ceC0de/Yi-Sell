@@ -3,203 +3,224 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yi Sell Tools – trema.mql5</title>
+<title>Trema.Mql5 – Yi-Sell Tools</title>
 <style>
-  :root {
-    --bg: #07030f;
-    --violet: #8a2be2;
-    --fuchsia: #ff3dd8;
-    --pix: #1fe3b0;
-    --eth: #00e5ff;
-    --ink: #ffffff;
+  /* Paleta basada en el PDF: Fucsia, Verde Menta, Lila/Violeta */
+  :root { 
+    --pink: #ff9ee6; 
+    --mint: #8ff7c8; 
+    --lilac: #c9b8ff; 
+    --violet: #8a2be2; /* Violeta para el marco */
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); font-family: "Courier New", monospace; color: var(--ink); }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+  html, body { 
+    margin: 0; 
+    background: #000; 
+    color: #fff; 
+    font-family: Consolas, "Lucida Console", "Courier New", monospace; 
   }
+  button { font: inherit; }
+  body { display: flex; justify-content: center; padding: 12px; }
 
-  .card-container {
-    width: 100%;
-    max-width: 420px;
-    background: radial-gradient(circle at 50% 20%, #1a0838, var(--bg) 85%);
-    border: 2px solid var(--fuchsia);
-    border-radius: 24px;
-    box-shadow: 0 0 25px rgba(255, 61, 216, 0.3), inset 0 0 15px rgba(138, 43, 226, 0.4);
-    padding: 24px 20px;
-    text-align: center;
+  /* Marco del documento: Violeta */
+  .frame { 
+    width: 100%; 
+    max-width: 860px; 
+    padding: 22px 16px; 
+    text-align: center; 
+    border: 2px solid var(--violet); 
+    border-radius: 22px;
+    background: radial-gradient(70% 28% at 50% 0, rgba(255,158,230,.16), transparent),
+                radial-gradient(60% 30% at 100% 100%, rgba(201,184,255,.12), transparent), #000;
+    box-shadow: 0 0 3px var(--violet), 0 0 12px var(--violet), 0 0 30px rgba(138,43,226,.45), inset 0 0 3px var(--violet), inset 0 0 18px rgba(138,43,226,.3); 
   }
+  section, .row { margin-top: 14px; }
 
-  /* Cabeçalho na ordem solicitada */
-  .url-header {
-    display: block;
-    color: var(--eth);
-    font-size: 11px;
-    text-decoration: none;
-    word-break: break-all;
-    margin-bottom: 8px;
-    opacity: 0.8;
-  }
-  .url-header:hover { text-decoration: underline; opacity: 1; }
-
-  .title {
-    color: var(--ink);
-    font-size: 26px;
-    font-weight: 800;
-    margin: 4px 0;
-    text-shadow: 0 0 10px var(--fuchsia);
-    text-transform: uppercase;
-  }
-
-  .subtitle {
-    color: var(--pix);
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  /* Áreas de Código QR e Pagamento */
-  .qr-box {
-    background: rgba(13, 6, 26, 0.8);
-    border: 1px solid var(--violet);
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-
-  .qr-box img {
-    width: 170px;
-    height: 170px;
-    border-radius: 12px;
-    border: 1px solid var(--fuchsia);
-    margin: 10px 0;
-  }
-
-  .price-tag {
-    color: var(--fuchsia);
-    font-size: 32px;
-    font-weight: bold;
-    text-shadow: 0 0 12px var(--fuchsia);
-    margin: 10px 0;
-  }
-
-  /* Funcionalidade 2: Link Target Blank */
-  .btn-main {
-    display: block;
-    width: 100%;
-    background: var(--fuchsia);
-    color: #000;
-    font-weight: bold;
-    font-size: 15px;
-    padding: 12px;
-    border-radius: 30px;
-    text-decoration: none;
-    box-shadow: 0 0 15px var(--fuchsia);
-    margin-bottom: 12px;
-  }
-
-  /* Funcionalidade 1: Botões Copia e Cola */
-  .btn-copy {
-    width: 100%;
-    background: transparent;
-    color: var(--pix);
-    border: 2px solid var(--pix);
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 13px;
-    padding: 10px;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(31, 227, 176, 0.2);
-    margin-top: 8px;
-    transition: all 0.2s ease;
-  }
-  
-  .btn-copy.eth-style {
-    color: var(--eth);
-    border-color: var(--eth);
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
-  }
-
-  .handle-link {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
+  /* Texto: Títulos grandes en blanco con bordes violetas, texto pequeño fucsia */
+  h1 { 
+    margin: 6px 0 2px; 
+    font-size: 24px; 
+    color: #fff; 
+    text-shadow: 0 0 5px var(--violet), 0 0 10px var(--violet);
+    border-bottom: 1px solid var(--violet);
+    padding-bottom: 4px;
     display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
+  }
+  h2 { 
+    margin: 0 0 6px; 
+    font-size: 16px; 
+    color: #fff; 
+    text-shadow: 0 0 3px var(--violet);
+  }
+  p, small, .sm { 
+    margin: 0; 
+    font-size: 11px; 
+    line-height: 1.5; 
+    color: var(--pink); 
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  /* Cabecera */
+  .hexo { width: 130px; height: 150px; margin: 0 auto 10px; filter: drop-shadow(0 0 5px var(--pink)) drop-shadow(0 0 14px var(--lilac)); }
+  .hex, .hex i { clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+  .hex { width: 100%; height: 100%; display: grid; place-items: center; background: linear-gradient(160deg, var(--pink), var(--lilac)); }
+  .hex i { display: block; width: calc(100% - 8px); height: calc(100% - 8px); background: #fff; }
+  .hex img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .badge { display: inline-block; margin: 6px 0; padding: 2px 8px; border: 1px solid var(--pink); border-radius: 6px; font-size: 10px; color: var(--pink); }
+  .url { display: block; font-size: 10px; color: var(--pink); word-break: break-all; }
+
+  /* Cajas y columnas */
+  .box { padding: 12px; border: 1px solid rgba(255,158,230,.6); border-radius: 12px; background: rgba(255,158,230,.05); box-shadow: 0 0 10px rgba(255,158,230,.2); }
+  .cols, .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .pay { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cols .box { text-align: left; }
+  .cols p { font-size: clamp(9.5px, 2.5vw, 11px); }
+  .tag { margin-top: 8px; font-size: 10px; opacity: .85; }
+
+  /* Paquete y pago */
+  .price { 
+    margin: 8px 0; 
+    font-size: 16px; /* Tamaño pequeño */
+    font-weight: 700; 
+    color: var(--mint); /* Verde fluorescente */
+    text-shadow: 0 0 10px rgba(143,247,200,.8); 
+  }
+  .cta { display: block; padding: 10px 14px; border-radius: 999px; background: var(--pink); color: #000; font-size: 12px; font-weight: 700; text-decoration: none; box-shadow: 0 0 14px rgba(255,158,230,.6); }
+  .eth { --c: var(--lilac); }
+  .pix { --c: var(--mint); }
+  .qr { width: 100%; max-width: 190px; aspect-ratio: 1; margin: 8px auto; overflow: hidden; background: #fff; border: 2px solid var(--c); border-radius: 10px; box-shadow: 0 0 12px var(--c); }
+  .qr img, .qr svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .addr { margin-bottom: 8px; font-size: 9.5px; word-break: break-all; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px 6px; cursor: pointer; text-decoration: none;
+         border: 1px solid var(--pink); border-radius: 999px; background: transparent; color: var(--pink); font-size: 11px; box-shadow: 0 0 8px rgba(255,158,230,.35); }
+  .btn svg { width: 14px; height: 14px; flex: none; }
+
+  /* Enlaces */
+  .links a { display: block; padding: 10px 6px; text-decoration: none; font-size: 12px; overflow-wrap: anywhere; }
+  .links small { display: block; margin-bottom: 4px; font-size: 10px; }
+  .links svg { width: 20px; height: 20px; vertical-align: middle; }
+  .foot { margin-top: 16px; font-size: 10px; }
+  
+  /* Estilo para los nuevos enlaces superiores */
+  .top-link {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    color: var(--lilac);
+    text-decoration: underline;
+    word-break: break-all;
   }
 </style>
 </head>
 <body>
+<main class="frame">
 
-  <div class="card-container">
-    <!-- Ordem do texto do cabeçalho -->
-    <a href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener" class="url-header">
-      https://gr0cec0de.github.io/Yi-Sell/TradingTools.html
-    </a>
-    <div class="title">Yi Sell Tools</div>
-    <div class="subtitle">trema.mql5</div>
+  <!-- 1. Add in the top central position small dimensión -->
+  <a class="top-link" href="https://1drv.ms/w/c/ad7965b7f3c5d0f8/IQC-5-comZB0Q7u2XIwU6nFbAeXVyacAjQoKeagw3pRVo1g?e=zR6jNI" target="_blank" rel="noopener">📄 Documento de Respaldo OneDrive (Superior)</a>
 
-    <!-- Painel de Pagamento com QR Code -->
-    <div class="qr-box">
-      <div style="color: var(--eth); font-size: 13px; font-weight: bold;">SELECCIONE EL MÉTODO DE PAGO</div>
-      <img src="https://gr0cec0de.github.io/Yi-Sell/3445.jpg" alt="QR Code Pix/PicPay">
-      <div class="price-tag">R$ 350,00</div>
+  <!-- Imagen 1 adaptada al contenedor hexagonal -->
+  <div class="hexo"><div class="hex"><i><img src="https://photos.app.goo.gl/4S1GwSn5r4msEj4JA" alt="Robot Trema"></i></div></div>
+  <h1>Trema.Mql5</h1>
+  <h2>Yi-Sell Tools</h2>
+  <p>Trading Tools &amp; Automated Solutions</p>
+  <span class="badge">MQL5 OFFICIAL</span>
+  <a class="url" href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener">https://gr0cec0de.github.io/Yi-Sell/TradingTools.html</a>
 
-      <!-- Link URL Target Blank -->
-      <a class="btn-main" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">
-        CLICK PARA PAGAR
-      </a>
+  <section class="box">
+    <h2>TREMA.MQL5</h2>
+    <p>Detecta tendencias alcistas y bajistas en segundos.</p>
+    <p>Multimercados · Multi-timeframes</p>
+  </section>
 
-      <!-- Botões de Copia e Cola -->
-      <button class="btn-copy" id="copyPix" type="button">Copiar Pix Copia e Cola</button>
-      <button class="btn-copy eth-style" id="copyEth" type="button">Copiar Wallet ETH</button>
+  <section class="cols">
+    <div class="box">
+      <h2>[01] RECURSO</h2>
+      <p>Activo digital brinda fidelidad y precisión de análisis de data.</p>
+      <p class="tag">// SYSTEM READY</p>
     </div>
+    <div class="box">
+      <h2>[02] ACCESO</h2>
+      <p>Licencia digital con integración instantánea.</p>
+      <p class="tag">// INSTANT PAY</p>
+    </div>
+    <div class="box">
+      <h2>[03] SOPORTE</h2>
+      <p>Instalación y optimización para convertir en sistemas automatizados.</p>
+      <p class="tag">// VERIFIED LINK</p>
+    </div>
+  </section>
 
-    <a class="handle-link" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">@yiselltools</a>
-  </div>
+  <section class="box">
+    <p>PAQUETE ESPECIAL</p>
+    <h2>trema.mql5</h2>
+    <p>.mql5 Tools / Trading Suite</p>
+    <div class="price">R$350,00</div>
+    <a class="cta" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener">CLICK PARA PAGAR VIA PICPAY</a>
+  </section>
 
-  <script>
-    var PIX_CODE = "00020126360014br.gov.bcb.pix0114+55619817923905204000053039865406350.005802BR5925Yakelin Yisel Diaz Rondon6009Sao Paulo62290525REC6ABE7A67CC3722389755066304DBD3";
-    var ETH_CODE = "0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C";
+  <section class="pay">
+    <div class="box eth">
+      <h2>ETHEREUM</h2>
+      <div class="qr">
+        <!-- Imagen 2 (QR) insertada en la columna de Ethereum -->
+        <img src="https://photos.app.goo.gl/2sxvSqTQsWTU1ZnM8" alt="QR Ethereum">
+      </div>
+      <!-- 3. Add enlace OneDrive en Box QR code Etherum -->
+      <a class="top-link" href="https://1drv.ms/w/c/ad7965b7f3c5d0f8/IQDK9KsMyl__RrPhMjvmmRTtAd1WxjOcbHvyNMPhwLmB4BY?e=dvDo6p" target="_blank" rel="noopener">📄 Documento QR Ethereum</a>
+      <p class="addr">0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C</p>
+      <button class="btn" type="button" data-copy="0xacaCD7D5CD04D7E7Dcf4155C3FA6c2124f1B090C" data-label="Copiar Wallet ETH"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar Wallet ETH</span></button>
+    </div>
+    <div class="box pix">
+      <h2>PIX</h2>
+      <!-- Imagen 3 (QR PicPay) insertada en la columna de Pix -->
+      <div class="qr"><img src="https://photos.app.goo.gl/QbaxWgKRqKV3KNNA8" alt="QR Pix"></div>
+      <!-- 2. Add enlace en box QR Picpay -->
+      <a class="top-link" href="https://1drv.ms/w/c/ad7965b7f3c5d0f8/IQB1syeyHqHLSZHncogT2HiyASk1odfB17bKAT3fdnzLteE?e=8tBSA7" target="_blank" rel="noopener">📄 Documento QR PicPay</a>
+      <p class="addr">Chave Pix · Copia e Cola</p>
+      <button class="btn" type="button" data-label="Copiar Pix Copia e Cola"
+        data-copy="00020126360014br.gov.bcb.pix0114+55619817923905204000053039865406350.005802BR5925Yakelin Yisel Diaz Rondon6009Sao Paulo62290525REC6ABE7A67CC3722389755066304DBD3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar Pix Copia e Cola</span></button>
+    </div>
+  </section>
 
-    function copyToClipboard(text, element, defaultText) {
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function() {
-          element.textContent = "Copiado ✓";
-          setTimeout(function() { element.textContent = defaultText; }, 2500);
-        });
-      } else {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-          document.execCommand("copy");
-          element.textContent = "Copiado ✓";
-        } catch (err) {
-          element.textContent = "Error al copiar";
-        }
-        setTimeout(function() { element.textContent = defaultText; }, 2500);
-        document.body.removeChild(textArea);
-      }
-    }
+  <section class="links">
+    <a class="box" href="https://picpay.me/yiselltools/350" target="_blank" rel="noopener"><small>PicPay Handle</small>@yiselltools →</a>
+    <a class="box" href="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html" target="_blank" rel="noopener"><small>GitHub Web Page</small>TradingTools.html →</a>
+    <a class="box" href="https://wa.me/5561981792390" target="_blank" rel="noopener"><small>WhatsApp</small><svg viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M16.6 14.4c-.3-.15-1.7-.85-2-.95-.25-.1-.45-.15-.65.15-.2.3-.75.95-.9 1.15-.17.2-.33.2-.62.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.5-.65-.5h-.55c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.47 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg> 61981792390</a>
+  </section>
 
-    document.getElementById("copyPix").addEventListener("click", function() {
-      copyToClipboard(PIX_CODE, this, "Copiar Pix Copia e Cola");
+  <!-- 4. Delete borrar documento de soporte ondrive. (Eliminado el enlace anterior de OneDrive) -->
+
+  <div class="row"><button class="btn" type="button" data-copy="61981792390" data-label="Copiar chave Pix · 61981792390"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copiar chave Pix · 61981792390</span></button></div>
+
+  <p class="foot">Yi-Sell Tools © 2026 · Yakelin Yisel Diaz Rondon</p>
+</main>
+
+<script>
+  // Botones de copiar
+  function fallback(t) {
+    var a = document.createElement("textarea");
+    a.value = t; a.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(a); a.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(a);
+    return ok;
+  }
+  function copy(t) {
+    if (navigator.clipboard && window.isSecureContext)
+      return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return fallback(t); });
+    return Promise.resolve(fallback(t));
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var s = b.querySelector("span");
+      copy(b.dataset.copy).then(function (ok) {
+        s.textContent = ok ? "Copiado ✓" : "Mantén presionado el texto";
+        setTimeout(function () { s.textContent = b.dataset.label; }, 2500);
+      });
     });
-
-    document.getElementById("copyEth").addEventListener("click", function() {
-      copyToClipboard(ETH_CODE, this, "Copiar Wallet ETH");
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
