@@ -162,7 +162,65 @@
     </header>
 
     <div class="nav-grid">
-      <section id="trading-tools" class="nav-card" aria-labelledby="trading-tools-title">
+
+  <section id="trading-tools" class="nav-card" aria-labelledby="trading-tools-title">
+    <h2 id="trading-tools-title">Trading Tools</h2>
+    <a href="TradingTools.html" class="ripple-btn card-link">
+      <img src="docs/TreMA.jpg" alt="Trend Advisory Forex Robot" loading="lazy" decoding="async">
+      <p>Trading Tools: Script .mql5. This is not a moving average. This is an interrogation entity. TreMA describes why price is about to move: institutional imbalance, not lagging math. Output: Visual warnings + sound alerts. No auto-trades. You stay in control.</p>
+    </a>
+  </section>
+</div>
+
+<style>
+    * { box-sizing: border-box; }
+
+  .nav-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .nav-card {
+    overflow: hidden; /* evita que la imagen se salga del card */
+    border-radius: 16px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #trading-tools-title {
+    padding: 16px 16px 0 16px;
+    margin: 0;
+  }
+
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .card-link img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 180px; /* límite para que no crezca más que el box */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .card-link p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+</style>    <section id="trading-tools" class="nav-card" aria-labelledby="trading-tools-title">
         <h2 id="trading-tools-title">Trading Tools</h2>
 <style>
   img {
@@ -173,12 +231,7 @@
     margin: 0 auto;
   }
 </style>
-        <a href="TradingTools.html" class="ripple-btn card-link">
-          <img src="docs/TreMA.jpg" alt="Trend Advisory Forex Robot"  loading="lazy" decoding="async">
-          <p>Trading Tools: Script .mql5. This is not a moving average. This is an interrogation entity. TreMA describes why price is about to move: institutional imbalance, not lagging math. Output: Visual warnings + sound alerts. No auto-trades. You stay in control.</p>
-        </a>
-      </section>
-
+        
       <section id="financial-algorithm" class="nav-card" aria-labelledby="financial-algorithm-title">
         <h2 id="financial-algorithm-title">Financial Algorithms</h2>
         <a href="TradingTools.html" target="_blank" rel="noopener noreferrer" class="ripple-btn card-link">
