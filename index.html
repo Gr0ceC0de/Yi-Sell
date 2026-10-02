@@ -7,83 +7,232 @@
   <meta name="description" content="Yi-Sell Trading Tools, Market Overview, Headlines and Classified Ads">
   <link rel="stylesheet" href="styles.css">
   <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #151a23;
+      --surface-hover: #1c2330;
+      --border: #232b3a;
+      --text: #e6e9ef;
+      --text-muted: #9aa4b8;
+      --accent: #4f8cff;
+      --accent-hover: #6ea0ff;
+      --radius: 14px;
+      --gap: 1.25rem;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main.container {
+      flex: 1;
+      width: min(1200px, 100% - 2rem);
+      margin-inline: auto;
+      padding-block: 2.5rem 3.5rem;
+    }
+
+    .page-intro {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 2.5vw + 1rem, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--gap);
+      align-items: stretch;
+    }
+
+    .nav-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-card:hover,
+    .nav-card:focus-within {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .nav-card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 1rem 1.25rem 0.5rem;
+      color: var(--text);
+    }
+
+    .card-link {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      text-decoration: none;
+      color: inherit;
+      padding: 0 1.25rem 1.25rem;
+      gap: 0.85rem;
+    }
+
+    .card-link img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #0f131b;
+      display: block;
+    }
+
+    .card-link p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      white-space: pre-line;
+    }
+
+    .card-link:hover p,
+    .card-link:focus p {
+      color: var(--text);
+    }
+
+    .card-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      main.container {
+        padding-block: 1.75rem 2.5rem;
+      }
+
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-link img {
+        height: 160px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header dinámico -->
   <div id="header-placeholder"></div>
 
   <main class="container">
-    <div class="page-intro">
+    <header class="page-intro">
       <h1 class="section-title">Yi-Sell Navigation Index</h1>
       <p class="page-subtitle">Click a section to explore</p>
-    </div>
+    </header>
 
     <div class="nav-grid">
-      <section id="trading-tools" class="nav-card">
-        <h2>Trading Tools</h2>
+      <section id="trading-tools" class="nav-card" aria-labelledby="trading-tools-title">
+        <h2 id="trading-tools-title">Trading Tools</h2>
         <a href="TradingTools.html" class="ripple-btn card-link">
-          <img src="docs/TreMA.jpg" alt="Trend Advisory Forex Robot">
-          <p>Trading Tools: Script .mql5 This is not a moving average. This is an interrogation entity. TreMA describes why price is about to move: institutional imbalance, not lagging math.
-              Output: Visual warnings + sound alerts. No auto-trades. You stay in control</p>
+          <img src="docs/TreMA.jpg" alt="Trend Advisory Forex Robot" loading="lazy" decoding="async">
+          <p>Trading Tools: Script .mql5. This is not a moving average. This is an interrogation entity. TreMA describes why price is about to move: institutional imbalance, not lagging math. Output: Visual warnings + sound alerts. No auto-trades. You stay in control.</p>
         </a>
       </section>
 
-      <section id="financial-algorithm" class="nav-card">
-        <h2>Financial Algorithms</h2>
+      <section id="financial-algorithm" class="nav-card" aria-labelledby="financial-algorithm-title">
+        <h2 id="financial-algorithm-title">Financial Algorithms</h2>
         <a href="TradingTools.html" target="_blank" rel="noopener noreferrer" class="ripple-btn card-link">
-          <img src="docs/Adas.gif" alt="Financial Algorithm">
-          <p>Advanced Trading Algorithms. Market Description + Execution Engine
-            This entity reads order flow, news sentiment, and liquidity grabs, then translates them into action. Two modes:Auto-Pilot: Executes entries, SL, and TP based on the same logic. You set risk, it handles war./
-            Advisor: Describes market intent in plain English. Autonomous Trading Entity"</p>
+          <img src="docs/Adas.gif" alt="Financial Algorithm" loading="lazy" decoding="async">
+          <p>Advanced Trading Algorithms. Market Description + Execution Engine. This entity reads order flow, news sentiment, and liquidity grabs, then translates them into action. Two modes: Auto-Pilot — executes entries, SL, and TP based on the same logic. You set risk, it handles war. Advisor — describes market intent in plain English. Autonomous Trading Entity.</p>
         </a>
       </section>
 
-      <section id="market" class="nav-card">
-        <h2>Market Overview</h2>
+      <section id="market" class="nav-card" aria-labelledby="market-title">
+        <h2 id="market-title">Market Overview</h2>
         <a href="market-over-view.html" class="ripple-btn card-link">
-          <img src="docs/exchanges.gif" alt="Market Rates">
-          <p>Live Forex & Crypto Rates</p>
+          <img src="docs/exchanges.gif" alt="Market Rates" loading="lazy" decoding="async">
+          <p>Live Forex &amp; Crypto Rates</p>
         </a>
       </section>
 
-      <section id="headlines" class="nav-card">
-        <h2>Headlines</h2>
+      <section id="headlines" class="nav-card" aria-labelledby="headlines-title">
+        <h2 id="headlines-title">Headlines</h2>
         <a href="headlines.html" class="ripple-btn card-link">
-          <img src="docs/headtitle.gif" alt="Financial News Headlines">
+          <img src="docs/headtitle.gif" alt="Financial News Headlines" loading="lazy" decoding="async">
           <p>Breaking Financial News</p>
         </a>
       </section>
 
-      <section id="classified" class="nav-card">
-        <h2>Classified Ads</h2>
+      <section id="classified" class="nav-card" aria-labelledby="classified-title">
+        <h2 id="classified-title">Classified Ads</h2>
         <a href="classifieds.html" class="ripple-btn card-link">
-          <img src="docs/classsified.gif" alt="Classified Ads">
-          <p>Marketplace & Opportunities</p>
+          <img src="docs/classsified.gif" alt="Classified Ads" loading="lazy" decoding="async">
+          <p>Marketplace &amp; Opportunities</p>
         </a>
       </section>
     </div>
   </main>
 
-  <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
 
-  <!-- Script único para cargar header y footer -->
   <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
+    (function () {
+      function loadPartial(id, url, label) {
+        fetch(url)
+          .then(function (res) {
+            if (!res.ok) throw new Error(label + ' not found: ' + res.status);
+            return res.text();
+          })
+          .then(function (data) {
+            var el = document.getElementById(id);
+            if (el) el.innerHTML = data;
+          })
+          .catch(function (err) {
+            console.error('Error loading ' + label + ':', err);
+          });
+      }
 
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
+      loadPartial('header-placeholder', 'header.html', 'header');
+      loadPartial('footer-placeholder', 'footer.html', 'footer');
+    })();
   </script>
 </body>
 </html>
