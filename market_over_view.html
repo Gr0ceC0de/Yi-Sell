@@ -1,10 +1,25 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market View Forex | Pares de Divisas, Cripto e Índices Mundiales</title>
+    <meta name="description" content="Sigue pares de divisas (USD/BRL, EUR/USD, GBP/USD), Bitcoin y Litecoin, y los máximos y mínimos de 188 días de los principales índices mundiales.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0D1117">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Market View Forex | Pares de Divisas, Cripto e Índices Mundiales">
+    <meta property="og:description" content="Pares de divisas, criptoactivos y máximos/mínimos de los principales índices mundiales.">
+    <meta property="og:image" content="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg">
+    <meta name="twitter:card" content="summary">
+
+    <meta property="og:description" content="Pares de moedas, criptoativos e máximas/mínimas de 188 dias dos principais índices mundiais.">
+
+    <meta property="og:image" content="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg">
+    <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="styles.css">
-    <title>MARKET VIEW FOREX</title>
     <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
     <style>
         :root {
@@ -161,7 +176,7 @@
             opacity: 0.8;
         }
         .hidden { display: none; }
-        
+
         /* Indices 188D Container */
         .indices-188-container {
             background: var(--bg-glass);
@@ -218,7 +233,7 @@
             50% { opacity: 0.3; }
             100% { opacity: 1; }
         }
-        
+
         /* Matriz Financeira */
         .matriz-financeira th {
             background: rgba(0, 212, 170, 0.2);
@@ -229,7 +244,7 @@
         .tag-risco-medio { color: #FFB800; font-weight: 600; }
         .tag-risco-alto { color: #FF4757; font-weight: 600; }
         .tag-risco-extremo { color: #A55EEA; font-weight: 600; }
-        
+
         /* UK Matrix */
         .uk-matrix th {
             background: linear-gradient(90deg, rgba(240, 185, 11, 0.3) 0%, rgba(248, 209, 47, 0.3) 100%);
@@ -241,13 +256,13 @@
         .risk-high { color: #F6465D; font-weight: 600; }
         .risk-extreme { color: #B454F5; font-weight: 600; }
         .disclaimer { font-size: 11px; color: #848E9C; margin-top: 12px; line-height: 1.4; }
-        
+
         /* US Table */
         .market-overview-table.US th {
             background: rgba(41, 98, 255, 0.3);
             color: #FFFFFF;
         }
-        
+
         /* CA Table */
         .market-overview-table.CA th {
             background: rgba(216, 6, 33, 0.3);
@@ -257,33 +272,140 @@
             font-size: 11px;
             color: #9DA3AF;
         }
-        
+
         @media (max-width: 1200px) {
             .main-wrapper { flex-direction: column; }
             .left-column { flex: 1; width: 100%; }
         }
-    </style>    
+    </style>
+
+    <!-- Ajustes adicionales: el bloque anterior permanece intacto -->
+    <style>
+        /* Tablas apiladas: monedas arriba, índices abajo */
+        .main-wrapper { flex-direction: column; align-items: stretch; }
+        .right-column { flex: 1 1 auto; width: 100%; }
+        .left-column { flex: 1 1 auto; width: 100%; }
+        .indices-188-container { position: static; }
+
+        /* Relleno translúcido para que se aprecie el fondo azul espacial */
+        .table-container,
+        .indices-188-container {
+            background: rgba(8, 18, 45, 0.18);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        th,
+        .indices-188-table th {
+            background: rgba(0, 212, 170, 0.10);
+            backdrop-filter: blur(2px);
+        }
+        td { border-bottom: 1px solid rgba(255, 255, 255, 0.10); background: transparent; }
+        tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
+        .search-input { background: rgba(8, 18, 45, 0.45); }
+        .table-container, .indices-188-container { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+        .indices-188-table { margin-top: 12px; }
+    </style>
 </head>
-<body>     
-    <img src="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg" class="logo-top" alt="Logo">
-    
+body>
+    <img src="8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg" class="logo-top" alt="Logo Market View Forex" width="75" height="75">
+
     <header>
         <div id="header-placeholder"></div>
     </header>
 
-    <div class="main-wrapper">
-        <!-- COLUNA ESQUERDA: ÍNDICES 188D -->
-        <div class="left-column">
+    <main class="main-wrapper">
+        <!-- PARTE SUPERIOR: PARES DE MONEDAS -->
+        <section class="right-column">
+            <h1>Currency Pairs Review</h1>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2 class="table-title">FOREX &amp; CRYPTO PAIRS</h2>
+                    <input type="text" class="search-input" id="searchForex" placeholder="Buscar par..." aria-label="Buscar par de moedas" onkeyup="filterTable('forex-table', 'searchForex')">
+                </div>
+                <table class="market-overview-table" id="forex-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">COIN</th>
+                            <th scope="col">PAIR</th>
+                            <th scope="col">SELL</th>
+                            <th scope="col">BUY</th>
+                            <th scope="col">CHART</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="docs/realdor.jfif" class="coin-img" alt="Real brasileiro (BRL)" loading="lazy"></td>
+                            <td>USDBRL</td>
+                            <td>$5.2516</td>
+                            <td>$4.9732</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdbrl-m15-metaquotes-ltd.png" class="chart-img" alt="Gráfico USD/BRL" loading="lazy"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/eurcoin.JPG" class="coin-img" alt="Euro (EUR)" loading="lazy"></td>
+                            <td>EURUSD</td>
+                            <td>$1.165</td>
+                            <td>$1.135</td>
+                            <td><img src="https://charts.mql5.com/43/794/eurusd-h1-metaquotes-ltd.png" class="chart-img" alt="Gráfico EUR/USD" title="Gráfico EURUSD, MetaQuotes Ltd., MetaTrader 5, Demo" loading="lazy"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/Bitcoin.jpg" class="coin-img" alt="Bitcoin (BTC)" loading="lazy"></td>
+                            <td>BTCUSD</td>
+                            <td>$85,505.00</td>
+                            <td>$75,348.00</td>
+                            <td>CHART</td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/elizabeth pound.jpg" class="coin-img" alt="Libra esterlina (GBP)" loading="lazy"></td>
+                            <td>GBPUSD</td>
+                            <td>$1.3500</td>
+                            <td>$1.3200</td>
+                            <td><img src="https://charts.mql5.com/43/794/gbpusd-h1-metaquotes-ltd.png" class="chart-img" alt="Gráfico GBP/USD" loading="lazy"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/mxn.JPG" class="coin-img" alt="Peso mexicano (MXN)" loading="lazy"></td>
+                            <td>USDMXN</td>
+                            <td>$17.94</td>
+                            <td>$16.47</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdmxn-h1-metaquotes-ltd.png" class="chart-img" alt="Gráfico USD/MXN" loading="lazy"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/litecoin.JPG" class="coin-img" alt="Litecoin (LTC)" loading="lazy"></td>
+                            <td>LTCUSD</td>
+                            <td>$50</td>
+                            <td>$40</td>
+                            <td>CHART</td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/AUD Canguro.jpg" class="coin-img" alt="Dólar australiano (AUD)" loading="lazy"></td>
+                            <td>AUDUSD</td>
+                            <td>$0.71199</td>
+                            <td>$0.69800</td>
+                            <td><img src="https://charts.mql5.com/43/794/audusd-h1-metaquotes-ltd.png" class="chart-img" alt="Gráfico AUD/USD" loading="lazy"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="docs/pesochileno.jfif" class="coin-img" alt="Peso chileno (CLP)" loading="lazy"></td>
+                            <td>USDCLP</td>
+                            <td>$921.54</td>
+                            <td>$898.34</td>
+                            <td><img src="https://charts.mql5.com/43/794/usdclp-d1-metaquotes-ltd.png" class="chart-img" alt="Gráfico USD/CLP" loading="lazy"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+<!-- PARTE INFERIOR: ÍNDICES 188D -->
+        <section class="left-column">
             <div class="indices-188-container">
-                <h3 class="indices-188-title">188D MÁX/MÍN <span class="live-dot"></span></h3>
+                <h2 class="indices-188-title">188D MÁX/MÍN <span class="live-dot"></span></h2>
                 <p class="indices-188-subtitle">Principais Índices Mundiais</p>
-                <input type="text" class="search-input" id="searchIndices" placeholder="Buscar índice..." onkeyup="filterTable('indices-188-table', 'searchIndices')">
+                <input type="text" class="search-input" id="searchIndices" placeholder="Buscar índice..." aria-label="Buscar índice" onkeyup="filterTable('indices-188-table', 'searchIndices')">
                 <table class="indices-188-table" id="indices-188-table">
                     <thead>
                         <tr>
-                            <th>País/Índice</th>
-                            <th>Máx 188D</th>
-                            <th>Mín 188D</th>
+                            <th scope="col">País/Índice</th>
+                            <th scope="col">Máx 188D</th>
+                            <th scope="col">Mín 188D</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -293,7 +415,7 @@
                             <td class="min-value arrow-down">108,432</td>
                         </tr>
                         <tr>
-                            <td><span class="flag-emoji">🇺🇸</span><span class="indice-nome">S&P 500</span></td>
+                            <td><span class="flag-emoji">🇺🇸</span><span class="indice-nome">S&amp;P 500</span></td>
                             <td class="max-value arrow-up">5,867</td>
                             <td class="min-value arrow-down">4,953</td>
                         </tr>
@@ -350,109 +472,37 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <!-- COLUNA DIREITA: TABELAS PRINCIPAIS -->
-        <div class="right-column">
-            <h1>Currency Pair$ Review</h1>
-            
-            <!-- TABELA FOREX -->
-            <div class="table-container">
-                <div class="table-header">
-                    <span class="table-title">FOREX & CRYPTO PAIRS</span>
-                    <input type="text" class="search-input" id="searchForex" placeholder="Buscar par..." onkeyup="filterTable('forex-table', 'searchForex')">
-                </div>
-                <table class="market-overview-table" id="forex-table">       
-                    <thead>
-                        <tr>
-                            <th>COIN</th>
-                            <th>PAIR</th>
-                            <th>SELL</th>
-                            <th>BUY</th>
-                            <th>CHART</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="docs/realdor.jfif" class="coin-img" alt="BRL"></td>
-                            <td>USDBRL</td>
-                            <td>$5.2516</td>
-                            <td>$4.9732</td>
-                            <td><img src="https://charts.mql5.com/43/794/usdbrl-m15-metaquotes-ltd.png" class="chart-img" alt="real BRL range"></td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/eurcoin.JPG" class="coin-img" alt="EUR"></td>
-                            <td>EURUSD</td>
-                            <td>$1.165</td>
-                            <td>$1.135</td>
-                            <td><img src="https://charts.mql5.com/43/794/eurusd-h1-metaquotes-ltd.png" class="chart-img" alt="Chart EURUSD" title="Chart EURUSD, H4, 2026.05.26 14:43 UTC, MetaQuotes Ltd., MetaTrader 5, Demo"></td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/Bitcoin.jpg" class="coin-img" alt="bitcoin"></td>
-                            <td>BTCUSD</td>
-                            <td>$85,505.00</td>
-                            <td>$75,348.00</td>
-                            <td>CHART</td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/elizabeth pound.jpg" class="coin-img" alt="GBP"></td>
-                            <td>GBPUSD</td>
-                            <td>$1.3500</td>
-                            <td>$1.3200</td>
-                            <td><img src="https://charts.mql5.com/43/794/gbpusd-h1-metaquotes-ltd.png" class="chart-img" alt="GBPUSD"></td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/mxn.JPG" class="coin-img" alt="MXN"></td>
-                            <td>USDMXN</td>
-                            <td>$17.94</td>
-                            <td>$16.47</td>
-                            <td><img src="https://charts.mql5.com/43/794/usdmxn-h1-metaquotes-ltd.png" class="chart-img" alt="USDMXN"></td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/litecoin.JPG" class="coin-img" alt="LTC"></td>
-                            <td>LTCUSD</td>
-                            <td>$50</td>
-                            <td>$40</td>
-                            <td>CHART</td>
-                        </tr>
-                        <tr>
-                            <td><img src="docs/AUD Canguro.jpg" class="coin-img" alt="AUD"></td>
-                            <td>AUDUSD</td>
-                            <td>$0.71199</td>
-                            <td>$0.69800</td>
-                            <td><img src="https://charts.mql5.com/43/794/audusd-h1-metaquotes-ltd.png" class="chart-img" alt="AUDUSD"></td>
-                        </tr>
-                        <tr>           
-                            <td><img src="docs/pesochileno.jfif" class="coin-img" alt="CLP"></td>
-                            <td>USDCLP</td>
-                            <td>$921.54</td>
-                            <td>$898.34</td>
-                            <td><img src="https://charts.mql5.com/43/794/usdclp-d1-metaquotes-ltd.png" class="chart-img" alt="USDCLP"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <!-- Footer dinámico -->
+    <div id="footer-placeholder"></div>
 
-       <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
+    <script>
+        // Filtra las filas de una tabla según el texto del buscador
+        function filterTable(tableId, inputId) {
+            var filter = document.getElementById(inputId).value.toLowerCase();
+            var rows = document.querySelectorAll('#' + tableId + ' tbody tr');
+            rows.forEach(function (row) {
+                row.style.display = row.textContent.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+            });
+        }
 
-  <!-- Script único para cargar header y footer -->
-  <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
+        // Carga un fragmento HTML dentro de un contenedor
+        function loadFragment(url, targetId) {
+            fetch(url)
+                .then(function (res) {
+                    if (!res.ok) { throw new Error(res.status); }
+                    return res.text();
+                })
+                .then(function (html) {
+                    document.getElementById(targetId).innerHTML = html;
+                })
+                .catch(function (err) { console.error('Error loading ' + url + ':', err); });
+        }
 
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
+        loadFragment('header.html', 'header-placeholder');
+        loadFragment('footer.html', 'footer-placeholder');
+    </script>
 </body>
 </html>
