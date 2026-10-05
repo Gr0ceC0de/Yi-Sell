@@ -1,136 +1,972 @@
-<!-- header.html -->
-<header>
-  <div class="container">
-    
-    <!-- Title & tagline -->
-    <h1 class="site-title">YI-SELL</h1>
-    <p class="tech-space-tagline">Finance • News • Trading • Marketplace</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Headlines 2026 | Tech, Fintech & Crypto</title>
 
-    <!-- Sign up CTA (floating top-right) - VIOLETA & BLANCO -->
-<div style="position:absolute; top:14px; right:20px; z-index:999;">
-  <a href="https://app.orionfunded.com/auth/register?ref=11658"
-     target="_blank"
-     rel="noopener noreferrer"
-     id="signupToggle"
-     style="
-       display:inline-flex;
-       align-items:center;
-       justify-content:center;
-       gap:6px;
-       text-decoration:none;
-       color:#6D28D9;
-       background:#ffffff;
-       border:1px solid #E9D5FF;
-       border-radius:999px;
-       padding:8px 18px;
-       font-family:'Consolas ', monospace;
-       font-size:10px;
-       font-weight:800;
-       letter-spacing:1.4px;
-       text-transform:uppercase;
-       box-shadow:0 0 0 1px rgba(109,40,217,.08), 0 4px 14px rgba(109,40,217,.15), 0 0 18px rgba(124,58,237,.20);
-       transition: all .25s ease;
-     "
-     onmouseover="this.style.background='#6D28D9'; this.style.color='#ffffff'; this.style.borderColor='#6D28D9'; this.style.boxShadow='0 0 22px rgba(109,40,217,.55), 0 6px 20px rgba(109,40,217,.35)'"
-     onmouseout="this.style.background='#ffffff'; this.style.color='#6D28D9'; this.style.borderColor='#E9D5FF'; this.style.boxShadow='0 0 0 1px rgba(109,40,217,.08), 0 4px 14px rgba(109,40,217,.15), 0 0 18px rgba(124,58,237,.20)'">
-    Sign up • 🐇
-  </a>
-</div>
-         
-    <!-- Main navigation -->
-    <h2>
-      <nav class="header-nav">
-        <a href="TradingTools.html" class="ripple-btn">
-          <img src="docs/rob.gif" alt="Forex Trading Algorithms">
-        </a>
-        <a href="market_over_view.html" class="ripple-btn">
-          <img src="docs/exchanges.gif" alt="Market Watch">
-        </a>
-        <a href="headlines.html" class="ripple-btn">
-          <img src="docs/headtitle.gif" alt="Headlines">
-        </a>
-        <a href="classifieds.html" class="ripple-btn">
-          <img src="docs/classsified.gif" alt="Classified">
-        </a>
-        <a href="shoppingcart.html" class="ripple-btn">
-          <img src="docs/shoppingcart.gif" alt="Shopping">
-        </a>
-      </nav>
-    </h2>
+<!-- ============ SEO META ============ -->
+<meta name="description" content="Resumen ejecutivo trimestral 2026: tecnología, fintech, criptomonedas, banca digital, inteligencia artificial y mercados financieros. Titulares por país: Brasil, EE.UU., Canadá y más.">
+<meta name="keywords" content="headlines 2026, tecnología, fintech, criptomonedas, inteligencia artificial, mercados financieros, banca digital, Brasil, USA, Canadá, economía global, IA, blockchain">
+<meta name="author" content="Global Headlines">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Global Headlines 2026 | Tech, Fintech & Crypto">
+<meta property="og:description" content="Titulares trimestrales por país: tecnología, fintech, IA, cripto y mercados.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
 
-    <!-- Multilingual welcome -->
-    <p class="welcome-text">
-      नमस्ते • Bem-vindo • Welcome • Bienvenue • 欢迎 • ようこそ • 환영합니다 • こんにちは • 안녕하세요 • Xin chào • Sawubona • Jambo • Ciao • Hall • שָׁלוֹם • Γειά σου • Merhaba • مَرْحَبًا • Привет • Guten Tag • สวัสดี • Halo • Cześć • Kumusta
-    </p>
+<!-- ============ FUENTES ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+/* ============================================================
+   PALETA · AMARILLOS + GRISES + BLANCOS
+   ============================================================ */
+:root {
+  /* Fondo gris oscuro tipo newspaper */
+  --bg-deep:      #0d0c0b;
+  --bg-paper:     #141312;
+  --bg-cell:      #1a1817;
+  --bg-cell-alt:  #1e1c1a;
+  --bg-cell-hi:   #262320;
+  --bg-country:   #100f0e;
+
+  /* Amarillos en gradación */
+  --yellow-100:   #fffbe6;
+  --yellow-200:   #fff3b0;
+  --yellow-300:   #ffe066;
+  --yellow-400:   #ffd60a;
+  --yellow-500:   #f5b800;
+  --yellow-600:   #d99e00;
+  --yellow-700:   #b8860b;
+  --yellow-glow:  rgba(255, 214, 10, 0.35);
+  --yellow-soft:  rgba(255, 214, 10, 0.10);
+
+  /* Blancos y grises */
+  --white:        #f5f3ee;
+  --white-soft:   #e8e5dc;
+  --gray-100:     #c8c4b8;
+  --gray-200:     #a8a49a;
+  --gray-300:     #87837a;
+  --gray-400:     #5a5650;
+
+  /* Bordes */
+  --border-soft:  #2a2724;
+  --border-mid:   #3a3632;
+  --border-gold:  rgba(255, 214, 10, 0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 214, 10, 0.04), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(255, 214, 10, 0.03), transparent 45%),
+    var(--bg-deep);
+  color: var(--white);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 0 4rem;
+}
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL
+   ============================================================ */
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  border-bottom: 3px double var(--yellow-400);
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.masthead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--yellow-500), transparent);
+}
+
+.masthead .kicker {
+  font-family: 'Old Standard TT', serif;
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--yellow-300);
+  margin-bottom: 0.6rem;
+}
+
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: linear-gradient(180deg, var(--yellow-200) 0%, var(--yellow-400) 50%, var(--yellow-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px var(--yellow-glow));
+  margin-bottom: 0.5rem;
+}
+
+.masthead .subtitle {
+  font-family: 'Old Standard TT', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--gray-100);
+  letter-spacing: 0.04em;
+}
+
+.masthead .rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 0.9rem;
+  color: var(--yellow-500);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+}
+.masthead .rule::before,
+.masthead .rule::after {
+  content: "";
+  height: 1px;
+  width: 60px;
+  background: var(--yellow-600);
+}
+
+/* ============================================================
+   SELECTOR DE PAÍS
+   ============================================================ */
+.selector-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding: 1.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 2rem;
+}
+
+.sel-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  background: transparent;
+  color: var(--gray-100);
+  border: 1px solid var(--border-mid);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.sel-btn:hover {
+  color: var(--yellow-300);
+  border-color: var(--yellow-500);
+  background: var(--yellow-soft);
+  transform: translateY(-1px);
+}
+.sel-btn.active {
+  background: linear-gradient(180deg, var(--yellow-400), var(--yellow-600));
+  color: var(--bg-deep);
+  border-color: var(--yellow-500);
+  box-shadow: 0 4px 18px var(--yellow-glow);
+  font-weight: 600;
+}
+
+/* ============================================================
+   BLOQUE POR PAÍS
+   ============================================================ */
+.country-block {
+  margin-bottom: 3rem;
+  scroll-margin-top: 2rem;
+  animation: fadeUp 0.5s ease both;
+}
+.country-block.hidden { display: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Encabezado del país */
+.country-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 1rem 0 1rem;
+  border-top: 3px double var(--yellow-400);
+  border-bottom: 1px solid var(--border-mid);
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.country-head::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -5px;
+  width: 80px; height: 2px;
+  background: var(--yellow-500);
+}
+
+.country-head .flag {
+  font-size: 2.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+
+.country-head .name-wrap { flex: 1; }
+
+.country-head .name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  background: linear-gradient(180deg, var(--white) 0%, var(--yellow-200) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+.country-head .name-tag {
+  display: inline-block;
+  font-family: 'Old Standard TT', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--yellow-400);
+  letter-spacing: 0.14em;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.country-head .badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  background: var(--yellow-400);
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   GRID DE NOTICIAS EN 6 COLUMNAS
+   ============================================================ */
+.news-grid {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-soft);
+  padding: 0;
+  column-count: 6;
+  column-gap: 0;
+  column-rule: 1px solid var(--border-soft);
+}
+
+/* Ajuste responsive del número de columnas */
+@media (max-width: 1200px) { .news-grid { column-count: 4; } }
+@media (max-width: 820px)  { .news-grid { column-count: 2; } }
+@media (max-width: 480px)  { .news-grid { column-count: 1; } }
+
+/* Cada bloque dentro de las columnas */
+.news-item {
+  background: var(--bg-cell);
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 18px 16px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  position: relative;
+  transition: background 0.2s ease;
+}
+.news-item:nth-child(even) { background: var(--bg-cell-alt); }
+.news-item:hover {
+  background: var(--bg-cell-hi);
+  box-shadow: inset 3px 0 0 var(--yellow-400);
+}
+
+/* Numeración editorial */
+.news-item .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--yellow-500);
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+/* Categoría / topic */
+.news-item .cat {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow-300);
+  border-bottom: 1px solid var(--yellow-700);
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+}
+
+/* Título del titular */
+.news-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--yellow-200);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+/* Párrafo cuerpo */
+.news-item p {
+  font-family: 'Old Standard TT', Georgia, serif;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--gray-100);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Resaltado tipo marcador */
+.news-item mark {
+  background: linear-gradient(180deg, transparent 55%, rgba(255, 214, 10, 0.35) 55%);
+  color: var(--yellow-100);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+/* Subrayado decorativo */
+.news-item u {
+  text-decoration: none;
+  border-bottom: 1px solid var(--yellow-500);
+  color: var(--yellow-200);
+  padding-bottom: 1px;
+}
+
+/* Strong */
+.news-item strong {
+  color: var(--yellow-300);
+  font-weight: 700;
+}
+
+/* ============================================================
+   FUENTES / BOTONES
+   ============================================================ */
+.sources {
+  margin-top: 1.25rem;
+  padding: 1rem 0 0;
+  border-top: 1px dashed var(--border-mid);
+}
+.sources-label {
+  font-family: 'Old Standard TT', serif;
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-200);
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.sources-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.src-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background: transparent;
+  color: var(--yellow-300);
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.src-btn::before {
+  content: "↗";
+  font-size: 11px;
+  color: var(--yellow-500);
+  transition: transform 0.2s ease;
+}
+.src-btn:hover {
+  background: var(--yellow-400);
+  color: var(--bg-deep);
+  border-color: var(--yellow-400);
+  box-shadow: 0 3px 12px var(--yellow-glow);
+}
+.src-btn:hover::before {
+  color: var(--bg-deep);
+  transform: translate(2px, -2px);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem 1rem;
+  border-top: 3px double var(--yellow-400);
+  text-align: center;
+  position: relative;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 2px;
+  background: var(--yellow-500);
+}
+.site-footer p {
+  font-family: 'Old Standard TT', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gray-200);
+  letter-spacing: 0.05em;
+}
+.site-footer .accent {
+  color: var(--yellow-400);
+  font-weight: 700;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============ HEADER (auto-load) ============ -->
+<header id="header-placeholder"></header>
+
+<main class="page">
+
+  <!-- ============ MASTHEAD ============ -->
+  <div class="masthead">
+    <div class="kicker">Quarterly Global Briefing · MMXXVI</div>
+    <h1>Global Headlines 2026</h1>
+    <p class="subtitle">Most relevant quarterly developments by country</p>
+    <div class="rule">TECH · FINTECH · CRYPTO · AI</div>
   </div>
 
-  <!-- Signup dropdown logic -->
-  <script>
-    (function () {
-      const toggle = document.getElementById('signupToggle');
-      const dropdown = document.getElementById('signupDropdown');
-      const form = document.getElementById('headerSignupForm');
-      const msg = document.getElementById('signupMsg');
+  <!-- ============ SELECTOR DE PAÍS ============ -->
+  <div class="selector-bar" id="selector">
+    <button class="sel-btn active" data-target="all">◈ Todas</button>
+    <button class="sel-btn" data-target="br"><span>🇧🇷</span>Brasil</button>
+    <button class="sel-btn" data-target="us"><span>🇺🇸</span>USA</button>
+    <button class="sel-btn" data-target="ca"><span>🇨🇦</span>Canadá</button>
+  </div>
 
-      if (!toggle || !dropdown) return;
+  <!-- ============================================================
+       BLOQUE BRASIL
+       ============================================================ -->
+  <section class="country-block" id="br" data-country="br">
+    <header class="country-head">
+      <span class="flag">🇧🇷</span>
+      <div class="name-wrap">
+        <div class="name">Brasil</div>
+        <span class="name-tag">República Federativa do Brasil</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
 
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isHidden = dropdown.hasAttribute('hidden');
-        dropdown.toggleAttribute('hidden', !isHidden);
-        toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Política</span>
+        <h3>Lula y el punto medio de su 3er mandato</h3>
+        <p>El gobierno enfoca su agenda en el equilibrio fiscal, los programas sociales y la protección del Amazonas. Las tensiones con el Congreso por las enmiendas presupuestarias continúan marcando la pauta legislativa.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Política</span>
+        <h3>Repercusión de las elecciones municipales</h3>
+        <p>Los resultados locales de 2024 aún moldean las alianzas. Los partidos del Centrão ganan influencia en el Congreso de cara a las elecciones generales de 2026.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Seguridad & Amazonía</span>
+        <h3>Fuerzas de tarea federales ampliadas</h3>
+        <p>Se expanden los operativos contra la deforestación y el crimen organizado. Un nuevo proyecto de ley para <mark>regular las redes sociales</mark> aprueba su primera ronda en el Congreso.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Economía</span>
+        <h3>La economía se estabiliza</h3>
+        <p>Pronóstico de PIB de ∼<strong>2,4%</strong>, impulsado por agricultura, servicios y petróleo. La inflación cae a ∼<strong>3,9%</strong>, dentro del rango meta del Banco Central.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Economía</span>
+        <h3>Recorte de tasas de interés</h3>
+        <p>El Banco Central baja la tasa <u>Selic a 10,25%</u> para impulsar la inversión y el consumo interno, en un contexto de desaceleración global.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fiscal</span>
+        <h3>El marco fiscal a prueba</h3>
+        <p>Las nuevas reglas de gasto se sostienen, pero aumenta la presión por mayor inversión en infraestructura y educación.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">Energía</span>
+        <h3>Boom de exportaciones energéticas</h3>
+        <p>Récord en exportaciones de petróleo y etanol. Brasil busca convertirse en un exportador clave de <mark>hidrógeno verde</mark> para 2030.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Tecnología</span>
+        <h3>IA + Gobierno Digital</h3>
+        <p>Se lanza la <strong>"Estrategia Federal de IA 2026"</strong>. Gov.br amplía los chatbots de IA para servicios públicos, mejorando la atención ciudadana.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Tecnología</span>
+        <h3>5G y semiconductores</h3>
+        <p>Despliegue completo del 5G en todas las capitales. Nuevos incentivos fiscales atraen inversiones en chips y centros de datos en São Paulo y Ceará.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Fintech</span>
+        <h3>Pix 2.0 y liderazgo regional</h3>
+        <p>Pix incorpora pagos offline y transferencias internacionales. Brasil lidera LatAm en <u>pagos digitales y open banking</u>.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Climatech</span>
+        <h3>Financiamiento climático</h3>
+        <p>Importante financiamiento para startups en agrotech, créditos de carbono y biocombustibles. La preparación de la <strong>COP30 en Belém</strong> impulsa el sector green tech.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Perspectiva</span>
+        <h3>Brasil 2026: eje del sur global</h3>
+        <p>El país se consolida como puente entre mercados desarrollados y emergentes, con foco en sostenibilidad, digitalización financiera y liderazgo diplomático.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · Prensa brasileña</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://www.folha.uol.com.br" target="_blank" rel="noopener">Folha</a>
+        <a class="src-btn" href="https://oglobo.globo.com" target="_blank" rel="noopener">O Globo</a>
+        <a class="src-btn" href="https://www.estadao.com.br" target="_blank" rel="noopener">Estadão</a>
+        <a class="src-btn" href="https://valor.globo.com" target="_blank" rel="noopener">Valor</a>
+        <a class="src-btn" href="https://www.correiobraziliense.com.br" target="_blank" rel="noopener">Correio</a>
+        <a class="src-btn" href="https://gauchazh.clicrbs.com.br" target="_blank" rel="noopener">Zero Hora</a>
+        <a class="src-btn" href="https://www.em.com.br" target="_blank" rel="noopener">Estado de Minas</a>
+        <a class="src-btn" href="https://www.opovo.com.br" target="_blank" rel="noopener">O Povo</a>
+        <a class="src-btn" href="https://www.atarde.com.br" target="_blank" rel="noopener">A Tarde</a>
+        <a class="src-btn" href="https://www.gazetadopovo.com.br" target="_blank" rel="noopener">Gazeta do Povo</a>
+        <a class="src-btn" href="https://www.brasil247.com" target="_blank" rel="noopener">Brasil 247</a>
+        <a class="src-btn" href="https://www.cartacapital.com.br" target="_blank" rel="noopener">CartaCapital</a>
+        <a class="src-btn" href="https://www.intercept.com.br" target="_blank" rel="noopener">Intercept</a>
+        <a class="src-btn" href="https://brasil.elpais.com" target="_blank" rel="noopener">El País</a>
+        <a class="src-btn" href="https://noticias.uol.com.br" target="_blank" rel="noopener">UOL</a>
+        <a class="src-btn" href="https://jornalggn.com.br" target="_blank" rel="noopener">GGN</a>
+        <a class="src-btn" href="https://revistaforum.com.br" target="_blank" rel="noopener">Fórum</a>
+        <a class="src-btn" href="https://midianinja.org" target="_blank" rel="noopener">Mídia Ninja</a>
+        <a class="src-btn" href="https://apublica.org" target="_blank" rel="noopener">Agência Pública</a>
+        <a class="src-btn" href="https://www.nexojornal.com.br" target="_blank" rel="noopener">Nexo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE USA
+       ============================================================ -->
+  <section class="country-block" id="us" data-country="us">
+    <header class="country-head">
+      <span class="flag">🇺🇸</span>
+      <div class="name-wrap">
+        <div class="name">United States</div>
+        <span class="name-tag">Estados Unidos de América</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
+
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Inversiones Tech</span>
+        <h3>La IA domina el capital de riesgo</h3>
+        <p>Las empresas estadounidenses capturaron ∼<strong>80%</strong> del financiamiento global de startups en 2026. La inversión en IA alcanzó el <mark>88%</mark> de ese total, con <strong>$319B USD</strong> destinados mayormente a OpenAI y Anthropic.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Inversiones Tech</span>
+        <h3>Financiamiento récord</h3>
+        <p>El financiamiento en IA alcanzó <u>$510B USD</u> solo en el primer semestre de 2026, superando ya todo 2025.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Big Tech</span>
+        <h3>Gasto en infraestructura IA</h3>
+        <p>Las grandes tecnológicas planean gastar hasta <strong>$900B USD</strong> en infraestructura de IA durante 2026.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Advertencia</span>
+        <h3>El BIS alerta sobre burbuja IA</h3>
+        <p>El Banco de Pagos Internacionales advirtió que el ciclo actual de IA tiene ecos de burbujas pasadas como los ferrocarriles y el dot-com. El debate sobre la concentración de capital y su impacto real en empleo y productividad continúa.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Fintech</span>
+        <h3>Nuevas reglas CFPB para BNPL</h3>
+        <p>Los proveedores de <em>Buy Now, Pay Later</em> enfrentan nuevas regulaciones sobre cargos por mora y reporte crediticio.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fintech</span>
+        <h3>Robo-advisors bajo escrutinio</h3>
+        <p>Los robo-advisors impulsados por IA enfrentan demandas por sesgo algorítmico. La adopción de <mark>FedNow</mark> crece entre bancos regionales, desafiando a los sistemas ACH tradicionales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">Espacio</span>
+        <h3>Artemis III se retrasa</h3>
+        <p>La misión se pospone a finales de 2027 por retrasos en las pruebas del Starship HLS. MIT Lincoln Lab demuestra nueva IA para evitar colisiones satelitales autónomas.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Aviación</span>
+        <h3>Boom Supersonic completa vuelo</h3>
+        <p>El XB-1 realiza su primer vuelo supersónico sin postquemador, un hito para la aviación civil de alta velocidad.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Tecnología</span>
+        <h3>Modelos abiertos desafían a corporaciones</h3>
+        <p>Modelos de IA de peso abierto de la academia compiten con sistemas corporativos cerrados en benchmarks internacionales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Tecnología</span>
+        <h3>Leyes de derecho a reparar se expanden</h3>
+        <p>Las leyes se extienden a equipos agrícolas y dispositivos médicos en 12 estados. <u>Caltech reporta 99,9% de fidelidad</u> en compuertas de 2 qubits en un nuevo chip superconductor.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Industria</span>
+        <h3>PMI manufacturero cerca de 50</h3>
+        <p>El PMI señala crecimiento plano en medio de tasas altas. Los despidos tech se desaceleran en Q2 2026, pero la contratación relacionada con IA solo compensa el <strong>30%</strong> de los recortes.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Empleo</span>
+        <h3>Energías renovables superan a fósiles</h3>
+        <p>Los empleos en energías renovables superan a los de combustibles fósiles <mark>3:1</mark> según el nuevo informe del BLS.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">13</span>
+        <span class="cat">Economía</span>
+        <h3>PIB revisado al alza</h3>
+        <p>El crecimiento del PIB de EE.UU. se revisa a <strong>1,8%</strong> para Q1 2026, impulsado por servicios y no por bienes.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">14</span>
+        <span class="cat">Consumo</span>
+        <h3>Quejas por "shrinkflation" suben 40%</h3>
+        <p>Las quejas ante la FTC aumentan 40% interanual mientras los tamaños de empaque se reducen. El gasto Gen Z se inclina hacia bienes usados y reparación, según un estudio de Stanford.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">15</span>
+        <span class="cat">Política</span>
+        <h3>Midterms 2026: control empatado</h3>
+        <p>Los sondeos tempranos muestran la Cámara como empate técnico, con el gasto de los PAC cripto <u>aumentando 300%</u>. Las elecciones al Parlamento Europeo ven avances de la ultraderecha ligados a protestas por el costo de vida.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">16</span>
+        <span class="cat">Política</span>
+        <h3>Publicidad política generada por IA</h3>
+        <p>ProPublica rastrea el aumento de anuncios generados por IA con divulgación mínima, planteando nuevos desafíos regulatorios.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">17</span>
+        <span class="cat">Legal</span>
+        <h3>Antimonopolio contra fijación algorítmica</h3>
+        <p>El DOJ presenta un nuevo caso contra la fijación algorítmica de precios en el mercado de alquileres.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">18</span>
+        <span class="cat">Legal</span>
+        <h3>Demandas por datos a la Corte Suprema</h3>
+        <p>Las demandas colectivas por venta de datos de intermediarios a fuerzas del orden llegan al expediente de la Corte Suprema. Los recortes a la asistencia legal se impugnan en 9 estados por la acumulación de casos de desalojo.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">19</span>
+        <span class="cat">Oportunidades</span>
+        <h3>CHIPS Act: fase 2</h3>
+        <p>Se abre la Fase 2 del financiamiento para empaquetado y materiales avanzados. Los créditos fiscales de captura de carbono impulsan nuevos proyectos DAC en el Medio Oeste.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">20</span>
+        <span class="cat">Forex</span>
+        <h3>Fortaleza del USD continúa</h3>
+        <p>La fortaleza del dólar persiste mientras la Fed mantiene tasas. Aumentan los riesgos de intervención en el yen.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · US Press</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://www.democracynow.org" target="_blank" rel="noopener">Democracy Now</a>
+        <a class="src-btn" href="https://theintercept.com" target="_blank" rel="noopener">The Intercept</a>
+        <a class="src-btn" href="https://www.motherjones.com" target="_blank" rel="noopener">Mother Jones</a>
+        <a class="src-btn" href="https://www.propublica.org" target="_blank" rel="noopener">ProPublica</a>
+        <a class="src-btn" href="https://truthout.org" target="_blank" rel="noopener">Truthout</a>
+        <a class="src-btn" href="https://www.commondreams.org" target="_blank" rel="noopener">Common Dreams</a>
+        <a class="src-btn" href="https://www.breitbart.com" target="_blank" rel="noopener">Breitbart</a>
+        <a class="src-btn" href="https://www.dailywire.com" target="_blank" rel="noopener">Daily Wire</a>
+        <a class="src-btn" href="https://thefederalist.com" target="_blank" rel="noopener">The Federalist</a>
+        <a class="src-btn" href="https://www.newsmax.com" target="_blank" rel="noopener">Newsmax</a>
+        <a class="src-btn" href="https://reason.com" target="_blank" rel="noopener">Reason</a>
+        <a class="src-btn" href="https://www.thefp.com" target="_blank" rel="noopener">The Free Press</a>
+        <a class="src-btn" href="https://www.zerohedge.com" target="_blank" rel="noopener">Zero Hedge</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE CANADÁ
+       ============================================================ -->
+  <section class="country-block" id="ca" data-country="ca">
+    <header class="country-head">
+      <span class="flag">🇨🇦</span>
+      <div class="name-wrap">
+        <div class="name">Canadá</div>
+        <span class="name-tag">Canada · North America</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
+
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Política</span>
+        <h3>Presión sobre el gobierno de Carney</h3>
+        <p>El gobierno liberal del PM Mark Carney enfrenta presión por el costo de vida y la vivienda en la dinámica post-electoral de 2025.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Relaciones US</span>
+        <h3>Tensiones comerciales con EE.UU.</h3>
+        <p>Disputas por aranceles estadounidenses al acero, aluminio y autos. Canadá responde y busca nuevos socios comerciales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Economía</span>
+        <h3>Inflación cerca del 2,2%</h3>
+        <p>El Banco de Canadá mantiene tasas altas pero las reduce lentamente para evitar una recesión.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Vivienda</span>
+        <h3>Crisis habitacional continúa</h3>
+        <p>Plan federal para construir <strong>3,9M de viviendas</strong> para 2031, junto con límites a compradores extranjeros.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Energía</span>
+        <h3>Expansión del oleoducto TMX</h3>
+        <p>Avanza la expansión del TMX. El debate continúa entre petróleo/gas y transición verde.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fiscal</span>
+        <h3>Déficit federal de CAD $40B</h3>
+        <p>El déficit federal ronda los <mark>CAD $40B</mark>. El foco está en recortes de gasto y crecimiento de ingresos.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">IA</span>
+        <h3>CAD $2,4B en infraestructura IA</h3>
+        <p>Inversión de <strong>CAD $2,4B</strong> en infraestructura y talento IA. Toronto y Montreal lideran como hubs de IA.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Semiconductores</span>
+        <h3>Subsidios para chips y baterías</h3>
+        <p>Subsidios importantes para atraer plantas de chips y baterías de Tesla, VW y Northvolt.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Clean Tech</span>
+        <h3>Hidrógeno verde y minerales críticos</h3>
+        <p>Impulso al hidrógeno verde y minerales críticos. Canadá se posiciona como proveedor clave de EE.UU. y la UE.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Digital</span>
+        <h3>Online News Act en vigor</h3>
+        <p>Meta y Google pagan a medios canadienses. Se expande la identidad digital nacional y la ciberseguridad.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Banca Digital</span>
+        <h3>Innovación en banca digital</h3>
+        <p>Crecimiento del ecosistema de IA, recuperación del financiamiento fintech y nuevas iniciativas de investigación en blockchain.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Perspectiva</span>
+        <h3>Canadá 2026: proveedor estratégico</h3>
+        <p>El país se consolida como proveedor clave de minerales críticos, talento IA y energía limpia para las principales economías occidentales.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · Canadian Press</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://thetyee.ca" target="_blank" rel="noopener">The Tyee</a>
+        <a class="src-btn" href="https://rabble.ca" target="_blank" rel="noopener">Rabble</a>
+        <a class="src-btn" href="https://www.nationalobserver.com" target="_blank" rel="noopener">National Observer</a>
+        <a class="src-btn" href="https://www.theglobeandmail.com" target="_blank" rel="noopener">Globe & Mail</a>
+        <a class="src-btn" href="https://pressprogress.ca" target="_blank" rel="noopener">PressProgress</a>
+        <a class="src-btn" href="https://breachmedia.ca" target="_blank" rel="noopener">The Breach</a>
+        <a class="src-btn" href="https://ricochet.media" target="_blank" rel="noopener">Ricochet</a>
+        <a class="src-btn" href="https://www.aptnnews.ca" target="_blank" rel="noopener">APTN News</a>
+        <a class="src-btn" href="https://www.nationalobserver.com/section/energy" target="_blank" rel="noopener">Energy/Climate</a>
+        <a class="src-btn" href="https://www.readthemaple.com" target="_blank" rel="noopener">The Maple</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer-placeholder"></footer>
+
+<!-- ============ SCRIPT AUTO-LOAD HEADER & FOOTER + FILTER ============ -->
+<script>
+(function () {
+  /* ---------- Carga automática de header.html y footer.html ---------- */
+  function loadPartial(id, url, label) {
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error(label + ' not found: ' + res.status);
+        return res.text();
+      })
+      .then(function (data) {
+        var el = document.getElementById(id);
+        if (el) el.innerHTML = data;
+      })
+      .catch(function (err) {
+        console.error('Error loading ' + label + ':', err);
       });
+  }
 
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.auth-area')) {
-          dropdown.setAttribute('hidden', '');
-          toggle.setAttribute('aria-expanded', 'false');
+  loadPartial('header-placeholder', 'header.html', 'header');
+  loadPartial('footer-placeholder', 'footer.html', 'footer');
+
+  /* ---------- Selector de país ---------- */
+  var buttons = document.querySelectorAll('.sel-btn');
+  var blocks  = document.querySelectorAll('.country-block');
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-target');
+
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      blocks.forEach(function (block) {
+        if (target === 'all') {
+          block.classList.remove('hidden');
+        } else if (block.getAttribute('data-country') === target) {
+          block.classList.remove('hidden');
+          block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          block.classList.add('hidden');
         }
       });
+    });
+  });
+})();
+</script>
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        msg.textContent = '';
-
-        const data = Object.fromEntries(new FormData(form));
-
-        if (data.password !== data.confirmPassword) {
-          msg.textContent = 'Passwords do not match';
-          msg.style.color = '#ff5252';
-          return;
-        }
-
-        msg.textContent = 'Registering...';
-        msg.style.color = '#fff';
-
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: data.name,
-              email: data.email,
-              password: data.password
-            })
-          });
-
-          const result = await res.json();
-
-          if (res.ok) {
-            msg.textContent = result.message || 'Success!';
-            msg.style.color = '#4caf50';
-            form.reset();
-            setTimeout(() => dropdown.setAttribute('hidden', ''), 2000);
-          } else {
-            msg.textContent = result.message || 'Registration failed';
-            msg.style.color = '#ff5252';
-          }
-        } catch (err) {
-          msg.textContent = 'Network error. Try again.';
-          msg.style.color = '#ff5252';
-        }
-      });
-    })();
-  </script>
-</header>
+</body>
+</html>
