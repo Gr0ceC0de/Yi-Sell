@@ -300,59 +300,69 @@ Most relevant quarterly developments by country
 <table>
 
 <style>
-/* ===== Tabla de titulares: estilo periódico, rosa viejo oscuro y fucsia ===== */
+/* ===== Tabla de titulares: rosa pastel, letras violetas, efecto 3D ===== */
 
 .table-wrapper {
-  --celda: #5a2840;        /* rosa viejo oscuro */
-  --celda-pais: #3f1829;   /* más oscuro para la columna de país */
-  --cabecera: #2f111f;
-  --fucsia: #ff5fe0;
-  --fucsia-claro: #ffb3f2;
+  --celda: #f7d6e4;         /* rosa pastel */
+  --celda-pais: #efbcd3;    /* rosa un poco más profundo */
+  --violeta: #5b1fa8;       /* texto */
+  --violeta-medio: #8a52d6;
+  --violeta-claro: #b58be8;
   --linea: #000;
   max-width: 1100px;
   margin: 1.5rem auto;
-  padding: 6px;            /* espacio para el marco doble */
+  padding: 12px;            /* espacio para el marco 3D */
   overflow-x: auto;
 }
 
+/* Marco: filete negro fino + borde violeta tipo vidrio + sombra de volumen */
 .table-wrapper table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--linea);
-  outline: 1px solid var(--linea);   /* segundo filete: marco tipo periódico */
-  outline-offset: 4px;
   font-family: Georgia, "Times New Roman", serif;
+  box-shadow:
+    0 0 0 4px var(--violeta-claro),
+    0 0 0 5px var(--linea),
+    0 10px 18px rgba(91, 31, 168, .35);
 }
 
-/* Cabecera */
+/* Cabecera: degradado violeta brillante */
 .table-wrapper th {
-  background: var(--cabecera);
-  color: var(--fucsia-claro);
+  background: linear-gradient(#a577e6, #6a35b8);
+  color: #fff;
   border: 1px solid var(--linea);
   padding: 12px 16px;
   text-align: left;
   font-size: 16px;
   font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6);
+  text-shadow: 0 1px 0 #3d1578, 0 2px 2px rgba(0, 0, 0, .35);
 }
 
-/* Celdas */
+/* Celdas: biselado suave + letra violeta extruida */
 .table-wrapper td {
-  background: var(--celda);
-  color: var(--fucsia);
+  background: linear-gradient(#fbe3ed, var(--celda));
+  color: var(--violeta);
   border: 1px solid var(--linea);
   padding: 14px 16px;
   vertical-align: top;
   font-size: 16px;
   line-height: 1.65;
-  white-space: pre-line;   /* respeta tus saltos de línea sin tocar el HTML */
-  /* borde brillante suave: legible, sin cansar */
-  text-shadow: 0 0 1px #fff, 0 0 6px rgba(255, 0, 200, .45);
+  white-space: pre-line;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 rgba(138, 82, 214, .35);
+  text-shadow:
+    0 1px 0 #fff,
+    1px 2px 0 rgba(138, 82, 214, .35),
+    2px 3px 3px rgba(91, 31, 168, .22);
 }
 
 /* Columna país */
 .table-wrapper td.country {
   width: 110px;
-  background: var(--celda-pais);
+  background: linear-gradient(#f5cfe0, var(--celda-pais));
   text-align: center;
   font-size: 17px;
   font-weight: 700;
@@ -364,12 +374,11 @@ Most relevant quarterly developments by country
   line-height: 1.2;
 }
 
-/* Columna de titulares */
 .table-wrapper td.headline {
   width: 62%;
 }
 
-/* Columna de fuentes (última celda): más pequeña, URLs que no se cortan */
+/* Columna de fuentes: más pequeña, URLs sin cortar */
 .table-wrapper td:last-child {
   font-size: 13px;
   line-height: 1.5;
@@ -377,16 +386,17 @@ Most relevant quarterly developments by country
 }
 
 .table-wrapper a {
-  color: var(--fucsia-claro);
+  color: var(--violeta-medio);
 }
 
 .subtitle {
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   text-align: center;
+  color: var(--violeta-medio);
 }
 
-/* Móvil: cada fila se apila en vez de salirse de la pantalla */
+/* Móvil: filas apiladas */
 @media (max-width: 700px) {
   .table-wrapper table,
   .table-wrapper tbody,
