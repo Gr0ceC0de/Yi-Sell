@@ -471,6 +471,37 @@
       </div>
     </div>
   </section>
+<!-- SELECTOR FUNCIONAL - PEGAR ANTES DE </body> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btns = document.querySelectorAll('.sel-btn');
+  const cards = document.querySelectorAll('[data-country]'); // tus noticias deben tener data-country="br"
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 1. cambia active
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const target = btn.dataset.target;
+
+      // 2. filtra
+      cards.forEach(card => {
+        if (target === 'all' || card.dataset.country === target) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // 3. si usas secciones con id="br" , "us"
+      document.querySelectorAll('.country-section').forEach(sec => {
+        sec.style.display = (target === 'all' || sec.id === target) ? '' : 'none';
+      });
+    });
+  });
+});
+</script>
     <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
 
