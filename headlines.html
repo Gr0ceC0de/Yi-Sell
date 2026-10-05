@@ -1,11 +1,48 @@
 <!DOCTYPE html>
+<!-- 01 - Apertura HTML -->
 <html lang="es">
+<!-- 02 - Apertura HEAD -->
 <head>
+  <!-- 03 - Codificación -->
   <meta charset="UTF-8">
+  <!-- 04 - Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noticias - React Artifact</title>
-  
+  <!-- 05 - Autor -->
+  <meta name="author" content="Gr0ceCodeYisell">
+  <!-- 06 - Robots SEO -->
+  <meta name="robots" content="Noticias 2026, titulares">
+  <!-- 07 - Título -->
+  <title>Noticias | Headlines</title>
+  <!-- 08 - Open Graph Título -->
+  <meta property="og:title" content="Global Headlines 2026 | Tech, Fintech & Crypto">
+  <!-- 09 - Open Graph Descripción -->
+  <meta property="Obtén una visión panorámica de las noticias mundiales" content="Titulares trimestrales por país: tecnología, fintech, IA, cripto y mercados.">
+  <!-- 10 - Open Graph Tipo -->
+  <meta property="yisell" content="yisell">
+  <meta property="yisell" content="es_ES">
+
   <style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+
     /* ==========================================================================
        1. FUENTES Y TIPOGRAFÍA
        ========================================================================== */
