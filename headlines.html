@@ -1,1006 +1,627 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
-    <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
 <title>Global Technology, Fintech & Crypto Headlines</title>
-
 <meta name="description" content="Quarterly global headlines covering technology, fintech, cryptocurrencies, digital banking, artificial intelligence, financial markets, and innovation.">
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Public+Sans:wght@400;600;800&display=swap');
+
     :root {
-        --paper: #F5F5F0;
-        --ink: #1A1A1A;
-        --rose: #C08081;
-        --rose-light: #C080811A;
-        --border: #1A1A1A33;
+        --bg-main: #121212;
+        --card-bg: #1A1A1A;
+        --card-bg-alt: #222222;
+        --text-primary: #F0F0F0;
+        --text-secondary: #CCCCCC;
+        --text-muted: #888888;
+        --yellow-primary: #FFD700;
+        --yellow-hover: #FFEE55;
+        --yellow-alpha: rgba(255, 215, 0, 0.12);
+        --border-color: #333333;
+        --border-bold: #FFD700;
     }
-    
+
     * {
         box-sizing: border-box;
-    }
-    
-    body {
-        background: var(--paper);
-        color: var(--ink);
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 13px;
-        line-height: 1.5;
         margin: 0;
         padding: 0;
+    }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-family: 'Public Sans', sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 24px 12px;
         -webkit-font-smoothing: antialiased;
     }
-    
-    h1, h2, h3, .serif {
-        font-family: 'Times New Roman', Times, serif;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-    }
-    
+
+    /* MASTHEAD / HEADER */
     .masthead {
-        border-bottom: 3px double var(--ink);
-        position: relative;
+        max-width: 1400px;
+        margin: 0 auto 32px auto;
+        text-align: center;
+        border-bottom: 3px double var(--yellow-primary);
+        padding-bottom: 16px;
     }
-    
-    .masthead::after {
-        content: '';
-        position: absolute;
-        bottom: -7px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: var(--rose);
-    }
-    
-    .tagline {
-        font-size: 10px;
-        letter-spacing: 0.15em;
+
+    .masthead-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        letter-spacing: -0.03em;
         text-transform: uppercase;
-        color: var(--rose);
+        color: #FFFFFF;
+        margin-bottom: 8px;
     }
-    
-    .city-filter {
-        border-bottom: 1px solid var(--border);
+
+    .masthead-title span {
+        color: var(--yellow-primary);
+        background: var(--yellow-alpha);
+        padding: 0 8px;
+        border: 1px solid var(--yellow-primary);
+    }
+
+    .tagline {
+        font-family: 'Courier Prime', monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--yellow-primary);
+        margin-top: 4px;
+    }
+
+    /* COUNTRY CARDS CONTAINER */
+    .cards-container {
+        max-width: 1400px;
+        margin: 0 auto;
         display: flex;
-        gap: 4px;
-        flex-wrap: wrap;
-        padding: 12px 0;
+        flex-direction: column;
+        gap: 32px;
     }
-    
-    .city-btn {
-        font-family: 'Courier New', monospace;
-        font-size: 11px;
-        padding: 4px 10px;
-        border: 1px solid var(--border);
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.2s ease;
+
+    /* COUNTRY NEWSPAPER CARD */
+    .country-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--yellow-primary);
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .country-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 12px;
+        margin-bottom: 20px;
+    }
+
+    .country-title-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .country-flag {
+        font-size: 2.2rem;
+        line-height: 1;
+    }
+
+    .country-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        color: #FFFFFF;
     }
-    
-    .city-btn:hover, .city-btn.active {
-        background: var(--rose);
-        color: var(--paper);
-        border-color: var(--rose);
+
+    .edition-badge {
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
+        background: var(--yellow-primary);
+        color: #000000;
+        font-weight: 700;
+        padding: 4px 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
     }
-    
-    .classifieds-grid {
+
+    /* 6-COLUMN NEWSPAPER GRID LAYOUT */
+    .news-columns {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        gap: 0;
-        border-left: 1px solid var(--border);
-        border-top: 1px solid var(--border);
+        gap: 20px;
+        margin-bottom: 24px;
     }
-    
+
     @media (min-width: 640px) {
-        .classifieds-grid {
+        .news-columns {
             grid-template-columns: repeat(2, 1fr);
         }
     }
-    
+
     @media (min-width: 1024px) {
-        .classifieds-grid {
-            grid-template-columns: repeat(4, 1fr);
+        .news-columns {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
-    
-    .ad-box {
-        border-right: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        padding: 12px;
-        position: relative;
-        background: var(--paper);
-        transition: background 0.2s ease;
-        min-height: 180px;
+
+    @media (min-width: 1280px) {
+        .news-columns {
+            grid-template-columns: repeat(6, 1fr); /* Exactamente 6 columnas */
+        }
+    }
+
+    .news-column {
+        border-right: 1px dashed var(--border-color);
+        padding-right: 16px;
         display: flex;
         flex-direction: column;
     }
-    
-    .ad-box:hover {
-        background: var(--rose-light);
+
+    .news-column:last-child {
+        border-right: none;
+        padding-right: 0;
     }
-    
-    .box-number {
-        font-family: 'Times New Roman', serif;
-        font-size: 10px;
+
+    @media (max-width: 1279px) {
+        .news-column {
+            border-right: none;
+            border-bottom: 1px dashed var(--border-color);
+            padding-right: 0;
+            padding-bottom: 16px;
+        }
+        .news-column:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    }
+
+    .section-category {
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.1em;
-        color: var(--rose);
-        border-bottom: 1px solid var(--rose);
-        padding-bottom: 4px;
-        margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .city-tag {
-        font-family: 'Courier New', monospace;
-        font-size: 9px;
+        color: #000000;
+        background: var(--yellow-primary);
         padding: 2px 6px;
-        background: var(--ink);
-        color: var(--paper);
-        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 10px;
+        text-transform: uppercase;
         letter-spacing: 0.05em;
     }
-    
-    .ad-header {
-        display: flex;
-        align-items: start;
-        gap: 8px;
+
+    .article-item {
+        margin-bottom: 14px;
+    }
+
+    .article-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .article-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.3;
         margin-bottom: 6px;
     }
-    
-    .ad-icon {
-        flex-shrink: 0;
-        width: 16px;
-        height: 16px;
-        stroke: var(--rose);
-        stroke-width: 1.5;
-        fill: none;
-        margin-top: 2px;
+
+    .article-title mark {
+        background-color: var(--yellow-primary);
+        color: #000000;
+        padding: 0 4px;
     }
-    
-    .ad-title {
-        font-family: 'Times New Roman', serif;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 1.2;
-        text-transform: uppercase;
-        letter-spacing: -0.01em;
+
+    .article-text {
+        font-size: 12.5px;
+        color: var(--text-secondary);
+        line-height: 1.5;
     }
-    
-    .ad-desc {
-        font-size: 11px;
-        line-height: 1.4;
-        margin: 8px 0;
-        flex-grow: 1;
-        hyphens: auto;
-    }
-    
-    .ad-actions {
-        display: flex;
-        gap: 6px;
-        margin-top: auto;
-        padding-top: 8px;
-    }
-    
-    .ad-btn {
-        font-family: 'Courier New', monospace;
-        font-size: 10px;
-        padding: 5px 8px;
-        border: 1px solid var(--ink);
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        flex: 1;
-        text-align: center;
-    }
-    
-    .ad-btn:hover {
-        background: var(--ink);
-        color: var(--paper);
-    }
-    
-    .ad-btn.primary {
-        border-color: var(--rose);
-        color: var(--rose);
-    }
-    
-    .ad-btn.primary:hover {
-        background: var(--rose);
-        color: var(--paper);
-    }
-    
-    .footer-bar {
-        border-top: 3px double var(--ink);
-        margin-top: 24px;
-        padding: 16px 0;
-        text-align: center;
-        position: relative;
-    }
-    
-    .footer-bar::before {
-        content: '';
-        position: absolute;
-        top: -7px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: var(--rose);
-    }
-    
-    .footer-text {
-        font-size: 11px;
-        line-height: 1.6;
-    }
-    
-    .footer-accent {
-        color: var(--rose);
-        font-weight: 700;
-    }
-    
-    .disclaimer {
-        font-size: 9px;
-        color: #666;
+
+    /* SOURCES & PRESS SECTION AT BOTTOM OF CARD */
+    .sources-section {
+        background: var(--card-bg-alt);
+        border: 1px solid var(--border-color);
+        border-left: 3px solid var(--yellow-primary);
+        padding: 16px;
         margin-top: 12px;
-        font-style: italic;
     }
-    
-    @media (max-width: 639px) {
-        body {
-            font-size: 12px;
-        }
-        .ad-title {
-            font-size: 13px;
-        }
-        .ad-desc {
-            font-size: 10px;
-        }
-        .masthead h1 {
-            font-size: 24px;
-        }
-        .tagline {
-            font-size: 9px;
-        }
+
+    .sources-header {
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--yellow-primary);
+        margin-bottom: 10px;
+        letter-spacing: 0.1em;
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
-    
-    .ad-box.hidden {
-        display: none;
+
+    .sources-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        list-style: none;
+    }
+
+    .sources-list li {
+        font-size: 11px;
+    }
+
+    .sources-list a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-family: 'Courier Prime', monospace;
+        border-bottom: 1px dotted var(--yellow-primary);
+        transition: all 0.2s ease;
+    }
+
+    .sources-list a:hover {
+        color: #000000;
+        background: var(--yellow-primary);
+        border-bottom-style: solid;
+    }
+
+    .footer-bar {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
+        color: var(--text-muted);
     }
 </style>
 </head>
 
 <body>
-   <header>
-      <div id="header-placeholder"></div>
-                        <script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header').innerHTML = data;
-      });
-  </script>
-                </header>
-<h1>< <h1 style="background-color:#121212; color:#f0f0f0; padding:12px; text-align:center; font-family:Consolas,'Courier New',monospace; font-size:20px; font-weight:normal; border-radius:8px;">"   
-2026 . 
----</h1>
 
-<p class="subtitle">
-Most relevant quarterly developments by country
-</p>
-
-<div class="table-wrapper">
-
-<table>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
-
-.table-wrapper {
-  --bg: #15131b;
-  --celda: #252131;         /* gris violeta oscuro */
-  --celda-2: #2e2940;       /* un poco más claro para rayado */
-  --celda-pais: #1d1a29;
-  --borde: #3d3852;
-  --borde-brillante: #6b6588;
-  --texto: #e9e6f0;         /* blanco violeta gris */
-  --texto-suave: #a9a6b8;   /* gris violeta */
-  --fucsia: #ff5ca1;
-  --fucsia-claro: #ff8fc0;
-  --fucsia-acuarela: #ff3d9a;
-  max-width: 1150px;
-  margin: 2rem auto;
-  padding: 0;
-  overflow-x: auto;
-  background: var(--bg);
-  border-radius: 2px;
-}
-
-.subtitle {
-  font-family: "Old Standard TT", Georgia, serif;
-  font-style: italic;
-  text-align: center;
-  color: var(--texto-suave);
-  letter-spacing: 0.04em;
-  font-size: 15px;
-  margin-bottom: 1.2rem;
-}
-
-.table-wrapper table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: "Old Standard TT", Georgia, serif;
-  background: var(--celda);
-  border: 1px solid var(--borde);
-  box-shadow: 
-    inset 0 0 0 1px rgba(255,255,255,0.05),
-    0 12px 40px rgba(0,0,0,0.6);
-}
-
-/* CABECERA - tipo The Times, pequeña y seria */
-.table-wrapper th {
-  font-family: "Old Standard TT", serif;
-  background: #0f0e14;
-  color: var(--texto-suave);
-  border-bottom: 1px solid var(--borde);
-  border-right: 1px solid #1e1c29;
-  padding: 10px 18px;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-
-/* CELDAS BASE - fondo oscuro */
-.table-wrapper td {
-  background: var(--celda);
-  color: var(--texto);
-  border-bottom: 1px solid #2a2738;
-  border-right: 1px solid #2a2738;
-  padding: 22px 20px;
-  vertical-align: top;
-  font-size: 15.5px;
-  line-height: 1.75;
-  white-space: pre-line;
-  transition: background 0.2s ease;
-}
-
-.table-wrapper tr:nth-child(even) td {
-  background: var(--celda-2);
-}
-
-/* EFECTO BORDE BRILLANTE AL HOVER - invita a leer */
-.table-wrapper tr:hover td {
-  background: #33304a;
-  box-shadow: inset 0 0 0 1px rgba(255, 92, 161, 0.15);
-}
-
-/* COLUMNA PAIS - sello de imprenta */
-.table-wrapper td.country {
-  width: 110px;
-  background: var(--celda-pais);
-  text-align: center;
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-  border-right: 1px solid var(--borde);
-  white-space: normal;
-}
-.table-wrapper td.country span {
-  display: block;
-  font-size: 2.1rem;
-  line-height: 1.1;
-  margin-bottom: 6px;
-  filter: saturate(0.8) brightness(1.1);
-}
-
-/* COLUMNA TITULAR - EL CORAZÓN - FUCSIA ACUARELA */
-.table-wrapper td.headline {
-  width: 62%;
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  /* Efecto acuarela fucsia */
-  color: transparent;
-  background: linear-gradient(100deg, var(--fucsia) 10%, var(--fucsia-claro) 40%, #ffb3d6 55%, var(--fucsia-acuarela) 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 12px rgba(255, 61, 154, 0.35)) drop-shadow(0 1px 0 rgba(255,255,255,0.8));
-  /* Borde brillante blanco-violeta de la letra */
-  text-shadow: none;
-  position: relative;
-}
-
-/* Sub-texto dentro del headline si lo tienes */
-.table-wrapper td.headline::first-line {
-  font-size: 22px;
-}
-
-/* Para que el texto largo siga legible, el resto en blanco violeta */
-.table-wrapper td.headline {
-  /* truco: si el texto es largo, solo el título brilla, el resto se apaga */
-  -webkit-text-fill-color: var(--texto);
-  background: none;
-}
-.table-wrapper td.headline::first-line,
-.table-wrapper td.headline strong,
-.table-wrapper td.headline b {
-  background: linear-gradient(100deg, var(--fucsia) 0%, var(--fucsia-claro) 50%, #ffd1e6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(255, 92, 161, 0.4));
-}
-
-/* COLUMNA FUENTES - pequeña, como nota al pie de imprenta */
-.table-wrapper td:last-child {
-  font-family: "Old Standard TT", serif;
-  font-size: 11.5px;
-  line-height: 1.6;
-  color: var(--texto-suave);
-  overflow-wrap: anywhere;
-  font-style: italic;
-}
-
-.table-wrapper a {
-  color: var(--fucsia-claro);
-  text-decoration: none;
-  border-bottom: 1px dotted rgba(255, 143, 192, 0.4);
-  transition: all 0.2s;
-}
-.table-wrapper a:hover {
-  color: #fff;
-  border-bottom: 1px solid var(--fucsia);
-  text-shadow: 0 0 8px var(--fucsia);
-}
-
-/* Móvil */
-@media (max-width: 700px) {
-  .table-wrapper table, .table-wrapper tbody, .table-wrapper tr, .table-wrapper td {
-    display: block;
-    width: auto;
-  }
-  .table-wrapper thead { display: none; }
-  .table-wrapper td.country {
-    width: auto;
-    text-align: left;
-    padding: 12px 18px;
-    border-bottom: none;
-  }
-  .table-wrapper td.country span { display: inline; margin-right: .5rem; }
-  .table-wrapper td.headline { width: auto; font-size: 19px; }
-}
-</style>
-
-<tr>
-<th>Country</th>
-<th>Top Quarterly Headlines</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td class="country"><span>🇧🇷</span>Brazil</td>
-<td class="headline"> *Brazil 2026 Headlines: Economy, Politics & Tech*
-
-*Politics*
-1. *Lula’s 3rd term mid-point* - Government focuses on fiscal balance, social programs, and Amazon protection. Tensions with Congress over budget amendments continue.
-2. *Municipal election fallout* - 2024 local results still shape alliances. Centrão parties gain influence in Congress ahead of 2026 general elections.
-3. *Security + Amazon policy* - Federal task forces expanded to fight deforestation and organized crime. New bill on regulating social media passes first round.
-
-*Economy*
-4. *Growth stabilizes* - GDP forecast ∼2.4%. Driven by agriculture, services, and oil. Inflation drops to ∼3.9%.
-5. *Interest rates cut* - Central Bank brings Selic rate down to 10.25% to boost investment and consumption.
-6. *Fiscal framework tested* - New spending rules hold, but pressure rises for more investment in infrastructure and education.
-7. *Energy exports boom* - Record oil + ethanol exports. Brazil pushes to become major green hydrogen exporter by 2030.
-
- *Technology*
-8. *AI + Digital gov* - Federal "AI Strategy 2026" launched. Gov.br expands AI chatbots for public services.
-9. *5G + semiconductors* - Full 5G rollout in all state capitals. New tax incentives attract chip and data center investments in São Paulo and Ceará.
-10. *Fintech & Pix 2.0* - Pix adds offline payments and international transfers. Brazil leads LatAm in digital payments and open banking.
-11. *Climate tech* - Major funding for startups in agrotech, carbon credits, and biofuels. COP30 prep in Belém boosts green tech sector.
- </td>
-<td>👉
-- *Folha de S.Paulo* - https://www.folha.uol.com.br
-- *O Globo* - https://oglobo.globo.com
-- *O Estado de S. Paulo - Estadão* - https://www.estadao.com.br
-- *Valor Econômico* - https://valor.globo.com
-- *Correio Braziliense* - https://www.correiobraziliense.com.br
-
-- *Zero Hora* - https://gauchazh.clicrbs.com.br
-- *Estado de Minas* - https://www.em.com.br
-- *O Povo* - https://www.opovo.com.br
-- *A Tarde* - https://www.atarde.com.br
-- *Gazeta do Povo* - https://www.gazetadopovo.com.br
-- *Brasil 247* - https://www.brasil247.com
-- *CartaCapital* - https://www.cartacapital.com.br
-- *Intercept Brasil* - https://www.intercept.com.br
-- *El País Brasil* - https://brasil.elpais.com
-- *UOL Notícias* - https://noticias.uol.com.br
-- *Jornal GGN* - https://jornalggn.com.br
-- *Revista Fórum* - https://revistaforum.com.br
-- *Mídia Ninja* - https://midianinja.org
-- *Agência Pública* - https://apublica.org
-- *Nexo Jornal* - https://www.nexojornal.com.br
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇺🇸</span>USA</td>
-<td class="headline">
-
-# *1. Tech Investments & Stocks*
-- *AI dominates VC*: U.S. companies captured ∼80% of global startup funding in 2026. AI-related investment hit 88% of that total, with $319B USD going mostly to OpenAI and Anthropic.
-- *Record funding*: AI funding reached $510B USD in H1 2026 alone, already surpassing all of 2025.
-- *Big Tech spending*: Major tech firms plan to spend up to $900B USD on AI infrastructure in 2026.
-- *Market warning*: The Bank for International Settlements (BIS) warned the current AI cycle has echoes of past bubbles like railroads and dot-com. Debate continues over capital concentration and its real impact on jobs and productivity
-
-2. Financial Products & Fintech
-BNPL providers face new CFPB rules on late fees and credit reporting.
-AI-driven robo-advisors under scrutiny after algorithmic bias lawsuits.
-FedNow adoption grows among regional banks, challenging legacy ACH systems.
-3. Space & Aircraft Technology
-NASA Artemis III mission timeline slips to late 2027 due to Starship HLS testing delays.
-MIT Lincoln Lab demos new AI for autonomous satellite collision avoidance.
-Boom Supersonic completes first XB-1 supersonic test flight without afterburner.
-4. Technology
-Open-weight AI models from academia challenge closed corporate systems on benchmarks.
-Right-to-repair laws expand to farm equipment and medical devices in 12 states.
-Quantum computing: Caltech reports 99.9% 2-qubit gate fidelity on new superconducting chip.
-5. Industry Statistics
-US manufacturing PMI hovers near 50, signaling flat growth amid high rates.
-Tech layoffs slow in Q2 2026, but AI-related hiring offsets only 30% of cuts.
-Renewable energy jobs outpace fossil fuel jobs 3:1 in new BLS report.
-6. Economic Growth, Production & Consumer Behavior
-US GDP growth revised to 1.8% for Q1 2026, driven by services, not goods.
-“Shrinkflation” complaints to FTC up 40% YoY as package sizes drop.
-Gen Z spending shifts to used goods and repair, per Stanford consumer study.
-7. Political Panorama & Elections
-2026 US midterms: Early polling shows House control as toss-up, with crypto PAC spending up 300%.
-EU Parliament elections see far-right gains tied to cost-of-living protests.
-Campaign finance: ProPublica tracks rise of AI-generated ads with minimal disclosure.
-8. Lawyers
-DOJ antitrust lawyers file new case against algorithmic price-fixing in rental markets.
-Class-action suits over data broker sales to law enforcement reach Supreme Court docket.
-Legal aid funding cuts contested in 9 states amid eviction case backlog.
-9. Business Opportunities
-CHIPS Act funding opens Phase 2 for packaging and advanced materials startups.
-Carbon capture tax credits drive new DAC projects in Midwest.
-Small satellite launch demand creates openings for rideshare integrators.
-10. Forex & Currency Issues
-USD strength continues as Fed holds rates; yen intervention risks rise.
-</td>
-<td>
- 👇
-
-- *Democracy Now!* - https://www.democracynow.org
-- *The Intercept* - https://theintercept.com
-- *Mother Jones* - https://www.motherjones.com
-- *ProPublica* - https://www.propublica.org
-- *Truthout* - https://truthout.org
-- *Common Dreams* - https://www.commondreams.org
-- *Breitbart News* - https://www.breitbart.com
-- *The Daily Wire* - https://www.dailywire.com
-- *The Federalist* - https://thefederalist.com
-- *Newsmax* - https://www.newsmax.com
-- *Reason* - https://reason.com
-- *The Free Press* - https://www.thefp.com
-- *Zero Hedge* - https://www.zerohedge.com
-
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇨🇦</span>Canada</td>
-<td class="headline">Digital banking innovation, AI ecosystem growth, fintech funding recovery, blockchain research initiatives.
-*Canada: Economy, Politics & Tech Summary 2026 - 10 lines*
-
-1. *Politics*: PM Mark Carney’s Liberal government faces pressure over cost of living and housing ahead of post-2025 election dynamics.
-2. *US Relations*: Trade tensions over US tariffs on steel, aluminum, and autos. Canada retaliates and seeks new trade partners.
-3. *Economy*: Inflation near 2.2%. Bank of Canada keeps rates high but is slowly cutting to avoid recession.
-4. *Housing*: Housing crisis continues. Federal plan to build 3.9M homes by 2031 + limits on foreign buyers.
-5. *Energy*: TMX pipeline expansion advances. Debate continues between oil/gas and green transition.
-6. *Fiscal*: Federal deficit around CAD $40B. Focus on spending cuts and revenue growth.
-7. *AI*: $2.4B CAD invested in AI infrastructure and talent. Toronto and Montreal lead as AI hubs.
-8. *Semiconductors*: Major subsidies to attract chip and battery plants from Tesla, VW, and Northvolt.
-9. *Clean Tech*: Push on green hydrogen and critical minerals. Canada positions itself as key supplier to US/EU.
-10. *Digital*: Online News Act in effect. Meta/Google pay Canadian media. National digital ID and cybersecurity expanding.
-</td>
-<td> 
-- *The Tyee* - https://thetyee.ca
-- *rabble.ca* - https://rabble.ca
-- *National Observer* - https://www.nationalobserver.com
-- *The Globe and Mail - Report on Business* - https://www.theglobeandmail.com
-- *PressProgress* - https://pressprogress.ca
-- *The Breach* - https://breachmedia.ca
-- *Ricochet Media* - https://ricochet.media
-- *APTN News* - https://www.aptnnews.ca
-- *Canada’s National Observer - Energy/Climate* - https://www.nationalobserver.com/section/energy
-- *The Maple* - https://www.readthemaple.com
-</td>
-</tr>
-
-<tr>
-<td class="country"><spam>🇲🇽</spam>Mexico </td>
-
-<td class="headline">  México 2026: 
-
-1. *Crecimiento moderado*: PIB estimado ∼2.1%. Inflación bajó a ∼3.8% pero el costo de alimentos y vivienda sigue presionando.
-2. *Nearshoring*: Siguen llegando inversiones de empresas que se mudan desde Asia. Norte del país, sobre todo Nuevo León, Chihuahua y Sonora, concentran fábricas de autos eléctricos y semiconductores.
-
-3.Peso y tasas: El peso se mantuvo estable vs dólar. Banxico recortó tasas lentamente, hoy están ∼9.5%.
-4. Salario mínimo*: Aumento de 12% en enero. Ahora está en ∼$312 pesos diarios.
-
-5. Gobierno: Sigue el gobierno de Claudia Sheinbaum. Agenda centrada en austeridad, programas sociales y seguridad.
-6. *Seguridad: Plan nacional contra homicidios y extorsión. Despliegue de Guardia Nacional en estados con más violencia como Guanajuato, Zacatecas y Guerrero.
-7. *Reformas: Avanza la reforma judicial y energética. Debate fuerte sobre autonomía del INE y de la Suprema Corte.
-8. *Relación con EE.UU.: Tensión por migración y fentanilo, pero cooperación en comercio por el T-MEC.
-9. *Semiconductores y autos EV*: México firmó acuerdos para 2 nuevas plantas de baterías y chips. Tesla en NL sigue expandiéndose.
-10. *Digitalización*: Impulso a gobierno digital y CURP biométrica. Avanza la Ley de Ciberseguridad y regulación de IA. 
-11. *Internet*: Programa "Internet para Todos" llegó a +95% de municipios. Crecimiento de fintech y pagos por CoDi.
-</td>
-<td> 
-👇
-https://aristeguinoticias.com
-*SinEmbargo* - https://www.sinembargo.mx
-*Animal Político* - https://www.animalpolitico.com
-*Proceso* - https://www.proceso.com.mx
-*Pie de Página* - https://piedepagina.mx
-*Rompeviento TV* - https://rompeviento.tv
-*El Desinformémonos* - https://desinformemonos.org
-*Revista Zócalo* - https://www.zocalo.com.mx
-*Sopitas* - https://www.sopitas.com
-*La Jornada* - https://www.jornada.com.mx
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇨🇱</span>Chile</td>
-<td class="headline">*Chile 2026 Headlines: Tech, Economy & Politics*
-
-1. *Constitutional talks restart* - Congress pushes new reform package focused on pensions and water rights after 2025 plebiscite debates.
-2. *Security bill passes* - Government expands powers for police and prosecutors to tackle organized crime in northern and southern regions.
-3. *Indigenous consultation law* - New framework approved to regulate mining and energy projects in Mapuche territories.
-
-Economy* 
-4. *Copper boom continues* - High copper prices + Codelco expansion drive 2.8% GDP growth. Lithium still #2 export.
-5. *Inflation under control* - CPI drops to 3.2%. Central Bank cuts rates to 4.75% to stimulate investment.
-6. *Pension reform advances* - Mixed public-private system approved. 6% extra employer contribution to go to collective fund.
-7. *Green hydrogen push* - Magallanes and Antofagasta attract $15B USD in foreign investment for green H2 export projects.
-
-*Technology*
-8. *Data center hub* - Santiago and Valparaíso become key data center locations for AWS, Google, and Microsoft due to renewable energy.
-9. *Lithium + Battery tech* - State lithium company ENAMI signs deals with Tesla and BYD for battery-grade lithium and local processing plants.
-10. *Digital government rollout* - "ClaveÚnica 2.0" + AI for public services launches. New cybersecurity law comes into effect.
-</td>
-<td>  👇
-- *El Mostrador* - https://www.elmostrador.cl
-- *CIPER Chile* - https://www.ciperchile.cl
-- *Radio JGM* - https://radiojgm.uchile.cl
-- *El Desconcierto* - https://www.eldesconcierto.cl
-- *Interferencia* - https://interferencia.cl
-- *La Voz de los que Sobran* - https://lavozdelosquesobran.cl
-- *Resumen* - https://resumen.cl
-- *PiensaPrensa* - https://piensaprensa.com
-- *El Siglo* - https://www.elsiglo.cl
-- *Página 19* - https://www.pagina19.cl
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇩🇪</span>Germany</td>
-<td class="headline"> *Germany 2026 Headlines: 
-En los últimos meses, Alemania ha mostrado una recuperación económica moderada impulsada por un fuerte estímulo fiscal en infraestructuras y defensa (fondo de unos 500.000 millones de euros), un repunte de las exportaciones ligado a la demanda global de IA y centros de datos, y mejores indicadores de confianza empresarial (índice Ifo al alza). El crecimiento del PIB se revisó al alza hasta alrededor del 1,3 % para 2026. En política, el canciller Friedrich Merz (CDU, coalición con SPD) enfrenta una crisis tras derrotas regionales de septiembre, con avances de la AfD (extrema derecha) y Die Linke; persisten retos estructurales como demografía, precios energéticos (afectados por el conflicto en Oriente Medio) y deuda pública creciente. En tecnología y finanzas destacan inversiones extranjeras (como el plan de 40.000 millones de euros de Emiratos Árabes), impulso a IA/semiconductores, reformas para atraer capital y un próximo “Invest in Germany Summit”. dw.com
-
-En los últimos tres meses (aprox. julio-septiembre 2026), el gobierno de Merz consolidó el “bazooka” fiscal con el fondo especial de infraestructuras y el aumento del gasto en defensa (alrededor de 98.000 millones este año), junto a la ley de futuro de infraestructuras (en vigor desde julio) que acelera permisos. La economía se benefició del auge global de IA (exportaciones de electrónica y demanda de data centers) y de cierta resiliencia ante el shock energético del conflicto en Irán/Oriente Medio. Los institutos económicos y la Bundesbank elevaron previsiones de crecimiento a ~1-1,3 % para 2026 (desde ~0,5-0,6 %). Sin embargo, la inflación subió (hasta ~3,3 % en septiembre por energía), el desempleo volvió a superar los 3 millones y las insolvencias empresariales se mantuvieron altas. Políticamente, las elecciones estatales de septiembre fueron un “desastre” para la CDU: la AfD ganó en Sajonia-Anhalt y Mecklemburgo-Pomerania Occidental (CDU quedó fuera del parlamento en esta última), y Die Linke lideró en Berlín. Merz reafirmó su permanencia y el impulso a reformas (impuestos, pensiones, sanidad, burocracia), pero su popularidad está en mínimos y hay presión para suavizarlas. En tecnología/finanzas: Emiratos anunció ~40.000 millones de inversión en industria, IA, infra digital y energía; se impulsan fondos públicos para movilizar capital privado y hay interés en posicionar a Alemania en IA e industrial tech. delloite.com
-
-Exclusivamente en la última semana (aprox. 28 septiembre – 5 octubre 2026): Merz visitó Kiev, anunció 350 millones de euros de ayuda adicional para el sector energético ucraniano y reiteró el apoyo a Ucrania frente a Rusia. El presidente Steinmeier advirtió sobre riesgos de polarización “estilo Weimar” por desinformación y extremismos. Se celebró el Día de la Unidad Alemana (3 de octubre) en Bremen, con llamados a defender la democracia. Indicadores económicos siguieron positivos (crecimiento revisado al alza por el gobierno y Bundesbank), y el CEO de Deutsche Bank advirtió que los resultados electorales regionales podrían desalentar inversores extranjeros. Se prepara la cumbre de inversión “Invest in Germany” (19-20 octubre) con participación de grandes fondos y tecnológicas. La AfD muestra señales de posible moderación en su postura anti-UE según papeles internos.
-</td>
-<td>
- 👇
-
-- *taz - Die Tageszeitung* - https://taz.de
-- *NachDenkSeiten* - https://www.nachdenkseiten.de
-- *Telepolis* - https://www.heise.de/tp
-- *Rubikon* - https://www.rubikon.news
-- *Junge Welt* - https://www.jungewelt.de
-- *Der Freitag* - https://www.freitag.de
-- *Multipolar* - https://www.multipolar-magazin.de
-- *Krautreporter* - https://krautreporter.de
-- *Context: Wochenzeitung* - https://www.contextwochenzeitung.de
-- *German Foreign Policy* - https://www.german-foreign-policy.com
-
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇪🇸</span>Spain</td>
-<td class="headline">*Spain 2026 Headlines: Politics, Economy & Technology*
-
-#*Politics*
-1. *Coalition government under pressure* - PSOE and Sumar negotiate the 2026 budget. Strong debate over housing and labor reform.
-2. *Catalonia and Basque Country* - New dialogue tables advance on regional funding. Stability but no major agreements.
-3. *Housing Law 2.0* - Government approves tighter rent controls in "tense areas" and 200,000 new public housing units.
-
-*Economy*
-4. *Solid growth* - GDP +2.3%. Tourism hits a record with +92M visitors. Unemployment drops to 10.8%, the lowest in 15 years.
-5. *Inflation under control* - CPI at 2.6%. ECB rate cuts make mortgages in Spain cheaper.
-6. *EU funds* - Final phase of NextGen funds. Focus on green industry, rail, and SME digitalization.
-7. *Energy* - Spain exports renewable electricity to France. Green hydrogen projects advance in Aragón and Andalucía.
-
-*Technology*
-8. *AI and Public Administration* - Launch of "AI Assistant 360" for SEPE and Tax Agency procedures. New EU AI Act now in effect.
-9. *Tech hubs* - Madrid and Barcelona attract Amazon and Google data centers due to cheap renewable energy.
-10. *Startups + Cybersecurity* - Record investment in fintech and healthtech. Spain’s role as host of the EU Cybersecurity Agency grows.
-11. *Connectivity* - 5G reaches 98% of the population. Fiber rollout in rural areas with EU funds.  </td>
-<td>
-
-España* 👇
-
- *Prensa alternativa en España*
-- *eldiario.es* - https://www.eldiario.es
-- *Público* - https://www.publico.es
-- *La Marea* - https://www.lamarea.com
-- *CTXT* - https://ctxt.es
-- *Infolibre* - https://www.infolibre.es
-- *El Salto* - https://www.elsaltodiario.com
-- *Pikara Magazine* - https://www.pikaramagazine.com
-- *La Directa* - https://directa.cat
-- *Diagonal* - https://www.diagonalperiodico.net
-- *Mongolia* - https://www.revistamongolia.com
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇬🇧</span>United Kingdom</td>
-<td class="headline"> 
-*UK 2026 Headlines: Politics, Economy & Technology*
-
-*Politics*
-1. *Post-election government settles in* - Labour government in its 2nd year focuses on housing, NHS reform, and "Green Growth" agenda.
-2. *Brexit review talks* - UK and EU start review of Trade and Cooperation Agreement. Focus on youth mobility and food standards.
-3. *Devolution pressure* - Scotland pushes for new independence referendum. Wales gets more fiscal powers.
-
-#Economy*
-4. *Modest growth* - GDP +1.4%. Services and green energy lead growth. Manufacturing still struggles.
-5. *Inflation eases* - CPI down to 2.4%. Bank of England cuts base rate to 3.75%, easing mortgage pressure.
-6. *Cost of living stabilizes* - Energy bills fall but housing costs remain the #1 concern. New "Renters’ Rights Bill" passed.
-7. *Investment push* - Government launches £22B "National Wealth Fund" for green industry, ports, and AI infrastructure.
-
-*Technology*
-8. *AI regulation* - UK adopts "pro-innovation" AI Bill. Creates AI Safety Institute as global hub for testing AI models.
-9. *Tech hubs boom* - London, Manchester and Cambridge attract major data center and quantum computing investment.
-10. *Fintech + Digital pound* - "Digital Pound" pilot moves to phase 2. Open Banking expands to pensions and savings.
-11. *Connectivity* - 5G Standalone covers 80% of population. £5B Project Gigabit brings full-fiber to rural areas.
-
-</td>
-<td>
-👇
- *UK Alternative / Independent Press*
-- *The Guardian* - https://www.theguardian.com
-- *openDemocracy* - https://www.opendemocracy.net
-- *Novara Media* - https://novaramedia.com
-- *The Canary* - https://www.thecanary.co
-- *Byline Times* - https://bylinetimes.com
-- *The Independent* - https://www.independent.co.uk
-- *Spiked* - https://www.spiked-online.com
-- *Tribune Magazine* - https://tribunemag.co.uk
-- *Bella Caledonia* - https://bellacaledonia.org.uk
-- *DeSmog UK* - https://www.desmog.com
-
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇵🇱</span>Poland</td>
-<td class="headline">Cybersecurity innovation, digital banking growth, fintech scaling, technology infrastructure modernization.</td>
-<td>
-Polonia 👇
- *Prensa principal en Polonia*
-- *Gazeta Wyborcza* - https://wyborcza.pl
-- *Rzeczpospolita* - https://www.rp.pl
-- *Dziennik Gazeta Prawna* - https://www.gazetaprawna.pl
-- *Fakt* - https://www.fakt.pl
-- *Super Express* - https://www.se.pl
-- *Gazeta Polska* - https://gazetapolska.pl
-- *Nasz Dziennik* - https://naszdziennik.pl
-- *Przegląd* - https://www.przeglad.com.pl
-- *OKO.press* - https://oko.press
-- *Krytyka Polityczna* - https://krytykapolityczna.pl
-- *Gazeta.pl* - https://www.gazeta.pl
-- *Polityka* - https://www.polityka.pl
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇫🇷</span>France</td>
-<td class="headline">AI startups attract funding, fintech ecosystem growth, crypto compliance frameworks, digital economy expansion.</td>
-<td>
- Francia* 👇
-- *Mediapart* - https://www.mediapart.fr
-- *Le Monde Diplomatique* - https://www.monde-diplomatique.fr
-- *Reporterre* - https://reporterre.net
-- *Basta!* - https://basta.media
-- *Arrêt sur images* - https://www.arretsurimages.net
-- *Politis* - https://www.politis.fr
-- *L’Humanité* - https://www.humanite.fr
-- *Les Jours* - https://lesjours.fr
-- *Context* - https://www.contexte.com
-- *Le Vent Se Lève* - https://lvsl.fr
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇨🇳</span>China</td>
-<td class="headline">AI model competition, digital yuan deployment, fintech platform evolution, semiconductor investments.</td>
-<td>
- 👇
-*China*
-- *Caixin Global* - https://www.caixinglobal.com
-- *The Initium / 端传媒* - https://theinitium.com
-- *China Digital Times* - https://chinadigitaltimes.net
-- *Sixth Tone* - https://www.sixthtone.com
-- *Matters* - https://matters.news
-- *Yicai Global* - https://www.yicaiglobal.com
-- *China Labour Bulletin* - https://clb.org.hk
-- *Radio Free Asia - Chinese* - https://www.rfa.org/mandarin
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇯🇵</span>Japan</td>
-<td class="headline">Robotics innovation, digital finance modernization, Web3 initiatives, enterprise AI implementation.</td>
-
-<td> Japón 👇
-
-- *Japan Times* - https://www.japantimes.co.jp
-- *Shukan Bunshun / 週刊文春* - https://bunshun.jp
-- *Shukan Shincho / 週刊新潮* - https://www.dailyshincho.jp
-- *Tokyo Reporter* - https://www.tokyoreporter.com
-- *J-CAST News* - https://www.j-cast.com
-- *Business Insider Japan* - https://www.businessinsider.jp
-- *HuffPost Japan* - https://www.huffingtonpost.jp
-- *OurPlanet-TV* - https://www.ourplanet-tv.org
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇦🇺</span>Australia</td>
-<td class="headline">Fintech funding recovery, digital payments growth, crypto regulation discussions, AI adoption in business.</td>
-<td> Australia 👇
-- *The Guardian Australia* - https://www.theguardian.com/au
-- *Crikey* - https://www.crikey.com.au
-- *The Saturday Paper* - https://www.thesaturdaypaper.com.au
-- *Independent Australia* - https://independentaustralia.net
-- *The New Daily* - https://thenewdaily.com.au
-- *The Conversation AU* - https://theconversation.com/au
-- *Pearls and Irritations* - https://johnmenadue.com
-- *Eureka Street* - https://www.eurekastreet.com.au
-</td>
-
-</tr>
-
-<tr>
-<td class="country"><span>🇳🇿</span>New Zealand</td>
-<td class="headline">Technology startup development, fintech innovation, sustainable digital finance, cybersecurity investments.</td>
-<td> 
- Nueva Zelanda* 👇
-*Prensa alternativa en Nueva Zelanda*
-- *The Spinoff* - https://thespinoff.co.nz
-- *Newsroom* - https://www.newsroom.co.nz
-- *The Daily Blog* - https://thedailyblog.co.nz
-- *Waatea News* - https://waateanews.com
-- *E-Tangata* - https://e-tangata.co.nz
-- *The Big Idea* - https://www.thebigidea.nz
-- *RNZ - Radio New Zealand* - https://www.rnz.co.nz
-</td>
-</tr>
-
-<tr>
-<td class="country"><span>🇨🇭</span>Switzerland</td>
-<td class="headline">Crypto valley expansion, blockchain finance leadership, tokenization projects, digital asset custody services.</td>
-<td>
- 👇
-Prensa alternativa en Suiza*
-- *Republik* - https://www.republik.ch
-- *WOZ Die Wochenzeitung* - https://www.woz.ch
-- *Infosperber* - https://www.infosperber.ch
-- *Gottlieb Duttweiler Institut - GDI* - https://www.gdi.ch
-- *Bajour* - https://www.bajour.ch
-- *Bon pour la Tête* - https://www.bonpourlatete.com
-- *Le Courrier* - https://lecourrier.ch
-- *TagesWoche* - https://www.tageswoche.ch
-
-</td>
-</tr>
-<tr>
-<td class="country"><span>🇷🇺</span>Rusia</td>
-<td class="headline">*Rusia 2026:
-
-- *War costs warning*: VEB’s former chief economist Andrei Klepach was fired after saying Russia is "losing the technological and economic competition" and faces a "social crisis" due to Ukraine war costs.
-- *Trade with China*: $159 billion USD Jan-July 2026. +26% YoY. China remains Russia’s main economic lifeline for oil, gas, cars and electronics.
-- *Logistics innovation*: Russia’s Far East is testing "drone bridges" and autonomous trucks with China to bypass border bottlenecks. Full autonomy targeted for 2028.
-- *Domestic shortages*: Gasoline imports from India and diesel from Asia after Ukrainian strikes on refineries. Fuel export ban imposed.
-- *Foreign assets*: State pressure on companies like Nestle to transfer assets to temporary state administration.
-- *Internal crackdown: Klepach’s dismissal shows zero tolerance for public criticism of war costs.
-- *New alliances: Putin met Myanmar’s junta leader to discuss oil refineries, LNG and a small nuclear plant.
-- *EU sanctions: EU announced plans for its "most far-reaching sanctions yet" on Russia.
-- *Tensions with UK*: Russia warned of "consequences" after UK pledged 150,000 drones to Ukraine by end of 2026.
-- *Drone war escalation: Ukraine ramped up long-range strikes on refineries, warehouses and logistics hubs inside Russia.
-- *Air defense strain: 180 drones shot down in one night over Moscow region. 620 drones were reportedly headed there. Russian air defense is overstretched.
----
-Longer than USSR’s "Great Patriotic War"
-*Russia-China Trade**	\$159 billion USD in first 7 months of 2026. +26% YoY
-**Recent Drone Attacks**	620 Ukrainian drones targeted Moscow region in one night
-**UK Drone Supply to Ukraine**	150,000 units planned for delivery by end of 2026
-*Key Targets Hit**	Oil refineries, Wildberries warehouses, logistics infrastructure
-*Bottom line*: Russia is propping up the economy with China but facing tech/logistics strain. The war has shifted to a "war of attrition with drones", with deeper strikes inside Russia. Domestically, economic dissent is being silenced.
-</td>
-<td>
-👇
-1. *Meduza*  
-   https://meduza.io
-2. *The Moscow Times*  
-   https://www.themoscowtimes.com
-3. *Novaya Gazeta Europe*  
-   https://novayagazeta.eu
-4. *TV Rain / Dozhd*  
-   https://tvrain.tv
-5. *Agentstvo / The Agency*  
-   https://www.agentstvo.org
-6. *Verstka*  
-   https://verstka.media
-7. *iStories / Vazhnye Istorii*  
-   https://www.istories.media
-8. *Holod*  
-   https://holod.media
-9. *Proekt*  
-   https://www.proekt.media
-10. *Radio Svoboda / RFE/RL Russian Service*  
-    https://www.svoboda.org
-</td>
-
-<tr>
-<td class="country"><span>🇮🇳</span>India</td>
-<td class="headline">UPI growth, fintech scale-up ecosystem, AI innovation surge, digital public infrastructure expansion.</td> 
-
-<td>
- 👇
-- *The Wire* - https://thewire.in
-- *The Quint* - https://www.thequint.com
-- *Scroll.in* - https://scroll.in
-- *Newslaundry* - https://www.newslaundry.com
-- *The Caravan* - https://caravanmagazine.in
-- *Article 14* - https://www.article-14.com
-- *The Print* - https://theprint.in
-- *CounterCurrents* - https://countercurrents.org
-- *Khabar Lahariya* - https://www.khabarlahariya.org
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+    <!-- MASTHEAD -->
+    <header class="masthead">
+        <h1 class="masthead-title"><span>2026</span> Global Headlines</h1>
+        <p class="tagline">Quarterly Developments • Technology, Fintech & Financial Markets Summary</p>
+    </header>
+
+    <main class="cards-container">
+
+        <!-- CARD 1: BRAZIL -->
+        <article class="country-card">
+            <header class="country-card-header">
+                <div class="country-title-group">
+                    <span class="country-flag">🇧🇷</span>
+                    <h2 class="country-name">Brazil</h2>
+                </div>
+                <span class="edition-badge">Q3/Q4 2026 Edition</span>
+            </header>
+
+            <div class="news-columns">
+                <!-- Col 1 -->
+                <div class="news-column">
+                    <span class="section-category">Politics</span>
+                    <div class="article-item">
+                        <h3 class="article-title">1. Lula’s 3rd Term Mid-Point</h3>
+                        <p class="article-text">Government focuses on fiscal balance, social programs, and Amazon protection. Tensions with Congress over budget amendments continue.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">2. Municipal Election Fallout</h3>
+                        <p class="article-text">2024 local results still shape alliances. Centrão parties gain influence in Congress ahead of 2026 general elections.</p>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="news-column">
+                    <span class="section-category">Security & Law</span>
+                    <div class="article-item">
+                        <h3 class="article-title">3. Security + Amazon Policy</h3>
+                        <p class="article-text">Federal task forces expanded to fight deforestation and organized crime. New bill on regulating social media passes first round.</p>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="news-column">
+                    <span class="section-category">Economy</span>
+                    <div class="article-item">
+                        <h3 class="article-title">4. Growth Stabilizes</h3>
+                        <p class="article-text">GDP forecast ~2.4%. Driven by agriculture, services, and oil. Inflation drops to ~3.9%.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">5. Interest Rates Cut</h3>
+                        <p class="article-text">Central Bank brings Selic rate down to 10.25% to boost investment and consumption.</p>
+                    </div>
+                </div>
+
+                <!-- Col 4 -->
+                <div class="news-column">
+                    <span class="section-category">Fiscal & Energy</span>
+                    <div class="article-item">
+                        <h3 class="article-title">6. Fiscal Framework Tested</h3>
+                        <p class="article-text">New spending rules hold, but pressure rises for more investment in infrastructure and education.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">7. Energy Exports Boom</h3>
+                        <p class="article-text">Record oil + ethanol exports. Brazil pushes to become major green hydrogen exporter by 2030.</p>
+                    </div>
+                </div>
+
+                <!-- Col 5 -->
+                <div class="news-column">
+                    <span class="section-category">Technology</span>
+                    <div class="article-item">
+                        <h3 class="article-title">8. AI + Digital Gov</h3>
+                        <p class="article-text">Federal "AI Strategy 2026" launched. Gov.br expands AI chatbots for public services.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">9. 5G + Semiconductors</h3>
+                        <p class="article-text">Full 5G rollout in all state capitals. New tax incentives attract chip and data center investments in São Paulo and Ceará.</p>
+                    </div>
+                </div>
+
+                <!-- Col 6 -->
+                <div class="news-column">
+                    <span class="section-category">Fintech & Climate</span>
+                    <div class="article-item">
+                        <h3 class="article-title">10. Fintech & Pix 2.0</h3>
+                        <p class="article-text">Pix adds offline payments and international transfers. Brazil leads LatAm in digital payments and open banking.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">11. Climate Tech</h3>
+                        <p class="article-text">Major funding for startups in agrotech, carbon credits, and biofuels. COP30 prep in Belém boosts green tech sector.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOURCES FOOTER -->
+            <footer class="sources-section">
+                <div class="sources-header">👉 Press & Media Sources — Brazil</div>
+                <ul class="sources-list">
+                    <li><a href="https://www.folha.uol.com.br" target="_blank">Folha de S.Paulo</a></li>
+                    <li><a href="https://oglobo.globo.com" target="_blank">O Globo</a></li>
+                    <li><a href="https://www.estadao.com.br" target="_blank">Estadão</a></li>
+                    <li><a href="https://valor.globo.com" target="_blank">Valor Econômico</a></li>
+                    <li><a href="https://www.correiobraziliense.com.br" target="_blank">Correio Braziliense</a></li>
+                    <li><a href="https://gauchazh.clicrbs.com.br" target="_blank">Zero Hora</a></li>
+                    <li><a href="https://www.em.com.br" target="_blank">Estado de Minas</a></li>
+                    <li><a href="https://www.opovo.com.br" target="_blank">O Povo</a></li>
+                    <li><a href="https://www.atarde.com.br" target="_blank">A Tarde</a></li>
+                    <li><a href="https://www.gazetadopovo.com.br" target="_blank">Gazeta do Povo</a></li>
+                    <li><a href="https://www.brasil247.com" target="_blank">Brasil 247</a></li>
+                    <li><a href="https://www.cartacapital.com.br" target="_blank">CartaCapital</a></li>
+                    <li><a href="https://www.intercept.com.br" target="_blank">Intercept Brasil</a></li>
+                    <li><a href="https://brasil.elpais.com" target="_blank">El País Brasil</a></li>
+                    <li><a href="https://noticias.uol.com.br" target="_blank">UOL Notícias</a></li>
+                    <li><a href="https://jornalggn.com.br" target="_blank">Jornal GGN</a></li>
+                    <li><a href="https://revistaforum.com.br" target="_blank">Revista Fórum</a></li>
+                    <li><a href="https://midianinja.org" target="_blank">Mídia Ninja</a></li>
+                    <li><a href="https://apublica.org" target="_blank">Agência Pública</a></li>
+                    <li><a href="https://www.nexojornal.com.br" target="_blank">Nexo Jornal</a></li>
+                </ul>
+            </footer>
+        </article>
+
+
+        <!-- CARD 2: USA -->
+        <article class="country-card">
+            <header class="country-card-header">
+                <div class="country-title-group">
+                    <span class="country-flag">🇺🇸</span>
+                    <h2 class="country-name">USA</h2>
+                </div>
+                <span class="edition-badge">Q3/Q4 2026 Edition</span>
+            </header>
+
+            <div class="news-columns">
+                <!-- Col 1 -->
+                <div class="news-column">
+                    <span class="section-category">1. Tech Investments</span>
+                    <div class="article-item">
+                        <p class="article-text">• <strong>AI dominates VC:</strong> U.S. companies captured ~80% of global startup funding in 2026. AI-related investment hit 88% of that total ($319B USD to OpenAI & Anthropic).</p>
+                    </div>
+                    <div class="article-item">
+                        <p class="article-text">• <strong>Record funding:</strong> AI funding reached $510B USD in H1 2026 alone, surpassing all of 2025.</p>
+                    </div>
+                    <div class="article-item">
+                        <p class="article-text">• <strong>Big Tech spending:</strong> Up to $900B USD planned for AI infrastructure in 2026.</p>
+                    </div>
+                    <div class="article-item">
+                        <p class="article-text">• <strong>Market warning:</strong> BIS warns AI cycle echoes dot-com & railroad bubbles.</p>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="news-column">
+                    <span class="section-category">2-3. Fintech & Space</span>
+                    <div class="article-item">
+                        <h3 class="article-title">Financial Products</h3>
+                        <p class="article-text">BNPL faces new CFPB rules. AI robo-advisors under scrutiny for algorithmic bias. FedNow adoption grows.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Space & Aircraft</h3>
+                        <p class="article-text">Artemis III slips to late 2027. MIT demos AI satellite collision avoidance. Boom Supersonic tests XB-1 without afterburner.</p>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="news-column">
+                    <span class="section-category">4-5. Tech & Industry</span>
+                    <div class="article-item">
+                        <h3 class="article-title">Advanced Tech</h3>
+                        <p class="article-text">Open-weight AI challenges closed corporate systems. Right-to-repair expands in 12 states. Caltech achieves 99.9% 2-qubit gate fidelity.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Industry Statistics</h3>
+                        <p class="article-text">Manufacturing PMI near 50. Tech layoffs slow in Q2. Renewable energy jobs outpace fossil fuels 3:1.</p>
+                    </div>
+                </div>
+
+                <!-- Col 4 -->
+                <div class="news-column">
+                    <span class="section-category">6-7. Growth & Politics</span>
+                    <div class="article-item">
+                        <h3 class="article-title">Consumer Behavior</h3>
+                        <p class="article-text">Q1 GDP revised to 1.8%. "Shrinkflation" complaints up 40% YoY. Gen Z spending shifts to repairs & used goods.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Political Panorama</h3>
+                        <p class="article-text">2026 Midterms: House control toss-up; crypto PAC spending up 300%. Far-right gains in EU. ProPublica tracks AI ads.</p>
+                    </div>
+                </div>
+
+                <!-- Col 5 -->
+                <div class="news-column">
+                    <span class="section-category">8-9. Legal & Business</span>
+                    <div class="article-item">
+                        <h3 class="article-title">Lawyers & Courts</h3>
+                        <p class="article-text">DOJ files case against algorithmic price-fixing in rental markets. Supreme Court takes data broker privacy case.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">Business Opportunities</h3>
+                        <p class="article-text">CHIPS Act Phase 2 opens. Carbon capture tax credits drive DAC projects. Small satellite rideshare demand grows.</p>
+                    </div>
+                </div>
+
+                <!-- Col 6 -->
+                <div class="news-column">
+                    <span class="section-category">10. Forex & Currency</span>
+                    <div class="article-item">
+                        <h3 class="article-title">Currency Markets</h3>
+                        <p class="article-text">USD strength continues as Federal Reserve holds interest rates steady; Japanese yen intervention risks rise across international markets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOURCES FOOTER -->
+            <footer class="sources-section">
+                <div class="sources-header">👇 Press & Media Sources — USA</div>
+                <ul class="sources-list">
+                    <li><a href="https://www.democracynow.org" target="_blank">Democracy Now!</a></li>
+                    <li><a href="https://theintercept.com" target="_blank">The Intercept</a></li>
+                    <li><a href="https://www.motherjones.com" target="_blank">Mother Jones</a></li>
+                    <li><a href="https://www.propublica.org" target="_blank">ProPublica</a></li>
+                    <li><a href="https://truthout.org" target="_blank">Truthout</a></li>
+                    <li><a href="https://www.commondreams.org" target="_blank">Common Dreams</a></li>
+                    <li><a href="https://www.breitbart.com" target="_blank">Breitbart News</a></li>
+                    <li><a href="https://www.dailywire.com" target="_blank">The Daily Wire</a></li>
+                    <li><a href="https://thefederalist.com" target="_blank">The Federalist</a></li>
+                    <li><a href="https://www.newsmax.com" target="_blank">Newsmax</a></li>
+                    <li><a href="https://reason.com" target="_blank">Reason</a></li>
+                    <li><a href="https://www.thefp.com" target="_blank">The Free Press</a></li>
+                    <li><a href="https://www.zerohedge.com" target="_blank">Zero Hedge</a></li>
+                </ul>
+            </footer>
+        </article>
+
+
+        <!-- CARD 3: CANADA -->
+        <article class="country-card">
+            <header class="country-card-header">
+                <div class="country-title-group">
+                    <span class="country-flag">🇨🇦</span>
+                    <h2 class="country-name">Canada</h2>
+                </div>
+                <span class="edition-badge">Q3/Q4 2026 Edition</span>
+            </header>
+
+            <div class="news-columns">
+                <!-- Col 1 -->
+                <div class="news-column">
+                    <span class="section-category">Politics & Trade</span>
+                    <div class="article-item">
+                        <h3 class="article-title">1. Politics</h3>
+                        <p class="article-text">PM Mark Carney’s Liberal government faces pressure over cost of living and housing ahead of post-2025 election dynamics.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">2. US Relations</h3>
+                        <p class="article-text">Trade tensions over US tariffs on steel, aluminum, and autos. Canada retaliates and seeks new trade partners.</p>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="news-column">
+                    <span class="section-category">Economy & Housing</span>
+                    <div class="article-item">
+                        <h3 class="article-title">3. Economy</h3>
+                        <p class="article-text">Inflation near 2.2%. Bank of Canada keeps rates high but is slowly cutting to avoid recession.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">4. Housing</h3>
+                        <p class="article-text">Housing crisis continues. Federal plan to build 3.9M homes by 2031 + limits on foreign buyers.</p>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="news-column">
+                    <span class="section-category">Energy & Fiscal</span>
+                    <div class="article-item">
+                        <h3 class="article-title">5. Energy</h3>
+                        <p class="article-text">TMX pipeline expansion advances. Debate continues between oil/gas and green transition.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">6. Fiscal</h3>
+                        <p class="article-text">Federal deficit around CAD $40B. Focus on spending cuts and revenue growth.</p>
+                    </div>
+                </div>
+
+                <!-- Col 4 -->
+                <div class="news-column">
+                    <span class="section-category">AI Ecosystem</span>
+                    <div class="article-item">
+                        <h3 class="article-title">7. AI Ecosystem</h3>
+                        <p class="article-text">$2.4B CAD invested in AI infrastructure and talent. Toronto and Montreal lead as global AI hubs.</p>
+                    </div>
+                </div>
+
+                <!-- Col 5 -->
+                <div class="news-column">
+                    <span class="section-category">Semiconductors</span>
+                    <div class="article-item">
+                        <h3 class="article-title">8. Semiconductors</h3>
+                        <p class="article-text">Major subsidies to attract chip and battery plants from Tesla, VW, and Northvolt.</p>
+                    </div>
+                </div>
+
+                <!-- Col 6 -->
+                <div class="news-column">
+                    <span class="section-category">Clean Tech & Digital</span>
+                    <div class="article-item">
+                        <h3 class="article-title">9. Clean Tech</h3>
+                        <p class="article-text">Push on green hydrogen and critical minerals. Canada positions itself as key supplier to US/EU.</p>
+                    </div>
+                    <div class="article-item">
+                        <h3 class="article-title">10. Digital</h3>
+                        <p class="article-text">Online News Act in effect. Meta/Google pay Canadian media. National digital ID expanding.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOURCES FOOTER -->
+            <footer class="sources-section">
+                <div class="sources-header">👉 Press & Media Sources — Canada</div>
+                <ul class="sources-list">
+                    <li><a href="https://thetyee.ca" target="_blank">The Tyee</a></li>
+                    <li><a href="https://rabble.ca" target="_blank">rabble.ca</a></li>
+                    <li><a href="https://www.nationalobserver.com" target="_blank">National Observer</a></li>
+                    <li><a href="https://www.theglobeandmail.com" target="_blank">The Globe and Mail - Report on Business</a></li>
+                    <li><a href="https://pressprogress.ca" target="_blank">PressProgress</a></li>
+                    <li><a href="https://breachmedia.ca" target="_blank">The Breach</a></li>
+                    <li><a href="https://ricochet.media" target="_blank">Ricochet Media</a></li>
+                    <li><a href="https://www.aptnnews.ca" target="_blank">APTN News</a></li>
+                    <li><a href="https://www.nationalobserver.com/section/energy" target="_blank">Canada’s National Observer - Energy/Climate</a></li>
+                    <li><a href="https://www.readthemaple.com" target="_blank">The Maple</a></li>
+                </ul>
+            </footer>
+        </article>
+
+    </main>
 
 </div>
 
