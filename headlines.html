@@ -586,31 +586,443 @@
   </style>
 </head>
 <body>
+    <div class="kicker">Quarterly Global Briefing · MMXXVI</div>
+    <h1>Global Headlines 2026</h1>
+    <p class="subtitle">Most relevant quarterly developments by country</p>
+    <div class="rule">TECH · FINTECH · CRYPTO · AI</div>
+  </div>
 
-  <!-- Contenedor Principal de React -->
-  <div id="root"></div>
+  <!-- ============ SELECTOR DE PAÍS ============ -->
+  <div class="selector-bar" id="selector">
+    <button class="sel-btn active" data-target="all">◈ Todas</button>
+    <button class="sel-btn" data-target="br"><span>🇧🇷</span>Brasil</button>
+    <button class="sel-btn" data-target="us"><span>🇺🇸</span>USA</button>
+    <button class="sel-btn" data-target="ca"><span>🇨🇦</span>Canadá</button>
+  </div>
 
-  <!-- Lógica de React y Aplicación -->
-  <script type="module">
-    // Aquí puedes renderizar tus componentes React montándolos en #root
-    // Ejemplo de uso con los estilos de noticias oscuras aplicados:
-    /*
-      function NewsApp() {
-        return (
-          <div className="container">
-            <article className="news-card">
-              <h2>Título de la Noticia en Fondo Oscuro</h2>
-              <p>Este es el cuerpo o resumen de la noticia. Tiene un contraste ideal sobre el fondo oscuro manteniendo el fondo de la página completamente blanco.</p>
-              <div className="news-meta">
-                <span>Por: Redacción</span>
-                <span>5 Min de lectura</span>
-              </div>
-            </article>
-          </div>
-        );
-      }
-    */
-  </script>
+  <!-- ============================================================
+       BLOQUE BRASIL
+       ============================================================ -->
+  <section class="country-block" id="br" data-country="br">
+    <header class="country-head">
+      <span class="flag">🇧🇷</span>
+      <div class="name-wrap">
+        <div class="name">Brasil</div>
+        <span class="name-tag">República Federativa do Brasil</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
 
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Política</span>
+        <h3>Lula y el punto medio de su 3er mandato</h3>
+        <p>El gobierno enfoca su agenda en el equilibrio fiscal, los programas sociales y la protección del Amazonas. Las tensiones con el Congreso por las enmiendas presupuestarias continúan marcando la pauta legislativa.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Política</span>
+        <h3>Repercusión de las elecciones municipales</h3>
+        <p>Los resultados locales de 2024 aún moldean las alianzas. Los partidos del Centrão ganan influencia en el Congreso de cara a las elecciones generales de 2026.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Seguridad & Amazonía</span>
+        <h3>Fuerzas de tarea federales ampliadas</h3>
+        <p>Se expanden los operativos contra la deforestación y el crimen organizado. Un nuevo proyecto de ley para <mark>regular las redes sociales</mark> aprueba su primera ronda en el Congreso.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Economía</span>
+        <h3>La economía se estabiliza</h3>
+        <p>Pronóstico de PIB de ∼<strong>2,4%</strong>, impulsado por agricultura, servicios y petróleo. La inflación cae a ∼<strong>3,9%</strong>, dentro del rango meta del Banco Central.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Economía</span>
+        <h3>Recorte de tasas de interés</h3>
+        <p>El Banco Central baja la tasa <u>Selic a 10,25%</u> para impulsar la inversión y el consumo interno, en un contexto de desaceleración global.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fiscal</span>
+        <h3>El marco fiscal a prueba</h3>
+        <p>Las nuevas reglas de gasto se sostienen, pero aumenta la presión por mayor inversión en infraestructura y educación.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">Energía</span>
+        <h3>Boom de exportaciones energéticas</h3>
+        <p>Récord en exportaciones de petróleo y etanol. Brasil busca convertirse en un exportador clave de <mark>hidrógeno verde</mark> para 2030.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Tecnología</span>
+        <h3>IA + Gobierno Digital</h3>
+        <p>Se lanza la <strong>"Estrategia Federal de IA 2026"</strong>. Gov.br amplía los chatbots de IA para servicios públicos, mejorando la atención ciudadana.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Tecnología</span>
+        <h3>5G y semiconductores</h3>
+        <p>Despliegue completo del 5G en todas las capitales. Nuevos incentivos fiscales atraen inversiones en chips y centros de datos en São Paulo y Ceará.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Fintech</span>
+        <h3>Pix 2.0 y liderazgo regional</h3>
+        <p>Pix incorpora pagos offline y transferencias internacionales. Brasil lidera LatAm en <u>pagos digitales y open banking</u>.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Climatech</span>
+        <h3>Financiamiento climático</h3>
+        <p>Importante financiamiento para startups en agrotech, créditos de carbono y biocombustibles. La preparación de la <strong>COP30 en Belém</strong> impulsa el sector green tech.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Perspectiva</span>
+        <h3>Brasil 2026: eje del sur global</h3>
+        <p>El país se consolida como puente entre mercados desarrollados y emergentes, con foco en sostenibilidad, digitalización financiera y liderazgo diplomático.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · Prensa brasileña</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://www.folha.uol.com.br" target="_blank" rel="noopener">Folha</a>
+        <a class="src-btn" href="https://oglobo.globo.com" target="_blank" rel="noopener">O Globo</a>
+        <a class="src-btn" href="https://www.estadao.com.br" target="_blank" rel="noopener">Estadão</a>
+        <a class="src-btn" href="https://valor.globo.com" target="_blank" rel="noopener">Valor</a>
+        <a class="src-btn" href="https://www.correiobraziliense.com.br" target="_blank" rel="noopener">Correio</a>
+        <a class="src-btn" href="https://gauchazh.clicrbs.com.br" target="_blank" rel="noopener">Zero Hora</a>
+        <a class="src-btn" href="https://www.em.com.br" target="_blank" rel="noopener">Estado de Minas</a>
+        <a class="src-btn" href="https://www.opovo.com.br" target="_blank" rel="noopener">O Povo</a>
+        <a class="src-btn" href="https://www.atarde.com.br" target="_blank" rel="noopener">A Tarde</a>
+        <a class="src-btn" href="https://www.gazetadopovo.com.br" target="_blank" rel="noopener">Gazeta do Povo</a>
+        <a class="src-btn" href="https://www.brasil247.com" target="_blank" rel="noopener">Brasil 247</a>
+        <a class="src-btn" href="https://www.cartacapital.com.br" target="_blank" rel="noopener">CartaCapital</a>
+        <a class="src-btn" href="https://www.intercept.com.br" target="_blank" rel="noopener">Intercept</a>
+        <a class="src-btn" href="https://brasil.elpais.com" target="_blank" rel="noopener">El País</a>
+        <a class="src-btn" href="https://noticias.uol.com.br" target="_blank" rel="noopener">UOL</a>
+        <a class="src-btn" href="https://jornalggn.com.br" target="_blank" rel="noopener">GGN</a>
+        <a class="src-btn" href="https://revistaforum.com.br" target="_blank" rel="noopener">Fórum</a>
+        <a class="src-btn" href="https://midianinja.org" target="_blank" rel="noopener">Mídia Ninja</a>
+        <a class="src-btn" href="https://apublica.org" target="_blank" rel="noopener">Agência Pública</a>
+        <a class="src-btn" href="https://www.nexojornal.com.br" target="_blank" rel="noopener">Nexo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE USA
+       ============================================================ -->
+  <section class="country-block" id="us" data-country="us">
+    <header class="country-head">
+      <span class="flag">🇺🇸</span>
+      <div class="name-wrap">
+        <div class="name">United States</div>
+        <span class="name-tag">Estados Unidos de América</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
+
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Inversiones Tech</span>
+        <h3>La IA domina el capital de riesgo</h3>
+        <p>Las empresas estadounidenses capturaron ∼<strong>80%</strong> del financiamiento global de startups en 2026. La inversión en IA alcanzó el <mark>88%</mark> de ese total, con <strong>$319B USD</strong> destinados mayormente a OpenAI y Anthropic.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Inversiones Tech</span>
+        <h3>Financiamiento récord</h3>
+        <p>El financiamiento en IA alcanzó <u>$510B USD</u> solo en el primer semestre de 2026, superando ya todo 2025.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Big Tech</span>
+        <h3>Gasto en infraestructura IA</h3>
+        <p>Las grandes tecnológicas planean gastar hasta <strong>$900B USD</strong> en infraestructura de IA durante 2026.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Advertencia</span>
+        <h3>El BIS alerta sobre burbuja IA</h3>
+        <p>El Banco de Pagos Internacionales advirtió que el ciclo actual de IA tiene ecos de burbujas pasadas como los ferrocarriles y el dot-com. El debate sobre la concentración de capital y su impacto real en empleo y productividad continúa.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Fintech</span>
+        <h3>Nuevas reglas CFPB para BNPL</h3>
+        <p>Los proveedores de <em>Buy Now, Pay Later</em> enfrentan nuevas regulaciones sobre cargos por mora y reporte crediticio.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fintech</span>
+        <h3>Robo-advisors bajo escrutinio</h3>
+        <p>Los robo-advisors impulsados por IA enfrentan demandas por sesgo algorítmico. La adopción de <mark>FedNow</mark> crece entre bancos regionales, desafiando a los sistemas ACH tradicionales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">Espacio</span>
+        <h3>Artemis III se retrasa</h3>
+        <p>La misión se pospone a finales de 2027 por retrasos en las pruebas del Starship HLS. MIT Lincoln Lab demuestra nueva IA para evitar colisiones satelitales autónomas.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Aviación</span>
+        <h3>Boom Supersonic completa vuelo</h3>
+        <p>El XB-1 realiza su primer vuelo supersónico sin postquemador, un hito para la aviación civil de alta velocidad.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Tecnología</span>
+        <h3>Modelos abiertos desafían a corporaciones</h3>
+        <p>Modelos de IA de peso abierto de la academia compiten con sistemas corporativos cerrados en benchmarks internacionales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Tecnología</span>
+        <h3>Leyes de derecho a reparar se expanden</h3>
+        <p>Las leyes se extienden a equipos agrícolas y dispositivos médicos en 12 estados. <u>Caltech reporta 99,9% de fidelidad</u> en compuertas de 2 qubits en un nuevo chip superconductor.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Industria</span>
+        <h3>PMI manufacturero cerca de 50</h3>
+        <p>El PMI señala crecimiento plano en medio de tasas altas. Los despidos tech se desaceleran en Q2 2026, pero la contratación relacionada con IA solo compensa el <strong>30%</strong> de los recortes.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Empleo</span>
+        <h3>Energías renovables superan a fósiles</h3>
+        <p>Los empleos en energías renovables superan a los de combustibles fósiles <mark>3:1</mark> según el nuevo informe del BLS.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">13</span>
+        <span class="cat">Economía</span>
+        <h3>PIB revisado al alza</h3>
+        <p>El crecimiento del PIB de EE.UU. se revisa a <strong>1,8%</strong> para Q1 2026, impulsado por servicios y no por bienes.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">14</span>
+        <span class="cat">Consumo</span>
+        <h3>Quejas por "shrinkflation" suben 40%</h3>
+        <p>Las quejas ante la FTC aumentan 40% interanual mientras los tamaños de empaque se reducen. El gasto Gen Z se inclina hacia bienes usados y reparación, según un estudio de Stanford.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">15</span>
+        <span class="cat">Política</span>
+        <h3>Midterms 2026: control empatado</h3>
+        <p>Los sondeos tempranos muestran la Cámara como empate técnico, con el gasto de los PAC cripto <u>aumentando 300%</u>. Las elecciones al Parlamento Europeo ven avances de la ultraderecha ligados a protestas por el costo de vida.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">16</span>
+        <span class="cat">Política</span>
+        <h3>Publicidad política generada por IA</h3>
+        <p>ProPublica rastrea el aumento de anuncios generados por IA con divulgación mínima, planteando nuevos desafíos regulatorios.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">17</span>
+        <span class="cat">Legal</span>
+        <h3>Antimonopolio contra fijación algorítmica</h3>
+        <p>El DOJ presenta un nuevo caso contra la fijación algorítmica de precios en el mercado de alquileres.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">18</span>
+        <span class="cat">Legal</span>
+        <h3>Demandas por datos a la Corte Suprema</h3>
+        <p>Las demandas colectivas por venta de datos de intermediarios a fuerzas del orden llegan al expediente de la Corte Suprema. Los recortes a la asistencia legal se impugnan en 9 estados por la acumulación de casos de desalojo.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">19</span>
+        <span class="cat">Oportunidades</span>
+        <h3>CHIPS Act: fase 2</h3>
+        <p>Se abre la Fase 2 del financiamiento para empaquetado y materiales avanzados. Los créditos fiscales de captura de carbono impulsan nuevos proyectos DAC en el Medio Oeste.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">20</span>
+        <span class="cat">Forex</span>
+        <h3>Fortaleza del USD continúa</h3>
+        <p>La fortaleza del dólar persiste mientras la Fed mantiene tasas. Aumentan los riesgos de intervención en el yen.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · US Press</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://www.democracynow.org" target="_blank" rel="noopener">Democracy Now</a>
+        <a class="src-btn" href="https://theintercept.com" target="_blank" rel="noopener">The Intercept</a>
+        <a class="src-btn" href="https://www.motherjones.com" target="_blank" rel="noopener">Mother Jones</a>
+        <a class="src-btn" href="https://www.propublica.org" target="_blank" rel="noopener">ProPublica</a>
+        <a class="src-btn" href="https://truthout.org" target="_blank" rel="noopener">Truthout</a>
+        <a class="src-btn" href="https://www.commondreams.org" target="_blank" rel="noopener">Common Dreams</a>
+        <a class="src-btn" href="https://www.breitbart.com" target="_blank" rel="noopener">Breitbart</a>
+        <a class="src-btn" href="https://www.dailywire.com" target="_blank" rel="noopener">Daily Wire</a>
+        <a class="src-btn" href="https://thefederalist.com" target="_blank" rel="noopener">The Federalist</a>
+        <a class="src-btn" href="https://www.newsmax.com" target="_blank" rel="noopener">Newsmax</a>
+        <a class="src-btn" href="https://reason.com" target="_blank" rel="noopener">Reason</a>
+        <a class="src-btn" href="https://www.thefp.com" target="_blank" rel="noopener">The Free Press</a>
+        <a class="src-btn" href="https://www.zerohedge.com" target="_blank" rel="noopener">Zero Hedge</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOQUE CANADÁ
+       ============================================================ -->
+  <section class="country-block" id="ca" data-country="ca">
+    <header class="country-head">
+      <span class="flag">🇨🇦</span>
+      <div class="name-wrap">
+        <div class="name">Canadá</div>
+        <span class="name-tag">Canada · North America</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
+
+    <div class="news-grid">
+
+      <article class="news-item">
+        <span class="num">01</span>
+        <span class="cat">Política</span>
+        <h3>Presión sobre el gobierno de Carney</h3>
+        <p>El gobierno liberal del PM Mark Carney enfrenta presión por el costo de vida y la vivienda en la dinámica post-electoral de 2025.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">02</span>
+        <span class="cat">Relaciones US</span>
+        <h3>Tensiones comerciales con EE.UU.</h3>
+        <p>Disputas por aranceles estadounidenses al acero, aluminio y autos. Canadá responde y busca nuevos socios comerciales.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">03</span>
+        <span class="cat">Economía</span>
+        <h3>Inflación cerca del 2,2%</h3>
+        <p>El Banco de Canadá mantiene tasas altas pero las reduce lentamente para evitar una recesión.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">04</span>
+        <span class="cat">Vivienda</span>
+        <h3>Crisis habitacional continúa</h3>
+        <p>Plan federal para construir <strong>3,9M de viviendas</strong> para 2031, junto con límites a compradores extranjeros.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">05</span>
+        <span class="cat">Energía</span>
+        <h3>Expansión del oleoducto TMX</h3>
+        <p>Avanza la expansión del TMX. El debate continúa entre petróleo/gas y transición verde.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">06</span>
+        <span class="cat">Fiscal</span>
+        <h3>Déficit federal de CAD $40B</h3>
+        <p>El déficit federal ronda los <mark>CAD $40B</mark>. El foco está en recortes de gasto y crecimiento de ingresos.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">07</span>
+        <span class="cat">IA</span>
+        <h3>CAD $2,4B en infraestructura IA</h3>
+        <p>Inversión de <strong>CAD $2,4B</strong> en infraestructura y talento IA. Toronto y Montreal lideran como hubs de IA.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">08</span>
+        <span class="cat">Semiconductores</span>
+        <h3>Subsidios para chips y baterías</h3>
+        <p>Subsidios importantes para atraer plantas de chips y baterías de Tesla, VW y Northvolt.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">09</span>
+        <span class="cat">Clean Tech</span>
+        <h3>Hidrógeno verde y minerales críticos</h3>
+        <p>Impulso al hidrógeno verde y minerales críticos. Canadá se posiciona como proveedor clave de EE.UU. y la UE.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">10</span>
+        <span class="cat">Digital</span>
+        <h3>Online News Act en vigor</h3>
+        <p>Meta y Google pagan a medios canadienses. Se expande la identidad digital nacional y la ciberseguridad.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">11</span>
+        <span class="cat">Banca Digital</span>
+        <h3>Innovación en banca digital</h3>
+        <p>Crecimiento del ecosistema de IA, recuperación del financiamiento fintech y nuevas iniciativas de investigación en blockchain.</p>
+      </article>
+
+      <article class="news-item">
+        <span class="num">12</span>
+        <span class="cat">Perspectiva</span>
+        <h3>Canadá 2026: proveedor estratégico</h3>
+        <p>El país se consolida como proveedor clave de minerales críticos, talento IA y energía limpia para las principales economías occidentales.</p>
+      </article>
+
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · Canadian Press</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://thetyee.ca" target="_blank" rel="noopener">The Tyee</a>
+        <a class="src-btn" href="https://rabble.ca" target="_blank" rel="noopener">Rabble</a>
+        <a class="src-btn" href="https://www.nationalobserver.com" target="_blank" rel="noopener">National Observer</a>
+        <a class="src-btn" href="https://www.theglobeandmail.com" target="_blank" rel="noopener">Globe & Mail</a>
+        <a class="src-btn" href="https://pressprogress.ca" target="_blank" rel="noopener">PressProgress</a>
+        <a class="src-btn" href="https://breachmedia.ca" target="_blank" rel="noopener">The Breach</a>
+        <a class="src-btn" href="https://ricochet.media" target="_blank" rel="noopener">Ricochet</a>
+        <a class="src-btn" href="https://www.aptnnews.ca" target="_blank" rel="noopener">APTN News</a>
+        <a class="src-btn" href="https://www.nationalobserver.com/section/energy" target="_blank" rel="noopener">Energy/Climate</a>
+        <a class="src-btn" href="https://www.readthemaple.com" target="_blank" rel="noopener">The Maple</a>
+      </div>
+    </div>
+  </section>
+
+</main>
 </body>
 </html>
