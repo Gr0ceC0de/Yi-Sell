@@ -1,11 +1,9 @@
 <style>
-
 /* RESET LIMPIO - YELLOW PRESS - VALIDO W3C */
 *, *::after, *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 0 solid #e5e7eb;
 }
 
 :root{
@@ -61,9 +59,7 @@ code, pre, kbd, samp {
   font-family: ui-monospace, SFMono-Regular, monospace;
 }
 
-
-
-/* ==== - BOTONES BRILLANTES FIX ===== */
+/* ==== BOTONES BRILLANTES FIX ==== */
 .sources {
   margin-top: 28px;
   padding: 18px;
@@ -91,7 +87,7 @@ code, pre, kbd, samp {
   display: inline-block;
   padding: 9px 16px;
   background: #fff;
-  color: #111 !important;
+  color: #111!important;
   font-weight: 800;
   font-size: 13px;
   text-transform: uppercase;
@@ -110,7 +106,8 @@ code, pre, kbd, samp {
   transform: translateY(0);
   box-shadow: 0 2px 0 #ffe600;
 }
- ==========================================================================
+ 
+  ==========================================================================
        1. FUENTES Y TIPOGRAFÍA
        ========================================================================== */
     @font-face {
