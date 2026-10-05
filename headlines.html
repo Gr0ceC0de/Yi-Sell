@@ -300,129 +300,191 @@ Most relevant quarterly developments by country
 <table>
 
 <style>
-/* ===== Tabla de titulares: rosa pastel, letras violetas, efecto 3D ===== */
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
 
 .table-wrapper {
-  --celda: #f7d6e4;         /* rosa pastel */
-  --celda-pais: #efbcd3;    /* rosa un poco más profundo */
-  --violeta: #5b1fa8;       /* texto */
-  --violeta-medio: #8a52d6;
-  --violeta-claro: #b58be8;
-  --linea: #000;
-  max-width: 1100px;
-  margin: 1.5rem auto;
-  padding: 12px;            /* espacio para el marco 3D */
+  --bg: #15131b;
+  --celda: #252131;         /* gris violeta oscuro */
+  --celda-2: #2e2940;       /* un poco más claro para rayado */
+  --celda-pais: #1d1a29;
+  --borde: #3d3852;
+  --borde-brillante: #6b6588;
+  --texto: #e9e6f0;         /* blanco violeta gris */
+  --texto-suave: #a9a6b8;   /* gris violeta */
+  --fucsia: #ff5ca1;
+  --fucsia-claro: #ff8fc0;
+  --fucsia-acuarela: #ff3d9a;
+  max-width: 1150px;
+  margin: 2rem auto;
+  padding: 0;
   overflow-x: auto;
+  background: var(--bg);
+  border-radius: 2px;
 }
 
-/* Marco: filete negro fino + borde violeta tipo vidrio + sombra de volumen */
+.subtitle {
+  font-family: "Old Standard TT", Georgia, serif;
+  font-style: italic;
+  text-align: center;
+  color: var(--texto-suave);
+  letter-spacing: 0.04em;
+  font-size: 15px;
+  margin-bottom: 1.2rem;
+}
+
 .table-wrapper table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--linea);
-  font-family: Georgia, "Times New Roman", serif;
-  box-shadow:
-    0 0 0 4px var(--violeta-claro),
-    0 0 0 5px var(--linea),
-    0 10px 18px rgba(91, 31, 168, .35);
+  font-family: "Old Standard TT", Georgia, serif;
+  background: var(--celda);
+  border: 1px solid var(--borde);
+  box-shadow: 
+    inset 0 0 0 1px rgba(255,255,255,0.05),
+    0 12px 40px rgba(0,0,0,0.6);
 }
 
-/* Cabecera: degradado violeta brillante */
+/* CABECERA - tipo The Times, pequeña y seria */
 .table-wrapper th {
-  background: linear-gradient(#a577e6, #6a35b8);
-  color: #fff;
-  border: 1px solid var(--linea);
-  padding: 12px 16px;
+  font-family: "Old Standard TT", serif;
+  background: #0f0e14;
+  color: var(--texto-suave);
+  border-bottom: 1px solid var(--borde);
+  border-right: 1px solid #1e1c29;
+  padding: 10px 18px;
   text-align: left;
-  font-size: 16px;
-  font-weight: 700;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6);
-  text-shadow: 0 1px 0 #3d1578, 0 2px 2px rgba(0, 0, 0, .35);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
-/* Celdas: biselado suave + letra violeta extruida */
+/* CELDAS BASE - fondo oscuro */
 .table-wrapper td {
-  background: linear-gradient(#fbe3ed, var(--celda));
-  color: var(--violeta);
-  border: 1px solid var(--linea);
-  padding: 14px 16px;
+  background: var(--celda);
+  color: var(--texto);
+  border-bottom: 1px solid #2a2738;
+  border-right: 1px solid #2a2738;
+  padding: 22px 20px;
   vertical-align: top;
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 15.5px;
+  line-height: 1.75;
   white-space: pre-line;
-  box-shadow:
-    inset 1px 1px 0 #fff,
-    inset -1px -1px 0 rgba(138, 82, 214, .35);
-  text-shadow:
-    0 1px 0 #fff,
-    1px 2px 0 rgba(138, 82, 214, .35),
-    2px 3px 3px rgba(91, 31, 168, .22);
+  transition: background 0.2s ease;
 }
 
-/* Columna país */
+.table-wrapper tr:nth-child(even) td {
+  background: var(--celda-2);
+}
+
+/* EFECTO BORDE BRILLANTE AL HOVER - invita a leer */
+.table-wrapper tr:hover td {
+  background: #33304a;
+  box-shadow: inset 0 0 0 1px rgba(255, 92, 161, 0.15);
+}
+
+/* COLUMNA PAIS - sello de imprenta */
 .table-wrapper td.country {
   width: 110px;
-  background: linear-gradient(#f5cfe0, var(--celda-pais));
+  background: var(--celda-pais);
   text-align: center;
-  font-size: 17px;
+  font-family: "Playfair Display", serif;
   font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  border-right: 1px solid var(--borde);
   white-space: normal;
 }
 .table-wrapper td.country span {
   display: block;
-  font-size: 2rem;
-  line-height: 1.2;
+  font-size: 2.1rem;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  filter: saturate(0.8) brightness(1.1);
 }
 
+/* COLUMNA TITULAR - EL CORAZÓN - FUCSIA ACUARELA */
 .table-wrapper td.headline {
   width: 62%;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  /* Efecto acuarela fucsia */
+  color: transparent;
+  background: linear-gradient(100deg, var(--fucsia) 10%, var(--fucsia-claro) 40%, #ffb3d6 55%, var(--fucsia-acuarela) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 61, 154, 0.35)) drop-shadow(0 1px 0 rgba(255,255,255,0.8));
+  /* Borde brillante blanco-violeta de la letra */
+  text-shadow: none;
+  position: relative;
 }
 
-/* Columna de fuentes: más pequeña, URLs sin cortar */
+/* Sub-texto dentro del headline si lo tienes */
+.table-wrapper td.headline::first-line {
+  font-size: 22px;
+}
+
+/* Para que el texto largo siga legible, el resto en blanco violeta */
+.table-wrapper td.headline {
+  /* truco: si el texto es largo, solo el título brilla, el resto se apaga */
+  -webkit-text-fill-color: var(--texto);
+  background: none;
+}
+.table-wrapper td.headline::first-line,
+.table-wrapper td.headline strong,
+.table-wrapper td.headline b {
+  background: linear-gradient(100deg, var(--fucsia) 0%, var(--fucsia-claro) 50%, #ffd1e6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 92, 161, 0.4));
+}
+
+/* COLUMNA FUENTES - pequeña, como nota al pie de imprenta */
 .table-wrapper td:last-child {
-  font-size: 13px;
-  line-height: 1.5;
+  font-family: "Old Standard TT", serif;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--texto-suave);
   overflow-wrap: anywhere;
+  font-style: italic;
 }
 
 .table-wrapper a {
-  color: var(--violeta-medio);
+  color: var(--fucsia-claro);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255, 143, 192, 0.4);
+  transition: all 0.2s;
+}
+.table-wrapper a:hover {
+  color: #fff;
+  border-bottom: 1px solid var(--fucsia);
+  text-shadow: 0 0 8px var(--fucsia);
 }
 
-.subtitle {
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
-  text-align: center;
-  color: var(--violeta-medio);
-}
-
-/* Móvil: filas apiladas */
+/* Móvil */
 @media (max-width: 700px) {
-  .table-wrapper table,
-  .table-wrapper tbody,
-  .table-wrapper tr,
-  .table-wrapper td {
+  .table-wrapper table, .table-wrapper tbody, .table-wrapper tr, .table-wrapper td {
     display: block;
     width: auto;
   }
-  .table-wrapper thead {
-    display: none;
-  }
+  .table-wrapper thead { display: none; }
   .table-wrapper td.country {
     width: auto;
     text-align: left;
+    padding: 12px 18px;
+    border-bottom: none;
   }
-  .table-wrapper td.country span {
-    display: inline;
-    margin-right: .4rem;
-  }
-  .table-wrapper td.headline {
-    width: auto;
-  }
+  .table-wrapper td.country span { display: inline; margin-right: .5rem; }
+  .table-wrapper td.headline { width: auto; font-size: 19px; }
 }
 </style>
 
-<thead>
 <tr>
 <th>Country</th>
 <th>Top Quarterly Headlines</th>
