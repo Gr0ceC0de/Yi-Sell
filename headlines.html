@@ -3,818 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Headlines 2026 | Tech, Fintech & Crypto</title>
-
-<!-- ============ SEO META ============ -->
-<meta name="description" content="Resumen ejecutivo trimestral 2026: tecnología, fintech, criptomonedas, banca digital, inteligencia artificial y mercados financieros. Titulares por país: Brasil, EE.UU. y Canadá.">
-<meta name="keywords" content="headlines 2026, tecnología, fintech, criptomonedas, inteligencia artificial, mercados financieros, banca digital, Brasil, USA, Canadá, economía global, IA, blockchain">
-<meta name="author" content="Global Headlines">
+<title>Global Headlines Q3 2026 | Yellow Press Edition</title>
+<meta name="description" content="Resumen trimestral Q3 2026 actualizado a octubre 2026: Brasil, USA, Canadá, México, Chile, Alemania. Tecnología, fintech, IA, economía.">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Global Headlines 2026 | Tech, Fintech & Crypto">
-<meta property="og:description" content="Titulares trimestrales por país: tecnología, fintech, IA, cripto y mercados.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="es_ES">
 
-<!-- ============ FUENTES ============ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- ============ CSS CRÍTICO ============ -->
 <style>
-:root {
-  --bg-deep:      #0d0c0b;
-  --bg-paper:     #141312;
-  --bg-cell:      #1a1817;
-  --bg-cell-alt:  #1e1c1a;
-  --bg-cell-hi:   #262320;
-  --bg-country:   #100f0e;
-
-  --yellow-100:   #fffbe6;
-  --yellow-200:   #fff3b0;
-  --yellow-300:   #ffe066;
-  --yellow-400:   #ffd60a;
-  --yellow-500:   #f5b800;
-  --yellow-600:   #d99e00;
-  --yellow-700:   #b8860b;
-  --yellow-glow:  rgba(255, 214, 10, 0.35);
-  --yellow-soft:  rgba(255, 214, 10, 0.10);
-
-  --white:        #f5f3ee;
-  --white-soft:   #e8e5dc;
-  --gray-100:     #c8c4b8;
-  --gray-200:     #a8a49a;
-  --gray-300:     #87837a;
-
-  --border-soft:  #2a2724;
-  --border-mid:   #3a3632;
-  --border-gold:  rgba(255, 214, 10, 0.25);
+:root{
+  --black:#0E0E10;
+  --yellow:#FFD60A;
+  --yellow-deep:#FFC300;
+  --white:#FFFFFF;
+  --paper:#FFFEF8;
+  --gray:#E8E8E3;
+  --gray-dark:#2A2A2E;
+  --border:#0E0E10;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--black);
+  font-family:"Sora",system-ui,sans-serif;
+  padding:18px;
+  -webkit-font-smoothing:antialiased;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+.shell{max-width:1280px;margin:0 auto}
 
-body {
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255, 214, 10, 0.05), transparent 45%),
-    radial-gradient(circle at 80% 90%, rgba(255, 214, 10, 0.03), transparent 45%),
-    var(--bg-deep);
-  color: var(--white);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  padding: 0 0 4rem;
+header.top{
+  background:var(--yellow);
+  border:3px solid var(--border);
+  padding:18px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
 }
-
-.page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+header.top h1{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:800;
+  font-size:clamp(22px,3vw,34px);
+  margin:0;
+  line-height:0.95;
+  letter-spacing:-0.03em;
+  text-transform:uppercase;
 }
-
-/* Placeholder fallback del header */
-#header-placeholder:empty::before {
-  content: "";
-  display: block;
-  height: 0;
-}
-
-/* ============================================================
-   MASTHEAD
-   ============================================================ */
-.masthead {
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  border-bottom: 3px double var(--yellow-400);
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-.masthead::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  bottom: -8px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--yellow-500), transparent);
-}
-.masthead .kicker {
-  font-family: 'Old Standard TT', serif;
-  font-size: 10px;
-  letter-spacing: 0.45em;
-  text-transform: uppercase;
-  color: var(--yellow-300);
-  margin-bottom: 0.6rem;
-}
-.masthead h1 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  color: var(--yellow-300);
-  text-shadow: 0 0 20px var(--yellow-glow), 0 0 2px var(--yellow-100);
-  margin-bottom: 0.5rem;
-}
-.masthead .subtitle {
-  font-family: 'Old Standard TT', serif;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--gray-100);
-  letter-spacing: 0.04em;
-}
-.masthead .rule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 0.9rem;
-  color: var(--yellow-500);
-  font-size: 10px;
-  letter-spacing: 0.3em;
-}
-.masthead .rule::before,
-.masthead .rule::after {
-  content: "";
-  height: 1px;
-  width: 60px;
-  background: var(--yellow-600);
+header.top p{
+  margin:0;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  background:var(--black);
+  color:var(--yellow);
+  padding:6px 10px;
+  border-radius:999px;
 }
 
-/* ============================================================
-   GRID DE PAÍSES (cards)
-   ============================================================ */
-.countries-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  margin-top: 2.5rem;
+.subtitle{
+  text-align:center;
+  font-family:"Sora",sans-serif;
+  font-size:13px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gray);
+  margin:18px 0;
 }
 
-.country-card {
-  background: var(--bg-paper);
-  border: 1px solid var(--border-mid);
-  border-top: 3px double var(--yellow-400);
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,214,10,0.05);
+/* TABLA */
+.table-wrapper{
+  background:var(--paper);
+  border:3px solid var(--border);
+}
+table{width:100%;border-collapse:collapse}
+
+tr.country-row td{
+  background:var(--black);
+  color:var(--white);
+  padding:16px 20px;
+  border-bottom:3px solid var(--border);
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:800;
+  font-size:22px;
+  letter-spacing:-0.02em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+tr.country-row td span{font-size:30px}
+
+/* 6 COLUMNAS PRENSA */
+td.headline-6col{
+  background:var(--paper);
+  padding:22px 20px;
+  border-bottom:3px solid var(--border);
+  column-count:6;
+  column-gap:22px;
+  column-rule:1px solid var(--gray);
+  font-size:12.5px;
+  line-height:1.6;
+  hyphens:auto;
+}
+@media(max-width:1100px){td.headline-6col{column-count:3}}
+@media(max-width:700px){td.headline-6col{column-count:2}}
+@media(max-width:480px){td.headline-6col{column-count:1}}
+
+td.headline-6col b, td.headline-6col strong{
+  background:linear-gradient(0deg, var(--yellow) 0%, var(--yellow) 100%);
+  background-size:100% 42%;
+  background-repeat:no-repeat;
+  background-position:0 88%;
+  padding:0 2px;
+  font-weight:800;
 }
 
-.country-head {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 1.1rem 1rem;
-  background: linear-gradient(180deg, #0a0908 0%, var(--bg-country) 100%);
-  border-bottom: 2px solid var(--yellow-500);
-  text-align: center;
+td.sources{
+  background:var(--gray);
+  padding:12px 18px;
+  font-size:10.5px;
+  line-height:1.5;
+  border-bottom:3px solid var(--border);
+  white-space:pre-line;
+  font-family:"Sora",sans-serif;
 }
-.country-head .flag {
-  font-size: 2rem;
-  line-height: 1;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-}
-.country-head .name {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  color: var(--yellow-200);
-  text-transform: uppercase;
-  text-shadow: 0 0 12px var(--yellow-glow);
-}
-.country-head .badge {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--bg-deep);
-  background: var(--yellow-400);
-  padding: 4px 10px;
-  border-radius: 2px;
-  font-weight: 700;
-}
+td.sources a{color:var(--black);text-decoration:none;border-bottom:2px solid var(--yellow-deep)}
+td.sources a:hover{background:var(--yellow)}
 
-/* ============================================================
-   TABLA DE NOTICIAS 3 COLUMNAS
-   ============================================================ */
-.news-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--bg-paper);
-}
-.news-table td {
-  vertical-align: top;
-  background: var(--bg-cell);
-  border-right: 1px solid var(--border-soft);
-  border-bottom: 1px solid var(--border-soft);
-  padding: 18px 16px;
-  width: 33.333%;
-  color: var(--gray-100);
-  font-family: 'Old Standard TT', Georgia, serif;
-  font-size: 13px;
-  line-height: 1.65;
-  text-align: justify;
-  hyphens: auto;
-}
-.news-table td:nth-child(2n) { background: var(--bg-cell-alt); }
-.news-table td:last-child { border-right: none; }
-.news-table tr:last-child td { border-bottom: none; }
-.news-table td:hover {
-  background: var(--bg-cell-hi);
-  box-shadow: inset 3px 0 0 var(--yellow-400);
-}
-.news-table strong { color: var(--yellow-300); font-weight: 700; }
-.news-table mark {
-  background: linear-gradient(180deg, transparent 55%, rgba(255, 214, 10, 0.45) 55%);
-  color: var(--yellow-100);
-  padding: 0 2px;
-  font-weight: 600;
-}
-.news-table u {
-  text-decoration: none;
-  border-bottom: 1px solid var(--yellow-500);
-  color: var(--yellow-200);
-  padding-bottom: 1px;
-}
-.news-table .num {
-  display: inline-block;
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  color: var(--yellow-500);
-  font-size: 15px;
-  margin-right: 6px;
-}
-.news-table .cat {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--yellow-300);
-  border-bottom: 1px solid var(--yellow-700);
-  padding-bottom: 2px;
-  margin-bottom: 6px;
-}
-.news-table .topic {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--yellow-200);
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
-}
-
-/* Fila de fuentes (URLs) */
-.sources-row {
-  background: #080706;
-  border-top: 1px dashed var(--border-mid);
-  padding: 14px 16px;
-}
-.sources-label {
-  display: block;
-  font-family: 'Old Standard TT', serif;
-  font-style: italic;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gray-200);
-  margin-bottom: 8px;
-}
-.sources-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.src-btn {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 9px;
-  background: transparent;
-  color: var(--yellow-300);
-  border: 1px solid var(--border-gold);
-  border-radius: 2px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.src-btn::before {
-  content: "↗";
-  font-size: 10px;
-  color: var(--yellow-500);
-  transition: transform 0.2s ease;
-}
-.src-btn:hover {
-  background: var(--yellow-400);
-  color: var(--bg-deep);
-  border-color: var(--yellow-400);
-  box-shadow: 0 3px 12px var(--yellow-glow);
-}
-.src-btn:hover::before {
-  color: var(--bg-deep);
-  transform: translate(2px, -2px);
-}
-
-/* Footer fallback */
-#footer-placeholder:empty::after {
-  content: "";
-  display: block;
-}
-
-/* Responsive */
-@media (max-width: 800px) {
-  .news-table, .news-table tbody, .news-table tr, .news-table td {
-    display: block;
-    width: 100%;
-  }
-  .news-table td { border-right: none; }
-}
+tr.spacer td{background:var(--yellow);height:16px;border-bottom:3px solid var(--border)}
 </style>
 </head>
-
 <body>
+<div class="shell">
 
-<!-- ============ HEADER (auto-load con fallback) ============ -->
-<header id="header-placeholder"></header>
+<header class="top">
+<h1>GLOBAL HEADLINES // Q3 2026 UPDATED OCT</h1>
+<p>Yellow Press Edition</p>
+</header>
+<p class="subtitle">Most relevant quarterly developments by country — Actualizado a Octubre 2026</p>
 
-<main class="page">
+<div class="table-wrapper">
+<table>
+<tbody>
 
-  <!-- ============ MASTHEAD ============ -->
-  <section class="masthead">
-    <p class="kicker">Quarterly Global Briefing · MMXXVI</p>
-    <h1>Global Headlines 2026</h1>
-    <p class="subtitle">Most relevant quarterly developments by country</p>
-    <p class="rule">TECH · FINTECH · CRYPTO · AI</p>
-  </section>
+<!-- BRAZIL - ACTUALIZADO -->
+<tr class="country-row"><td colspan="3"><span>🇧🇷</span> Brazil — Ballotage & Mercado en shock</td></tr>
+<tr><td colspan="3" class="headline-6col">*ELECCIÓN* Flávio Bolsonaro (47%) vs Lula (45%) van a ballotage 25 octubre. Primer round sorpresivo, encuestas daban a Lula +3. Mercados reaccionan: Bovespa +8% a +9%, Real +4% rompe 5.00, Nu Holdings +12%, Banco Bradesco +12%, PagBank +15%, MSCI Brazil ETF +14% en Frankfurt. Inversionistas leen agenda pro-market de Flávio: recorte gasto, privatizaciones, baja impuestos.
 
-  <!-- ============ GRID DE PAÍSES ============ -->
-  <div class="countries-grid">
+*FISCAL* Flávio propone ajuste 1.5% PIB en 18 meses vía venta activos y revisión exenciones. Economistas estiman que se necesita superávit primario 4-6% para estabilizar deuda. Lula contraataca con +15% en Bolsa Familia y prohibición apuestas online desde 6 oct.
 
-    <!-- ============================================================
-         BRASIL
-         ============================================================ -->
-    <article class="country-card" id="br" aria-labelledby="title-br">
-      <header class="country-head">
-        <span class="flag" aria-hidden="true">🇧🇷</span>
-        <h2 class="name" id="title-br">Brasil</h2>
-        <span class="badge">2026</span>
-      </header>
+*ECONOMÍA* Inflación mitad septiembre 4.47% anual, arriba de 4.30% esperado. Vivienda +2.07% por luz. Banco Central bajó Selic a 13.75% tras 5 recortes seguidos, ojo a desaceleración. Crecimiento Q2 0.5% vs Q1 1.1%. Mercado laboral formal + desempleo 5.3% mínimo histórico.
 
-      <table class="news-table" role="presentation">
-        <tbody>
-          <tr>
-            <td>
-              <span class="cat">Política</span>
-              <span class="num">01</span>
-              <span class="topic">Lula y el punto medio de su 3er mandato</span>
-              El gobierno enfoca su agenda en el equilibrio fiscal, los programas sociales y la protección del Amazonas. Las tensiones con el Congreso por las enmiendas presupuestarias continúan marcando la pauta legislativa.
-            </td>
-            <td>
-              <span class="cat">Política</span>
-              <span class="num">02</span>
-              <span class="topic">Repercusión de las elecciones municipales</span>
-              Los resultados locales de 2024 aún moldean las alianzas. Los partidos del <strong>Centrão</strong> ganan influencia en el Congreso de cara a las elecciones generales de 2026.
-            </td>
-            <td>
-              <span class="cat">Seguridad &amp; Amazonía</span>
-              <span class="num">03</span>
-              <span class="topic">Fuerzas de tarea federales ampliadas</span>
-              Se expanden los operativos contra la deforestación y el crimen organizado. Un nuevo proyecto de ley para <mark>regular las redes sociales</mark> aprueba su primera ronda en el Congreso.
-            </td>
-          </tr>
+*TECH* Pix offline e internacional, Gov.br IA chatbots, 5G completo en capitales. Fintech lidera LatAm. Preparación COP30 Belém impulsa agrotech, carbon credits, biofuel e hidrógeno verde. Data centers e inversiones chips en SP y Ceará siguen.
+</td></tr>
+<tr><td colspan="3" class="sources">👉 Folha https://www.folha.uol.com.br | Globo https://oglobo.globo.com | Estadão https://www.estadao.com.br | Valor https://valor.globo.com | Reuters Brazil https://www.reuters.com/markets/ | FastCompany https://www.fastcompany.com
+</td></tr>
+<tr class="spacer"><td colspan="3"></td></tr>
 
-          <tr>
-            <td>
-              <span class="cat">Economía</span>
-              <span class="num">04</span>
-              <span class="topic">La economía se estabiliza</span>
-              Pronóstico de PIB de ∼<strong>2,4%</strong>, impulsado por agricultura, servicios y petróleo. La inflación cae a ∼<strong>3,9%</strong>, dentro del rango meta del Banco Central.
-            </td>
-            <td>
-              <span class="cat">Economía</span>
-              <span class="num">05</span>
-              <span class="topic">Recorte de tasas de interés</span>
-              El Banco Central baja la tasa <u>Selic a 10,25%</u> para impulsar la inversión y el consumo interno, en un contexto de desaceleración global.
-            </td>
-            <td>
-              <span class="cat">Fiscal</span>
-              <span class="num">06</span>
-              <span class="topic">El marco fiscal a prueba</span>
-              Las nuevas reglas de gasto se sostienen, pero aumenta la presión por mayor inversión en infraestructura y educación.
-            </td>
-          </tr>
+<!-- USA - ACTUALIZADO -->
+<tr class="country-row"><td colspan="3"><span>🇺🇸</span> USA — AI Bubble & Venture Record</td></tr>
+<tr><td colspan="3" class="headline-6col">*VENTURE* Q3 2026 global VC $159B (-25% vs Q2 $212B, +53% YoY). Acumulado 2026 $679B récord histórico. USA captó $91B (57% global), Bay Area 24%. 27 rondas >$1B récord, 33% del total VC. Databricks $5B, Safe Superintelligence $5B, Crusoe, Moonshot AI, Mistral AI, Nscale, Boring Co, Kling AI >$3B cada una. Sin mega rondas >$10B este trimestre.
 
-          <tr>
-            <td>
-              <span class="cat">Energía</span>
-              <span class="num">07</span>
-              <span class="topic">Boom de exportaciones energéticas</span>
-              Récord en exportaciones de petróleo y etanol. Brasil busca convertirse en un exportador clave de <mark>hidrógeno verde</mark> para 2030.
-            </td>
-            <td>
-              <span class="cat">Tecnología</span>
-              <span class="num">08</span>
-              <span class="topic">IA + Gobierno Digital</span>
-              Se lanza la <strong>"Estrategia Federal de IA 2026"</strong>. Gov.br amplía los chatbots de IA para servicios públicos, mejorando la atención ciudadana.
-            </td>
-            <td>
-              <span class="cat">Tecnología</span>
-              <span class="num">09</span>
-              <span class="topic">5G y semiconductores</span>
-              Despliegue completo del 5G en todas las capitales. Nuevos incentivos fiscales atraen inversiones en chips y centros de datos en São Paulo y Ceará.
-            </td>
-          </tr>
+*AI* 64% del VC global fue a AI ($102B). Physical AI (aeroespacial, robótica, data centers, chips, energía) >$10B cada vertical. Sector tech XLK +2.75% Q3 por IA infra. Nvidia, Microsoft, HPE récord $12.2B ingresos, + landmark AI deals. Micron blowout results sube semiconductores. Muse de Meta supera a ChatGPT como app gratis más descargada iPhone.
 
-          <tr>
-            <td>
-              <span class="cat">Fintech</span>
-              <span class="num">10</span>
-              <span class="topic">Pix 2.0 y liderazgo regional</span>
-              Pix incorpora pagos offline y transferencias internacionales. Brasil lidera LatAm en <u>pagos digitales y open banking</u>.
-            </td>
-            <td>
-              <span class="cat">Climatech</span>
-              <span class="num">11</span>
-              <span class="topic">Financiamiento climático</span>
-              Importante financiamiento para startups en agrotech, créditos de carbono y biocombustibles. La preparación de la <strong>COP30 en Belém</strong> impulsa el sector green tech.
-            </td>
-            <td>
-              <span class="cat">Perspectiva</span>
-              <span class="num">12</span>
-              <span class="topic">Brasil 2026: eje del sur global</span>
-              El país se consolida como puente entre mercados desarrollados y emergentes, con foco en sostenibilidad, digitalización financiera y liderazgo diplomático.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+*FINTECH* Semana de deals pequeños: $541M en 15 deals, solo 6 >$10M. Armadin CyberTech $255.5M Serie B val $2.5B. Jeeves WealthTech $110M + wallet stablecoin 190 países. Financiación grande se concentra en infraestructura AI.
 
-      <div class="sources-row">
-        <span class="sources-label">Fuentes · Prensa brasileña</span>
-        <div class="sources-list">
-          <a class="src-btn" href="https://www.folha.uol.com.br" target="_blank" rel="noopener">Folha</a>
-          <a class="src-btn" href="https://oglobo.globo.com" target="_blank" rel="noopener">O Globo</a>
-          <a class="src-btn" href="https://www.estadao.com.br" target="_blank" rel="noopener">Estadão</a>
-          <a class="src-btn" href="https://valor.globo.com" target="_blank" rel="noopener">Valor</a>
-          <a class="src-btn" href="https://www.correiobraziliense.com.br" target="_blank" rel="noopener">Correio</a>
-          <a class="src-btn" href="https://gauchazh.clicrbs.com.br" target="_blank" rel="noopener">Zero Hora</a>
-          <a class="src-btn" href="https://www.em.com.br" target="_blank" rel="noopener">Estado de Minas</a>
-          <a class="src-btn" href="https://www.opovo.com.br" target="_blank" rel="noopener">O Povo</a>
-          <a class="src-btn" href="https://www.atarde.com.br" target="_blank" rel="noopener">A Tarde</a>
-          <a class="src-btn" href="https://www.gazetadopovo.com.br" target="_blank" rel="noopener">Gazeta do Povo</a>
-          <a class="src-btn" href="https://www.brasil247.com" target="_blank" rel="noopener">Brasil 247</a>
-          <a class="src-btn" href="https://www.cartacapital.com.br" target="_blank" rel="noopener">CartaCapital</a>
-          <a class="src-btn" href="https://www.intercept.com.br" target="_blank" rel="noopener">Intercept</a>
-          <a class="src-btn" href="https://brasil.elpais.com" target="_blank" rel="noopener">El País</a>
-          <a class="src-btn" href="https://noticias.uol.com.br" target="_blank" rel="noopener">UOL</a>
-          <a class="src-btn" href="https://jornalggn.com.br" target="_blank" rel="noopener">GGN</a>
-          <a class="src-btn" href="https://revistaforum.com.br" target="_blank" rel="noopener">Fórum</a>
-          <a class="src-btn" href="https://midianinja.org" target="_blank" rel="noopener">Mídia Ninja</a>
-          <a class="src-btn" href="https://apublica.org" target="_blank" rel="noopener">Agência Pública</a>
-          <a class="src-btn" href="https://www.nexojornal.com.br" target="_blank" rel="noopener">Nexo</a>
-        </div>
-      </div>
-    </article>
+*POLÍTICA* Fed mantiene tasas, yield curva 2-10 años en 21bps más plano desde marzo 2025, bancos sufren. Midterms 2026: House toss-up, gasto crypto PAC +300%. CFPB nuevas reglas BNPL, FedNow crece, DOJ caso contra price-fixing algorítmico en alquileres.
+</td></tr>
+<tr><td colspan="3" class="sources">👇 Crunchbase https://www.crunchbase.com | SeekingAlpha XLK https://seekingalpha.com | Reuters Finance https://www.reuters.com/markets/ | Fintech Global https://fintech.global | Stocktwits https://stocktwits.com
+</td></tr>
+<tr class="spacer"><td colspan="3"></td></tr>
 
-    <!-- ============================================================
-         USA
-         ============================================================ -->
-    <article class="country-card" id="us" aria-labelledby="title-us">
-      <header class="country-head">
-        <span class="flag" aria-hidden="true">🇺🇸</span>
-        <h2 class="name" id="title-us">United States</h2>
-        <span class="badge">2026</span>
-      </header>
+<!-- GERMANY - ACTUALIZADO -->
+<tr class="country-row"><td colspan="3"><span>🇩🇪</span> Germany — Revisión al alza + Inflación energía</td></tr>
+<tr><td colspan="3" class="headline-6col">*PIB* Gobierno eleva previsión 2026 de 0.5% a 1.3%, 2027 a 1.1% (presentación oficial 8 octubre). Institutos económicos suben a 1.4% (vs 0.6% primavera), OECD a 1.1%. Bundesbank espera ~1% este año, doble de junio. Motor: gasto fiscal militar + exportaciones 3.9% H1 impulsadas por boom AI y data centers.
 
-      <table class="news-table" role="presentation">
-        <tbody>
-          <tr>
-            <td>
-              <span class="cat">Inversiones Tech</span>
-              <span class="num">01</span>
-              <span class="topic">La IA domina el capital de riesgo</span>
-              Las empresas estadounidenses capturaron ∼<strong>80%</strong> del financiamiento global de startups en 2026. La inversión en IA alcanzó el <mark>88%</mark> de ese total, con <strong>$319B USD</strong> destinados mayormente a OpenAI y Anthropic.
-            </td>
-            <td>
-              <span class="cat">Inversiones Tech</span>
-              <span class="num">02</span>
-              <span class="topic">Financiamiento récord</span>
-              El financiamiento en IA alcanzó <u>$510B USD</u> solo en el primer semestre de 2026, superando ya todo 2025.
-            </td>
-            <td>
-              <span class="cat">Big Tech</span>
-              <span class="num">03</span>
-              <span class="topic">Gasto en infraestructura IA</span>
-              Las grandes tecnológicas planean gastar hasta <strong>$900B USD</strong> en infraestructura de IA durante 2026.
-            </td>
-          </tr>
+*FISCAL* Fondo infraestructura 500.000M€ + ley Infrastruktur-Zukunftsgesetz vigente desde 29 julio acelera permisos tren/carretera/energía. Defensa 62.4B€ 2025 a 82.7B€ 2026, objetivo 109.7B€ 2027, 3.5% PIB 2029 OTAN. Déficit 2.7% a 3.7% 2026, deuda 63.5% a 68% PIB. Inversión extranjera directa +80% desde 2024.
 
-          <tr>
-            <td>
-              <span class="cat">Advertencia</span>
-              <span class="num">04</span>
-              <span class="topic">El BIS alerta sobre burbuja IA</span>
-              El Banco de Pagos Internacionales advirtió que el ciclo actual de IA tiene ecos de burbujas pasadas como los ferrocarriles y el dot-com. El debate sobre la concentración de capital y su impacto real en empleo y productividad continúa.
-            </td>
-            <td>
-              <span class="cat">Fintech</span>
-              <span class="num">05</span>
-              <span class="topic">Nuevas reglas CFPB para BNPL</span>
-              Los proveedores de <em>Buy Now, Pay Later</em> enfrentan nuevas regulaciones sobre cargos por mora y reporte crediticio.
-            </td>
-            <td>
-              <span class="cat">Fintech</span>
-              <span class="num">06</span>
-              <span class="topic">Robo-advisors bajo escrutinio</span>
-              Los robo-advisors impulsados por IA enfrentan demandas por sesgo algorítmico. La adopción de <mark>FedNow</mark> crece entre bancos regionales, desafiando a los sistemas ACH tradicionales.
-            </td>
-          </tr>
+*POLÍTICA* Merz en Kiev 5 oct con CEOs Siemens Energy, Hensoldt, Diehl, Quantum Systems, 15 acuerdos +8.500M€ producción conjunta drones interceptores anti-jet rusos y misiles +1.000km. Anunció 1.000M€ extra militar +350M€ energía. Presión AfD 41% Sajonia-Anhalt.
 
-          <tr>
-            <td>
-              <span class="cat">Espacio</span>
-              <span class="num">07</span>
-              <span class="topic">Artemis III se retrasa</span>
-              La misión se pospone a finales de 2027 por retrasos en las pruebas del Starship HLS. MIT Lincoln Lab demuestra nueva IA para evitar colisiones satelitales autónomas.
-            </td>
-            <td>
-              <span class="cat">Aviación</span>
-              <span class="num">08</span>
-              <span class="topic">Boom Supersonic completa vuelo</span>
-              El XB-1 realiza su primer vuelo supersónico sin postquemador, un hito para la aviación civil de alta velocidad.
-            </td>
-            <td>
-              <span class="cat">Tecnología</span>
-              <span class="num">09</span>
-              <span class="topic">Modelos abiertos desafían a corporaciones</span>
-              Modelos de IA de peso abierto de la academia compiten con sistemas corporativos cerrados en benchmarks internacionales.
-            </td>
-          </tr>
+*DATOS* PMI compuesto 53.8 sept (vs 51.8 ago) máximo desde oct 2025. Servicios 52.9 (fin de 5 meses contracción), manufactura 53.8. Inflación 3.3% sept máximo desde dic 2023, energía +14.9% por guerra Irán. Bundesbank: inflación elevada por combustible y reformas salud 2027 (+0.5pp).
+</td></tr>
+<tr><td colspan="3" class="sources">👉 Reuters https://www.reuters.com/world/germany/ | Bundesbank https://www.bundesbank.de | S&P Global PMI https://www.spglobal.com | DW https://www.dw.com
+</td></tr>
+<tr class="spacer"><td colspan="3"></td></tr>
 
-          <tr>
-            <td>
-              <span class="cat">Tecnología</span>
-              <span class="num">10</span>
-              <span class="topic">Leyes de derecho a reparar se expanden</span>
-              Las leyes se extienden a equipos agrícolas y dispositivos médicos en 12 estados. <u>Caltech reporta 99,9% de fidelidad</u> en compuertas de 2 qubits en un nuevo chip superconductor.
-            </td>
-            <td>
-              <span class="cat">Industria</span>
-              <span class="num">11</span>
-              <span class="topic">PMI manufacturero cerca de 50</span>
-              El PMI señala crecimiento plano en medio de tasas altas. Los despidos tech se desaceleran en Q2 2026, pero la contratación relacionada con IA solo compensa el <strong>30%</strong> de los recortes.
-            </td>
-            <td>
-              <span class="cat">Empleo</span>
-              <span class="num">12</span>
-              <span class="topic">Energías renovables superan a fósiles</span>
-              Los empleos en energías renovables superan a los de combustibles fósiles <mark>3:1</mark> según el nuevo informe del BLS.
-            </td>
-          </tr>
+<!-- MEXICO - ACTUALIZADO -->
+<tr class="country-row"><td colspan="3"><span>🇲🇽</span> Mexico — Rebote más fuerte del G20</td></tr>
+<tr><td colspan="3" class="headline-6col">*PIB* Q2 2026 +1.4% QoQ tras -0.3% Q1, mayor rebote G20, doble del promedio G20 0.7%. Segunda economía más rápida tras India 1.8%. OECD, Banxico y Banco Mundial sorprendidos. Julio +0.8% MoM (vs 0.2% esperado), anual +3.4% (vs 2.5% esperado). Terciario +1.2%, secundario +0.5%. INEGI revisa junio de contracción a plano.
 
-          <tr>
-            <td>
-              <span class="cat">Economía</span>
-              <span class="num">13</span>
-              <span class="topic">PIB revisado al alza</span>
-              El crecimiento del PIB de EE.UU. se revisa a <strong>1,8%</strong> para Q1 2026, impulsado por servicios y no por bienes.
-            </td>
-            <td>
-              <span class="cat">Consumo</span>
-              <span class="num">14</span>
-              <span class="topic">Quejas por "shrinkflation" suben 40%</span>
-              Las quejas ante la FTC aumentan 40% interanual mientras los tamaños de empaque se reducen. El gasto Gen Z se inclina hacia bienes usados y reparación, según un estudio de Stanford.
-            </td>
-            <td>
-              <span class="cat">Política</span>
-              <span class="num">15</span>
-              <span class="topic">Midterms 2026: control empatado</span>
-              Los sondeos tempranos muestran la Cámara como empate técnico, con el gasto de los PAC cripto <u>aumentando 300%</u>. Las elecciones al Parlamento Europeo ven avances de la ultraderecha ligados a protestas por el costo de vida.
-            </td>
-          </tr>
+*ESTRUCTURA* Petróleo menos relevante: extracción 2.2% PIB 2024 vs 5.6% 2000, ingresos petroleros 12.2% recaudación ene-jul vs 19.6% 2014. Crecimiento impulsado por agro + consumo ligado a transferencias sociales y salario mínimo $312 día (+12% enero). Nearshoring: NL, Chihuahua, Sonora concentran EV y semiconductores, 2 nuevas plantas baterías y chips, Tesla NL expansión.
 
-          <tr>
-            <td>
-              <span class="cat">Política</span>
-              <span class="num">16</span>
-              <span class="topic">Publicidad política generada por IA</span>
-              ProPublica rastrea el aumento de anuncios generados por IA con divulgación mínima, planteando nuevos desafíos regulatorios.
-            </td>
-            <td>
-              <span class="cat">Legal</span>
-              <span class="num">17</span>
-              <span class="topic">Antimonopolio contra fijación algorítmica</span>
-              El DOJ presenta un nuevo caso contra la fijación algorítmica de precios en el mercado de alquileres.
-            </td>
-            <td>
-              <span class="cat">Legal</span>
-              <span class="num">18</span>
-              <span class="topic">Demandas por datos a la Corte Suprema</span>
-              Las demandas colectivas por venta de datos de intermediarios a fuerzas del orden llegan al expediente de la Corte Suprema. Los recortes a la asistencia legal se impugnan en 9 estados por la acumulación de casos de desalojo.
-            </td>
-          </tr>
+*PREVISIÓN* División: Hacienda 2.3%, Banco Mundial 1.3%, Banxico 1.1%, OECD 0.8%. Diferencia por demanda interna e inversión privada que cae casi 2 años por incertidumbre T-MEC. Tasa Banxico ~9.5% recorte lento.
 
-          <tr>
-            <td>
-              <span class="cat">Oportunidades</span>
-              <span class="num">19</span>
-              <span class="topic">CHIPS Act: fase 2</span>
-              Se abre la Fase 2 del financiamiento para empaquetado y materiales avanzados. Los créditos fiscales de captura de carbono impulsan nuevos proyectos DAC en el Medio Oeste.
-            </td>
-            <td>
-              <span class="cat">Forex</span>
-              <span class="num">20</span>
-              <span class="topic">Fortaleza del USD continúa</span>
-              La fortaleza del dólar persiste mientras la Fed mantiene tasas. Aumentan los riesgos de intervención en el yen.
-            </td>
-            <td aria-hidden="true"></td>
-          </tr>
-        </tbody>
-      </table>
+*TECH* CURP biométrica, Ley Ciberseguridad, regulación IA, Gobierno digital, Internet para Todos +95% municipios, CoDi fintech crece.
+</td></tr>
+<tr><td colspan="3" class="sources">👇 INEGI https://www.inegi.org.mx | Banxico https://www.banxico.org.mx | OECD https://www.oecd.org | Aristegui https://aristeguinoticias.com | Animal Político https://www.animalpolitico.com
+</td></tr>
+<tr class="spacer"><td colspan="3"></td></tr>
 
-      <div class="sources-row">
-        <span class="sources-label">Fuentes · US Press</span>
-        <div class="sources-list">
-          <a class="src-btn" href="https://www.democracynow.org" target="_blank" rel="noopener">Democracy Now</a>
-          <a class="src-btn" href="https://theintercept.com" target="_blank" rel="noopener">The Intercept</a>
-          <a class="src-btn" href="https://www.motherjones.com" target="_blank" rel="noopener">Mother Jones</a>
-          <a class="src-btn" href="https://www.propublica.org" target="_blank" rel="noopener">ProPublica</a>
-          <a class="src-btn" href="https://truthout.org" target="_blank" rel="noopener">Truthout</a>
-          <a class="src-btn" href="https://www.commondreams.org" target="_blank" rel="noopener">Common Dreams</a>
-          <a class="src-btn" href="https://www.breitbart.com" target="_blank" rel="noopener">Breitbart</a>
-          <a class="src-btn" href="https://www.dailywire.com" target="_blank" rel="noopener">Daily Wire</a>
-          <a class="src-btn" href="https://thefederalist.com" target="_blank" rel="noopener">The Federalist</a>
-          <a class="src-btn" href="https://www.newsmax.com" target="_blank" rel="noopener">Newsmax</a>
-          <a class="src-btn" href="https://reason.com" target="_blank" rel="noopener">Reason</a>
-          <a class="src-btn" href="https://www.thefp.com" target="_blank" rel="noopener">The Free Press</a>
-          <a class="src-btn" href="https://www.zerohedge.com" target="_blank" rel="noopener">Zero Hedge</a>
-        </div>
-      </div>
-    </article>
+<!-- CANADA & CHILE -->
+<tr class="country-row"><td colspan="3"><span>🇨🇦 🇨🇱</span> Canada / Chile — Servicios en contracción, Cobre boom</td></tr>
+<tr><td colspan="3" class="headline-6col">*CANADA* Servicios PMI sept 48.3 (ago 46.8) cuarto mes <50 contracción. Tariffs USA-Canadá + guerra Irán elevan incertidumbre y costos input 62.2. Nuevo negocio 48.5 quinto mes <50, exportación cae. Manufactura PMI 51.5 mínimo 6 meses. PIB julio plano, agosto estimado +0.2% por minería y retail. Banco Canadá prevé 1.5% anualizado Q3. Turismo: visitantes Alemania +8.1% viajes +48.2% gasto, UK +10.2% +40.5% gasto, México +16.5% +43.1%.
 
-    <!-- ============================================================
-         CANADÁ
-         ============================================================ -->
-    <article class="country-card" id="ca" aria-labelledby="title-ca">
-      <header class="country-head">
-        <span class="flag" aria-hidden="true">🇨🇦</span>
-        <h2 class="name" id="title-ca">Canadá</h2>
-        <span class="badge">2026</span>
-      </header>
+*CHILE* Cobre boom + litio impulsan 2.8% PIB. Inflación 3.2%, TPM 4.75%. Reforma pensiones mixta 6% extra empleador a fondo colectivo. Hidrógeno verde Magallanes y Antofagasta $15B USD inversión extranjera. Data center hub Santiago-Valparaíso AWS/Google/Microsoft por energía renovable. ENAMI + Tesla/BYD litio battery-grade. ClaveÚnica 2.0 + ley ciberseguridad vigente. Diálogo constitucional pensiones y agua, ley consulta indígena minería.
+</td></tr>
+<tr><td colspan="3" class="sources">👉 StatsCan https://www.statcan.gc.ca | S&P Global https://www.spglobal.com/spdji/ | El Mostrador https://www.elmostrador.cl | CIPER https://www.ciperchile.cl
+</td></tr>
 
-      <table class="news-table" role="presentation">
-        <tbody>
-          <tr>
-            <td>
-              <span class="cat">Política</span>
-              <span class="num">01</span>
-              <span class="topic">Presión sobre el gobierno de Carney</span>
-              El gobierno liberal del PM Mark Carney enfrenta presión por el costo de vida y la vivienda en la dinámica post-electoral de 2025.
-            </td>
-            <td>
-              <span class="cat">Relaciones US</span>
-              <span class="num">02</span>
-              <span class="topic">Tensiones comerciales con EE.UU.</span>
-              Disputas por aranceles estadounidenses al acero, aluminio y autos. Canadá responde y busca nuevos socios comerciales.
-            </td>
-            <td>
-              <span class="cat">Economía</span>
-              <span class="num">03</span>
-              <span class="topic">Inflación cerca del 2,2%</span>
-              El Banco de Canadá mantiene tasas altas pero las reduce lentamente para evitar una recesión.
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <span class="cat">Vivienda</span>
-              <span class="num">04</span>
-              <span class="topic">Crisis habitacional continúa</span>
-              Plan federal para construir <strong>3,9M de viviendas</strong> para 2031, junto con límites a compradores extranjeros.
-            </td>
-            <td>
-              <span class="cat">Energía</span>
-              <span class="num">05</span>
-              <span class="topic">Expansión del oleoducto TMX</span>
-              Avanza la expansión del TMX. El debate continúa entre petróleo/gas y transición verde.
-            </td>
-            <td>
-              <span class="cat">Fiscal</span>
-              <span class="num">06</span>
-              <span class="topic">Déficit federal de CAD $40B</span>
-              El déficit federal ronda los <mark>CAD $40B</mark>. El foco está en recortes de gasto y crecimiento de ingresos.
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <span class="cat">IA</span>
-              <span class="num">07</span>
-              <span class="topic">CAD $2,4B en infraestructura IA</span>
-              Inversión de <strong>CAD $2,4B</strong> en infraestructura y talento IA. Toronto y Montreal lideran como hubs de IA.
-            </td>
-            <td>
-              <span class="cat">Semiconductores</span>
-              <span class="num">08</span>
-              <span class="topic">Subsidios para chips y baterías</span>
-              Subsidios importantes para atraer plantas de chips y baterías de Tesla, VW y Northvolt.
-            </td>
-            <td>
-              <span class="cat">Clean Tech</span>
-              <span class="num">09</span>
-              <span class="topic">Hidrógeno verde y minerales críticos</span>
-              Impulso al hidrógeno verde y minerales críticos. Canadá se posiciona como proveedor clave de EE.UU. y la UE.
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <span class="cat">Digital</span>
-              <span class="num">10</span>
-              <span class="topic">Online News Act en vigor</span>
-              Meta y Google pagan a medios canadienses. Se expande la identidad digital nacional y la ciberseguridad.
-            </td>
-            <td>
-              <span class="cat">Banca Digital</span>
-              <span class="num">11</span>
-              <span class="topic">Innovación en banca digital</span>
-              Crecimiento del ecosistema de IA, recuperación del financiamiento fintech y nuevas iniciativas de investigación en blockchain.
-            </td>
-            <td>
-              <span class="cat">Perspectiva</span>
-              <span class="num">12</span>
-              <span class="topic">Canadá 2026: proveedor estratégico</span>
-              El país se consolida como proveedor clave de minerales críticos, talento IA y energía limpia para las principales economías occidentales.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="sources-row">
-        <span class="sources-label">Fuentes · Canadian Press</span>
-        <div class="sources-list">
-          <a class="src-btn" href="https://thetyee.ca" target="_blank" rel="noopener">The Tyee</a>
-          <a class="src-btn" href="https://rabble.ca" target="_blank" rel="noopener">Rabble</a>
-          <a class="src-btn" href="https://www.nationalobserver.com" target="_blank" rel="noopener">National Observer</a>
-          <a class="src-btn" href="https://www.theglobeandmail.com" target="_blank" rel="noopener">Globe &amp; Mail</a>
-          <a class="src-btn" href="https://pressprogress.ca" target="_blank" rel="noopener">PressProgress</a>
-          <a class="src-btn" href="https://breachmedia.ca" target="_blank" rel="noopener">The Breach</a>
-          <a class="src-btn" href="https://ricochet.media" target="_blank" rel="noopener">Ricochet</a>
-          <a class="src-btn" href="https://www.aptnnews.ca" target="_blank" rel="noopener">APTN News</a>
-          <a class="src-btn" href="https://www.nationalobserver.com/section/energy" target="_blank" rel="noopener">Energy/Climate</a>
-          <a class="src-btn" href="https://www.readthemaple.com" target="_blank" rel="noopener">The Maple</a>
-        </div>
-      </div>
-    </article>
-
-  </div><!-- /.countries-grid -->
-
-</main>
-
-<!-- ============ FOOTER (auto-load con fallback) ============ -->
-<footer id="footer-placeholder"></footer>
-
-<!-- ============ JS: Carga parcial con fallback silencioso ============ -->
-<script defer>
-(function () {
-  var isFile = location.protocol === 'file:';
-
-  function loadPartial(id, url, fallbackHTML) {
-    var el = document.getElementById(id);
-    if (!el) return;
-
-    // Si abrimos con file:// el navegador bloquea fetch; usamos fallback
-    if (isFile) {
-      el.innerHTML = fallbackHTML;
-      return;
-    }
-
-    fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error(url + ' not found: ' + res.status);
-        return res.text();
-      })
-      .then(function (data) { el.innerHTML = data; })
-      .catch(function () { el.innerHTML = fallbackHTML; });
-  }
-
-  // Fallbacks por si header.html / footer.html no existen
-  var headerFallback = '';
-  var footerFallback = '';
-
-  loadPartial('header-placeholder', 'header.html', headerFallback);
-  loadPartial('footer-placeholder', 'footer.html', footerFallback);
-})();
-</script>
-
+</tbody>
+</table>
+</div>
+</div>
 </body>
 </html>
