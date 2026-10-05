@@ -1,5 +1,105 @@
 <style>
 
+/* ===== FUENTES - BOTONES BRILLANTES ESTILO HEADLINES ===== */
+.sources {
+  margin-top: 28px;
+  padding: 18px;
+  background: #f5f5f2;
+  border-radius: 18px;
+}
+
+.sources-label {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #111;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #eee;
+  margin-bottom: 12px;
+}
+
+.sources-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Botón brillante blanco + amarillo */
+.src-btn {
+  position: relative;
+  display: inline-block;
+  padding: 9px 16px;
+  background: #ffffff;
+  color: #111111;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid #ffffff;
+  box-shadow: 
+    0 2px 0 #ffe600,
+    0 4px 15px rgba(255, 230, 0, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  isolation: isolate;
+}
+
+/* El bloque amarillo grunge detrás */
+.src-btn::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #ffe600;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,0.15) 2px, transparent 2.5px),
+    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.1) 1px, transparent 2px);
+  background-size: 8px 8px;
+  border-radius: 8px;
+  z-index: -1;
+  transform: skewX(-2deg) scale(1.02);
+  filter: contrast(1.2);
+}
+
+/* Texto efecto recorte como tu imagen */
+.src-btn {
+  color: #fff;
+  text-shadow: 0 0 0 #fff;
+  -webkit-text-stroke: 0.5px rgba(0,0,0,0.05);
+  mix-blend-mode: normal;
+}
+
+.src-btn::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+/* Brillo al pasar el mouse */
+.src-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 
+    0 4px 0 #ffe600,
+    0 8px 25px rgba(255, 230, 0, 0.55),
+    0 0 20px rgba(255,255,255,0.8);
+  background: #fffffe;
+  filter: brightness(1.05);
+}
+
+.src-btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+
 /* RESET LIMPIO - YELLOW PRESS - VALIDO W3C */
 *, *::after, *::before {
   box-sizing: border-box;
