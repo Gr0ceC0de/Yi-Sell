@@ -74,6 +74,13 @@ body {
   padding: 1.5rem 1.25rem 3rem;
 }
 
+/* Placeholder fallback del header */
+#header-placeholder:empty::before {
+  content: "";
+  display: block;
+  height: 0;
+}
+
 /* ============================================================
    MASTHEAD
    ============================================================ */
@@ -154,7 +161,6 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,214,10,0.05);
 }
 
-/* Encabezado del país (fila a solas) */
 .country-head {
   display: flex;
   align-items: center;
@@ -319,7 +325,13 @@ body {
   transform: translate(2px, -2px);
 }
 
-/* Responsive: en mobile cada celda va arriba de la otra */
+/* Footer fallback */
+#footer-placeholder:empty::after {
+  content: "";
+  display: block;
+}
+
+/* Responsive */
 @media (max-width: 800px) {
   .news-table, .news-table tbody, .news-table tr, .news-table td {
     display: block;
@@ -332,7 +344,7 @@ body {
 
 <body>
 
-<!-- ============ HEADER (auto-load) ============ -->
+<!-- ============ HEADER (auto-load con fallback) ============ -->
 <header id="header-placeholder"></header>
 
 <main class="page">
@@ -360,7 +372,6 @@ body {
 
       <table class="news-table" role="presentation">
         <tbody>
-          <!-- Fila 1: noticias 01, 02, 03 -->
           <tr>
             <td>
               <span class="cat">Política</span>
@@ -382,7 +393,6 @@ body {
             </td>
           </tr>
 
-          <!-- Fila 2: noticias 04, 05, 06 -->
           <tr>
             <td>
               <span class="cat">Economía</span>
@@ -404,7 +414,6 @@ body {
             </td>
           </tr>
 
-          <!-- Fila 3: noticias 07, 08, 09 -->
           <tr>
             <td>
               <span class="cat">Energía</span>
@@ -426,7 +435,6 @@ body {
             </td>
           </tr>
 
-          <!-- Fila 4: noticias 10, 11, 12 -->
           <tr>
             <td>
               <span class="cat">Fintech</span>
@@ -450,7 +458,6 @@ body {
         </tbody>
       </table>
 
-      <!-- Fuentes -->
       <div class="sources-row">
         <span class="sources-label">Fuentes · Prensa brasileña</span>
         <div class="sources-list">
@@ -773,28 +780,39 @@ body {
 
 </main>
 
-<!-- ============ FOOTER (auto-load) ============ -->
+<!-- ============ FOOTER (auto-load con fallback) ============ -->
 <footer id="footer-placeholder"></footer>
 
-<!-- ============ JS (defer, no bloqueante) ============ -->
+<!-- ============ JS: Carga parcial con fallback silencioso ============ -->
 <script defer>
 (function () {
-  function loadPartial(id, url, label) {
+  var isFile = location.protocol === 'file:';
+
+  function loadPartial(id, url, fallbackHTML) {
+    var el = document.getElementById(id);
+    if (!el) return;
+
+    // Si abrimos con file:// el navegador bloquea fetch; usamos fallback
+    if (isFile) {
+      el.innerHTML = fallbackHTML;
+      return;
+    }
+
     fetch(url)
       .then(function (res) {
-        if (!res.ok) throw new Error(label + ' not found: ' + res.status);
+        if (!res.ok) throw new Error(url + ' not found: ' + res.status);
         return res.text();
       })
-      .then(function (data) {
-        var el = document.getElementById(id);
-        if (el) el.innerHTML = data;
-      })
-      .catch(function (err) {
-        console.error('Error loading ' + label + ':', err);
-      });
+      .then(function (data) { el.innerHTML = data; })
+      .catch(function () { el.innerHTML = fallbackHTML; });
   }
-  loadPartial('header-placeholder', 'header.html', 'header');
-  loadPartial('footer-placeholder', 'footer.html', 'footer');
+
+  // Fallbacks por si header.html / footer.html no existen
+  var headerFallback = '';
+  var footerFallback = '';
+
+  loadPartial('header-placeholder', 'header.html', headerFallback);
+  loadPartial('footer-placeholder', 'footer.html', footerFallback);
 })();
 </script>
 
