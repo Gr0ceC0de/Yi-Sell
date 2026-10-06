@@ -57,7 +57,7 @@ em, i { color: var(--rose); font-family: 'Dancing Script', cursive; }
 /* NÚMEROS */
 .num, .money { color: #32CD32; font-weight: 700; font-size: inherit; }
 
-h3 {
+h2 {
   font-family: 'UnifrakturCook', cursive;
   font-size: clamp(1.8rem, 4vw, 3.5rem);
   line-height: 1.15;
