@@ -58,7 +58,7 @@ u, .u-fuchsia { text-decoration: none; border-bottom: 3px solid var(--fuchsia); 
 em, i { color: var(--rose); font-family: 'Dancing Script', cursive; }
 
 /* NÚMEROS */
-.num, .money { color: var(--yellow) !important; font-weight: 700; font-size: inherit; }
+.num, .money { color: #32CD32; font-weight: 700; font-size: inherit; }
 
 h1 {
   font-family: 'UnifrakturCook', cursive;
