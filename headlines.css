@@ -51,6 +51,70 @@ button, select { text-transform: none; }
 :disabled { cursor: default; }
 img, video { display: block; max-width: 100%; height: auto; }
 [hidden] { display: none!important; }
+
+
+
+   10. BUTTONS & FORMS
+====================================================== */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.btn,
+.ripple-btn {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px 28px;
+  border-radius: 18px;
+  color: var(--white);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--fuchsia), var(--rose));
+  transition: var(--transition);
+}
+
+.btn:hover,
+.ripple-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.4);
+}
+
+.ripple-btn {
+  background: transparent;
+}
+
+.ripple-btn img {
+  display: block;
+  height: 55px;
+  width: auto;
+  transition: 0.25s;
+}
+
+.ripple-btn img:hover {
+  transform: scale(1.08);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
 ==========================================
        1. FUENTES Y TIPOGRAFÍA
        ========================================================================== */
