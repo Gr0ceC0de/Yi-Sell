@@ -50,11 +50,11 @@
   --cyan: #00f7ff;
 
   /* Text Colors - White Console on Rose */
-  --white: #ffffff;
-  --soft-white: #fff8fc;
-  --text: #fdf7fb;
-  --text-console: #ffffff;
-  --muted: #cba9ba;
+    --white: #ffffff;
+  --soft-white: #fffef0;
+  --text: #fff9c4;
+  --text-console: #ffeb3b;
+  --muted: #c5a600;
 
   /* Headlines - Brilliant */
   --headline-main: #ffffff;
