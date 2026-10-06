@@ -44,11 +44,11 @@
 
 /* TÍTULOS */
 .headline-main { font-family: 'UnifrakturCook', cursive; color: var(--beige); font-size: 3.1rem; }
-.subtitle      { font-family: 'Podkova', serif; color: var(--snow); font-size: 1.6rem; font-weight: 600; }
+.subtitle      { font-family: 'UnifrakturCook', serif; color: var(--snow); font-size: 1.6rem; font-weight: 600; }
 
 /* CUERPOS */
 .body-text { font-family: 'Podkova', serif; color: var(--white); font-size: 1rem; line-height: 1.8; }
-.phrase    { font-family: 'Indie Flower', cursive; color: var(--snow); }
+.phrase    { font-family: 'Podkova', cursive; color: var(--snow); }
 .emotive   { font-family: 'Dancing Script', cursive; color: var(--rose); }
 
 /* SUBRAYADOS */
