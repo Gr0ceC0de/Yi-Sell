@@ -26,6 +26,7 @@
 /* 16. RESPONSIVE BREAKPOINTS */
 /* 17. REDUCED MOTION */
 /* 18. SAFE AREA SUPPORT */
+
 /* ======================================================
    YI-SELL ULTRA LUXURY DESIGN SYSTEM
    Finance • News • Trading • Marketplace
@@ -33,17 +34,60 @@
 ====================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Indie+Flower&family=Podkova:wght@400;600;700&family=UnifrakturCook:wght@700&display=swap');
-:root{
-  --beige: #E8DCCE; /* título */
-  --snow: #FFFAFA; /* subtítulos */
-  --white: #FFFFFF; /* cuerpo */
-  --fuchsia: #FF2E93; /* subrayados */
-  --rose: #D8A0A8; /* cursivas rosa vieja pastel */
-  --yellow: #FFD93D; /* números, cifras, dinero */
+
+/* ======================================================
+   1. ROOT VARIABLES
+====================================================== */
+:root {
+  --font-console: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Base Colors */
+  --bg-dark: #120918;
+  --bg-card: rgba(28, 15, 38, 0.82);
+
+  /* Brand Colors - YELLOW EDITION */
+  --beige: #FFFEF0;
+  --snow: #FFF9C4;
+  --white: #FFFFFF;
+  --soft-white: #FFFEF0;
+  --text: #FFF9C4;
+  --text-console: #FFEB3B;
+  --muted: #C5A600;
+
+  --fuchsia: #FFD60A;
+  --rose: #E8D9A0;
+  --pink: #FFF9C4;
+  --yellow: #FFD93D;
+  --violet: #8a2be2;
+  --cyan: #ffe600;
+
+  /* Headlines - Brilliant Yellow */
+  --headline-main: #FFFEF0;
+  --headline-secondary: rgba(255, 230, 0, 0.75);
+  --headline-accent: #FFE600;
+  --old-rose-500: rgba(255, 214, 10, 0.55);
+
+  /* UI */
+  --border: rgba(255, 255, 255, 0.15);
+  --container-max: 1600px;
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+  --space-md: clamp(0.75rem, 1.5vw, 1rem);
+  --space-lg: clamp(1rem, 2vw, 1.5rem);
+  --space-xl: clamp(1.5rem, 3vw, 2rem);
+  --space-xxl: clamp(2rem, 5vw, 4rem);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius: 24px;
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 20px 60px rgba(255, 214, 10, 0.35);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/*
+
 /* TÍTULOS */
-.headline-main{ font-family:'UnifrakturCook',cursive; color:var(--beige); font-size:3.1rem; list-style:none; }
+.headline-main{ font-family:'UnifrakturCook',cursive; color:var(--beige); font-size:3.1rem; }
 .subtitle{ font-family:'Podkova',serif; color:var(--snow); font-size:1.6rem; font-weight:600; }
 
 /* CUERPOS */
@@ -51,21 +95,24 @@
 .phrase{ font-family:'Indie Flower',cursive; color:var(--snow); }
 .emotive{ font-family:'Dancing Script',cursive; color:var(--rose); }
 
-/* SUBRAYADOS FUCSIA */
+/* SUBRAYADOS */
 u, .u-fuchsia{ text-decoration:none; border-bottom:3px solid var(--fuchsia); }
 
-/* CURSIVAS ROSA VIEJA PASTEL */
+/* CURSIVAS */
 em, i{ color:var(--rose); font-family:'Dancing Script',cursive; }
 
-/* NÚMEROS, CIFRAS, DINERO - AMARILLOS MISMO TAMAÑO */
+/* NÚMEROS */
 .num, .money{ color:var(--yellow) !important; font-weight:700; font-size:inherit; }
+
 h1 {
+  font-family: 'UnifrakturCook', cursive;
   font-size: clamp(1.8rem, 4vw, 3.5rem);
   line-height: 1.15;
   text-align: center;
   margin-bottom: 15px;
   color: var(--white);
-} ======================================================
+}
+ ======================================================
    1. ROOT VARIABLES
 ====================================================== */
 :root {
