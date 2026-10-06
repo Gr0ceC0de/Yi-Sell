@@ -32,6 +32,15 @@
    Feminine Edition v2.0 - Cleaned & Ordered
 ====================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Indie+Flower&family=Podkova:wght@400;600;700&family=UnifrakturCook:wght@700&display=swap');
+:root{
+  --beige: #E8DCCE; /* título */
+  --snow: #FFFAFA; /* subtítulos */
+  --white: #FFFFFF; /* cuerpo */
+  --fuchsia: #FF2E93; /* subrayados */
+  --rose: #D8A0A8; /* cursivas rosa vieja pastel */
+  --yellow: #FFD93D; /* números, cifras, dinero */
+}
 /* ======================================================
    1. ROOT VARIABLES
 ====================================================== */
