@@ -27,9 +27,6 @@
 /* 17. REDUCED MOTION */
 /* 18. SAFE AREA SUPPORT */
 
-
-
-
   /* ======================================================
    YI-SELL ULTRA LUXURY DESIGN SYSTEM
    Finance • News • Trading • Marketplace
@@ -47,7 +44,7 @@
 .subtitle      { font-family: 'UnifrakturCook', serif; color: var(--snow); font-size: 1.6rem; font-weight: 600; }
 
 /* CUERPOS */
-.body-text { font-family: 'Podkova', serif; color: var(--white); font-size: 1rem; line-height: 1.8; }
+.body-text { font-family: 'Podkova', serif; color: #E8DCCE; font-size: 1rem; line-height: 1.8; }
 .phrase    { font-family: 'Podkova', cursive; color: var(--snow); }
 .emotive   { font-family: 'Dancing Script', cursive; color: var(--rose); }
 
