@@ -745,3 +745,29 @@ button, .add-to-cart { font-size: 13px; }
     scroll-behavior: auto !important;
   }
 } 
+/* TODOS LOS BLOQUES DE PAÍS - estilo global */
+.country-block {
+  border: 1px solid rgba(216, 207, 192, 0.25); /* borde sutil beige */
+  border-left: 4px solid #FFD84D; /* acento amarillo para diferenciarse */
+  border-radius: 12px;
+  padding: 24px 24px 16px 24px;
+  margin-bottom: 48px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Nombre del país en BEIGE */
+.country-block h2,
+.country-block .country-name,
+.country-block .country-title {
+  color: #D8CFC0 !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* Si usas subtítulo tipo "República Federativa do Brasil" */
+.country-block .country-subtitle {
+  color: rgba(216, 207, 192, 0.7);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
