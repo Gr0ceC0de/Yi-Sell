@@ -331,7 +331,7 @@ span, a, td, th {
 /* ==== BOTONES BRILLANTES FIX - CORREGIDO ==== */
 .sources {
   margin-top: 28px;
-  background: ;
+  background:0;
   padding: 0;
   border: none;
 }
@@ -342,7 +342,7 @@ span, a, td, th {
   font-size: 11px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  background: #f5f5f2;
+  background: 0;
   padding: 6px 12px;
   border-radius: 999px;
 }
@@ -354,7 +354,7 @@ span, a, td, th {
 .src-btn {
   display: inline-block;
   padding: 9px 20px;
-  background: #ffe600;
+  background: 0;
   color: #000 !important;
   font-weight: 800;
   font-size: 13px;
