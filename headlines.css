@@ -327,11 +327,11 @@ span, a, td, th {
   min-width: 0;
 }
 
-/*
+
 /* ==== BOTONES BRILLANTES FIX - CORREGIDO ==== */
 .sources {
   margin-top: 28px;
-  background: #fff;
+  background: ;
   padding: 0;
   border: none;
 }
