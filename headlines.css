@@ -27,45 +27,7 @@
 /* 17. REDUCED MOTION */
 /* 18. SAFE AREA SUPPORT */
 
-  /* ======================================================
-   YI-SELL ULTRA LUXURY DESIGN SYSTEM
-   Finance • News • Trading • Marketplace
-   Feminine Edition v2.0 - Cleaned & Ordered
-====================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Indie+Flower&family=Podkova:wght@400;600;700&family=UnifrakturCook:wght@700&display=swap');
-
-/* ======================================================
-   HEADLINES / TIPOGRAFÍA EDITORIAL
-====================================================== */
-
-/* TÍTULOS */
-.headline-main { font-family: 'UnifrakturCook', cursive; color: var(--beige); font-size: 3.1rem; }
-.subtitle      { font-family: 'UnifrakturCook', serif; color: var(--snow); font-size: 1.6rem; font-weight: 600; }
-
-/* CUERPOS */
-.body-text { font-family: 'Podkova', serif; color: #E8DCCE; font-size: 1rem; line-height: 1.8; }
-.phrase    { font-family: 'Indie Flower', cursive; color: var(--snow); }
-.emotive   { font-family: 'Dancing Script', cursive; color: var(--rose); }
-
-/* SUBRAYADOS */
-u, .u-fuchsia { text-decoration: none; border-bottom: 3px solid var(--fuchsia); }
-
-/* CURSIVAS */
-em, i { color: var(--rose); font-family: 'Dancing Script', cursive; }
-
-/* NÚMEROS */
-.num, .money { color: #32CD32; font-weight: 700; font-size: inherit; }
-
-h2 {
-  font-family: 'UnifrakturCook', cursive;
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  line-height: 1.15;
-  text-align: center;
-  margin-bottom: 15px;
-  color: var(--white);
-}
-
+  
 /* ======================================================
    1. ROOT VARIABLES
 ====================================================== */
