@@ -1,4 +1,4 @@
-//* ======================================================
+/* ======================================================
    YI-SELL ULTRA LUXURY DESIGN SYSTEM
    Finance • News • Trading • Marketplace
    Feminine Edition
@@ -41,7 +41,31 @@
   --rose: #D8A0A8; /* cursivas rosa vieja pastel */
   --yellow: #FFD93D; /* números, cifras, dinero */
 }
-/* ======================================================
+/*
+/* TÍTULOS */
+.headline-main{ font-family:'UnifrakturCook',cursive; color:var(--beige); font-size:3.1rem; list-style:none; }
+.subtitle{ font-family:'Podkova',serif; color:var(--snow); font-size:1.6rem; font-weight:600; }
+
+/* CUERPOS */
+.body-text{ font-family:'Podkova',serif; color:var(--white); font-size:1rem; line-height:1.8; }
+.phrase{ font-family:'Indie Flower',cursive; color:var(--snow); }
+.emotive{ font-family:'Dancing Script',cursive; color:var(--rose); }
+
+/* SUBRAYADOS FUCSIA */
+u, .u-fuchsia{ text-decoration:none; border-bottom:3px solid var(--fuchsia); }
+
+/* CURSIVAS ROSA VIEJA PASTEL */
+em, i{ color:var(--rose); font-family:'Dancing Script',cursive; }
+
+/* NÚMEROS, CIFRAS, DINERO - AMARILLOS MISMO TAMAÑO */
+.num, .money{ color:var(--yellow) !important; font-weight:700; font-size:inherit; }
+h1 {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--white);
+} ======================================================
    1. ROOT VARIABLES
 ====================================================== */
 :root {
@@ -387,33 +411,9 @@ sources {
   transform: scale(.96);
   box-shadow: 0 0 22px rgba(255, 230, 0, .9);
 }
- ======================================================
+/* ======================================================
    4. TYPOGRAPHY - WHITE CONSOLE + BRILLIANT TITLES
 ====================================================== */
-/* TÍTULOS */
-.headline-main{ font-family:'UnifrakturCook',cursive; color:var(--beige); font-size:3.1rem; list-style:none; }
-.subtitle{ font-family:'Podkova',serif; color:var(--snow); font-size:1.6rem; font-weight:600; }
-
-/* CUERPOS */
-.body-text{ font-family:'Podkova',serif; color:var(--white); font-size:1rem; line-height:1.8; }
-.phrase{ font-family:'Indie Flower',cursive; color:var(--snow); }
-.emotive{ font-family:'Dancing Script',cursive; color:var(--rose); }
-
-/* SUBRAYADOS FUCSIA */
-u, .u-fuchsia{ text-decoration:none; border-bottom:3px solid var(--fuchsia); }
-
-/* CURSIVAS ROSA VIEJA PASTEL */
-em, i{ color:var(--rose); font-family:'Dancing Script',cursive; }
-
-/* NÚMEROS, CIFRAS, DINERO - AMARILLOS MISMO TAMAÑO */
-.num, .money{ color:var(--yellow) !important; font-weight:700; font-size:inherit; }
-h1 {
-  font-size: clamp(1.8rem, 4vw, 3.5rem);
-  line-height: 1.15;
-  text-align: center;
-  margin-bottom: 15px;
-  color: var(--white);
-}
 
 h2 {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
