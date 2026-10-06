@@ -57,10 +57,11 @@
   --muted: #c5a600;
 
   /* Headlines - Brilliant */
-  --headline-main: #ffffff;
-  --headline-secondary: #ffd6eb;
-  --headline-accent: #00f7ff;
-  --old-rose-500: #d63384;
+  --headline-main: #fffef0;
+  --headline-secondary: rgba(255, 230, 0, 0.75);
+  --headline-accent: #ffe600;
+  --old-rose-500: rgba(255, 214, 10, 0.55);
+  
 
   /* UI */
   --border: rgba(255, 255, 255, 0.15);
