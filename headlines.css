@@ -390,6 +390,23 @@ sources {
  ======================================================
    4. TYPOGRAPHY - WHITE CONSOLE + BRILLIANT TITLES
 ====================================================== */
+/* TÍTULOS */
+.headline-main{ font-family:'UnifrakturCook',cursive; color:var(--beige); font-size:3.1rem; list-style:none; }
+.subtitle{ font-family:'Podkova',serif; color:var(--snow); font-size:1.6rem; font-weight:600; }
+
+/* CUERPOS */
+.body-text{ font-family:'Podkova',serif; color:var(--white); font-size:1rem; line-height:1.8; }
+.phrase{ font-family:'Indie Flower',cursive; color:var(--snow); }
+.emotive{ font-family:'Dancing Script',cursive; color:var(--rose); }
+
+/* SUBRAYADOS FUCSIA */
+u, .u-fuchsia{ text-decoration:none; border-bottom:3px solid var(--fuchsia); }
+
+/* CURSIVAS ROSA VIEJA PASTEL */
+em, i{ color:var(--rose); font-family:'Dancing Script',cursive; }
+
+/* NÚMEROS, CIFRAS, DINERO - AMARILLOS MISMO TAMAÑO */
+.num, .money{ color:var(--yellow) !important; font-weight:700; font-size:inherit; }
 h1 {
   font-size: clamp(1.8rem, 4vw, 3.5rem);
   line-height: 1.15;
