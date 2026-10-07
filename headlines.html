@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<!-- 04 - Responsive -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 05 - Autor -->
-<meta name="author" content="Gr0ceCode x Yisell - Yisel ForexTools">
-<!-- 06 - SEO -->
-<meta name="robots" content="index, follow">
-<meta name="keywords" content="Noticias 2026, titulares, TREMA, trading tools, MT5">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Gr0ceCode x Yisell - Yisel ForexTools">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Noticias 2026, titulares, TREMA, trading tools, MT5">
 
-<title>Yisel ForexTools | TREMA Trading Tools - Global Headlines 2026</title>
+  <title>Yisel ForexTools | TREMA Trading Tools - Global Headlines 2026</title>
 
+  <!-- OPEN GRAPH UNIFICADO -->
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="TREMA Trading Tools - Institutional MT5 Robots | Yisel ForexTools">
+  <meta property="og:description" content="Detect imbalance before price moves. Titulares trimestrales por país: tecnología, fintech, IA, cripto y mercados.">
+  <meta property="og:url" content="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html">
+  <meta property="og:site_name" content="Yisel ForexTools">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://gr0cec0de.github.io/Yi-Sell/docs/TreMA.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TREMA Trading Tools - Institutional MT5 Robots">
+  <meta name="twitter:description" content="Detect imbalance before price moves.">
+  <meta name="twitter:image" content="https://gr0cec0de.github.io/Yi-Sell/docs/TreMA.jpg">
+
+  <link rel="stylesheet" href="headlines.css">
   
-<!-- YISEL FOREXTOOLS - OPEN GRAPH UNIFICADO -->
-<meta property="og:type" content="product">
-<meta property="og:title" content="TREMA Trading Tools - Institutional MT5 Robots | Yisel ForexTools">
-<meta property="og:description" content="Detect imbalance before price moves. Titulares trimestrales por país: tecnología, fintech, IA, cripto y mercados.">
-<meta property="og:url" content="https://gr0cec0de.github.io/Yi-Sell/TradingTools.html">
-<meta property="og:site_name" content="Yisel ForexTools">
-<meta property="og:locale" content="es_ES">
-<meta property="og:image" content="https://gr0cec0de.github.io/Yi-Sell/docs/TreMA.jpg">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TREMA Trading Tools - Institutional MT5 Robots">
-<meta name="twitter:description" content="Detect imbalance before price moves.">
-<meta name="twitter:image" content="https://gr0cec0de.github.io/Yi-Sell/docs/TreMA.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TREMA Trading Tools - Institutional MT5 Robots">
-<meta name="twitter:description" content="Detect imbalance before price moves.">
-<meta name="twitter:image" content="https://gr0cec0de.github.io/Yi-Sell/docs/TreMA.jpg">
-<link rel="stylesheet" href="headlines.css">
- </head>
+  <style>
+    /* Estilos dinámicos para los botones de despliegue (+ / -) */
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    .toggle-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 16px;
+      text-align: center;
+      background: #333;
+      color: #fff;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
 
 <body>
-    <div class="kicker">Quarterly Global Briefing · 2026</div>
-    <h1>Global Headlines 2026</h1>
-    <p class="subtitle">Most relevant quarterly developments by country</p>
-    <div class="rule">TECH · FINTECH · CRYPTO · AI</div>
-  
+  <div id="header-placeholder"></div>
+
+  <div class="kicker">Quarterly Global Briefing · 2026</div>
+  <h1>Global Headlines 2026</h1>
+  <p class="subtitle">Most relevant quarterly developments by country</p>
+  <div class="rule">TECH · FINTECH · CRYPTO · AI</div>
 
   <!-- ============ SELECTOR DE PAÍS ============ -->
   <div class="selector-bar" id="selector">
@@ -47,11 +67,10 @@
     <button class="sel-btn" data-target="br"><span>🇧🇷</span>Brasil</button>
     <button class="sel-btn" data-target="us"><span>🇺🇸</span>USA</button>
     <button class="sel-btn" data-target="ca"><span>🇨🇦</span>Canadá</button>
-<button class="sel-btn" data-target="cl"><span>🇨🇱</span>Chile</button>
-<button class="sel-btn" data-target="mx"><span>🇲🇽</span>México</button>
-<button class="sel-btn" data-target="gb"><span>🇬🇧</span>Reino Unido</button>
-<button class="sel-btn" data-target="au"><span>🇦🇺</span>Australia</button>
-
+    <button class="sel-btn" data-target="cl"><span>🇨🇱</span>Chile</button>
+    <button class="sel-btn" data-target="mx"><span>🇲🇽</span>México</button>
+    <button class="sel-btn" data-target="gb"><span>🇬🇧</span>Reino Unido</button>
+    <button class="sel-btn" data-target="au"><span>🇦🇺</span>Australia</button>
   </div>
 
   <!-- ============================================================
@@ -68,91 +87,149 @@
     </header>
 
     <div class="news-grid">
-
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Política</span>
-        <h3>Lula y el punto medio de su 3er mandato</h3>
-        <p>El gobierno enfoca su agenda en el equilibrio fiscal, los programas sociales y la protección del Amazonas. Las tensiones con el Congreso por las enmiendas presupuestarias continúan marcando la pauta legislativa.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">01</span>
+            <span class="cat">Política</span>
+            <h3>Lula y el punto medio de su 3er mandato</h3>
+          </summary>
+          <p>El gobierno enfoca su agenda en el equilibrio fiscal, los programas sociales y la protección del Amazonas. Las tensiones con el Congreso por las enmiendas presupuestarias continúan marcando la pauta legislativa.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Política</span>
-        <h3>Repercusión de las elecciones municipales</h3>
-        <p>Los resultados locales de 2024 aún moldean las alianzas. Los partidos del Centrão ganan influencia en el Congreso de cara a las elecciones generales de 2026.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">02</span>
+            <span class="cat">Política</span>
+            <h3>Repercusión de las elecciones municipales</h3>
+          </summary>
+          <p>Los resultados locales de 2024 aún moldean las alianzas. Los partidos del Centrão ganan influencia en el Congreso de cara a las elecciones generales de 2026.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Seguridad & Amazonía</span>
-        <h3>Fuerzas de tarea federales ampliadas</h3>
-        <p>Se expanden los operativos contra la deforestación y el crimen organizado. Un nuevo proyecto de ley para <mark>regular las redes sociales</mark> aprueba su primera ronda en el Congreso.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">03</span>
+            <span class="cat">Seguridad & Amazonía</span>
+            <h3>Fuerzas de tarea federales ampliadas</h3>
+          </summary>
+          <p>Se expanden los operativos contra la deforestación y el crimen organizado. Un nuevo proyecto de ley para <mark>regular las redes sociales</mark> aprueba su primera ronda en el Congreso.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Economía</span>
-        <h3>La economía se estabiliza</h3>
-        <p>Pronóstico de PIB de ∼<strong>2,4%</strong>, impulsado por agricultura, servicios y petróleo. La inflación cae a ∼<strong>3,9%</strong>, dentro del rango meta del Banco Central.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">04</span>
+            <span class="cat">Economía</span>
+            <h3>La economía se estabiliza</h3>
+          </summary>
+          <p>Pronóstico de PIB de ∼<strong>2,4%</strong>, impulsado por agricultura, servicios y petróleo. La inflación cae a ∼<strong>3,9%</strong>, dentro del rango meta del Banco Central.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Economía</span>
-        <h3>Recorte de tasas de interés</h3>
-        <p>El Banco Central baja la tasa <u>Selic a 10,25%</u> para impulsar la inversión y el consumo interno, en un contexto de desaceleración global.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">05</span>
+            <span class="cat">Economía</span>
+            <h3>Recorte de tasas de interés</h3>
+          </summary>
+          <p>El Banco Central baja la tasa <u>Selic a 10,25%</u> para impulsar la inversión y el consumo interno, en un contexto de desaceleración global.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Fiscal</span>
-        <h3>El marco fiscal a prueba</h3>
-        <p>Las nuevas reglas de gasto se sostienen, pero aumenta la presión por mayor inversión en infraestructura y educación.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">06</span>
+            <span class="cat">Fiscal</span>
+            <h3>El marco fiscal a prueba</h3>
+          </summary>
+          <p>Las nuevas reglas de gasto se sostienen, pero aumenta la presión por mayor inversión en infraestructura y educación.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Energía</span>
-        <h3>Boom de exportaciones energéticas</h3>
-        <p>Récord en exportaciones de petróleo y etanol. Brasil busca convertirse en un exportador clave de <mark>hidrógeno verde</mark> para 2030.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">07</span>
+            <span class="cat">Energía</span>
+            <h3>Boom de exportaciones energéticas</h3>
+          </summary>
+          <p>Récord en exportaciones de petróleo y etanol. Brasil busca convertirse en un exportador clave de <mark>hidrógeno verde</mark> para 2030.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Tecnología</span>
-        <h3>IA + Gobierno Digital</h3>
-        <p>Se lanza la <strong>"Estrategia Federal de IA 2026"</strong>. Gov.br amplía los chatbots de IA para servicios públicos, mejorando la atención ciudadana.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">08</span>
+            <span class="cat">Tecnología</span>
+            <h3>IA + Gobierno Digital</h3>
+          </summary>
+          <p>Se lanza la <strong>"Estrategia Federal de IA 2026"</strong>. Gov.br amplía los chatbots de IA para servicios públicos, mejorando la atención ciudadana.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Tecnología</span>
-        <h3>5G y semiconductores</h3>
-        <p>Despliegue completo del 5G en todas las capitales. Nuevos incentivos fiscales atraen inversiones en chips y centros de datos en São Paulo y Ceará.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">09</span>
+            <span class="cat">Tecnología</span>
+            <h3>5G y semiconductores</h3>
+          </summary>
+          <p>Despliegue completo del 5G en todas las capitales. Nuevos incentivos fiscales atraen inversiones en chips y centros de datos en São Paulo y Ceará.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Fintech</span>
-        <h3>Pix 2.0 y liderazgo regional</h3>
-        <p>Pix incorpora pagos offline y transferencias internacionales. Brasil lidera LatAm en <u>pagos digitales y open banking</u>.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">10</span>
+            <span class="cat">Fintech</span>
+            <h3>Pix 2.0 y liderazgo regional</h3>
+          </summary>
+          <p>Pix incorpora pagos offline y transferencias internacionales. Brasil lidera LatAm en <u>pagos digitales y open banking</u>.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Climatech</span>
-        <h3>Financiamiento climático</h3>
-        <p>Importante financiamiento para startups en agrotech, créditos de carbono y biocombustibles. La preparación de la <strong>COP30 en Belém</strong> impulsa el sector green tech.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">11</span>
+            <span class="cat">Climatech</span>
+            <h3>Financiamiento climático</h3>
+          </summary>
+          <p>Importante financiamiento para startups en agrotech, créditos de carbono y biocombustibles. La preparación de la <strong>COP30 en Belém</strong> impulsa el sector green tech.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇧🇷</span>
-        <span class="cat">Perspectiva</span>
-        <h3>Brasil 2026: eje del sur global</h3>
-        <p>El país se consolida como puente entre mercados desarrollados y emergentes, con foco en sostenibilidad, digitalización financiera y liderazgo diplomático.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">12</span>
+            <span class="cat">Perspectiva</span>
+            <h3>Brasil 2026: eje del sur global</h3>
+          </summary>
+          <p>El país se consolida como puente entre mercados desarrollados y emergentes, con foco en sostenibilidad, digitalización financiera y liderazgo diplomático.</p>
+        </details>
       </article>
-
     </div>
 
     <div class="sources">
@@ -196,147 +273,245 @@
     </header>
 
     <div class="news-grid">
-
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Inversiones Tech</span>
-        <h3>La IA domina el capital de riesgo</h3>
-        <p>Las empresas estadounidenses capturaron ∼<strong>80%</strong> del financiamiento global de startups en 2026. La inversión en IA alcanzó el <mark>88%</mark> de ese total, con <strong>$319B USD</strong> destinados mayormente a OpenAI y Anthropic.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">01</span>
+            <span class="cat">Inversiones Tech</span>
+            <h3>La IA domina el capital de riesgo</h3>
+          </summary>
+          <p>Las empresas estadounidenses capturaron ∼<strong>80%</strong> del financiamiento global de startups en 2026. La inversión en IA alcanzó el <mark>88%</mark> de ese total, con <strong>$319B USD</strong> destinados mayormente a OpenAI y Anthropic.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Inversiones Tech</span>
-        <h3>Financiamiento récord</h3>
-        <p>El financiamiento en IA alcanzó <u>$510B USD</u> solo en el primer semestre de 2026, superando ya todo 2025.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">02</span>
+            <span class="cat">Inversiones Tech</span>
+            <h3>Financiamiento récord</h3>
+          </summary>
+          <p>El financiamiento en IA alcanzó <u>$510B USD</u> solo en el primer semestre de 2026, superando ya todo 2025.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Big Tech</span>
-        <h3>Gasto en infraestructura IA</h3>
-        <p>Las grandes tecnológicas planean gastar hasta <strong>$900B USD</strong> en infraestructura de IA durante 2026.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">03</span>
+            <span class="cat">Big Tech</span>
+            <h3>Gasto en infraestructura IA</h3>
+          </summary>
+          <p>Las grandes tecnológicas planean gastar hasta <strong>$900B USD</strong> en infraestructura de IA durante 2026.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Advertencia</span>
-        <h3>El BIS alerta sobre burbuja IA</h3>
-        <p>El Banco de Pagos Internacionales advirtió que el ciclo actual de IA tiene ecos de burbujas pasadas como los ferrocarriles y el dot-com. El debate sobre la concentración de capital y su impacto real en empleo y productividad continúa.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">04</span>
+            <span class="cat">Advertencia</span>
+            <h3>El BIS alerta sobre burbuja IA</h3>
+          </summary>
+          <p>El Banco de Pagos Internacionales advirtió que el ciclo actual de IA tiene ecos de burbujas pasadas como los ferrocarriles y el dot-com. El debate sobre la concentración de capital y su impacto real en empleo y productividad continúa.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Fintech</span>
-        <h3>Nuevas reglas CFPB para BNPL</h3>
-        <p>Los proveedores de <em>Buy Now, Pay Later</em> enfrentan nuevas regulaciones sobre cargos por mora y reporte crediticio.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">05</span>
+            <span class="cat">Fintech</span>
+            <h3>Nuevas reglas CFPB para BNPL</h3>
+          </summary>
+          <p>Los proveedores de <em>Buy Now, Pay Later</em> enfrentan nuevas regulaciones sobre cargos por mora y reporte crediticio.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Fintech</span>
-        <h3>Robo-advisors bajo escrutinio</h3>
-        <p>Los robo-advisors impulsados por IA enfrentan demandas por sesgo algorítmico. La adopción de <mark>FedNow</mark> crece entre bancos regionales, desafiando a los sistemas ACH tradicionales.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">06</span>
+            <span class="cat">Fintech</span>
+            <h3>Robo-advisors bajo escrutinio</h3>
+          </summary>
+          <p>Los robo-advisors impulsados por IA enfrentan demandas por sesgo algorítmico. La adopción de <mark>FedNow</mark> crece entre bancos regionales, desafiando a los sistemas ACH tradicionales.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Espacio</span>
-        <h3>Artemis III se retrasa</h3>
-        <p>La misión se pospone a finales de 2027 por retrasos en las pruebas del Starship HLS. MIT Lincoln Lab demuestra nueva IA para evitar colisiones satelitales autónomas.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">07</span>
+            <span class="cat">Espacio</span>
+            <h3>Artemis III se retrasa</h3>
+          </summary>
+          <p>La misión se pospone a finales de 2027 por retrasos en las pruebas del Starship HLS. MIT Lincoln Lab demuestra nueva IA para evitar colisiones satelitales autónomas.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Aviación</span>
-        <h3>Boom Supersonic completa vuelo</h3>
-        <p>El XB-1 realiza su primer vuelo supersónico sin postquemador, un hito para la aviación civil de alta velocidad.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">08</span>
+            <span class="cat">Aviación</span>
+            <h3>Boom Supersonic completa vuelo</h3>
+          </summary>
+          <p>El XB-1 realiza su primer vuelo supersónico sin postquemador, un hito para la aviación civil de alta velocidad.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Tecnología</span>
-        <h3>Modelos abiertos desafían a corporaciones</h3>
-        <p>Modelos de IA de peso abierto de la academia compiten con sistemas corporativos cerrados en benchmarks internacionales.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">09</span>
+            <span class="cat">Tecnología</span>
+            <h3>Modelos abiertos desafían a corporaciones</h3>
+          </summary>
+          <p>Modelos de IA de peso abierto de la academia compiten con sistemas corporativos cerrados en benchmarks internacionales.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Tecnología</span>
-        <h3>Leyes de derecho a reparar se expanden</h3>
-        <p>Las leyes se extienden a equipos agrícolas y dispositivos médicos en 12 estados. <u>Caltech reporta 99,9% de fidelidad</u> en compuertas de 2 qubits en un nuevo chip superconductor.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">10</span>
+            <span class="cat">Tecnología</span>
+            <h3>Leyes de derecho a reparar se expanden</h3>
+          </summary>
+          <p>Las leyes se extienden a equipos agrícolas y dispositivos médicos en 12 estados. <u>Caltech reporta 99,9% de fidelidad</u> en compuertas de 2 qubits en un nuevo chip superconductor.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Industria</span>
-        <h3>PMI manufacturero cerca de 50</h3>
-        <p>El PMI señala crecimiento plano en medio de tasas altas. Los despidos tech se desaceleran en Q2 2026, pero la contratación relacionada con IA solo compensa el <strong>30%</strong> de los recortes.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">11</span>
+            <span class="cat">Industria</span>
+            <h3>PMI manufacturero cerca de 50</h3>
+          </summary>
+          <p>El PMI señala crecimiento plano en medio de tasas altas. Los despidos tech se desaceleran en Q2 2026, pero la contratación relacionada con IA solo compensa el <strong>30%</strong> de los recortes.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Empleo</span>
-        <h3>Energías renovables superan a fósiles</h3>
-        <p>Los empleos en energías renovables superan a los de combustibles fósiles <mark>3:1</mark> según el nuevo informe del BLS.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">12</span>
+            <span class="cat">Empleo</span>
+            <h3>Energías renovables superan a fósiles</h3>
+          </summary>
+          <p>Los empleos en energías renovables superan a los de combustibles fósiles <mark>3:1</mark> según el nuevo informe del BLS.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Economía</span>
-        <h3>PIB revisado al alza</h3>
-        <p>El crecimiento del PIB de EE.UU. se revisa a <strong>1,8%</strong> para Q1 2026, impulsado por servicios y no por bienes.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">13</span>
+            <span class="cat">Economía</span>
+            <h3>PIB revisado al alza</h3>
+          </summary>
+          <p>El crecimiento del PIB de EE.UU. se revisa a <strong>1,8%</strong> para Q1 2026, impulsado por servicios y no por bienes.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Consumo</span>
-        <h3>Quejas por "shrinkflation" suben 40%</h3>
-        <p>Las quejas ante la FTC aumentan 40% interanual mientras los tamaños de empaque se reducen. El gasto Gen Z se inclina hacia bienes usados y reparación, según un estudio de Stanford.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">14</span>
+            <span class="cat">Consumo</span>
+            <h3>Quejas por "shrinkflation" suben 40%</h3>
+          </summary>
+          <p>Las quejas ante la FTC aumentan 40% interanual mientras los tamaños de empaque se reducen. El gasto Gen Z se inclina hacia bienes usados y reparación, según un estudio de Stanford.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Política</span>
-        <h3>Midterms 2026: control empatado</h3>
-        <p>Los sondeos tempranos muestran la Cámara como empate técnico, con el gasto de los PAC cripto <u>aumentando 300%</u>. Las elecciones al Parlamento Europeo ven avances de la ultraderecha ligados a protestas por el costo de vida.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">15</span>
+            <span class="cat">Política</span>
+            <h3>Midterms 2026: control empatado</h3>
+          </summary>
+          <p>Los sondeos tempranos muestran la Cámara como empate técnico, con el gasto de los PAC cripto <u>aumentando 300%</u>. Las elecciones al Parlamento Europeo ven avances de la ultraderecha ligados a protestas por el costo de vida.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Política</span>
-        <h3>Publicidad política generada por IA</h3>
-        <p>ProPublica rastrea el aumento de anuncios generados por IA con divulgación mínima, planteando nuevos desafíos regulatorios.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">16</span>
+            <span class="cat">Política</span>
+            <h3>Publicidad política generada por IA</h3>
+          </summary>
+          <p>ProPublica rastrea el aumento de anuncios generados por IA con divulgación mínima, planteando nuevos desafíos regulatorios.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Legal</span>
-        <h3>Antimonopolio contra fijación algorítmica</h3>
-        <p>El DOJ presenta un nuevo caso contra la fijación algorítmica de precios en el mercado de alquileres.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">17</span>
+            <span class="cat">Legal</span>
+            <h3>Antimonopolio contra fijación algorítmica</h3>
+          </summary>
+          <p>El DOJ presenta un nuevo caso contra la fijación algorítmica de precios en el mercado de alquileres.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Legal</span>
-        <h3>Demandas por datos a la Corte Suprema</h3>
-        <p>Las demandas colectivas por venta de datos de intermediarios a fuerzas del orden llegan al expediente de la Corte Suprema. Los recortes a la asistencia legal se impugnan en 9 estados por la acumulación de casos de desalojo.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">18</span>
+            <span class="cat">Legal</span>
+            <h3>Demandas por datos a la Corte Suprema</h3>
+          </summary>
+          <p>Las demandas colectivas por venta de datos de intermediarios a fuerzas del orden llegan al expediente de la Corte Suprema. Los recortes a la asistencia legal se impugnan en 9 estados por la acumulación de casos de desalojo.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Oportunidades</span>
-        <h3>CHIPS Act: fase 2</h3>
-        <p>Se abre la Fase 2 del financiamiento para empaquetado y materiales avanzados. Los créditos fiscales de captura de carbono impulsan nuevos proyectos DAC en el Medio Oeste.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">19</span>
+            <span class="cat">Oportunidades</span>
+            <h3>CHIPS Act: fase 2</h3>
+          </summary>
+          <p>Se abre la Fase 2 del financiamiento para empaquetado y materiales avanzados. Los créditos fiscales de captura de carbono impulsan nuevos proyectos DAC en el Medio Oeste.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">🇺🇸</span>
-        <span class="cat">Forex</span>
-        <h3>Fortaleza del USD continúa</h3>
-        <p>La fortaleza del dólar persiste mientras la Fed mantiene tasas. Aumentan los riesgos de intervención en el yen.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">20</span>
+            <span class="cat">Forex</span>
+            <h3>Fortaleza del USD continúa</h3>
+          </summary>
+          <p>La fortaleza del dólar persiste mientras la Fed mantiene tasas. Aumentan los riesgos de intervención en el yen.</p>
+        </details>
       </article>
-
     </div>
 
     <div class="sources">
@@ -373,91 +548,149 @@
     </header>
 
     <div class="news-grid">
-
       <article class="news-item">
-        <span class="num"></span>
-        <span class="cat">Política</span>
-        <h3>Presión sobre el gobierno de Carney</h3>
-        <p>El gobierno liberal del PM Mark Carney enfrenta presión por el costo de vida y la vivienda en la dinámica post-electoral de 2025.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">01</span>
+            <span class="cat">Política</span>
+            <h3>Presión sobre el gobierno de Carney</h3>
+          </summary>
+          <p>El gobierno liberal del PM Mark Carney enfrenta presión por el costo de vida y la vivienda en la dinámica post-electoral de 2025.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">02</span>
-        <span class="cat">Relaciones US</span>
-        <h3>Tensiones comerciales con EE.UU.</h3>
-        <p>Disputas por aranceles estadounidenses al acero, aluminio y autos. Canadá responde y busca nuevos socios comerciales.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">02</span>
+            <span class="cat">Relaciones US</span>
+            <h3>Tensiones comerciales con EE.UU.</h3>
+          </summary>
+          <p>Disputas por aranceles estadounidenses al acero, aluminio y autos. Canadá responde y busca nuevos socios comerciales.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">03</span>
-        <span class="cat">Economía</span>
-        <h3>Inflación cerca del 2,2%</h3>
-        <p>El Banco de Canadá mantiene tasas altas pero las reduce lentamente para evitar una recesión.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">03</span>
+            <span class="cat">Economía</span>
+            <h3>Inflación cerca del 2,2%</h3>
+          </summary>
+          <p>El Banco de Canadá mantiene tasas altas pero las reduce lentamente para evitar una recesión.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">04</span>
-        <span class="cat">Vivienda</span>
-        <h3>Crisis habitacional continúa</h3>
-        <p>Plan federal para construir <strong>3,9M de viviendas</strong> para 2031, junto con límites a compradores extranjeros.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">04</span>
+            <span class="cat">Vivienda</span>
+            <h3>Crisis habitacional continúa</h3>
+          </summary>
+          <p>Plan federal para construir <strong>3,9M de viviendas</strong> para 2031, junto con límites a compradores extranjeros.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">05</span>
-        <span class="cat">Energía</span>
-        <h3>Expansión del oleoducto TMX</h3>
-        <p>Avanza la expansión del TMX. El debate continúa entre petróleo/gas y transición verde.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">05</span>
+            <span class="cat">Energía</span>
+            <h3>Expansión del oleoducto TMX</h3>
+          </summary>
+          <p>Avanza la expansión del TMX. El debate continúa entre petróleo/gas y transición verde.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">06</span>
-        <span class="cat">Fiscal</span>
-        <h3>Déficit federal de CAD $40B</h3>
-        <p>El déficit federal ronda los <mark>CAD $40B</mark>. El foco está en recortes de gasto y crecimiento de ingresos.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">06</span>
+            <span class="cat">Fiscal</span>
+            <h3>Déficit federal de CAD $40B</h3>
+          </summary>
+          <p>El déficit federal ronda los <mark>CAD $40B</mark>. El foco está en recortes de gasto y crecimiento de ingresos.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">07</span>
-        <span class="cat">IA</span>
-        <h3>CAD $2,4B en infraestructura IA</h3>
-        <p>Inversión de <strong>CAD $2,4B</strong> en infraestructura y talento IA. Toronto y Montreal lideran como hubs de IA.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">07</span>
+            <span class="cat">IA</span>
+            <h3>CAD $2,4B en infraestructura IA</h3>
+          </summary>
+          <p>Inversión de <strong>CAD $2,4B</strong> en infraestructura y talento IA. Toronto y Montreal lideran como hubs de IA.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">08</span>
-        <span class="cat">Semiconductores</span>
-        <h3>Subsidios para chips y baterías</h3>
-        <p>Subsidios importantes para atraer plantas de chips y baterías de Tesla, VW y Northvolt.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">08</span>
+            <span class="cat">Semiconductores</span>
+            <h3>Subsidios para chips y baterías</h3>
+          </summary>
+          <p>Subsidios importantes para atraer plantas de chips y baterías de Tesla, VW y Northvolt.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">09</span>
-        <span class="cat">Clean Tech</span>
-        <h3>Hidrógeno verde y minerales críticos</h3>
-        <p>Impulso al hidrógeno verde y minerales críticos. Canadá se posiciona como proveedor clave de EE.UU. y la UE.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">09</span>
+            <span class="cat">Clean Tech</span>
+            <h3>Hidrógeno verde y minerales críticos</h3>
+          </summary>
+          <p>Impulso al hidrógeno verde y minerales críticos. Canadá se posiciona como proveedor clave de EE.UU. y la UE.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">10</span>
-        <span class="cat">Digital</span>
-        <h3>Online News Act en vigor</h3>
-        <p>Meta y Google pagan a medios canadienses. Se expande la identidad digital nacional y la ciberseguridad.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">10</span>
+            <span class="cat">Digital</span>
+            <h3>Online News Act en vigor</h3>
+          </summary>
+          <p>Meta y Google pagan a medios canadienses. Se expande la identidad digital nacional y la ciberseguridad.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">11</span>
-        <span class="cat">Banca Digital</span>
-        <h3>Innovación en banca digital</h3>
-        <p>Crecimiento del ecosistema de IA, recuperación del financiamiento fintech y nuevas iniciativas de investigación en blockchain.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">11</span>
+            <span class="cat">Banca Digital</span>
+            <h3>Innovación en banca digital</h3>
+          </summary>
+          <p>Crecimiento del ecosistema de IA, recuperación del financiamiento fintech y nuevas iniciativas de investigación en blockchain.</p>
+        </details>
       </article>
 
       <article class="news-item">
-        <span class="num">12</span>
-        <span class="cat">Perspectiva</span>
-        <h3>Canadá 2026: proveedor estratégico</h3>
-        <p>El país se consolida como proveedor clave de minerales críticos, talento IA y energía limpia para las principales economías occidentales.</p>
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">12</span>
+            <span class="cat">Perspectiva</span>
+            <h3>Canadá 2026: proveedor estratégico</h3>
+          </summary>
+          <p>El país se consolida como proveedor clave de minerales críticos, talento IA y energía limpia para las principales economías occidentales.</p>
+        </details>
       </article>
-
     </div>
 
     <div class="sources">
@@ -466,318 +699,344 @@
         <a class="src-btn" href="https://thetyee.ca" target="_blank" rel="noopener">The Tyee</a>
         <a class="src-btn" href="https://rabble.ca" target="_blank" rel="noopener">Rabble</a>
         <a class="src-btn" href="https://www.nationalobserver.com" target="_blank" rel="noopener">National Observer</a>
-        <a class="src-btn" href="https://www.theglobeandmail.com" target="_blank" rel="noopener">Globe & Mail</a>
+        <a class="src-btn" href="https://www.theglobeandmail.com" target="_blank" rel="noopener">Globe &amp; Mail</a>
         <a class="src-btn" href="https://pressprogress.ca" target="_blank" rel="noopener">PressProgress</a>
         <a class="src-btn" href="https://breachmedia.ca" target="_blank" rel="noopener">The Breach</a>
         <a class="src-btn" href="https://ricochet.media" target="_blank" rel="noopener">Ricochet</a>
         <a class="src-btn" href="https://www.aptnnews.ca" target="_blank" rel="noopener">APTN News</a>
         <a class="src-btn" href="https://www.nationalobserver.com/section/energy" target="_blank" rel="noopener">Energy/Climate</a>
         <a class="src-btn" href="https://www.readthemaple.com" target="_blank" rel="noopener">The Maple</a>
-
-
-<!-- ============================================================
-     BLOQUE CHILE
-     ============================================================ -->
-<section class=”country-block” id=”cl” data-country=”cl”>
-  <header class=”country-head”>
-    <span class=”flag”>🇨🇱</span>
-    <div class=”name-wrap”>
-      <div class=”name”>Chile</div>
-      <span class=”name-tag”>Chile · South America</span>
+      </div>
     </div>
-    <span class=”badge”>2026</span>
-  </header>
-
-  <div class=”news-grid”>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>01</span>
-          <span class=”cat”>Economía &amp; Macro</span>
-          <h3>Banco Central y FMI recortan las proyecciones de crecimiento de Chile para 2026 a un rango de entre 0,8% y 1,8%</h3>
-        </summary>
-        <p>La combinación de menor actividad minera y una inversión privada contenida ajustaron a la baja las estimaciones macroeconómicas nacionales.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>02</span>
-          <span class=”cat”>Finanzas &amp; Divisas</span>
-          <h3>Dólar roza los $970 pesos chilenos impulsado por presiones externas y petróleo al alza</h3>
-        </summary>
-        <p>La volatilidad cambiaria obligó al Ministerio de Hacienda y al Banco Central a coordinar mecanismos de liquidez e intervenciones en el mercado cambiario.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>03</span>
-          <span class=”cat”>Política Fiscal</span>
-          <h3>Chile aprueba el Presupuesto Fiscal 2027 ajustando el gasto al límite prudente del 45% de deuda sobre el PIB</h3>
-        </summary>
-        <p>La Dirección de Presupuestos (Dipres) estableció una hoja de ruta austera, frenando programas de gasto discrecional para evitar riesgos crediticios.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>04</span>
-          <span class=”cat”>Inflación &amp; Tasas</span>
-          <h3>Inflación interanual se ubica en 4,3% recortando el margen del Banco Central para rebajar la Tasa de Interés de Política (TPM)</h3>
-        </summary>
-        <p>Los costos de energía y logística continuaron influyendo sobre el IPC local.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>05</span>
-          <span class=”cat”>Comercio Exterior</span>
-          <h3>Comercio exterior se desacelera por caída de 1,9% en envíos de bienes y desplome en minería regional</h3>
-        </summary>
-        <p>Regiones como Antofagasta (-8,3%) y O’Higgins (-18,9%) sufrieron una merma directa en exportaciones cupríferas.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>06</span>
-          <span class=”cat”>Bolsa &amp; Capitales</span>
-          <h3>Bolsa de Santiago mantiene volatilidad frente a reajustes en carteras locales por variaciones en las tasas globales</h3>
-        </summary>
-        <p>Las corredoras de bolsa reconfiguraron sus exposiciones aumentando la liquidez y diversificando posiciones defensivas.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>07</span>
-          <span class=”cat”>Empresas &amp; Aeronáutica</span>
-          <h3>LATAM Airlines proyecta EBITDA sobre los US$ 4.300 millones y busca recuperar el Grado de Inversión</h3>
-        </summary>
-        <p>Las agencias calificadoras de riesgo elevaron la nota de la deuda garantizada a escala internacional.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>08</span>
-          <span class=”cat”>Empresas &amp; Energía</span>
-          <h3>ENAP consolida cinco años de números verdes y reduce su deuda financiera en más de US$ 2.000 millones</h3>
-        </summary>
-        <p>La petrolera estatal cerró el periodo con eficiencias operativas y mayores niveles de producción.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>09</span>
-          <span class=”cat”>Private Equity</span>
-          <h3>Sector de capital privado acelera la venta de activos en infraestructura y servicios</h3>
-        </summary>
-        <p>Fondos como Southern Cross movilizaron procesos de salida para reestructurar sus portafolios regionales.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>10</span>
-          <span class=”cat”>Banca &amp; Retail</span>
-          <h3>Reconfiguración del centro de Santiago: Servicios financieros ceden espacio frente al sector gastronómico y salud</h3>
-        </summary>
-        <p>La presencia bancaria presencial cayó al 13% del uso de suelo en el casco histórico, superada por esparcimiento y comercios de retail.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>11</span>
-          <span class=”cat”>Fintech</span>
-          <h3>Puesta en marcha del ecosistema de Finanzas Abiertas acelera la interoperabilidad Fintech bajo la Ley Fintech</h3>
-        </summary>
-        <p>El Banco Central y la CMF avanzaron en las normativas técnicas para permitir la transferencia abierta de datos financieros y pagos directos.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>12</span>
-          <span class=”cat”>Criptoactivos</span>
-          <h3>Adopción de criptoactivos en Chile alcanza niveles récord para cobertura de portafolios en divisas</h3>
-        </summary>
-        <p>La volatilidad del tipo de cambio impulsó el volumen de operaciones con monedas estables (USDT/USDC) en las plataformas locales.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>13</span>
-          <span class=”cat”>Tecnología Pública</span>
-          <h3>Contraloría General incrementa su presupuesto en un 5,9% destinado a fiscalizaciones con Inteligencia Artificial</h3>
-        </summary>
-        <p>El órgano contralor oficializó el uso de modelos algorítmicos para auditar licitaciones y transacciones del sector público.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>14</span>
-          <span class=”cat”>Venture Capital</span>
-          <h3>Venture Capital en Latinoamérica se recupera un 12% pero las rondas avanzadas de inversión siguen contraídas</h3>
-        </summary>
-        <p>Las startups chilenas han priorizado la sostenibilidad operativa por sobre las altas valoraciones de capital.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>15</span>
-          <span class=”cat”>Innovación &amp; I+D</span>
-          <h3>Índice Global de Innovación mantiene a Chile en el puesto 51 mundial, liderando la región latinoamericana</h3>
-        </summary>
-        <p>A pesar del liderazgo regional, los organismos internacionales instan a incrementar la inversión privada en I+D.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>16</span>
-          <span class=”cat”>Agroindustria</span>
-          <h3>Frutícolas chilenas expanden operaciones de producción hacia Europa y el norte de África</h3>
-        </summary>
-        <p>Para mantener suministro constante durante los 12 meses del año, productores locales invierten en campos en España, Portugal y Marruecos.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>17</span>
-          <span class=”cat”>Inversión Extranjera</span>
-          <h3>Inversión extranjera directa de Asia supera los US$ 880 millones en energía y minería no tradicional</h3>
-        </summary>
-        <p>Corea del Sur y Taiwán concentraron colocaciones en el desarrollo de insumos industriales estratégicos.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>18</span>
-          <span class=”cat”>Mercado Previsional</span>
-          <h3>Cambios regulatorios en las AFP reestructuran las trayectorias automáticas de inversión por rango de edad</h3>
-        </summary>
-        <p>El ajuste busca eliminar la rotación especulativa de fondos por parte de los afiliados mediante un modelo de ciclo de vida.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>19</span>
-          <span class=”cat”>Política &amp; Congreso</span>
-          <h3>El escenario político chileno entra en una fase de alta fragmentación parlamentaria de cara al ciclo electoral</h3>
-        </summary>
-        <p>El debate en el Congreso ha estado marcado por negociaciones presupuestarias sumamente complejas, donde la búsqueda de consensos entre el Ejecutivo y las diversas bancadas de oposición ha requerido concesiones fiscales rigurosas para evitar la parálisis de proyectos clave.</p>
-      </details>
-    </article>
-
-    <article class=”news-item”>
-      <details>
-        <summary>
-          <span class=”num”>20</span>
-          <span class=”cat”>Política &amp; Seguridad</span>
-          <h3>La agenda de seguridad y el crecimiento económico se consolidan como los ejes prioritarios del debate de Estado</h3>
-        </summary>
-        <p>Las demandas ciudadanas por control del orden público y el freno en la creación de empleo formal han reconfigurado las prioridades legislativas, obligando a las fuerzas políticas a pactar medidas de incentivo a la inversión privada junto con un mayor gasto institucional en policías y fiscalías.</p>
-      </details>
-    </article>
-
-<div class="sources">
-  <span class="sources-label">Fuentes · Prensa alternativa chilena</span>
-  <div class="sources-list">
-    <a class="src-btn" href="https://www.ciperchile.cl" target="_blank" rel="noopener">CIPER Chile</a>
-    <a class="src-btn" href="https://www.interferencia.cl" target="_blank" rel="noopener">Interferencia</a>
-    <a class="src-btn" href="https://www.eldesconcierto.cl" target="_blank" rel="noopener">El Desconcierto</a>
-    <a class="src-btn" href="https://www.elciudadano.com" target="_blank" rel="noopener">El Ciudadano</a>
-    <a class="src-btn" href="https://www.elmostrador.cl" target="_blank" rel="noopener">El Mostrador</a>
-    <a class="src-btn" href="https://www.laizquierdadiario.cl" target="_blank" rel="noopener">La Izquierda Diario</a>
-    <a class="src-btn" href="https://www.resumen.cl" target="_blank" rel="noopener">Resumen</a>
-    <a class="src-btn" href="https://www.eldivisadero.cl" target="_blank" rel="noopener">El Divisadero</a>
-    <a class="src-btn" href="https://www.elclarin.cl" target="_blank" rel="noopener">El Clarín</a>
-    <a class="src-btn" href="https://www.radionuevomundo.cl" target="_blank" rel="noopener">Radio Nuevo Mundo</a>
-  </div>
-</div>
   </section>
 
-<!-- SELECTOR FUNCIONAL - PEGAR ANTES DE </body> -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btns = document.querySelectorAll('.sel-btn');
-  const cards = document.querySelectorAll('[data-country]'); // tus noticias deben tener data-country="br"
+  <!-- ============================================================
+       BLOQUE CHILE
+       ============================================================ -->
+  <section class="country-block" id="cl" data-country="cl">
+    <header class="country-head">
+      <span class="flag">🇨🇱</span>
+      <div class="name-wrap">
+        <div class="name">Chile</div>
+        <span class="name-tag">Chile · South America</span>
+      </div>
+      <span class="badge">2026</span>
+    </header>
 
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // 1. cambia active
-      btns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      const target = btn.dataset.target;
+    <div class="news-grid">
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">01</span>
+            <span class="cat">Economía &amp; Macro</span>
+            <h3>Banco Central y FMI recortan las proyecciones de crecimiento de Chile para 2026 a un rango de entre 0,8% y 1,8%</h3>
+          </summary>
+          <p>La combinación de menor actividad minera y una inversión privada contenida ajustaron a la baja las estimaciones macroeconómicas nacionales.</p>
+        </details>
+      </article>
 
-      // 2. filtra
-      cards.forEach(card => {
-        if (target === 'all' || card.dataset.country === target) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">02</span>
+            <span class="cat">Finanzas &amp; Divisas</span>
+            <h3>Dólar roza los $970 pesos chilenos impulsado por presiones externas y petróleo al alza</h3>
+          </summary>
+          <p>La volatilidad cambiaria obligó al Ministerio de Hacienda y al Banco Central a coordinar mecanismos de liquidez e intervenciones en el mercado cambiario.</p>
+        </details>
+      </article>
 
-      // 3. si usas secciones con id="br" , "us"
-      document.querySelectorAll('.country-section').forEach(sec => {
-        sec.style.display = (target === 'all' || sec.id === target) ? '' : 'none';
-      });
-    });
-  });
-});
-</script>
-    <!-- Footer dinámico -->
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">03</span>
+            <span class="cat">Política Fiscal</span>
+            <h3>Chile aprueba el Presupuesto Fiscal 2027 ajustando el gasto al límite prudente del 45% de deuda sobre el PIB</h3>
+          </summary>
+          <p>La Dirección de Presupuestos (Dipres) estableció una hoja de ruta austera, frenando programas de gasto discrecional para evitar riesgos crediticios.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">04</span>
+            <span class="cat">Inflación &amp; Tasas</span>
+            <h3>Inflación interanual se ubica en 4,3% recortando el margen del Banco Central para rebajar la Tasa de Interés de Política (TPM)</h3>
+          </summary>
+          <p>Los costos de energía y logística continuaron influyendo sobre el IPC local.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">05</span>
+            <span class="cat">Comercio Exterior</span>
+            <h3>Comercio exterior se desacelera por caída de 1,9% en envíos de bienes y desplome en minería regional</h3>
+          </summary>
+          <p>Regiones como Antofagasta (-8,3%) y O’Higgins (-18,9%) sufrieron una merma directa en exportaciones cupríferas.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">06</span>
+            <span class="cat">Bolsa &amp; Capitales</span>
+            <h3>Bolsa de Santiago mantiene volatilidad frente a reajustes en carteras locales por variaciones en las tasas globales</h3>
+          </summary>
+          <p>Las corredoras de bolsa reconfiguraron sus exposiciones aumentando la liquidez y diversificando posiciones defensivas.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">07</span>
+            <span class="cat">Empresas &amp; Aeronáutica</span>
+            <h3>LATAM Airlines proyecta EBITDA sobre los US$ 4.300 millones y busca recuperar el Grado de Inversión</h3>
+          </summary>
+          <p>Las agencias calificadoras de riesgo elevaron la nota de la deuda garantizada a escala internacional.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">08</span>
+            <span class="cat">Empresas &amp; Energía</span>
+            <h3>ENAP consolida cinco años de números verdes y reduce su deuda financiera en más de US$ 2.000 millones</h3>
+          </summary>
+          <p>La petrolera estatal cerró el periodo con eficiencias operativas y mayores niveles de producción.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">09</span>
+            <span class="cat">Private Equity</span>
+            <h3>Sector de capital privado acelera la venta de activos en infraestructura y servicios</h3>
+          </summary>
+          <p>Fondos como Southern Cross movilizaron procesos de salida para reestructurar sus portafolios regionales.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">10</span>
+            <span class="cat">Banca &amp; Retail</span>
+            <h3>Reconfiguración del centro de Santiago: Servicios financieros ceden espacio frente al sector gastronómico y salud</h3>
+          </summary>
+          <p>La presencia bancaria presencial cayó al 13% del uso de suelo en el casco histórico, superada por esparcimiento y comercios de retail.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">11</span>
+            <span class="cat">Fintech</span>
+            <h3>Puesta en marcha del ecosistema de Finanzas Abiertas acelera la interoperabilidad Fintech bajo la Ley Fintech</h3>
+          </summary>
+          <p>El Banco Central y la CMF avanzaron en las normativas técnicas para permitir la transferencia abierta de datos financieros y pagos directos.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">12</span>
+            <span class="cat">Criptoactivos</span>
+            <h3>Adopción de criptoactivos en Chile alcanza niveles récord para cobertura de portafolios en divisas</h3>
+          </summary>
+          <p>La volatilidad del tipo de cambio impulsó el volumen de operaciones con monedas estables (USDT/USDC) en las plataformas locales.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">13</span>
+            <span class="cat">Tecnología Pública</span>
+            <h3>Contraloría General incrementa su presupuesto en un 5,9% destinado a fiscalizaciones con Inteligencia Artificial</h3>
+          </summary>
+          <p>El órgano contralor oficializó el uso de modelos algorítmicos para auditar licitaciones y transacciones del sector público.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">14</span>
+            <span class="cat">Venture Capital</span>
+            <h3>Venture Capital en Latinoamérica se recupera un 12% pero las rondas avanzadas de inversión siguen contraídas</h3>
+          </summary>
+          <p>Las startups chilenas han priorizado la sostenibilidad operativa por sobre las altas valoraciones de capital.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">15</span>
+            <span class="cat">Innovación &amp; I+D</span>
+            <h3>Índice Global de Innovación mantiene a Chile en el puesto 51 mundial, liderando la región latinoamericana</h3>
+          </summary>
+          <p>A pesar del liderazgo regional, los organismos internacionales instan a incrementar la inversión privada en I+D.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">16</span>
+            <span class="cat">Agroindustria</span>
+            <h3>Frutícolas chilenas expanden operaciones de producción hacia Europa y el norte de África</h3>
+          </summary>
+          <p>Para mantener suministro constante durante los 12 meses del año, productores locales invierten en campos en España, Portugal y Marruecos.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">17</span>
+            <span class="cat">Inversión Extranjera</span>
+            <h3>Inversión extranjera directa de Asia supera los US$ 880 millones en energía y minería no tradicional</h3>
+          </summary>
+          <p>Corea del Sur y Taiwán concentraron colocaciones en el desarrollo de insumos industriales estratégicos.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">18</span>
+            <span class="cat">Mercado Previsional</span>
+            <h3>Cambios regulatorios en las AFP reestructuran las trayectorias automáticas de inversión por rango de edad</h3>
+          </summary>
+          <p>El ajuste busca eliminar la rotación especulativa de fondos por parte de los afiliados mediante un modelo de ciclo de vida.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">19</span>
+            <span class="cat">Política &amp; Congreso</span>
+            <h3>El escenario político chileno entra en una fase de alta fragmentación parlamentaria de cara al ciclo electoral</h3>
+          </summary>
+          <p>El debate en el Congreso ha estado marcado por negociaciones presupuestarias sumamente complejas, donde la búsqueda de consensos entre el Ejecutivo y las diversas bancadas de oposición ha requerido concesiones fiscales rigurosas para evitar la parálisis de proyectos clave.</p>
+        </details>
+      </article>
+
+      <article class="news-item">
+        <details>
+          <summary>
+            <span class="toggle-icon">+</span>
+            <span class="num">20</span>
+            <span class="cat">Política &amp; Seguridad</span>
+            <h3>La agenda de seguridad y el crecimiento económico se consolidan como los ejes prioritarios del debate de Estado</h3>
+          </summary>
+          <p>Las demandas ciudadanas por control del orden público y el freno en la creación de empleo formal han reconfigurado las prioridades legislativas, obligando a las fuerzas políticas a pactar medidas de incentivo a la inversión privada junto con un mayor gasto institucional en policías y fiscalías.</p>
+        </details>
+      </article>
+    </div>
+
+    <div class="sources">
+      <span class="sources-label">Fuentes · Prensa alternativa chilena</span>
+      <div class="sources-list">
+        <a class="src-btn" href="https://www.ciperchile.cl" target="_blank" rel="noopener">CIPER Chile</a>
+        <a class="src-btn" href="https://www.interferencia.cl" target="_blank" rel="noopener">Interferencia</a>
+        <a class="src-btn" href="https://www.eldesconcierto.cl" target="_blank" rel="noopener">El Desconcierto</a>
+        <a class="src-btn" href="https://www.elciudadano.com" target="_blank" rel="noopener">El Ciudadano</a>
+        <a class="src-btn" href="https://www.elmostrador.cl" target="_blank" rel="noopener">El Mostrador</a>
+        <a class="src-btn" href="https://www.laizquierdadiario.cl" target="_blank" rel="noopener">La Izquierda Diario</a>
+        <a class="src-btn" href="https://www.resumen.cl" target="_blank" rel="noopener">Resumen</a>
+        <a class="src-btn" href="https://www.eldivisadero.cl" target="_blank" rel="noopener">El Divisadero</a>
+        <a class="src-btn" href="https://www.elclarin.cl" target="_blank" rel="noopener">El Clarín</a>
+        <a class="src-btn" href="https://www.radionuevomundo.cl" target="_blank" rel="noopener">Radio Nuevo Mundo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
 
-  <!-- Script único para cargar header y footer -->
+  <!-- SCRIPT UNIFICADO: SELECTOR DE PAÍS + ALTERNAR SIMBOLO DESPLEGABLE (+ / -) + CARGA HEADER/FOOTER -->
   <script>
-    // Cargar header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading header:', err));
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. LÓGICA DEL SELECTOR DE PAÍS
+      const btns = document.querySelectorAll('.sel-btn');
+      const countryBlocks = document.querySelectorAll('.country-block');
 
-    // Cargar footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(err => console.error('Error loading footer:', err));
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const target = btn.dataset.target;
+
+          countryBlocks.forEach(block => {
+            if (target === 'all' || block.dataset.country === target) {
+              block.style.display = '';
+            } else {
+              block.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 2. LÓGICA DE ICONO DE DESPLIEGUE (+ / -)
+      const detailsElements = document.querySelectorAll('details');
+
+      detailsElements.forEach(detail => {
+        const icon = detail.querySelector('.toggle-icon');
+        detail.addEventListener('toggle', () => {
+          if (icon) {
+            icon.textContent = detail.open ? '-' : '+';
+          }
+        });
+      });
+
+      // 3. CARGA DE HEADER Y FOOTER DINÁMICOS
+      fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        })
+        .catch(err => console.error('Error loading header:', err));
+
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(err => console.error('Error loading footer:', err));
+    });
   </script>
 </body>
+
 </html>
