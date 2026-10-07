@@ -981,11 +981,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
-
-  <!-- SCRIPT UNIFICADO: SELECTOR DE PAÍS + ALTERNAR SIMBOLO DESPLEGABLE (+ / -) + CARGA HEADER/FOOTER -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 1. LÓGICA DEL SELECTOR DE PAÍS
@@ -997,46 +992,44 @@
           btns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
 
-          const target = btn.dataset.target;
+          const target = btn.dataset.target.toLowerCase().trim();
 
           countryBlocks.forEach(block => {
-            if (target === 'all' || block.dataset.country === target) {
-              block.style.display = '';
-            } else {
-              block.style.display = 'none';
-            }
+            const match = target === 'all' || block.id === target || block.dataset.country === target;
+            block.style.display = match ? 'block' : 'none';
           });
+
+          // opcional: scroll suave a la sección
+          if (target !== 'all') {
+            const el = document.getElementById(target);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         });
       });
 
       // 2. LÓGICA DE ICONO DE DESPLIEGUE (+ / -)
-      const detailsElements = document.querySelectorAll('details');
-
-      detailsElements.forEach(detail => {
+      document.querySelectorAll('details').forEach(detail => {
         const icon = detail.querySelector('.toggle-icon');
         detail.addEventListener('toggle', () => {
-          if (icon) {
-            icon.textContent = detail.open ? '-' : '+';
-          }
+          if (icon) icon.textContent = detail.open ? '-' : '+';
         });
       });
 
       // 3. CARGA DE HEADER Y FOOTER DINÁMICOS
       fetch('header.html')
         .then(res => res.text())
-        .then(data => {
-          document.getElementById('header-placeholder').innerHTML = data;
-        })
+        .then(data => { document.getElementById('header-placeholder').innerHTML = data; })
         .catch(err => console.error('Error loading header:', err));
 
       fetch('footer.html')
         .then(res => res.text())
-        .then(data => {
-          document.getElementById('footer-placeholder').innerHTML = data;
-        })
+        .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
         .catch(err => console.error('Error loading footer:', err));
     });
   </script>
+
+ 
+    
 </body>
 
 </html>
