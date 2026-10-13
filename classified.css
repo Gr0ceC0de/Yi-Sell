@@ -231,3 +231,11 @@ body {
   border: 1.5px solid var(--borde-prensa);
   display: inline-block;
 }
+.documento-fucsia {
+  border-left: 4px solid #E91E8C;
+  border-right: 4px solid #E91E8C;
+  box-shadow: 
+    inset 2px 0 8px #ff1493,
+    inset -2px 0 8px #ff1493,
+    0 0 12px rgba(233, 30, 140, 0.6);
+}
