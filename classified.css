@@ -1,0 +1,361 @@
+/* ============================================================
+   CLASSIFIEDS.CSS
+   Índice:
+   01. Variables raíz
+   02. Reset y base
+   03. Tipografía
+   04. Masthead (cabecera)
+   05. Tagline
+   06. Filtro de ciudades
+   07. Grid de clasificados
+   08. Caja de anuncio (ad-box)
+   09. Número de caja (box-number)
+   10. Etiqueta de ciudad (city-tag)
+   11. Cabecera del anuncio (ad-header)
+   12. Icono del anuncio (ad-icon)
+   13. Título del anuncio (ad-title)
+   14. Descripción del anuncio (ad-desc)
+   15. Acciones del anuncio (ad-actions)
+   16. Botón del anuncio (ad-btn)
+   17. Barra de footer
+   18. Texto de footer
+   19. Acento de footer
+   20. Descargo de responsabilidad
+   21. Responsive (max-width: 639px)
+   22. Utilidad: ocultar caja
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   01. VARIABLES RAÍZ
+   ------------------------------------------------------------ */
+:root {
+    --paper: #F5F5F0;
+    --ink: #1A1A1A;
+    --rose: #C08081;
+    --rose-light: #C080811A;
+    --border: #1A1A1A33;
+}
+
+/* ------------------------------------------------------------
+   02. RESET Y BASE
+   ------------------------------------------------------------ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------
+   03. TIPOGRAFÍA
+   ------------------------------------------------------------ */
+h1, h2, h3, .serif {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* ------------------------------------------------------------
+   04. MASTHEAD (CABECERA)
+   ------------------------------------------------------------ */
+.masthead {
+    border-bottom: 3px double var(--ink);
+    position: relative;
+}
+
+.masthead::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--rose);
+}
+
+/* ------------------------------------------------------------
+   05. TAGLINE
+   ------------------------------------------------------------ */
+.tagline {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose);
+}
+
+/* ------------------------------------------------------------
+   06. FILTRO DE CIUDADES
+   ------------------------------------------------------------ */
+.city-filter {
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.city-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.city-btn:hover,
+.city-btn.active {
+    background: var(--rose);
+    color: var(--paper);
+    border-color: var(--rose);
+}
+
+/* ------------------------------------------------------------
+   07. GRID DE CLASIFICADOS
+   ------------------------------------------------------------ */
+.classifieds-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+    border-left: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+    .classifieds-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .classifieds-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ------------------------------------------------------------
+   08. CAJA DE ANUNCIO (AD-BOX)
+   ------------------------------------------------------------ */
+.ad-box {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    position: relative;
+    background: var(--paper);
+    transition: background 0.2s ease;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-box:hover {
+    background: var(--rose-light);
+}
+
+/* ------------------------------------------------------------
+   09. NÚMERO DE CAJA (BOX-NUMBER)
+   ------------------------------------------------------------ */
+.box-number {
+    font-family: 'Times New Roman', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--rose);
+    border-bottom: 1px solid var(--rose);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ------------------------------------------------------------
+   10. ETIQUETA DE CIUDAD (CITY-TAG)
+   ------------------------------------------------------------ */
+.city-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* ------------------------------------------------------------
+   11. CABECERA DEL ANUNCIO (AD-HEADER)
+   ------------------------------------------------------------ */
+.ad-header {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+/* ------------------------------------------------------------
+   12. ICONO DEL ANUNCIO (AD-ICON)
+   ------------------------------------------------------------ */
+.ad-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    stroke: var(--rose);
+    stroke-width: 1.5;
+    fill: none;
+    margin-top: 2px;
+}
+
+/* ------------------------------------------------------------
+   13. TÍTULO DEL ANUNCIO (AD-TITLE)
+   ------------------------------------------------------------ */
+.ad-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------
+   14. DESCRIPCIÓN DEL ANUNCIO (AD-DESC)
+   ------------------------------------------------------------ */
+.ad-desc {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 8px 0;
+    flex-grow: 1;
+    hyphens: auto;
+}
+
+/* ------------------------------------------------------------
+   15. ACCIONES DEL ANUNCIO (AD-ACTIONS)
+   ------------------------------------------------------------ */
+.ad-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+/* ------------------------------------------------------------
+   16. BOTÓN DEL ANUNCIO (AD-BTN)
+   ------------------------------------------------------------ */
+.ad-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    padding: 5px 8px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex: 1;
+    text-align: center;
+}
+
+.ad-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.ad-btn.primary {
+    border-color: var(--rose);
+    color: var(--rose);
+}
+
+.ad-btn.primary:hover {
+    background: var(--rose);
+    color: var(--paper);
+}
+
+/* ------------------------------------------------------------
+   17. BARRA DE FOOTER
+   ------------------------------------------------------------ */
+.footer-bar {
+    border-top: 3px double var(--ink);
+    margin-top: 24px;
+    padding: 16px 0;
+    text-align: center;
+    position: relative;
+}
+
+.footer-bar::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--rose);
+}
+
+/* ------------------------------------------------------------
+   18. TEXTO DE FOOTER
+   ------------------------------------------------------------ */
+.footer-text {
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
+   19. ACENTO DE FOOTER
+   ------------------------------------------------------------ */
+.footer-accent {
+    color: var(--rose);
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   20. DESCARGO DE RESPONSABILIDAD
+   ------------------------------------------------------------ */
+.disclaimer {
+    font-size: 9px;
+    color: #666;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* ------------------------------------------------------------
+   21. RESPONSIVE (MAX-WIDTH: 639PX)
+   ------------------------------------------------------------ */
+@media (max-width: 639px) {
+    body {
+        font-size: 12px;
+    }
+
+    .ad-title {
+        font-size: 13px;
+    }
+
+    .ad-desc {
+        font-size: 10px;
+    }
+
+    .masthead h1 {
+        font-size: 24px;
+    }
+
+    .tagline {
+        font-size: 9px;
+    }
+}
+
+/* ------------------------------------------------------------
+   22. UTILIDAD: OCULTAR CAJA
+   ------------------------------------------------------------ */
+.ad-box.hidden {
+    display: none;
+}
