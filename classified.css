@@ -292,3 +292,29 @@ body {
     inset -2px 0 8px #ff1493,
     0 0 12px rgba(233, 30, 140, 0.6);
 }
+#adHeader001, #adHeader002, #adHeader003, #adHeader004, #adHeader005,
+#adHeader006, #adHeader007, #adHeader008, #adHeader009, #adHeader010{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 16px 0 16px;
+}
+#adTitle001, #adTitle002, #adTitle003, #adTitle004, #adTitle005,
+#adTitle006, #adTitle007, #adTitle008, #adTitle009, #adTitle010{
+  font-family: Georgia, serif;
+  color: var(--rosa-viejo-oscuro);
+  font-weight: 700;
+  text-shadow: 
+    0 0 8px rgba(255,143,171,0.7),
+    0 0 16px rgba(255,143,171,0.35);
+}
+.ad-icon{
+  background: var(--nieve);
+  border: 1px solid var(--rosa-luz-soft);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 10px rgba(255,143,171,0.45);
+}
