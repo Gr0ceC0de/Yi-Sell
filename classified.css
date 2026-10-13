@@ -22,6 +22,19 @@ body {
   color: var(--tinta);
   font-family: 'EB Garamond', serif;
 }
+#containerMain{
+  background: linear-gradient(180deg, var(--nieve) 0%, var(--beige-rosa) 100%);
+  border: 2.5px solid var(--rosa-luz);
+  border-radius: 20px;
+  box-shadow: 
+    0 0 0 1px var(--rosa-luz-soft),
+    0 0 10px var(--rosa-luz),
+    0 0 24px rgba(255,92,138,0.35),
+    0 0 48px rgba(255,92,138,0.12),
+    inset 0 0 20px rgba(255,254,253,0.8);
+  padding: 26px;
+  margin: 14px;
+}
 
 #containerMain {
   max-width: 1280px;
