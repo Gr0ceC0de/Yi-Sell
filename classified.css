@@ -359,3 +359,40 @@ h1, h2, h3, .serif {
 .ad-box.hidden {
     display: none;
 }
+/* ============================================================
+   SELECTOR DE CIUDAD INTERNO — SOLO CARD 002 (APARTMENTS)
+   ============================================================ */
+
+.apartment-city-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 8px 0;
+    padding: 6px 0;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+}
+
+.apt-city-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    padding: 3px 7px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.15s ease;
+}
+
+.apt-city-btn:hover {
+    border-color: var(--rose);
+    color: var(--rose);
+}
+
+.apt-city-btn.active {
+    background: var(--rose);
+    color: var(--paper);
+    border-color: var(--rose);
+}
