@@ -7,62 +7,50 @@
     <title>CLASSIFIED | Trading Assistant</title>
 
     <!-- ============================================================
-         SECCIÓN 00: RECURSOS EXTERNOS
-         ============================================================ -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="backend/apps/shoppingcart/static/js/cart.js" defer></script>
-
-    <!-- ============================================================
-         SECCIÓN 01: HOJA DE ESTILOS
+         SECCIÓN 00: ESTILOS LOCALES (sin CDN, sin Tailwind externo)
          ============================================================ -->
     <link rel="stylesheet" href="classifieds.css">
 </head>
 <body>
 
     <!-- ============================================================
-         SECCIÓN 02: HEADER DINÁMICO
+         SECCIÓN 01: HEADER DINÁMICO
          ============================================================ -->
     <div id="header-placeholder"></div>
 
     <!-- ============================================================
-         SECCIÓN 03: CONTENEDOR PRINCIPAL
+         SECCIÓN 02: CONTENEDOR PRINCIPAL
          ============================================================ -->
-    <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="container-main">
 
         <!-- --------------------------------------------------------
-             SECCIÓN 03.01: MASTHEAD (CABECERA)
+             SECCIÓN 02.01: MASTHEAD (CABECERA)
              -------------------------------------------------------- -->
-        <header class="masthead pb-4 mb-4">
+        <header class="masthead">
             <div class="text-center">
-                <h1 class="serif text-4xl md:text-5xl mb-2">CLASSIFIEDS | Trading Tools</h1>
-                <p class="serif text-sm md:text-base">100 Traditional and Digital Categories | 1 Item Each | $10/mo Affiliate Slots</p>
+                <h1 class="serif masthead-title">CLASSIFIEDS | Trading Tools</h1>
+                <p class="serif masthead-subtitle">100 Traditional and Digital Categories | 1 Item Each | $10/mo Affiliate Slots</p>
             </div>
         </header>
 
         <!-- --------------------------------------------------------
-             SECCIÓN 03.02: FILTRO DE CIUDADES
+             SECCIÓN 02.02: BARRA DE HERRAMIENTAS (buscar / pistas / reset)
              -------------------------------------------------------- -->
-        <div class="city-filter" id="cityFilter">
-            <button class="city-btn active" data-city="all">ALL</button>
-            <button class="city-btn" data-city="SP">[SP]</button>
-            <button class="city-btn" data-city="NYC">[NYC]</button>
-            <button class="city-btn" data-city="LON">[LON]</button>
-            <button class="city-btn" data-city="TYO">[TYO]</button>
-            <button class="city-btn" data-city="DXB">[DXB]</button>
-            <button class="city-btn" data-city="BSB">[BSB]</button>
-            <button class="city-btn" data-city="CCS">[CCS]</button>
-            <button class="city-btn" data-city="LIS">[LIS]</button>
-            <button class="city-btn" data-city="BER">[BER]</button>
-            <button class="city-btn" data-city="SYD">[SYD]</button>
+        <div class="toolbar">
+            <input type="text" id="searchInput" class="search-input" placeholder="SEARCH CLASSIFIEDS...">
+            <span id="foundBadge" class="found-badge">✓ Found: 0/10</span>
+            <button id="hintBtn" class="tool-btn">💡 Hint (3/3)</button>
+            <button id="resetBtn" class="tool-btn">↺ Reset</button>
         </div>
 
         <!-- --------------------------------------------------------
-             SECCIÓN 03.03: GRID DE CLASIFICADOS
+             SECCIÓN 02.03: GRID DE CLASIFICADOS
              -------------------------------------------------------- -->
         <main class="classifieds-grid" id="classifiedsGrid">
 
             <!-- ====================================================
                  CARD 001 — [SP] SÃO PAULO — LOQ Intel Laptops
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="SP">
                 <div class="box-number">
@@ -70,44 +58,47 @@
                     <span class="city-tag">[SP] SÃO PAULO</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <rect x="3" y="4" width="18" height="12" rx="1"/>
-                        <line x1="2" y1="20" x2="22" y2="20"/>
-                    </svg>
+                    <span class="ad-icon">💻</span>
                     <h2 class="ad-title">LOQ Intel Laptops</h2>
                 </div>
                 <p class="ad-desc">Core i5/i3 certified units. Business-ready specs. Bulk affiliate slot available for hardware resellers.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('001')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('001')">OFFERING</button>
+                    <button class="ad-btn" data-action="detail" data-box="001">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="001">OFFERING</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 002 — [CCS] CARACAS — Apartments 40-500m²
+                 (ÚNICA card con selector de ciudad interno)
                  ==================================================== -->
-            <article class="ad-box" data-city="CCS">
+            <article class="ad-box" data-city="CCS" id="card-apartments">
                 <div class="box-number">
                     <span>BOX NO. 002</span>
-                    <span class="city-tag">[CCS] CARACAS</span>
+                    <span class="city-tag" id="apartmentCityTag">[CCS] CARACAS</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/>
-                        <rect x="9" y="9" width="2" height="2"/>
-                        <rect x="13" y="13" width="2" height="2"/>
-                    </svg>
+                    <span class="ad-icon">🏢</span>
                     <h2 class="ad-title">Apartments 40-500m²</h2>
                 </div>
                 <p class="ad-desc">Property listings database. Real estate. Premium locations catalog.</p>
+
+                <!-- Selector de ciudad SOLO dentro de la card 002 -->
+                <div class="apartment-city-selector" id="apartmentCitySelector">
+                    <button class="apt-city-btn active" data-apt-city="CCS" data-apt-label="[CCS] CARACAS">CCS Caracas</button>
+                    <button class="apt-city-btn" data-apt-city="SP" data-apt-label="[SP] SÃO PAULO">SP São Paulo</button>
+                    <button class="apt-city-btn" data-apt-city="BOG" data-apt-label="[BOG] BOGOTÁ">BOG Bogotá</button>
+                </div>
+
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="window.open('PropertiesCaracas.html', '_blank')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('002')">BUY</button>
+                    <button class="ad-btn" data-action="detail" data-box="002">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="002">BUY</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 003 — [LON] LONDON — Q-SWITCH Nd:Yag Laser
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="LON">
                 <div class="box-number">
@@ -115,23 +106,19 @@
                     <span class="city-tag">[LON] LONDON</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="8"/>
-                        <circle cx="12" cy="12" r="3"/>
-                        <line x1="12" y1="2" x2="12" y2="4"/>
-                        <line x1="12" y1="20" x2="12" y2="22"/>
-                    </svg>
+                    <span class="ad-icon">🔬</span>
                     <h2 class="ad-title">Q-SWITCH Nd:Yag Laser</h2>
                 </div>
                 <p class="ad-desc">Medical aesthetic equipment specs. B2B supplier directory. Technical data sheets for distributors.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('003')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('003')">OFFERING</button>
+                    <button class="ad-btn" data-action="detail" data-box="003">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="003">OFFERING</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 004 — [TYO] TOKYO — ISO 10002 Surveys
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="TYO">
                 <div class="box-number">
@@ -139,23 +126,19 @@
                     <span class="city-tag">[TYO] TOKYO</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                        <rect x="8" y="2" width="8" height="4" rx="1"/>
-                        <line x1="9" y1="12" x2="15" y2="12"/>
-                        <line x1="9" y1="16" x2="13" y2="16"/>
-                    </svg>
+                    <span class="ad-icon">📋</span>
                     <h2 class="ad-title">ISO 10002 Surveys</h2>
                 </div>
                 <p class="ad-desc">Customer satisfaction methodology. Compliance templates pack. QA consulting slot for service bureaus.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('004')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('004')">BUY</button>
+                    <button class="ad-btn" data-action="detail" data-box="004">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="004">BUY</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 005 — [DXB] DUBAI — Gemstone & Crystals
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="DXB">
                 <div class="box-number">
@@ -163,22 +146,19 @@
                     <span class="city-tag">[DXB] DUBAI</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                        <polyline points="2 17 12 22 22 17"/>
-                        <polyline points="2 12 12 17 22 12"/>
-                    </svg>
+                    <span class="ad-icon">💎</span>
                     <h2 class="ad-title">Gemstone & Crystals</h2>
                 </div>
                 <p class="ad-desc">Wholesale sourcing intel. Import/export guides. Digital catalog of certified stones inventory.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('005')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('005')">OFFERING</button>
+                    <button class="ad-btn" data-action="detail" data-box="005">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="005">OFFERING</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 006 — [BSB] BRASÍLIA — .mql5 Forex Robot
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="BSB">
                 <div class="box-number">
@@ -186,20 +166,19 @@
                     <span class="city-tag">[BSB] BRASÍLIA</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                    </svg>
+                    <span class="ad-icon">📈</span>
                     <h2 class="ad-title">.mql5 Forex Robot</h2>
                 </div>
                 <p class="ad-desc">Trend advisory EA algorithms. Backtest data reports. Automated trading system license slots.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('006')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('006')">BUY</button>
+                    <button class="ad-btn" data-action="detail" data-box="006">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="006">BUY</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 007 — [CCS] CARACAS — Trading Assistant FOREX
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="CCS">
                 <div class="box-number">
@@ -207,21 +186,19 @@
                     <span class="city-tag">[CCS] CARACAS</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <rect x="2" y="7" width="20" height="14" rx="2"/>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                    </svg>
+                    <span class="ad-icon">💼</span>
                     <h2 class="ad-title">Trading Assistant FOREX</h2>
                 </div>
                 <p class="ad-desc">Professional signals dashboard. Risk management toolkit. Premium advisory access subscription.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('007')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('007')">OFFERING</button>
+                    <button class="ad-btn" data-action="detail" data-box="007">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="007">OFFERING</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 008 — [LIS] LISBON — Massagens & Wellness
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="LIS">
                 <div class="box-number">
@@ -229,20 +206,19 @@
                     <span class="city-tag">[LIS] LISBON</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0-7.78-7.78z"/>
-                    </svg>
+                    <span class="ad-icon">🌿</span>
                     <h2 class="ad-title">Massagens & Wellness</h2>
                 </div>
                 <p class="ad-desc">Spa franchise operations manual. Booking systems affiliate. Premium wellness services directory.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('008')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('008')">BUY</button>
+                    <button class="ad-btn" data-action="detail" data-box="008">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="008">BUY</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 009 — [BER] BERLIN — Digital Info Products
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="BER">
                 <div class="box-number">
@@ -250,23 +226,19 @@
                     <span class="city-tag">[BER] BERLIN</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        <line x1="10" y1="8" x2="16" y2="8"/>
-                        <line x1="10" y1="12" x2="16" y2="12"/>
-                    </svg>
+                    <span class="ad-icon">📚</span>
                     <h2 class="ad-title">Digital Info Products</h2>
                 </div>
                 <p class="ad-desc">PLR content bundles ready. Course creation frameworks. Info-product distribution rights catalog.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('009')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('009')">OFFERING</button>
+                    <button class="ad-btn" data-action="detail" data-box="009">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="009">OFFERING</button>
                 </div>
             </article>
 
             <!-- ====================================================
                  CARD 010 — [SYD] SYDNEY — Crypto Trading Signals
+                 (sin selector de ciudad)
                  ==================================================== -->
             <article class="ad-box" data-city="SYD">
                 <div class="box-number">
@@ -274,28 +246,24 @@
                     <span class="city-tag">[SYD] SYDNEY</span>
                 </div>
                 <div class="ad-header">
-                    <svg class="ad-icon" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                        <circle cx="11" cy="11" r="3"/>
-                    </svg>
+                    <span class="ad-icon">🔍</span>
                     <h2 class="ad-title">Crypto Trading Signals</h2>
                 </div>
                 <p class="ad-desc">Algorithmic BTC/ETH alerts feed. Portfolio tracking dashboard. API access for signal resellers.</p>
                 <div class="ad-actions">
-                    <button class="ad-btn" onclick="handleDetail('010')">DETAILS</button>
-                    <button class="ad-btn primary" onclick="handleBuy('010')">BUY</button>
+                    <button class="ad-btn" data-action="detail" data-box="010">DETAILS</button>
+                    <button class="ad-btn primary" data-action="buy" data-box="010">BUY</button>
                 </div>
             </article>
 
         </main>
 
         <!-- --------------------------------------------------------
-             SECCIÓN 03.04: FOOTER ESTÁTICO
+             SECCIÓN 02.04: FOOTER ESTÁTICO
              -------------------------------------------------------- -->
         <footer class="footer-bar">
             <div class="footer-text">
-                <p class="serif text-base mb-2">
+                <p class="serif footer-title">
                     <span class="footer-accent">1 Category = $100/month</span> |
                     <span class="footer-accent">Lock 12 months for Box Premium</span>
                 </p>
@@ -307,90 +275,14 @@
     </div>
 
     <!-- ============================================================
-         SECCIÓN 04: SCRIPTS
-         ============================================================ -->
-    <script>
-        /* --------------------------------------------------------
-           SCRIPT 04.01: FILTRO DE CIUDADES
-           -------------------------------------------------------- */
-        const cityBtns = document.querySelectorAll('.city-btn');
-        const adBoxes = document.querySelectorAll('.ad-box');
-
-        cityBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const selectedCity = btn.dataset.city;
-
-                /* Actualizar botón activo */
-                cityBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                /* Filtrar anuncios */
-                adBoxes.forEach(box => {
-                    if (selectedCity === 'all' || box.dataset.city === selectedCity) {
-                        box.classList.remove('hidden');
-                    } else {
-                        box.classList.add('hidden');
-                    }
-                });
-            });
-        });
-
-        /* --------------------------------------------------------
-           SCRIPT 04.02: MANEJADORES DE ACCIÓN
-           -------------------------------------------------------- */
-        function handleDetail(boxNum) {
-            alert(`BOX ${boxNum} DETAILS\n\nThis is a fantasy business simulation listing.\n\nIn production: Modal with full specs, pricing tiers, and affiliate terms.\n\nCategory reservation: $100/mo\nPremium 12-mo lock available.`);
-        }
-
-        function handleBuy(boxNum) {
-            alert(`BOX ${boxNum} INQUIRY\n\nThis is a digital economy simulation.\n\nIn production: Secure checkout + affiliate onboarding.\n\nContact: classifieds@trading.assistant\nSubject: Box ${boxNum} Reservation`);
-        }
-
-        /* --------------------------------------------------------
-           SCRIPT 04.03: ESCALABILIDAD (TEMPLATE BOXES 011-100)
-           --------------------------------------------------------
-           const boxTemplate = (num, city, cityName, title, desc, icon, action) => `...`;
-           Future: Load boxes from JSON, render 100 slots dynamically
-           -------------------------------------------------------- */
-    </script>
-
-    <script>
-        (function () {
-            document.addEventListener("click", function (e) {
-                var a = e.target.closest("[data-product-id]");
-                if (!a) return;
-                e.preventDefault();
-                var pid = a.getAttribute("data-product-id");
-                if (pid) parent.postMessage({ type: "ecto-artifact-link-click", productId: pid }, "*");
-            });
-        })();
-    </script>
-
-    <!-- ============================================================
-         SECCIÓN 05: FOOTER DINÁMICO
+         SECCIÓN 03: FOOTER DINÁMICO
          ============================================================ -->
     <div id="footer-placeholder"></div>
 
     <!-- ============================================================
-         SECCIÓN 06: SCRIPT DE CARGA HEADER / FOOTER
+         SECCIÓN 04: SCRIPT LOCAL (sin URLs externas)
          ============================================================ -->
-    <script>
-        /* Cargar header */
-        fetch('header.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Error loading header:', err));
-
-        /* Cargar footer */
-        fetch('footer.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(err => console.error('Error loading footer:', err));
-    </script>
+    <script src="classifieds.js" defer></script>
 
 </body>
 </html>
