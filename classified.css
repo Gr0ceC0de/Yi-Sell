@@ -41,6 +41,28 @@ body {
    
     content: url('docs/classifiedad.jpg'); 
 }
+/* 1. Contenedor de la imagen: centrado y con ancho máximo */
+#classifiedImageWrapper {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Ajusta este valor al ancho de tus cards. Ej: 400px, 500px, etc. */
+    margin: 0 auto 20px auto; /* Centra el bloque y da espacio abajo */
+    padding: 0 10px; /* Evita que toque los bordes en móviles */
+    box-sizing: border-box;
+}
+
+
+#classifiedAdImage {
+    display: block;
+    width: 100%; 
+    height: auto; 
+    max-width: 100%;
+    object-fit: cover; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
 #masthead {
   border: 3px solid var(--borde-prensa);
