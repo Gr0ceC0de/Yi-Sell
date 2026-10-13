@@ -58,7 +58,7 @@ body {
   margin: 0;
   color: #f8a1c4;
   text-shadow: 
-    1px 1px 0 var(--violeta-claro),
+    1px 1px 0 var( #f8a1c4),
     2px 2px 0 var(--violeta-claro),
     3px 3px 0 var(--violeta-acuarela),
     4px 4px 0 var(--violeta-oscuro),
@@ -68,7 +68,7 @@ body {
 }
 #mastheadSubtitle {
   margin: 12px 0 0 0;
-  font-family: 'Special Elite', cursive;
+  font-family: 'UnifrakturCook';
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
