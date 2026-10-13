@@ -34,13 +34,12 @@ body {
 }
 
 #classifiedAdImage {
-    /* Oculta el icono de imagen rota si la ruta falla */
+   
     display: block; 
-    width: 100%; /* Ajusta esto según el tamaño que quieras */
+    width: 100%; 
     height: auto;
-    
-    /* Reemplaza la imagen rota con la ruta correcta */
-    content: url('ruta_correcta_de_tu_imagen.jpg'); 
+   
+    content: url('docs/classifiedad.jpg'); 
 }
 
 #masthead {
