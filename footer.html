@@ -1,158 +1,50 @@
+<!-- Importación de Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
 <footer class="site-footer">
     <div class="footer-container">
 
+        <!-- ===== SECCIÓN PROPERTIES CARACAS ===== -->
+        <section id="footer-cta-section" class="footer-cta-wrapper">
+            <div id="footer-cta-container" class="cta-container">
+                <div id="cta-label-wrapper" class="cta-label">
+                    <span id="cta-text" class="cta-text">🏡 Prime Location 🖱️ To Look at the List</span>
+                </div>
+                <a id="properties-footer-link" href="PropertiesCaracas.html" class="properties-cta-btn" aria-label="Ir a Properties Caracas">
+                    <div id="btn-glow" class="btn-glow-effect"></div>
+                    <div id="btn-wood-frame" class="btn-wood-frame">
+                        <img id="img-titulo" src="docs/propertiestitle3.gif" alt="Properties Caracas" class="btn-img">
+                    </div>
+                    <span id="btn-arrow" class="btn-arrow">→</span>
+                </a>
+            </div>
+        </section>
 
-<!-- ===== BLOQUE COMPLETO BOTÓN PROPERTIES CARACAS - PEGAR EN FOOTER ===== -->
+        <!-- ===== SECCIÓN RISK DISCLOSURE ===== -->
+        <div class="footer-section footer-risk">
+            <a href="Risk.html" class="footer-risk-btn">
+                <div class="btn-glow-effect"></div>
+                <span class="risk-icon">☣️</span>
+                <span>TO READ RISK DISCLOSURE</span>
+                <span class="btn-arrow">→</span>
+            </a>
+        </div>
 
-#footer-cta-section {
-  margin-top: 30px;
-  padding: 25px 15px;
-  display: flex;
-  justify-content: center;
-}
-#footer-cta-container { text-align: center; perspective: 800px; }
-#cta-label-wrapper .cta-text {
-  display: inline-block;
-  font-family: 'Courier New', monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: #c19a6b;
-  background: #111;
-  padding: 5px 12px;
-  border-radius: 20px;
-  margin-bottom: 12px;
-  border: 1px solid #3a2a1a;
-}
-.properties-cta-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  background: linear-gradient(145deg, #1a1a1a, #000);
-  padding: 12px 22px 12px 12px;
-  border-radius: 16px;
-  border: 2px solid #8d6e4a;
-  box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
-  transform-style: preserve-3d;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden;
-  animation: ctaPulse 3s infinite;
-}
-#btn-glow {
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.6s;
-}
-.properties-cta-btn:hover #btn-glow { left: 130%; }
-.properties-cta-btn:hover {
-  transform: translateY(-5px) rotateX(10deg) scale(1.04);
-  border-color: #e8c39a;
-  box-shadow: 0 0 0 3px #000, 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(193, 154, 107, 0.4);
-}
-#btn-wood-frame {
+        <!-- ===== SECCIÓN ORION FUNDED ===== -->
+        <div class="footer-section footer-promo">
+            <p>Financial news, market analysis and investment insights for informed decision-making.</p>
+            <p>Before risking your money 💰 try out a proprietary trading desk, Subscribe 👉🐇🐰</p>
+            <a class="footer-btn" href="https://app.orionfunded.com/auth/register?ref=11658" target="_blank" rel="noopener noreferrer">
+                <div class="btn-glow-effect"></div>
+                <img src="docs/new user.gif" alt="Orion Funded">
+            </a>
+        </div>
 
-  background-color: #8d6e4a;
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 2px solid #5a3e28;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
-  display: flex;
-  align-items: center;
-}
-.btn-img { height: 32px; width: auto; display: block; }
-#btn-arrow { font-size: 22px; color: #e8c39a; font-weight: bold; transition: transform 0.3s; }
-.properties-cta-btn:hover #btn-arrow { transform: translateX(6px); }
-#cta-subtext { margin-top: 10px; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase; }
-@keyframes ctaPulse {
-  0%,100% { box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5); }
-  50% { box-shadow: 0 0 0 3px #111, 0 8px 25px rgba(193,154,107,0.4), 0 0 15px rgba(193,154,107,0.2); }
-}
-
-
-<section id="footer-cta-section" class="footer-cta-wrapper">
-  <div id="footer-cta-container" class="cta-container">
-    <div id="cta-label-wrapper" class="cta-label">
-      <span id="cta-text" class="cta-text">🏡Prime Locatión 🖱️To Look at the List</span>
-    </div>
-    <a id="properties-footer-link" href="PropertiesCaracas.html" class="properties-cta-btn" aria-label="Ir a Properties Caracas">
-      <div id="btn-glow" class="btn-glow-effect"></div>
-      <div id="btn-wood-frame" class="btn-wood-frame">
-        <img id="img-titulo" src="docs/propertiestitle3.gif" alt="Properties Caracas" class="btn-img">
-      </div>
-      <span id="btn-arrow" class="btn-arrow">→</span>
-    </a>
-  </div>
-</section>
-<!-- ===== FIN DEL BLOQUE ===== -->
-
-<div class="footer-section footer-risk">
-  <a href="Risk.html" class="footer-risk-btn">
-    <span class="risk-icon">☣️</span>
-    <span> Risk Disclosure</span>
-  </a>
-</div>
-
-
-.footer-risk {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px 0;
-  margin-top: 15px;
-}
-.footer-risk-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #ff1a1a 0%, #ffcc00 100%);
-  color: #000;
-  font-family: 'Impact', 'Arial Black', sans-serif;
-  font-weight: 900;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 50px;
-  border: 3px solid #000;
-  box-shadow: 0 0 15px rgba(255, 204, 0, 0.6), 0 4px 0 #000;
-  transition: all 0.2s ease;
-  animation: riskPulse 2s infinite;
-}
-.footer-risk-btn .risk-icon {
-  font-size: 22px;
-}
-.footer-risk-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 204, 0, 0.9), 0 6px 0 #000;
-  background: linear-gradient(135deg, #ffcc00 0%, #ff1a1a 100%);
-  color: #fff;
-}
-@keyframes riskPulse {
-  0% { box-shadow: 0 0 0 0 rgba(255,204,0,0.7), 0 4px 0 #000; }
-  70% { box-shadow: 0 0 0 12px rgba(255,204,0,0), 0 4px 0 #000; }
-  100% { box-shadow: 0 0 0 0 rgba(255,204,0,0), 0 4px 0 #000; }
-}
-
-
-    <p>Financial news, market analysis and investment insights for informed decision-making.</p>
-    <p>Before risking your money 💰 try out a proprietary trading desk, Subscribe 👉🐇🐰</p>
-    <a class="footer-btn" href="https://app.orionfunded.com/auth/register?ref=11658" target="_blank" rel="noopener noreferrer">
-        <img src="docs/new user.gif" alt="Orion Funded">
-    </a>
-</div>
-
-
-
-        <!-- Fila 2: 3 columnas -->
+        <!-- ===== COLUMNAS DE NAVEGACIÓN ===== -->
         <div class="footer-columns">
-
-            <!-- Columna 1: Navigation -->
+            <!-- Navigation -->
             <div class="footer-section">
                 <h4>Navigation</h4>
                 <ul>
@@ -164,7 +56,7 @@
                 </ul>
             </div>
 
-            <!-- Columna 2: Contact (sin botón Buy) -->
+            <!-- Contact -->
             <div class="footer-section">
                 <h4>Contact</h4>
                 <a class="footer-icon-link" href="mailto:yigraciel@hotmail.com?subject=Question/Comment">
@@ -177,7 +69,7 @@
                 </a>
             </div>
 
-            <!-- Columna 3: Follow -->
+            <!-- Follow -->
             <div class="footer-section">
                 <h4>Follow</h4>
                 <a class="footer-icon-link" href="https://instagram.com/robotstools?stkn=MXdxd2xxdmJsY2t3NA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -201,26 +93,25 @@
                     <span>Telegram</span>
                 </a>
             </div>
-
         </div>
-
     </div>
 
-    <!-- Fila 3: Copyright (1 columna centrada) -->
+    <!-- ===== COPYRIGHT ===== -->
     <div class="footer-bottom">
         <p>© 2026 Yisell Tools. All Rights Reserved.</p>
-
+    </div>
 </footer>
 
 <style>
+/* Reset & Tipografía Base */
 .site-footer {
     background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #0f172a; /* fallback */
+    background-color: #0f172a;
     color: #d1d5db;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     padding: 40px 20px;
     position: relative;
 }
@@ -229,7 +120,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.88));
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.92));
     z-index: 0;
 }
 
@@ -244,156 +135,191 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
 }
 
-.footer-risk {
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
+/* Base de Botones Unificada */
+.properties-cta-btn,
+.footer-risk-btn,
+.footer-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    border-radius: 16px;
+    padding: 12px 24px;
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto de Luz / Glow Dinámico */
+.btn-glow-effect {
+    position: absolute;
+    top: 0; 
+    left: -100%;
+    width: 60%; 
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.properties-cta-btn:hover .btn-glow-effect,
+.footer-risk-btn:hover .btn-glow-effect,
+.footer-btn:hover .btn-glow-effect {
+    left: 140%;
+}
+
+/* Botón 1: Properties Caracas */
+#footer-cta-section {
+    display: flex;
+    justify-content: center;
+}
+#footer-cta-container { 
+    text-align: center; 
+    perspective: 800px; 
+}
+#cta-label-wrapper .cta-text {
+    display: inline-block;
+    font-family: 'Inter', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c19a6b;
+    background: rgba(17, 17, 17, 0.9);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    border: 1px solid #3a2a1a;
+}
+.properties-cta-btn {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 2px solid #8d6e4a;
+    box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
+    animation: ctaPulse 3s infinite;
+}
+.properties-cta-btn:hover {
+    transform: translateY(-5px) rotateX(8deg) scale(1.04);
+    border-color: #e8c39a;
+    box-shadow: 0 0 0 3px #000, 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(193, 154, 107, 0.4);
+}
+.btn-wood-frame {
+    background-color: #8d6e4a;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 2px solid #5a3e28;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
+    display: flex;
     align-items: center;
 }
+.btn-img { height: 32px; width: auto; display: block; }
+.btn-arrow { font-size: 20px; color: #e8c39a; font-weight: bold; transition: transform 0.3s; }
+.properties-cta-btn:hover .btn-arrow,
+.footer-risk-btn:hover .btn-arrow { transform: translateX(6px); }
 
+/* Botón 2: Risk Disclosure */
+.footer-risk {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.footer-risk-btn {
+    background: linear-gradient(135deg, #e63946, #d62828);
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(230, 57, 70, 0.3);
+}
+.footer-risk-btn .risk-icon { font-size: 20px; }
+.footer-risk-btn:hover {
+    transform: translateY(-5px) scale(1.04);
+    border-color: #ff9999;
+    box-shadow: 0 0 0 3px #000, 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(230, 57, 70, 0.6);
+}
 
+/* Botón 3: Orion Funded */
+.footer-promo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.footer-btn {
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+    border: 2px solid #60a5fa;
+    box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(37, 99, 235, 0.3);
+    padding: 8px 20px;
+}
+.footer-btn:hover {
+    transform: translateY(-5px) scale(1.04);
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px #000, 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(37, 99, 235, 0.5);
+}
+.footer-btn img {
+    max-width: 140px;
+    max-height: 45px;
+    height: auto;
+    display: block;
+}
+
+/* Columnas e Iconos */
 .footer-columns {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
     text-align: center;
 }
-
 @media (min-width: 600px) {
-    .footer-columns {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .footer-columns { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (min-width: 900px) {
-    .footer-columns {
-        grid-template-columns: repeat(3, 1fr);
-        text-align: left;
-    }
+    .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
 }
 
-.footer-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-@media (min-width: 900px) {
-    .footer-columns .footer-section {
-        align-items: flex-start;
-    }
-}
-
-.footer-section h3,
 .footer-section h4 {
-    color: #7B68EE;
+    font-family: 'Montserrat', sans-serif;
+    color: #a78bfa;
     border-bottom: 2px solid #3b82f6;
     padding-bottom: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     width: 100%;
 }
-
-.footer-section p {
-    line-height: 1.6;
-    margin: 0;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-section ul li {
-    margin: 10px 0;
-}
-
+.footer-section ul { list-style: none; padding: 0; margin: 0; }
+.footer-section ul li { margin: 10px 0; }
 .footer-section a {
     color: #d1d5db;
     text-decoration: none;
-    transition: color 0.3s, transform 0.3s;
+    transition: color 0.3s;
 }
-
-.footer-section a:hover {
-    color: #60a5fa;
-}
+.footer-section a:hover { color: #60a5fa; }
 
 .footer-icon-link {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 4px 0;
+    padding: 6px 0;
 }
-
-.footer-icon-link img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    display: block;
-}
-
-.footer-icon-link svg {
-    flex-shrink: 0;
-}
-
-.footer-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    background: #4f8cff;
-    color: #ffffff;
-    font-weight: 600;
-    max-width: 100%;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.footer-btn:hover {
-    background: #6ea0ff;
-    transform: translateY(-2px);
-}
-
-.footer-btn img {
-    max-width: 140px;
-    max-height: 60px;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
+.footer-icon-link img { width: 24px; height: 24px; object-fit: contain; }
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    font-size: 0.9rem;
+    padding-top: 20px;
+    margin-top: 20px;
+    font-size: 0.85rem;
     color: #9ca3af;
 }
 
-.footer-bottom p {
-    margin: 4px 0;
-}
-
-@media (max-width: 768px) {
-    .footer-section h3,
-    .footer-section h4 {
-        border: none;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .footer-section a,
-    .footer-btn {
-        transition: none;
-    }
+/* Animaciones */
+@keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 0 3px #111, 0 8px 25px rgba(193,154,107,0.4), 0 0 15px rgba(193,154,107,0.2); }
 }
 </style>
