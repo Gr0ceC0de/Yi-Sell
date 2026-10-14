@@ -1,3 +1,35 @@
+/* TÍTULO - CENTRALIZADO */
+#seccion-titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#parrafo-titulo-1 {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#img-titulo {
+  max-width: 420px; /* tamaño elegante */
+  width: 85%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 8px rgba(74,44,26,0.15));
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+#img-titulo:hover {
+  transform: scale(1.03);
+}
+
 /* ===========================================
    PROPERTIES CARACAS - MADERA CLARA MIEL
    Tono: #E8C9A0 - más claro que caoba
