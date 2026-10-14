@@ -76,7 +76,7 @@
 <section id="footer-cta-section" class="footer-cta-wrapper">
   <div id="footer-cta-container" class="cta-container">
     <div id="cta-label-wrapper" class="cta-label">
-      <span id="cta-text" class="cta-text">🖱️To Look ay the List</span>
+      <span id="cta-text" class="cta-text">🏡Prime Locatión 🖱️To Look at the List</span>
     </div>
     <a id="properties-footer-link" href="PropertiesCaracas.html" class="properties-cta-btn" aria-label="Ir a Properties Caracas">
       <div id="btn-glow" class="btn-glow-effect"></div>
@@ -88,7 +88,56 @@
   </div>
 </section>
 <!-- ===== FIN DEL BLOQUE ===== -->
+<div class="footer-section footer-risk">
+  <a href="Risk.html" class="footer-risk-btn">
+    <span class="risk-icon">☣️</span>
+    <span>To Read Risk Disclosure</span>
+  </a>
+</div>
 
+<style>
+.footer-risk {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  margin-top: 15px;
+}
+.footer-risk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ff1a1a 0%, #ffcc00 100%);
+  color: #000;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 3px solid #000;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.6), 0 4px 0 #000;
+  transition: all 0.2s ease;
+  animation: riskPulse 2s infinite;
+}
+.footer-risk-btn .risk-icon {
+  font-size: 22px;
+}
+.footer-risk-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 204, 0, 0.9), 0 6px 0 #000;
+  background: linear-gradient(135deg, #ffcc00 0%, #ff1a1a 100%);
+  color: #fff;
+}
+@keyframes riskPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,204,0,0.7), 0 4px 0 #000; }
+  70% { box-shadow: 0 0 0 12px rgba(255,204,0,0), 0 4px 0 #000; }
+  100% { box-shadow: 0 0 0 0 rgba(255,204,0,0), 0 4px 0 #000; }
+}
+</style>
 
         
 <div class="footer-section footer-risk">
