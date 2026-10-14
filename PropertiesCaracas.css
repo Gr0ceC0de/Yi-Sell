@@ -124,15 +124,6 @@
     .marco-madera { padding: 8px; }
 }
 /* Surcos blancos iluminados como en foto 2 */
-.marco-madera::after {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border-radius: 12px;
-  background: radial-gradient(circle at center, rgba(255,255,200,0.4), transparent 70%);
-  pointer-events: none;
-  opacity: 0.6;
-}
 
 /* Hover que hace que el QR salte por encima del borde lijado */
 .marco-madera:hover .img-qr {
