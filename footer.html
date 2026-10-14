@@ -1,11 +1,100 @@
 <footer class="site-footer">
     <div class="footer-container">
 
+
+<!-- ===== BLOQUE COMPLETO BOTÓN PROPERTIES CARACAS - PEGAR EN FOOTER ===== -->
+<style>
+#footer-cta-section {
+  margin-top: 30px;
+  padding: 25px 15px;
+  display: flex;
+  justify-content: center;
+}
+#footer-cta-container { text-align: center; perspective: 800px; }
+#cta-label-wrapper .cta-text {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #c19a6b;
+  background: #111;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  border: 1px solid #3a2a1a;
+}
+.properties-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  padding: 12px 22px 12px 12px;
+  border-radius: 16px;
+  border: 2px solid #8d6e4a;
+  box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2);
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  animation: ctaPulse 3s infinite;
+}
+#btn-glow {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s;
+}
+.properties-cta-btn:hover #btn-glow { left: 130%; }
+.properties-cta-btn:hover {
+  transform: translateY(-5px) rotateX(10deg) scale(1.04);
+  border-color: #e8c39a;
+  box-shadow: 0 0 0 3px #000, 0 15px 30px rgba(0,0,0,0.6), 0 0 25px rgba(193, 154, 107, 0.4);
+}
+#btn-wood-frame {
+   
+  background-color: #8d6e4a;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid #5a3e28;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+}
+.btn-img { height: 32px; width: auto; display: block; }
+#btn-arrow { font-size: 22px; color: #e8c39a; font-weight: bold; transition: transform 0.3s; }
+.properties-cta-btn:hover #btn-arrow { transform: translateX(6px); }
+#cta-subtext { margin-top: 10px; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase; }
+@keyframes ctaPulse {
+  0%,100% { box-shadow: 0 0 0 3px #111, 0 8px 20px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 0 0 3px #111, 0 8px 25px rgba(193,154,107,0.4), 0 0 15px rgba(193,154,107,0.2); }
+}
+</style>
+
+<section id="footer-cta-section" class="footer-cta-wrapper">
+  <div id="footer-cta-container" class="cta-container">
+    <div id="cta-label-wrapper" class="cta-label">
+      <span id="cta-text" class="cta-text">🖱️To Look ay the List</span>
+    </div>
+    <a id="properties-footer-link" href="PropertiesCaracas.html" class="properties-cta-btn" aria-label="Ir a Properties Caracas">
+      <div id="btn-glow" class="btn-glow-effect"></div>
+      <div id="btn-wood-frame" class="btn-wood-frame">
+        <img id="img-titulo" src="docs/propertiestitle3.gif" alt="Properties Caracas" class="btn-img">
+      </div>
+      <span id="btn-arrow" class="btn-arrow">→</span>
+    </a>
+  </div>
+</section>
+<!-- ===== FIN DEL BLOQUE ===== -->
+
+
         
 <div class="footer-section footer-risk">
-    <h3><a href="Risk.html" class="footer-risk-link">Risk Disclosure</a></h3>
+    <h3><a href="Risk.html" class="footer-risk-link">To Read Risk Disclosure</a></h3>
     <p>Financial news, market analysis and investment insights for informed decision-making.</p>
-    <p>Before risking your money 💰 try out a proprietary trading desk 👉🐇🐰</p>
+    <p>Before risking your money 💰 try out a proprietary trading desk, Subscribe 👉🐇🐰</p>
     <a class="footer-btn" href="https://app.orionfunded.com/auth/register?ref=11658" target="_blank" rel="noopener noreferrer">
         <img src="docs/new user.gif" alt="Orion Funded">
     </a>
