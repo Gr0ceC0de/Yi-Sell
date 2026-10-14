@@ -3,12 +3,13 @@
    Tono: #E8C9A0 - más claro que caoba
    =========================================== */
 
-body {
-    margin: 0;
-    background: #fdf6eb; /* fondo muy claro */
-    font-family: system-ui, sans-serif;
-    color: #3a2516;
+  body {
+  background-color: #2b1d12; /* mesa de madera oscura como en foto 2 */
+  background-image: 
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 40px),
+    linear-gradient(180deg, #3a2a1a, #1e130d);
 }
+
 
 /* INDICE */
 .indice-nav {
