@@ -6,7 +6,7 @@
     <title>Footer Uniforme</title>
     <style>
         /* ==========================================
-           RESET Y ESTILOS GLOBALES (FUENTE CONSOLE)
+           RESET Y ESTILOS GLOBALES
            ========================================== */
         * {
             margin: 0;
@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #0a0f1a; /* Fondo base oscuro para contraste */
+            background-color: #0a0f1a;
             font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace !important;
         }
 
@@ -70,22 +70,18 @@
             letter-spacing: 1px;
             border-radius: 12px;
             padding: 12px 24px;
-            min-width: 220px; /* Mismo ancho para todos */
-            height: 55px;     /* Misma altura para todos */
+            min-width: 220px;
+            height: 55px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            
-            /* Caja transparente estilo vidrio */
-            background: rgba(255, 255, 255, 0.05);
+
+            background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(127, 255, 212, 0.4); /* Borde Aquamarine translúcido */
-            
-            /* Sombra exterior con brillo Aquamarine */
+            border: 2px solid rgba(127, 255, 212, 0.4);
             box-shadow: 0 0 0 1px rgba(127, 255, 212, 0.2), 0 6px 15px rgba(0, 0, 0, 0.6);
         }
 
-        /* Brillo en el texto */
         .footer-btn span, .footer-btn {
             color: #e0f7fa;
             text-shadow: 
@@ -104,12 +100,14 @@
             width: 100%;
         }
 
-        /* Imágenes dentro de botones */
+        /* Limpieza de imágenes sin sombras/bloques negros sobrepuestos */
         .btn-img {
-            max-height: 30px;
+            max-height: 32px;
             width: auto;
             display: block;
-            filter: drop-shadow(0 0 6px rgba(127, 255, 212, 0.7));
+            background: transparent !important;
+            border: none !important;
+            filter: drop-shadow(0 0 6px rgba(127, 255, 212, 0.6));
         }
 
         .btn-arrow {
@@ -119,7 +117,7 @@
             color: #7FFFD4;
         }
 
-        /* Efecto de Luz Dinámico */
+        /* Efecto de Luz Dinámico suave */
         .btn-glow-effect {
             position: absolute;
             top: 0; 
@@ -142,6 +140,33 @@
         }
 
         .footer-btn:hover .btn-arrow { transform: translateX(5px); }
+
+        /* ==========================================
+           SECCIÓN: RISK DISCLOSURE (VERDE LIMA 🍋‍🟩)
+           ========================================== */
+        #link-risk {
+            border-color: rgba(57, 255, 20, 0.6);
+            box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.3), 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        #link-risk span {
+            color: #39ff14 !important;
+            text-shadow: 
+                0 0 6px rgba(57, 255, 20, 0.9),
+                0 0 14px rgba(57, 255, 20, 0.7),
+                0 0 24px rgba(255, 235, 59, 0.6); /* Destello amarillo brillante en bordes */
+        }
+
+        #link-risk .risk-icon {
+            font-size: 16px;
+            filter: drop-shadow(0 0 8px #39ff14);
+        }
+
+        #link-risk:hover {
+            border-color: #39ff14;
+            background: rgba(57, 255, 20, 0.12);
+            box-shadow: 0 0 0 2px #39ff14, 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 30px rgba(57, 255, 20, 0.4);
+        }
 
         /* ==========================================
            SECCIÓN: CTA PROPERTIES
@@ -194,7 +219,7 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 15px;
-            border: 1px solid rgba(127, 255, 212, 0.1);
+            border: 1px solid rgba(127, 255, 212, 0.15);
         }
 
         #footer-promo-section p {
@@ -220,13 +245,12 @@
         @media (min-width: 768px) {
             .footer-columns {
                 grid-template-columns: repeat(2, 1fr);
-                text-align: left;
             }
         }
 
         @media (min-width: 1024px) {
             .footer-columns {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -234,12 +258,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .footer-section {
-                align-items: flex-start;
-            }
+            width: 100%;
         }
 
         .footer-section h4 {
@@ -252,10 +271,12 @@
             padding-bottom: 8px;
             margin-bottom: 20px;
             width: 100%;
+            max-width: 300px;
+            text-align: center;
             text-shadow: 0 0 8px rgba(127, 255, 212, 0.5);
         }
 
-        /* Listas de navegación */
+        /* Listas simples centradas */
         .nav-list {
             list-style: none;
             padding: 0;
@@ -267,13 +288,6 @@
             align-items: center;
         }
 
-        @media (min-width: 768px) {
-            .nav-list {
-                align-items: flex-start;
-            }
-        }
-
-        /* Enlaces de redes sociales */
         .icon-links-wrapper {
             display: flex;
             flex-direction: column;
@@ -282,14 +296,8 @@
             align-items: center;
         }
 
-        @media (min-width: 768px) {
-            .icon-links-wrapper {
-                align-items: flex-start;
-            }
-        }
-
         /* ==========================================
-           SECCIÓN: CONTACTO (Email y WhatsApp)
+           SECCIÓN: CONTACTO (EMAIL Y WHATSAPP)
            ========================================== */
         #footer-contacto-section {
             display: flex;
@@ -334,14 +342,6 @@
             text-shadow: 0 0 5px rgba(127, 255, 212, 0.3);
             letter-spacing: 1px;
         }
-
-        /* Ajuste para el botón de WhatsApp (mantener caja rectangular como el resto) */
-        .btn-whatsapp-redondo {
-            border-radius: 12px !important; /* Forzar mismo radio para uniformidad */
-            padding: 12px 24px !important;
-            height: 55px !important;
-        }
-
     </style>
 </head>
 <body>
@@ -396,7 +396,7 @@
 
         <!-- ===== SECCIÓN 4: COLUMNAS DE NAVEGACIÓN Y REDES ===== -->
         <div class="footer-columns">
-            
+
             <!-- Columna: Navegación -->
             <div class="footer-section" id="nav-column">
                 <h4>Navigation</h4>
@@ -444,9 +444,6 @@
                     </a>
                 </div>
             </div>
-            
-            <!-- Columna vacía para mantener el grid en 3 columnas si es necesario, o puedes eliminar -->
-            <div class="footer-section" id="empty-column" style="visibility: hidden; display: none;" aria-hidden="true"></div>
 
         </div>
 
@@ -464,7 +461,7 @@
                     </div>
                 </a>
                 <!-- Botón WhatsApp -->
-                <a id="link-whatsapp" class="footer-btn btn-whatsapp-redondo" href="https://wa.me/5561981792390" target="_blank" rel="noopener noreferrer">
+                <a id="link-whatsapp" class="footer-btn" href="https://wa.me/5561981792390" target="_blank" rel="noopener noreferrer">
                     <div class="btn-glow-effect"></div>
                     <div class="btn-content">
                         <img src="docs/whatsapp%204.0.gif" alt="WhatsApp" class="btn-img">
