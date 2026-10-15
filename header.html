@@ -1,153 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><style>
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-}
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
-}
-</style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Financial Algorithms | Algoritmos Financieros | Yisel - Mosaico Animado</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{background:#1e1e2f;overflow-x:hidden}
-.header-mosaico{
-  background:linear-gradient(135deg,#1e1e2f 0%,#2a2a40 100%);
-  color:#fff;
-  padding:2.5rem 1rem 2rem;
-  text-align:center;
-  border-bottom:4px solid #ffb347;
-  position:relative;
-  overflow:hidden;
-}
-.header-mosaico::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(600px at 50% -20%, rgba(255,179,71,.15), transparent 60%);
-  pointer-events:none;
-}
-.header-mosaico h1{
-  position:relative;
-  font-family:'Montserrat',system-ui,sans-serif;
-  font-size:clamp(1.5rem,5vw,2.5rem);
-  letter-spacing:2px;line-height:1.1;margin:0;font-weight:700;
-  animation:fadeDown .8s ease both;
-}
-.header-mosaico .sub{
-  position:relative;
-  font-family:'Montserrat',system-ui,sans-serif;
-  font-size:clamp(.95rem,2.5vw,1.15rem);
-  opacity:.9;margin:8px 0 0;font-style:italic;
-  animation:fadeDown .8s .15s ease both;
-}
-.header-mosaico .hint{
-  position:relative;
-  display:inline-flex;align-items:center;gap:6px;
-  margin-top:16px;padding:6px 14px;border-radius:999px;
-  font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.5px;
-  background:rgba(255,179,71,.12);border:1px solid rgba(255,179,71,.25);color:#ffe3a3;
-  animation:fadeDown .8s .3s ease both;
-}
-.mosaico-container{
-  font-size:.6rem;
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
-  gap:12px 14px;max-width:1400px;margin:0 auto;
-  padding:32px 10px 40px;
-  perspective:1000px;
-}
-.tarjeta-idioma{
-  position:relative;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:10px 12px 8px;min-width:92px;max-width:220px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1), background .2s, border-color .2s, box-shadow .2s;
-  user-select:none;
-  opacity:0; /* para entrada */
-  transform:translateY(20px) scale(.92);
-  will-change:transform;
-}
-.tarjeta-idioma.entra{
-  animation:entraMosaico .7s cubic-bezier(.34,1.56,.64,1) forwards;
-}
-.tarjeta-idioma.flotando{
-  animation:entraMosaico .7s cubic-bezier(.34,1.56,.64,1) forwards,
-            flote 4.5s ease-in-out infinite;
-}
-.tarjeta-idioma:hover{
-  transform:translateY(-4px) scale(1.04) !important;
-  background:rgba(255,255,255,.07);
-  border-color:rgba(255,179,71,.25);
-  z-index:2;
-}
-.tarjeta-idioma.sonando{
-  background:rgba(255,179,71,.10) !important;
-  border-color:rgba(255,179,71,.45) !important;
-  box-shadow:0 0 0 1px rgba(255,179,71,.2),0 12px 32px rgba(0,0,0,.45);
-  z-index:3;
-}
-.tarjeta-idioma.sonando .saludo{ text-shadow:0 0 12px currentColor,0 0 28px currentColor; }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Algorithms | Algoritmos Financieros | Yisel - Mosaico Animado</title>
+    
+    <!-- Fuentes Locales -->
+    <style>
+        @font-face {
+            font-family: "Optimistic";
+            font-style: normal;
+            font-weight: 400 600;
+            font-display: swap;
+            src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+        }
+        @font-face {
+            font-family: "Optimistic Mono";
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+        }
+        :where(html) {
+            font-family: "Optimistic", system-ui, sans-serif;
+        }
+        :where(code, pre, kbd, samp) {
+            font-family: "Optimistic Mono", ui-monospace, monospace;
+        }
+    </style>
 
-.tarjeta-idioma .saludo{line-height:1.15;word-break:break-word;max-width:22ch;padding:0 2px;transition:text-shadow .25s ease}
-.tarjeta-idioma .idioma-nombre{font:400 .70em 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:1px;opacity:.7;color:#ffe3a3;margin:4px 0 2px}
-.tarjeta-idioma .iconos{font-size:1em;letter-spacing:2px;opacity:.9;transition:transform .3s ease}
-.tarjeta-idioma:hover .iconos{transform:scale(1.15) rotate(2deg)}
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
-.btn-voz{
-  position:absolute;top:-8px;right:-8px;width:32px;height:32px;min-width:32px;min-height:32px;
-  border-radius:999px;display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(255,255,255,.15);background:rgba(30,30,47,.92);color:#ffe3a3;
-  font-size:14px;cursor:pointer;transition:all .2s ease;-webkit-tap-highlight-color:transparent;
-}
-.btn-voz:hover{transform:scale(1.12);box-shadow:0 4px 12px rgba(0,0,0,.3)}
-.btn-voz.sonando{background:#ffb347;border-color:#ffb347;color:#1e1e2f;animation:pulseBtn 1.2s ease-in-out infinite;box-shadow:0 0 0 4px rgba(255,179,71,.25)}
+    <!-- Estilos CSS -->
+    <style>
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body { background: #1e1e2f; overflow-x: hidden; }
 
-.footer-meta{width:100%;text-align:center;padding:0 0 36px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.3;color:#fff}
+        .header-mosaico {
+            background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
+            color: #fff;
+            padding: 2.5rem 1rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #ffb347;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-mosaico::before {
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(600px at 50% -20%, rgba(255, 179, 71, .15), transparent 60%);
+            pointer-events: none;
+        }
+        .header-mosaico h1 {
+            position: relative;
+            font-family: 'Montserrat', system-ui, sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            letter-spacing: 2px; line-height: 1.1; margin: 0; font-weight: 700;
+            animation: fadeDown .8s ease both;
+        }
+        .header-mosaico .sub {
+            position: relative;
+            font-family: 'Montserrat', system-ui, sans-serif;
+            font-size: clamp(.95rem, 2.5vw, 1.15rem);
+            opacity: .9; margin: 8px 0 0; font-style: italic;
+            animation: fadeDown .8s .15s ease both;
+        }
+        .header-mosaico .hint {
+            position: relative;
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 16px; padding: 6px 14px; border-radius: 999px;
+            font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .5px;
+            background: rgba(255, 179, 71, .12); border: 1px solid rgba(255, 179, 71, .25); color: #ffe3a3;
+            animation: fadeDown .8s .3s ease both;
+        }
+        .mosaico-container {
+            font-size: .6rem;
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+            gap: 12px 14px; max-width: 1400px; margin: 0 auto;
+            padding: 32px 10px 40px;
+            perspective: 1000px;
+            width: 100%;
+            min-width: 0;
+        }
+        .tarjeta-idioma {
+            position: relative;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 10px 12px 8px; min-width: 92px; max-width: 220px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 12px;
+            transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), background .2s, border-color .2s, box-shadow .2s;
+            user-select: none;
+            opacity: 0;
+            transform: translateY(20px) scale(.92);
+            will-change: transform;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        .tarjeta-idioma.entra {
+            animation: entraMosaico .7s cubic-bezier(.34, 1.56, .64, 1) forwards;
+        }
+        .tarjeta-idioma.flotando {
+            animation: entraMosaico .7s cubic-bezier(.34, 1.56, .64, 1) forwards,
+                       flote 4.5s ease-in-out infinite;
+        }
+        .tarjeta-idioma:hover {
+            transform: translateY(-4px) scale(1.04) !important;
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 179, 71, .25);
+            z-index: 2;
+        }
+        .tarjeta-idioma.sonando {
+            background: rgba(255, 179, 71, .10) !important;
+            border-color: rgba(255, 179, 71, .45) !important;
+            box-shadow: 0 0 0 1px rgba(255, 179, 71, .2), 0 12px 32px rgba(0, 0, 0, .45);
+            z-index: 3;
+        }
+        .tarjeta-idioma.sonando .saludo { 
+            text-shadow: 0 0 12px currentColor, 0 0 28px currentColor; 
+        }
+        .tarjeta-idioma .saludo {
+            line-height: 1.15; word-break: break-word; max-width: 22ch; padding: 0 2px;
+            transition: text-shadow .25s ease;
+        }
+        .tarjeta-idioma .idioma-nombre {
+            font: 400 .70em 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+            opacity: .7; color: #ffe3a3; margin: 4px 0 2px;
+        }
+        .tarjeta-idioma .iconos {
+            font-size: 1em; letter-spacing: 2px; opacity: .9; transition: transform .3s ease;
+        }
+        .tarjeta-idioma:hover .iconos { 
+            transform: scale(1.15) rotate(2deg); 
+        }
 
-/* ANIMACIONES */
-@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes entraMosaico{from{opacity:0;transform:translateY(22px) scale(.88)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes flote{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes pulseBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
-@keyframes brillo{0%{box-shadow:0 0 0 0 rgba(255,179,71,0)}50%{box-shadow:0 0 0 8px rgba(255,179,71,.18)}100%{box-shadow:0 0 0 0 rgba(255,179,71,0)}}
-.brillo{animation:brillo 1s ease}
+        .btn-voz {
+            position: absolute; top: -8px; right: -8px; width: 32px; height: 32px; min-width: 32px; min-height: 32px;
+            border-radius: 999px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255, 255, 255, .15); background: rgba(30, 30, 47, .92); color: #ffe3a3;
+            font-size: 14px; cursor: pointer; transition: all .2s ease; -webkit-tap-highlight-color: transparent;
+        }
+        .btn-voz:hover { 
+            transform: scale(1.12); box-shadow: 0 4px 12px rgba(0, 0, 0, .3); 
+        }
+        .btn-voz.sonando {
+            background: #ffb347; border-color: #ffb347; color: #1e1e2f;
+            animation: pulseBtn 1.2s ease-in-out infinite; box-shadow: 0 0 0 4px rgba(255, 179, 71, .25);
+        }
 
-@media (min-width:1200px){.mosaico-container{font-size:.65rem}}
-@media (max-width:768px){.mosaico-container{font-size:.55rem;gap:10px}}
-@media (max-width:480px){.mosaico-container{font-size:.5rem;gap:8px}.tarjeta-idioma{min-width:80px}}
-</style>
+        .footer-meta {
+            width: 100%; text-align: center; padding: 0 0 36px; font-family: 'Montserrat', sans-serif;
+            font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: .3; color: #fff;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes entraMosaico { from { opacity: 0; transform: translateY(22px) scale(.88); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes flote { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes pulseBtn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+        @keyframes brillo { 0% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } 50% { box-shadow: 0 0 0 8px rgba(255, 179, 71, .18); } 100% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } }
+        .brillo { animation: brillo 1s ease; }
+
+        @media (min-width: 1200px) { .mosaico-container { font-size: .65rem; } }
+        @media (max-width: 768px) { .mosaico-container { font-size: .55rem; gap: 10px; } }
+        @media (max-width: 480px) { .mosaico-container { font-size: .5rem; gap: 8px; } .tarjeta-idioma { min-width: 80px; } }
+    </style>
 </head>
 <body>
+
 <header class="header-mosaico">
-  <h1>Financial Algorithms | Algoritmos Financieros |</h1>
-  <p class="sub">Yisel</p>
-  <div class="hint">🔊 Toca la corneta · El mosaico respira solo</div>
-  <div id="mosaico" class="mosaico-container"></div>
-  <div class="footer-meta">101 bienvenidas · animación JS pura · Web Speech API</div>
+    <h1>Financial Algorithms | Algoritmos Financieros |</h1>
+    <p class="sub">Yisel</p>
+    <div class="hint">🔊 Toca la corneta · El mosaico respira solo</div>
+    <div id="mosaico" class="mosaico-container"></div>
+    <div class="footer-meta">101 bienvenidas · animación JS pura · Web Speech API</div>
 </header>
 
 <script>
-const DATA = `Welcome|English|🗽🫖🎸|en-US
+    // ==========================================
+    // 1. DATOS DE LOS IDIOMAS
+    // ==========================================
+    const DATA = `Welcome|English|🗽🫖🎸|en-US
 Bienvenidos|Español|💃🥘🌶️|es-ES
 Bem-vindos|Português|⚽🐓🌊|pt-BR
 Bienvenue|Français|🥐🗼🍷|fr-FR
@@ -249,112 +284,162 @@ Yá'át'ééh|Diné|🏜️🪶🐑|nv-US
 yI'el!|Klingon|🖖🚀⚔️|tlh
 Benvidos|Galego|🐙🌊🥧|gl-ES`;
 
-const FONTS = ["'Montserrat'","'Playfair Display'","'Pacifico'","'Lobster'","'Caveat'","'Oswald'","'Merriweather'","'Righteous'","'Bebas Neue'","'Dancing Script'","'Abril Fatface'","'Comfortaa'","'Special Elite'","'Cinzel'"];
-const FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
+    const FONTS = ["'Montserrat'", "'Playfair Display'", "'Pacifico'", "'Lobster'", "'Caveat'", "'Oswald'", "'Merriweather'", "'Righteous'", "'Bebas Neue'", "'Dancing Script'", "'Abril Fatface'", "'Comfortaa'", "'Special Elite'", "'Cinzel'"];
+    const FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
 
-let voces = [];
-function cargarVoces(){ voces = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
-if(window.speechSynthesis){ cargarVoces(); speechSynthesis.onvoiceschanged = cargarVoces; }
+    // ==========================================
+    // 2. LÓGICA DE VOZ (Web Speech API)
+    // ==========================================
+    let voces = [];
+    function cargarVoces() { 
+        voces = window.speechSynthesis ? speechSynthesis.getVoices() : []; 
+    }
+    
+    if (window.speechSynthesis) { 
+        cargarVoces(); 
+        speechSynthesis.onvoiceschanged = cargarVoces; 
+    }
 
-function hablar(texto, lang, tarjeta, boton){
-  if(!window.speechSynthesis) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(texto);
-  u.lang = lang;
-  const base = lang.split('-')[0].toLowerCase();
-  const vozExacta = voces.find(v => v.lang.replace('_','-').toLowerCase() === lang.toLowerCase());
-  const vozBase = voces.find(v => v.lang.toLowerCase().startsWith(base));
-  if(vozExacta) u.voice = vozExacta; else if(vozBase) u.voice = vozBase;
-  u.rate = 0.85;
-  document.querySelectorAll('.sonando').forEach(el=>el.classList.remove('sonando'));
-  document.querySelectorAll('.btn-voz.sonando').forEach(b=>{b.classList.remove('sonando'); b.textContent='🔊';});
-  tarjeta.classList.add('sonando'); boton.classList.add('sonando'); boton.textContent='🔉';
-  // efecto extra al hablar: que rebote un poco
-  tarjeta.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:350,easing:'cubic-bezier(.34,1.56,.64,1)'});
-  u.onend = u.onerror = () => { tarjeta.classList.remove('sonando'); boton.classList.remove('sonando'); boton.textContent='🔊'; };
-  speechSynthesis.speak(u);
-}
+    function hablar(texto, lang, tarjeta, boton) {
+        if (!window.speechSynthesis) return;
+        speechSynthesis.cancel();
+        
+        const u = new SpeechSynthesisUtterance(texto);
+        u.lang = lang;
+        const base = lang.split('-')[0].toLowerCase();
+        const vozExacta = voces.find(v => v.lang.replace('_', '-').toLowerCase() === lang.toLowerCase());
+        const vozBase = voces.find(v => v.lang.toLowerCase().startsWith(base));
+        
+        if (vozExacta) u.voice = vozExacta; 
+        else if (vozBase) u.voice = vozBase;
+        
+        u.rate = 0.85;
+        
+        document.querySelectorAll('.sonando').forEach(el => el.classList.remove('sonando'));
+        document.querySelectorAll('.btn-voz.sonando').forEach(b => { 
+            b.classList.remove('sonando'); 
+            b.textContent = '🔊'; 
+        });
+        
+        tarjeta.classList.add('sonando'); 
+        boton.classList.add('sonando'); 
+        boton.textContent = '🔉';
+        
+        tarjeta.animate([
+            { transform: 'scale(1)' }, 
+            { transform: 'scale(1.08)' }, 
+            { transform: 'scale(1)' }
+        ], { duration: 350, easing: 'cubic-bezier(.34, 1.56, .64, 1)' });
+        
+        u.onend = u.onerror = () => { 
+            tarjeta.classList.remove('sonando'); 
+            boton.classList.remove('sonando'); 
+            boton.textContent = '🔊'; 
+        };
+        
+        speechSynthesis.speak(u);
+    }
 
-function generarMosaico(){
-  const box = document.getElementById('mosaico');
-  const rows = DATA.split('\n').map(r=>r.trim()).filter(Boolean).map(r=>r.split('|'));
-  let seed = 7;
-  const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
-  rows.forEach(([t,l,ic,lang], i)=>{
-    const hue = Math.floor((i*137.5)%360);
-    const d = document.createElement('div');
-    d.className='tarjeta-idioma';
-    // delay para entrada en cascada + flote desfasado
-    const delayEntrada = (i*25) % 800; // ms
-    const delayFlote = (rnd()*2000).toFixed(0);
-    const durFlote = (3.5 + rnd()*2.5).toFixed(2);
+    // ==========================================
+    // 3. GENERACIÓN DEL MOSAICO
+    // ==========================================
+    function generarMosaico() {
+        const box = document.getElementById('mosaico');
+        const rows = DATA.split('\n').map(r => r.trim()).filter(Boolean).map(r => r.split('|'));
+        
+        let seed = 7;
+        const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+        
+        rows.forEach(([t, l, ic, lang], i) => {
+            const hue = Math.floor((i * 137.5) % 360);
+            const d = document.createElement('div');
+            d.className = 'tarjeta-idioma';
+            
+            const delayEntrada = (i * 25) % 800;
+            const delayFlote = (rnd() * 2000).toFixed(0);
+            const durFlote = (3.5 + rnd() * 2.5).toFixed(2);
 
-    const btn = document.createElement('button');
-    btn.className='btn-voz'; btn.textContent='🔊';
-    btn.setAttribute('aria-label',`Escuchar ${t} en ${l}`);
+            const btn = document.createElement('button');
+            btn.className = 'btn-voz'; 
+            btn.textContent = '🔊';
+            btn.setAttribute('aria-label', `Escuchar ${t} en ${l}`);
 
-    const s = document.createElement('div');
-    s.className='saludo'; s.textContent=t;
-    s.style.fontFamily=FONTS[i%FONTS.length]+FALLBACK;
-    s.style.fontSize=(0.9+rnd()*1.0).toFixed(2)+'em';
-    s.style.color=`hsl(${hue},85%,72%)`;
+            const s = document.createElement('div');
+            s.className = 'saludo'; 
+            s.textContent = t;
+            s.style.fontFamily = FONTS[i % FONTS.length] + FALLBACK;
+            s.style.fontSize = (0.9 + rnd() * 1.0).toFixed(2) + 'em';
+            s.style.color = `hsl(${hue}, 85%, 72%)`;
 
-    const n = document.createElement('div'); n.className='idioma-nombre'; n.textContent=l;
-    const e = document.createElement('div'); e.className='iconos'; e.textContent=ic;
+            const n = document.createElement('div'); 
+            n.className = 'idioma-nombre'; 
+            n.textContent = l;
+            
+            const e = document.createElement('div'); 
+            e.className = 'iconos'; 
+            e.textContent = ic;
 
-    btn.addEventListener('click', ()=>hablar(t, lang, d, btn));
-    d.append(btn, s, n, e);
-    box.appendChild(d);
+            btn.addEventListener('click', () => hablar(t, lang, d, btn));
+            d.append(btn, s, n, e);
+            box.appendChild(d);
 
-    // Animación de entrada + flote
-    setTimeout(()=>{
-      d.classList.add('entra');
-      d.style.animationDelay = `0s, ${delayFlote}ms`;
-      d.style.animationDuration = `.7s, ${durFlote}s`;
-      // después de entrar, activar flote continuo
-      setTimeout(()=>{ d.classList.remove('entra'); d.classList.add('flotando'); d.style.animationDelay = `${delayFlote}ms`; d.style.animationDuration = `${durFlote}s`; }, 800);
-    }, delayEntrada);
-  });
+            // Animación de entrada y flote
+            setTimeout(() => {
+                d.classList.add('entra');
+                setTimeout(() => {
+                    d.classList.remove('entra');
+                    d.classList.add('flotando');
+                    d.style.animationDelay = `${delayFlote}ms`;
+                    d.style.animationDuration = `${durFlote}s`;
+                }, 800);
+            }, delayEntrada);
+        });
 
-  // === SCRIPT EXTRA: animación ambiental ===
-  // 1) Onda de brillo aleatoria cada 3s
-  setInterval(()=>{
-    const tarjetas = document.querySelectorAll('.tarjeta-idioma');
-    if(!tarjetas.length) return;
-    const pick = tarjetas[Math.floor(Math.random()*tarjetas.length)];
-    pick.classList.add('brillo');
-    setTimeout(()=>pick.classList.remove('brillo'), 1000);
-  }, 2800);
+        // ==========================================
+        // 4. EFECTOS AMBIENTALES
+        // ==========================================
+        
+        // Onda de brillo aleatoria
+        setInterval(() => {
+            const tarjetas = document.querySelectorAll('.tarjeta-idioma');
+            if (!tarjetas.length) return;
+            const pick = tarjetas[Math.floor(Math.random() * tarjetas.length)];
+            pick.classList.add('brillo');
+            setTimeout(() => pick.classList.remove('brillo'), 1000);
+        }, 2800);
 
-  // 2) Parallax suave con mouse (solo desktop)
-  let mx=0,my=0,raf=null;
-  window.addEventListener('mousemove',(ev)=>{
-    mx = (ev.clientX / window.innerWidth - 0.5) * 12;
-    my = (ev.clientY / window.innerHeight - 0.5) * 8;
-    if(raf) return;
-    raf = requestAnimationFrame(()=>{
-      document.querySelectorAll('.tarjeta-idioma').forEach((el, idx)=>{
-        if(el.classList.contains('sonando')) return;
-        const factor = (idx % 7) * 0.12 + 0.4; // cada tarjeta se mueve distinto
-        el.style.transform = `translate3d(${mx*factor}px, ${my*factor}px, 0)`;
-      });
-      raf=null;
-    });
-  });
+        // Parallax suave con mouse
+        let mx = 0, my = 0, raf = null;
+        window.addEventListener('mousemove', (ev) => {
+            mx = (ev.clientX / window.innerWidth - 0.5) * 12;
+            my = (ev.clientY / window.innerHeight - 0.5) * 8;
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+                document.querySelectorAll('.tarjeta-idioma').forEach((el, idx) => {
+                    if (el.classList.contains('sonando')) return;
+                    const factor = (idx % 7) * 0.12 + 0.4;
+                    el.style.transform = `translate3d(${mx * factor}px, ${my * factor}px, 0)`;
+                });
+                raf = null;
+            });
+        });
 
-  // 3) Pausar flote si pestaña no visible (ahorra bateria)
-  document.addEventListener('visibilitychange',()=>{
-    document.querySelectorAll('.tarjeta-idioma').forEach(el=>{
-      el.style.animationPlayState = document.hidden ? 'paused' : 'running';
-    });
-  });
+        // Pausar animaciones si la pestaña no está visible
+        document.addEventListener('visibilitychange', () => {
+            document.querySelectorAll('.tarjeta-idioma').forEach(el => {
+                el.style.animationPlayState = document.hidden ? 'paused' : 'running';
+            });
+        });
 
-  console.log('Mosaico animado generado con '+rows.length+' idiomas.');
-}
+        console.log('Mosaico animado generado con ' + rows.length + ' idiomas.');
+    }
 
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded', generarMosaico);
-}else{ generarMosaico(); }
+    // Inicialización
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', generarMosaico);
+    } else {
+        generarMosaico();
+    }
 </script>
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</body>
 </html>
