@@ -187,7 +187,12 @@ function generarMosaico() {
   });
   console.log('Mosaico generado con ' + rows.length + ' idiomas.');
 }
-document.addEventListener('DOMContentLoaded', generarMosaico);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', generarMosaico);
+} else {
+  generarMosaico();
+}
+})();
 </script>
 </body>
 </html>
