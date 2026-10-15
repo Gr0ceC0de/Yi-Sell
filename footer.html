@@ -61,82 +61,97 @@
             </div>
 
 
-<!-- Contact -->
-<div class="footer-section">
-        /* 1 >> FOOTER BASE */
-        .footer-section { background: #0f172a; padding: 36px 20px; }
-        .seccion-footer { display:flex; flex-direction:column; align-items:center; gap:22px; }
-        .titulo-footer { color:#e2e8f0; font-size:18px; letter-spacing:0.08em; text-transform:uppercase; }
 
-        /* 1.1 >> SISTEMA DOBLE MARCO */
-        .marco-doble {
-          display:inline-flex;
-          padding:4px;
-          border-radius:14px;
-          border-width:2px;
-          border-style:solid;
-        }
-        .marco-violeta { border-color:#5d3a6e; background: rgba(93,58,110,0.15); }
-        .marco-marron { border-color:#6b4a35; background: rgba(107,74,53,0.18); border-radius:50%; }
+   <style>
+.seccion-footer {
+  background: #0f172a;
+  padding: 36px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.titulo-footer {
+  color: #e2e8f0;
+  font-size: 18px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.nav-footer {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+}
+.marco-doble {
+  display: inline-flex;
+  padding: 4px;
+  border: 2px solid;
+  border-radius: 14px;
+}
+.marco-violeta { border-color: #5d3a6e; background: rgba(93,58,110,.15); }
+.marco-marron  { border-color: #6b4a35; background: rgba(107,74,53,.18); }
+.unidad-redonda {
+  border-radius: 50%;
+  isolation: isolate;
+  box-shadow: 0 0 0 1px #7a3d4f, 0 6px 20px rgba(0,0,0,.45);
+}
+.marco-interior {
+  padding: 4px;
+  background: #0f172a;
+  border: 3px solid #7a3d4f;
+  border-radius: 10px;
+}
+.marco-interior.circulo { border-radius: 50%; }
+.parrafo { margin: 0; }
+.img-reducido {
+  width: 52px;
+  height: 52px;
+  display: block;
+  object-fit: contain;
+}
+.img-reducido.circulo { border-radius: 50%; object-fit: cover; }
+.div-copyright {
+  margin-top: 16px;
+  padding-top: 14px;
+  width: 100%;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  border-top: 1px solid rgba(122,61,79,.2);
+}
+</style>
 
-        .marco-interior.rosa-viejo-oscuro {
-          border:3px solid #7a3d4f;
-          padding:4px;
-          border-radius:10px;
-          background:#0f172a;
-        }
-        .marco-interior.circulo { border-radius:50%; }
+<!-- SECCION CONTACTO -->
+<footer id="seccion-contacto" class="seccion seccion-footer">
+  <h2 id="titulo-footer" class="titulo-footer">Contacto</h2>
 
-        /* 1.2 >> TAMAÑO REDUCIDO + UNIDAD A SOLAS */
-        .img-reducido { width:52px; height:52px; display:block; object-fit:cover; }
-        .img-reducido.circulo { border-radius:50%; }
+  <nav id="nav-footer" class="nav-footer">
+    <div id="div-email" class="marco-doble marco-violeta">
+      <div class="marco-interior">
+        <p id="parrafo-email" class="parrafo">
+          <a id="link-email" href="mailto:yigraciel@hotmail.com?subject=Question%2FComment">
+            <img id="img-email" src="docs/yilkaemail.gif" alt="Email" class="img-reducido">
+          </a>
+        </p>
+      </div>
+    </div>
 
-        .unidad-redonda {
-          isolation:isolate;
-          box-shadow: 0 0 0 1px #7a3d4f, 0 6px 20px rgba(0,0,0,0.45);
-          border-radius:50%;
-        }
+    <div id="div-whatsapp" class="marco-doble marco-marron unidad-redonda">
+      <div class="marco-interior circulo">
+        <p id="parrafo-whatsapp" class="parrafo">
+          <a id="link-whatsapp" href="https://wa.me/5561981792390" target="_blank" rel="noopener">
+            <img id="img-whatsapp" src="docs/whatsapp%204.0.gif" alt="Chat WhatsApp" class="img-reducido circulo">
+          </a>
+        </p>
+      </div>
+    </div>
+  </nav>
 
-        .nav-footer { display:flex; gap:28px; align-items:center; justify-content:center; }
-        .div-copyright { margin-top:16px; color:#94a3b8; font-size:13px; border-top:1px solid rgba(122,61,79,0.2); padding-top:14px; width:100%; text-align:center; }
-    
-
-    <!-- SECCION CONTACTO -->
-    <footer id="seccion-contacto" class="seccion seccion-footer">
-        <h2 id="titulo-footer" class="h2 titulo-footer">Contacto</h2>
-        
-        <div id="div-nav-footer" class="div div-footer">
-            <nav id="nav-footer" class="nav nav-footer">
-                
-                <div id="div-email" class="div div-email marco-doble marco-violeta">
-                    <div class="marco-interior rosa-viejo-oscuro">
-                        <p id="parrafo-email" class="p parrafo">
-                            <a id="link-email" href="mailto:yigraciel@hotmail.com?subject=Question%2FComment">
-                                <img id="img-email" src="docs/yilkaemail.gif" alt="contact" class="img-contacto img-reducido">
-                            </a>
-                        </p>
-                    </div>
-                </div>
-
-                <div id="div-whatsapp" class="div div-whatsapp marco-doble marco-marron unidad-redonda">
-                    <div class="marco-interior rosa-viejo-oscuro circulo">
-                        <p id="parrafo-whatsapp" class="p parrafo">
-                            <a id="link-whatsapp" href="https://wa.me/5561981792390" target="_blank" rel="">
-                                <img id="img-whatsapp" src="docs/whatsapp%204.0.gif" alt="Chat WhatsApp" class="img-contacto img-reducido circulo">
-                            </a>
-                        </p>
-                    </div>
-                </div>
-
-            </nav>
-
-            <div id="div-copyright" class="div div-copyright">
-                <p id="parrafo-copyright" class="p">© 2026 Todos os direitos reservados</p>
-            </div>
-        </div>
-    </footer>
-</div>
-
+  <div id="div-copyright" class="div-copyright">
+    <p id="parrafo-copyright">© 2026 Todos os direitos reservados</p>
+  </div>
+</footer>   
           
             <!-- Follow -->
             <div class="footer-section">
