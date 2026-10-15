@@ -1,3 +1,301 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosaico de Bienvenidas - 101 Idiomas</title>
+    <!-- Fuente opcional para el título -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f7fc;
+        }
+
+        /* HEADER PRINCIPAL */
+        .header-mosaico {
+            background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-bottom: 4px solid #ffb347;
+        }
+
+        .header-mosaico h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header-mosaico p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* CONTENEDOR DEL MOSAICO */
+        .mosaico-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 12px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        /* TARJETA DE CADA IDIOMA */
+        .tarjeta-idioma {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 10px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+            flex: 0 1 auto;
+            transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            cursor: default;
+        }
+
+        .tarjeta-idioma:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+            border-color: #ffb347;
+        }
+
+        .tarjeta-idioma .saludo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+            text-align: center;
+            word-break: break-word;
+            color: #fff8e7;
+        }
+
+        .tarjeta-idioma .idioma-nombre {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            font-weight: 400;
+            color: #ffd966;
+            margin-bottom: 4px;
+        }
+
+        .tarjeta-idioma .iconos {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 768px) {
+            .header-mosaico h1 {
+                font-size: 1.8rem;
+            }
+            .tarjeta-idioma {
+                min-width: 100px;
+                padding: 8px 10px;
+            }
+            .tarjeta-idioma .saludo {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tarjeta-idioma {
+                min-width: 80px;
+                padding: 6px 8px;
+            }
+            .tarjeta-idioma .saludo {
+                font-size: 0.85rem;
+            }
+            .tarjeta-idioma .idioma-nombre {
+                font-size: 0.6rem;
+            }
+            .tarjeta-idioma .iconos {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER CON EL MOSAICO -->
+    <header class="header-mosaico">
+        <h1>🌍 Bienvenidos al Mundo 🌍</h1>
+        <p>101 lenguas, un solo saludo</p>
+        <div id="mosaico" class="mosaico-container"></div>
+    </header>
+
+    <script>
+        // Lista completa de 101 idiomas con sus saludos
+        const welcomes = [
+            {t:"Welcome", l:"English"},
+            {t:"Bienvenidos", l:"Español"},
+            {t:"Bem-vindos", l:"Português"},
+            {t:"Bienvenue", l:"Français"},
+            {t:"Benvenuti", l:"Italiano"},
+            {t:"Willkommen", l:"Deutsch"},
+            {t:"Welkom", l:"Nederlands"},
+            {t:"Välkommen", l:"Svenska"},
+            {t:"Velkommen", l:"Norsk"},
+            {t:"Velkommen", l:"Dansk"},
+            {t:"Tervetuloa", l:"Suomi"},
+            {t:"Velkomin", l:"Íslenska"},
+            {t:"Fáilte", l:"Gaeilge"},
+            {t:"Croeso", l:"Cymraeg"},
+            {t:"Ongi etorri", l:"Euskara"},
+            {t:"Benvinguts", l:"Català"},
+            {t:"Bine ați venit", l:"Română"},
+            {t:"Witamy", l:"Polski"},
+            {t:"Vítejte", l:"Čeština"},
+            {t:"Vitajte", l:"Slovenčina"},
+            {t:"Üdvözöljük", l:"Magyar"},
+            {t:"Dobrodošli", l:"Hrvatski"},
+            {t:"Добродошли", l:"Српски"},
+            {t:"Добре дошли", l:"Български"},
+            {t:"Добро пожаловать", l:"Русский"},
+            {t:"Ласкаво просимо", l:"Українська"},
+            {t:"Сардэчна запрашаем", l:"Беларуская"},
+            {t:"Καλώς ήρθατε", l:"Ελληνικά"},
+            {t:"Hoş geldiniz", l:"Türkçe"},
+            {t:"Mirë se vini", l:"Shqip"},
+            {t:"Добредојде", l:"Македонски"},
+            {t:"Sveiki atvykę", l:"Lietuvių"},
+            {t:"Laipni lūdzam", l:"Latviešu"},
+            {t:"Tere tulemast", l:"Eesti"},
+            {t:"Merħba", l:"Malti"},
+            {t:"Բարի գալուստ", l:"Հայերեն"},
+            {t:"კეთილი იყოს თქვენი მობრძანება", l:"ქართული"},
+            {t:"Xoş gəlmisiniz", l:"Azərbaycan"},
+            {t:"Қош келдіңіз", l:"Қазақша"},
+            {t:"Xush kelibsiz", l:"O'zbek"},
+            {t:"ברוכים הבאים", l:"עברית"},
+            {t:"أهلاً وسهلاً", l:"العربية"},
+            {t:"خوش آمدید", l:"فارسی"},
+            {t:"ښه راغلاست", l:"پښتو"},
+            {t:"خوش آمدید", l:"اردو"},
+            {t:"स्वागत है", l:"हिन्दी"},
+            {t:"স্বাগতম", l:"বাংলা"},
+            {t:"સ્વાગત છે", l:"ગુજરાતી"},
+            {t:"स्वागत आहे", l:"मराठी"},
+            {t:"ਜੀ ਆਇਆਂ ਨੂੰ", l:"ਪੰਜਾਬੀ"},
+            {t:"வரவேற்கிறோம்", l:"தமிழ்"},
+            {t:"స్వాగతం", l:"తెలుగు"},
+            {t:"സ്വാഗതം", l:"മലയാളം"},
+            {t:"ಸ್ವಾಗತ", l:"ಕನ್ನಡ"},
+            {t:"ආයුබෝවන්", l:"සිංහල"},
+            {t:"स्वागत छ", l:"नेपाली"},
+            {t:"ยินดีต้อนรับ", l:"ไทย"},
+            {t:"ຍິນດີຕ້ອນຮັບ", l:"ລາວ"},
+            {t:"ស្វាគមន៍", l:"ខ្មែរ"},
+            {t:"ကြိုဆိုပါတယ်", l:"မြန်မာ"},
+            {t:"Chào mừng", l:"Tiếng Việt"},
+            {t:"Selamat datang", l:"Indonesia"},
+            {t:"Selamat datang", l:"Melayu"},
+            {t:"Maligayang pagdating", l:"Tagalog"},
+            {t:"Sugeng rawuh", l:"Jawa"},
+            {t:"E komo mai", l:"ʻŌlelo Hawaiʻi"},
+            {t:"Nau mai", l:"Māori"},
+            {t:"Afio mai", l:"Samoa"},
+            {t:"欢迎", l:"中文 简体"},
+            {t:"歡迎", l:"中文 繁體"},
+            {t:"ようこそ", l:"日本語"},
+            {t:"환영합니다", l:"한국어"},
+            {t:"Тавтай морил", l:"Монгол"},
+            {t:"བཀྲ་ཤིས་བདེ་ལེགས།", l:"བོད་ཡིག"},
+            {t:"བཀྲ་ཤིས་བདེ་ལེགས", l:"Dzongkha"},
+            {t:"እንኳን ደህና መጡ", l:"አማርኛ"},
+            {t:"Karibu", l:"Kiswahili"},
+            {t:"Kaabo", l:"Yorùbá"},
+            {t:"Wamkelekile", l:"Zulu"},
+            {t:"Wamkelekile", l:"Xhosa"},
+            {t:"Soo dhawoow", l:"Somali"},
+            {t:"Barka da zuwa", l:"Hausa"},
+            {t:"Nnọọ", l:"Igbo"},
+            {t:"Murakaza neza", l:"Kinyarwanda"},
+            {t:"Boyei bolamu", l:"Lingala"},
+            {t:"Mauya", l:"Shona"},
+            {t:"Welkom", l:"Afrikaans"},
+            {t:"Rea u amohela", l:"Sesotho"},
+            {t:"Tongasoa", l:"Malagasy"},
+            {t:"Bonvenon", l:"Esperanto"},
+            {t:"Salvete", l:"Latina Antiqua"},
+            {t:"स्वागतम्", l:"संस्कृतम्"},
+            {t:"ⲁⲛⲁϣ", l:"Coptic"},
+            {t:"ᎣᏏᏲ", l:"ᏣᎳᎩ"},
+            {t:"ᑐᙵᓱᒋᑦ", l:"Inuktitut"},
+            {t:"Allillanchu", l:"Quechua"},
+            {t:"Mba'éichapa", l:"Guaraní"},
+            {t:"Aski jayp'u", l:"Aymara"},
+            {t:"Yá'át'ééh", l:"Diné"},
+            {t:"yI'el!", l:"Klingon"}
+        ];
+
+        // Iconos que se mostrarán en cada tarjeta (se reparten de forma cíclica)
+        const iconos = ['🍟', '🍔', '🍏', '🏖️', '🥑', '🦄'];
+
+        // Función para generar el mosaico
+        function generarMosaico() {
+            const contenedor = document.getElementById('mosaico');
+            if (!contenedor) return;
+
+            // Limpiar por si acaso
+            contenedor.innerHTML = '';
+
+            // Recorrer todos los idiomas
+            welcomes.forEach((item, index) => {
+                // Crear la tarjeta
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta-idioma';
+
+                // Asignar un icono rotativo (cíclico)
+                const icono = iconos[index % iconos.length];
+
+                // Construir el HTML interno
+                tarjeta.innerHTML = `
+                    <div class="saludo">${item.t}</div>
+                    <div class="idioma-nombre">${item.l}</div>
+                    <div class="iconos">${icono}</div>
+                `;
+
+                // Añadir al contenedor
+                contenedor.appendChild(tarjeta);
+            });
+
+            // Mostrar en consola cuántos idiomas se han cargado (para verificar que son 101)
+            console.log(`Mosaico generado con ${welcomes.length} idiomas.`);
+        }
+
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', generarMosaico);
+    </script>
+</body>
+</html>
+
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Noto+Nastaliq+Urdu&family=Noto+Sans+JP:wght@700&family=Noto+Serif+Georgian:wght@700&display=swap');
 
 <section class="welcome-box" id="welcome-box">
