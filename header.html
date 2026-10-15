@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Algorithms | Algoritmos Financieros | Yisel - Mosaico Animado</title>
-    
+
     <!-- Fuentes Locales -->
     <style>
         @font-face {
@@ -79,7 +79,6 @@
             display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
             gap: 12px 14px; max-width: 1400px; margin: 0 auto;
             padding: 32px 10px 40px;
-            perspective: 1000px;
             width: 100%;
             min-width: 0;
         }
@@ -91,31 +90,24 @@
             background: rgba(255, 255, 255, .03);
             border: 1px solid rgba(255, 255, 255, .06);
             border-radius: 12px;
-            transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), background .2s, border-color .2s, box-shadow .2s;
+            transition: background .2s, border-color .2s, box-shadow .2s;
             user-select: none;
             opacity: 0;
             transform: translateY(20px) scale(.92);
             will-change: transform;
             overflow: hidden;
             word-wrap: break-word;
-        }
-        .tarjeta-idioma.entra {
             animation: entraMosaico .7s cubic-bezier(.34, 1.56, .64, 1) forwards;
         }
-        .tarjeta-idioma.flotando {
-            animation: entraMosaico .7s cubic-bezier(.34, 1.56, .64, 1) forwards,
-                       flote 4.5s ease-in-out infinite;
-        }
         .tarjeta-idioma:hover {
-            transform: translateY(-4px) scale(1.04) !important;
             background: rgba(255, 255, 255, .07);
             border-color: rgba(255, 179, 71, .25);
             z-index: 2;
         }
         .tarjeta-idioma.sonando {
-            background: rgba(255, 179, 71, .10) !important;
-            border-color: rgba(255, 179, 71, .45) !important;
-            box-shadow: 0 0 0 1px rgba(255, 179, 71, .2), 0 12px 32px rgba(0, 0, 0, .45);
+            background: rgba(255, 179, 71, .15) !important;
+            border-color: rgba(255, 179, 71, .6) !important;
+            box-shadow: 0 0 0 1px rgba(255, 179, 71, .3), 0 12px 32px rgba(0, 0, 0, .45);
             z-index: 3;
         }
         .tarjeta-idioma.sonando .saludo { 
@@ -141,6 +133,7 @@
             border-radius: 999px; display: flex; align-items: center; justify-content: center;
             border: 1px solid rgba(255, 255, 255, .15); background: rgba(30, 30, 47, .92); color: #ffe3a3;
             font-size: 14px; cursor: pointer; transition: all .2s ease; -webkit-tap-highlight-color: transparent;
+            z-index: 4;
         }
         .btn-voz:hover { 
             transform: scale(1.12); box-shadow: 0 4px 12px rgba(0, 0, 0, .3); 
@@ -158,7 +151,6 @@
         /* ANIMACIONES */
         @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes entraMosaico { from { opacity: 0; transform: translateY(22px) scale(.88); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes flote { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         @keyframes pulseBtn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
         @keyframes brillo { 0% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } 50% { box-shadow: 0 0 0 8px rgba(255, 179, 71, .18); } 100% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } }
         .brillo { animation: brillo 1s ease; }
@@ -171,16 +163,16 @@
 <body>
 
 <header class="header-mosaico">
-    <h1>Financial Algorithms | Algoritmos Financieros |</h1>
+    <h1>Financial Algorithms | Algoritmos Financieros</h1>
     <p class="sub">Yisel</p>
-    <div class="hint">🔊 Toca la corneta · El mosaico respira solo</div>
+    <div class="hint">🔊 Toca la corneta para escuchar el saludo</div>
     <div id="mosaico" class="mosaico-container"></div>
-    <div class="footer-meta">101 bienvenidas · animación JS pura · Web Speech API</div>
+    <div class="footer-meta">101 bienvenidas · Web Speech API</div>
 </header>
 
 <script>
     // ==========================================
-    // 1. DATOS DE LOS IDIOMAS
+    // 1. DATOS DE LOS IDIOMAS (101 Idiomas)
     // ==========================================
     const DATA = `Welcome|English|🗽🫖🎸|en-US
 Bienvenidos|Español|💃🥘🌶️|es-ES
@@ -288,153 +280,131 @@ Benvidos|Galego|🐙🌊🥧|gl-ES`;
     const FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
 
     // ==========================================
-    // 2. LÓGICA DE VOZ (Web Speech API)
+    // 2. GESTIÓN DE VOCES Y REPRODUCCIÓN
     // ==========================================
-    let voces = [];
-    function cargarVoces() { 
-        voces = window.speechSynthesis ? speechSynthesis.getVoices() : []; 
+    let vocesDisponibles = [];
+
+    function actualizarVoces() {
+        if (window.speechSynthesis) {
+            vocesDisponibles = window.speechSynthesis.getVoices();
+        }
     }
-    
-    if (window.speechSynthesis) { 
-        cargarVoces(); 
-        speechSynthesis.onvoiceschanged = cargarVoces; 
+
+    if (window.speechSynthesis) {
+        actualizarVoces();
+        window.speechSynthesis.onvoiceschanged = actualizarVoces;
     }
 
     function hablar(texto, lang, tarjeta, boton) {
-        if (!window.speechSynthesis) return;
-        speechSynthesis.cancel();
-        
-        const u = new SpeechSynthesisUtterance(texto);
-        u.lang = lang;
-        const base = lang.split('-')[0].toLowerCase();
-        const vozExacta = voces.find(v => v.lang.replace('_', '-').toLowerCase() === lang.toLowerCase());
-        const vozBase = voces.find(v => v.lang.toLowerCase().startsWith(base));
-        
-        if (vozExacta) u.voice = vozExacta; 
-        else if (vozBase) u.voice = vozBase;
-        
-        u.rate = 0.85;
-        
+        if (!window.speechSynthesis) {
+            alert("Tu navegador no soporta síntesis de voz.");
+            return;
+        }
+
+        // Detener cualquier audio previo en curso
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = lang;
+        utterance.rate = 0.9; // Velocidad ligeramente más natural y clara
+
+        // Búsqueda inteligente de la voz correspondiente
+        const baseLang = lang.split('-')[0].toLowerCase();
+        const vozExacta = vocesDisponibles.find(v => v.lang.replace('_', '-').toLowerCase() === lang.toLowerCase());
+        const vozBase = vocesDisponibles.find(v => v.lang.toLowerCase().startsWith(baseLang));
+
+        if (vozExacta) {
+            utterance.voice = vozExacta;
+        } else if (vozBase) {
+            utterance.voice = vozBase;
+        }
+
+        // Limpiar estados previos visuales
         document.querySelectorAll('.sonando').forEach(el => el.classList.remove('sonando'));
-        document.querySelectorAll('.btn-voz.sonando').forEach(b => { 
-            b.classList.remove('sonando'); 
-            b.textContent = '🔊'; 
-        });
-        
-        tarjeta.classList.add('sonando'); 
-        boton.classList.add('sonando'); 
+        document.querySelectorAll('.btn-voz').forEach(b => b.textContent = '🔊');
+
+        // Activar estados visuales actuales
+        tarjeta.classList.add('sonando');
+        boton.classList.add('sonando');
         boton.textContent = '🔉';
-        
-        tarjeta.animate([
-            { transform: 'scale(1)' }, 
-            { transform: 'scale(1.08)' }, 
-            { transform: 'scale(1)' }
-        ], { duration: 350, easing: 'cubic-bezier(.34, 1.56, .64, 1)' });
-        
-        u.onend = u.onerror = () => { 
-            tarjeta.classList.remove('sonando'); 
-            boton.classList.remove('sonando'); 
-            boton.textContent = '🔊'; 
+
+        // Eventos de control de reproducción
+        utterance.onend = utterance.onerror = () => {
+            tarjeta.classList.remove('sonando');
+            boton.classList.remove('sonando');
+            boton.textContent = '🔊';
         };
-        
-        speechSynthesis.speak(u);
+
+        // Ejecutar voz
+        window.speechSynthesis.speak(utterance);
     }
 
     // ==========================================
-    // 3. GENERACIÓN DEL MOSAICO
+    // 3. GENERACIÓN DEL MOSAICO DE TARJETAS
     // ==========================================
     function generarMosaico() {
-        const box = document.getElementById('mosaico');
-        const rows = DATA.split('\n').map(r => r.trim()).filter(Boolean).map(r => r.split('|'));
-        
+        const contenedor = document.getElementById('mosaico');
+        if (!contenedor) return;
+
+        const lineas = DATA.split('\n').map(r => r.trim()).filter(Boolean).map(r => r.split('|'));
+
         let seed = 7;
         const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-        
-        rows.forEach(([t, l, ic, lang], i) => {
+
+        lineas.forEach(([textoSaludo, nombreIdioma, iconos, codigoLang], i) => {
             const hue = Math.floor((i * 137.5) % 360);
-            const d = document.createElement('div');
-            d.className = 'tarjeta-idioma';
-            
-            const delayEntrada = (i * 25) % 800;
-            const delayFlote = (rnd() * 2000).toFixed(0);
-            const durFlote = (3.5 + rnd() * 2.5).toFixed(2);
+            const tarjeta = document.createElement('div');
+            tarjeta.className = 'tarjeta-idioma';
 
-            const btn = document.createElement('button');
-            btn.className = 'btn-voz'; 
-            btn.textContent = '🔊';
-            btn.setAttribute('aria-label', `Escuchar ${t} en ${l}`);
+            // Retraso escalonado para la aparición inicial
+            const delayEntrada = (i * 15) % 600;
+            tarjeta.style.animationDelay = `${delayEntrada}ms`;
 
-            const s = document.createElement('div');
-            s.className = 'saludo'; 
-            s.textContent = t;
-            s.style.fontFamily = FONTS[i % FONTS.length] + FALLBACK;
-            s.style.fontSize = (0.9 + rnd() * 1.0).toFixed(2) + 'em';
-            s.style.color = `hsl(${hue}, 85%, 72%)`;
+            // Botón de voz interactivo
+            const botonVoz = document.createElement('button');
+            botonVoz.className = 'btn-voz';
+            botonVoz.textContent = '🔊';
+            botonVoz.setAttribute('aria-label', `Escuchar ${textoSaludo} en ${nombreIdioma}`);
 
-            const n = document.createElement('div'); 
-            n.className = 'idioma-nombre'; 
-            n.textContent = l;
-            
-            const e = document.createElement('div'); 
-            e.className = 'iconos'; 
-            e.textContent = ic;
+            // Contenido textual y visual de la tarjeta
+            const divSaludo = document.createElement('div');
+            divSaludo.className = 'saludo';
+            divSaludo.textContent = textoSaludo;
+            divSaludo.style.fontFamily = FONTS[i % FONTS.length] + FALLBACK;
+            divSaludo.style.fontSize = (0.9 + rnd() * 0.9).toFixed(2) + 'em';
+            divSaludo.style.color = `hsl(${hue}, 85%, 72%)`;
 
-            btn.addEventListener('click', () => hablar(t, lang, d, btn));
-            d.append(btn, s, n, e);
-            box.appendChild(d);
+            const divNombre = document.createElement('div');
+            divNombre.className = 'idioma-nombre';
+            divNombre.textContent = nombreIdioma;
 
-            // Animación de entrada y flote
-            setTimeout(() => {
-                d.classList.add('entra');
-                setTimeout(() => {
-                    d.classList.remove('entra');
-                    d.classList.add('flotando');
-                    d.style.animationDelay = `${delayFlote}ms`;
-                    d.style.animationDuration = `${durFlote}s`;
-                }, 800);
-            }, delayEntrada);
+            const divIconos = document.createElement('div');
+            divIconos.className = 'iconos';
+            divIconos.textContent = iconos;
+
+            // Asignación limpia del evento click
+            botonVoz.addEventListener('click', (e) => {
+                e.stopPropagation();
+                hablar(textoSaludo, codigoLang, tarjeta, botonVoz);
+            });
+
+            tarjeta.append(botonVoz, divSaludo, divNombre, divIconos);
+            contenedor.appendChild(tarjeta);
         });
 
-        // ==========================================
-        // 4. EFECTOS AMBIENTALES
-        // ==========================================
-        
-        // Onda de brillo aleatoria
+        // Efecto visual sutil y aleatorio de brillo periódico
         setInterval(() => {
             const tarjetas = document.querySelectorAll('.tarjeta-idioma');
             if (!tarjetas.length) return;
-            const pick = tarjetas[Math.floor(Math.random() * tarjetas.length)];
-            pick.classList.add('brillo');
-            setTimeout(() => pick.classList.remove('brillo'), 1000);
-        }, 2800);
+            const tarjetaAleatoria = tarjetas[Math.floor(Math.random() * tarjetas.length)];
+            tarjetaAleatoria.classList.add('brillo');
+            setTimeout(() => tarjetaAleatoria.classList.remove('brillo'), 1000);
+        }, 3000);
 
-        // Parallax suave con mouse
-        let mx = 0, my = 0, raf = null;
-        window.addEventListener('mousemove', (ev) => {
-            mx = (ev.clientX / window.innerWidth - 0.5) * 12;
-            my = (ev.clientY / window.innerHeight - 0.5) * 8;
-            if (raf) return;
-            raf = requestAnimationFrame(() => {
-                document.querySelectorAll('.tarjeta-idioma').forEach((el, idx) => {
-                    if (el.classList.contains('sonando')) return;
-                    const factor = (idx % 7) * 0.12 + 0.4;
-                    el.style.transform = `translate3d(${mx * factor}px, ${my * factor}px, 0)`;
-                });
-                raf = null;
-            });
-        });
-
-        // Pausar animaciones si la pestaña no está visible
-        document.addEventListener('visibilitychange', () => {
-            document.querySelectorAll('.tarjeta-idioma').forEach(el => {
-                el.style.animationPlayState = document.hidden ? 'paused' : 'running';
-            });
-        });
-
-        console.log('Mosaico animado generado con ' + rows.length + ' idiomas.');
+        console.log('Mosaico de 101 idiomas cargado y listo con soporte de voz interactivo.');
     }
 
-    // Inicialización
+    // Inicializar al cargar el DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', generarMosaico);
     } else {
