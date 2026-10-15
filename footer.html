@@ -1,18 +1,364 @@
-<!-- Importación de Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Uniforme</title>
+    <style>
+        /* ==========================================
+           RESET Y ESTILOS GLOBALES (FUENTE CONSOLE)
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<footer class="site-footer">
+        body {
+            background-color: #0a0f1a; /* Fondo base oscuro para contraste */
+            font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace !important;
+        }
+
+        /* ==========================================
+           CONTENEDOR PRINCIPAL DEL FOOTER
+           ========================================== */
+        .site-footer {
+            position: relative;
+            background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 50px 20px 20px;
+            color: #d1f2eb;
+            font-family: 'Courier New', Courier, monospace !important;
+            overflow: hidden;
+        }
+
+        /* Capa de degradado oscuro sobre la imagen de fondo */
+        .site-footer::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 15, 26, 0.95), rgba(15, 30, 45, 0.95));
+            z-index: 0;
+        }
+
+        .footer-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* ==========================================
+           ESTILOS UNIFICADOS PARA TODOS LOS BOTONES
+           ========================================== */
+        .footer-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace !important;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 12px;
+            padding: 12px 24px;
+            min-width: 220px; /* Mismo ancho para todos */
+            height: 55px;     /* Misma altura para todos */
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* Caja transparente estilo vidrio */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(127, 255, 212, 0.4); /* Borde Aquamarine translúcido */
+            
+            /* Sombra exterior con brillo Aquamarine */
+            box-shadow: 0 0 0 1px rgba(127, 255, 212, 0.2), 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Brillo en el texto */
+        .footer-btn span, .footer-btn {
+            color: #e0f7fa;
+            text-shadow: 
+                0 0 4px rgba(127, 255, 212, 0.9),
+                0 0 10px rgba(127, 255, 212, 0.5),
+                0 0 20px rgba(127, 255, 212, 0.3);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* Imágenes dentro de botones */
+        .btn-img {
+            max-height: 30px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 6px rgba(127, 255, 212, 0.7));
+        }
+
+        .btn-arrow {
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            color: #7FFFD4;
+        }
+
+        /* Efecto de Luz Dinámico */
+        .btn-glow-effect {
+            position: absolute;
+            top: 0; 
+            left: -100%;
+            width: 60%; 
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(127, 255, 212, 0.2), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .footer-btn:hover .btn-glow-effect { left: 140%; }
+
+        .footer-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(127, 255, 212, 0.1);
+            border-color: #7FFFD4;
+            box-shadow: 0 0 0 2px #7FFFD4, 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 25px rgba(127, 255, 212, 0.3);
+        }
+
+        .footer-btn:hover .btn-arrow { transform: translateX(5px); }
+
+        /* ==========================================
+           SECCIÓN: CTA PROPERTIES
+           ========================================== */
+        #footer-cta-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        #footer-cta-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #cta-label-wrapper .cta-text {
+            display: inline-block;
+            font-family: 'Courier New', Courier, monospace !important;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #7FFFD4;
+            background: rgba(15, 30, 45, 0.8);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(127, 255, 212, 0.5);
+            text-shadow: 0 0 8px rgba(127, 255, 212, 0.6);
+        }
+
+        /* ==========================================
+           SECCIÓN: RISK DISCLOSURE
+           ========================================== */
+        #footer-risk-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* ==========================================
+           SECCIÓN: ORION FUNDED
+           ========================================== */
+        #footer-promo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(127, 255, 212, 0.1);
+        }
+
+        #footer-promo-section p {
+            font-family: 'Courier New', Courier, monospace !important;
+            font-size: 13px;
+            color: #a3e4d7;
+            line-height: 1.6;
+            max-width: 500px;
+            text-shadow: 0 0 5px rgba(127, 255, 212, 0.2);
+        }
+
+        /* ==========================================
+           COLUMNAS DE NAVEGACIÓN Y REDES
+           ========================================== */
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .footer-columns {
+                grid-template-columns: repeat(2, 1fr);
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-columns {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-section {
+                align-items: flex-start;
+            }
+        }
+
+        .footer-section h4 {
+            font-family: 'Courier New', Courier, monospace !important;
+            color: #7FFFD4;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(127, 255, 212, 0.3);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-shadow: 0 0 8px rgba(127, 255, 212, 0.5);
+        }
+
+        /* Listas de navegación */
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .nav-list {
+                align-items: flex-start;
+            }
+        }
+
+        /* Enlaces de redes sociales */
+        .icon-links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .icon-links-wrapper {
+                align-items: flex-start;
+            }
+        }
+
+        /* ==========================================
+           SECCIÓN: CONTACTO (Email y WhatsApp)
+           ========================================== */
+        #footer-contacto-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(127, 255, 212, 0.15);
+        }
+
+        #titulo-contacto {
+            font-family: 'Courier New', Courier, monospace !important;
+            color: #7FFFD4;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
+        }
+
+        .contacto-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* ==========================================
+           COPYRIGHT
+           ========================================== */
+        .footer-bottom {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding-top: 25px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(127, 255, 212, 0.15);
+            font-size: 12px;
+            color: #7FFFD4;
+            font-family: 'Courier New', Courier, monospace !important;
+            text-shadow: 0 0 5px rgba(127, 255, 212, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Ajuste para el botón de WhatsApp (mantener caja rectangular como el resto) */
+        .btn-whatsapp-redondo {
+            border-radius: 12px !important; /* Forzar mismo radio para uniformidad */
+            padding: 12px 24px !important;
+            height: 55px !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- ==========================================
+     FOOTER PRINCIPAL
+     ========================================== -->
+<footer class="site-footer" id="main-footer">
     <div class="footer-container">
 
-        <!-- ===== SECCIÓN PROPERTIES CARACAS ===== -->
-        <section id="footer-cta-section" class="footer-cta-wrapper">
-            <div id="footer-cta-container" class="cta-container">
-                <div id="cta-label-wrapper" class="cta-label">
+        <!-- ===== SECCIÓN 1: CTA PROPERTIES CARACAS ===== -->
+        <section id="footer-cta-section">
+            <div id="footer-cta-container">
+                <div id="cta-label-wrapper">
                     <span id="cta-text" class="cta-text">🏡 Prime Location 🖱️ To Look at the List</span>
                 </div>
-                <a id="properties-footer-link" href="PropertiesCaracas.html" class="footer-btn btn-violet" aria-label="Ir a Properties Caracas">
+                <a id="properties-footer-link" href="PropertiesCaracas.html" class="footer-btn" aria-label="Ir a Properties Caracas">
                     <div class="btn-glow-effect"></div>
                     <div class="btn-content">
                         <img id="img-titulo" src="docs/propertiestitle3.gif" alt="Properties Caracas" class="btn-img">
@@ -22,9 +368,9 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN RISK DISCLOSURE ===== -->
-        <div class="footer-section footer-risk">
-            <a href="Risk.html" class="footer-btn btn-blue">
+        <!-- ===== SECCIÓN 2: RISK DISCLOSURE ===== -->
+        <section id="footer-risk-section">
+            <a href="Risk.html" class="footer-btn" id="link-risk">
                 <div class="btn-glow-effect"></div>
                 <div class="btn-content">
                     <span class="risk-icon">☣️</span>
@@ -32,135 +378,45 @@
                     <span class="btn-arrow">→</span>
                 </div>
             </a>
-        </div>
+        </section>
 
-        <!-- ===== SECCIÓN ORION FUNDED ===== -->
-        <div class="footer-section footer-promo">
-            <p>Financial news, market analysis and investment insights for informed decision-making.</p>
-            <p>Before risking your money 💰 try out a proprietary trading desk, Subscribe 👉🐇🐰</p>
-            <a class="footer-btn btn-pink" href="https://app.orionfunded.com/auth/register?ref=11658" target="_blank" rel="noopener noreferrer">
+        <!-- ===== SECCIÓN 3: ORION FUNDED ===== -->
+        <section id="footer-promo-section">
+            <p id="promo-text-1">Financial news, market analysis and investment insights for informed decision-making.</p>
+            <p id="promo-text-2">Before risking your money 💰 try out a proprietary trading desk, Subscribe 👉🐇🐰</p>
+            <a id="orion-link" class="footer-btn" href="https://app.orionfunded.com/auth/register?ref=11658" target="_blank" rel="noopener noreferrer">
                 <div class="btn-glow-effect"></div>
                 <div class="btn-content">
                     <img src="docs/new user.gif" alt="Orion Funded" class="btn-img">
+                    <span>Orion Funded</span>
+                    <span class="btn-arrow">→</span>
                 </div>
             </a>
-        </div>
+        </section>
 
-        <!-- ===== COLUMNAS DE NAVEGACIÓN ===== -->
+        <!-- ===== SECCIÓN 4: COLUMNAS DE NAVEGACIÓN Y REDES ===== -->
         <div class="footer-columns">
-            <!-- Navigation -->
-            <div class="footer-section">
+            
+            <!-- Columna: Navegación -->
+            <div class="footer-section" id="nav-column">
                 <h4>Navigation</h4>
                 <ul class="nav-list">
-                    <li><a href="index.html" class="footer-btn btn-brown">Home</a></li>
-                    <li><a href="headlines.html" class="footer-btn btn-brown">Headlines</a></li>
-                    <li><a href="classifieds.html" class="footer-btn btn-brown">Classifieds</a></li>
-                    <li><a href="market_over_view.html" class="footer-btn btn-brown">Financial Overview</a></li>
-                    <li><a href="TradingTools.html" class="footer-btn btn-brown">TradingTools</a></li>
+                    <li><a href="index.html" class="footer-btn">Home</a></li>
+                    <li><a href="headlines.html" class="footer-btn">Headlines</a></li>
+                    <li><a href="classifieds.html" class="footer-btn">Classifieds</a></li>
+                    <li><a href="market_over_view.html" class="footer-btn">Financial Overview</a></li>
+                    <li><a href="TradingTools.html" class="footer-btn">Trading Tools</a></li>
                 </ul>
             </div>
 
-
-
-   <style>
-.seccion-footer {
-  background: #0f172a;
-  padding: 36px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-}
-.titulo-footer {
-  color: #e2e8f0;
-  font-size: 18px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.nav-footer {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-  justify-content: center;
-}
-.marco-doble {
-  display: inline-flex;
-  padding: 4px;
-  border: 2px solid;
-  border-radius: 14px;
-}
-.marco-violeta { border-color: #5d3a6e; background: rgba(93,58,110,.15); }
-.marco-marron  { border-color: #6b4a35; background: rgba(107,74,53,.18); }
-.unidad-redonda {
-  border-radius: 50%;
-  isolation: isolate;
-  box-shadow: 0 0 0 1px #7a3d4f, 0 6px 20px rgba(0,0,0,.45);
-}
-.marco-interior {
-  padding: 4px;
-  background: #0f172a;
-  border: 3px solid #7a3d4f;
-  border-radius: 10px;
-}
-.marco-interior.circulo { border-radius: 50%; }
-.parrafo { margin: 0; }
-.img-reducido {
-  width: 52px;
-  height: 52px;
-  display: block;
-  object-fit: contain;
-}
-.img-reducido.circulo { border-radius: 50%; object-fit: cover; }
-.div-copyright {
-  margin-top: 16px;
-  padding-top: 14px;
-  width: 100%;
-  text-align: center;
-  color: #94a3b8;
-  font-size: 13px;
-  border-top: 1px solid rgba(122,61,79,.2);
-}
-</style>
-
-<!-- SECCION CONTACTO -->
-<section id="seccion-contacto" class="seccion seccion-footer">
-  <h2 id="titulo-footer" class="titulo-footer">Contacto</h2>
-
-  <nav id="nav-footer" class="nav-footer">
-    <div id="div-email" class="marco-doble marco-violeta">
-      <div class="marco-interior">
-        <p id="parrafo-email" class="parrafo">
-          <a id="link-email" href="mailto:yigraciel@hotmail.com?subject=Question%2FComment">
-            <img id="img-email" src="docs/yilkaemail.gif" alt="Email" class="img-reducido">
-          </a>
-        </p>
-      </div>
-    </div>
-
-    <div id="div-whatsapp" class="marco-doble marco-marron unidad-redonda">
-      <div class="marco-interior circulo">
-        <p id="parrafo-whatsapp" class="parrafo">
-          <a id="link-whatsapp" href="https://wa.me/5561981792390" target="_blank" rel="noopener">
-            <img id="img-whatsapp" src="docs/whatsapp%204.0.gif" alt="Chat WhatsApp" class="img-reducido circulo">
-          </a>
-        </p>
-      </div>
-    </div>
-  </nav>
-
-  <div id="div-copyright" class="div-copyright">
-    <p id="parrafo-copyright">© 2026 Todos os direitos reservados</p>
-  </div>
-</footer>   
-          
-            <!-- Follow -->
-            <div class="footer-section">
+            <!-- Columna: Follow (Redes Sociales) -->
+            <div class="footer-section" id="social-column">
                 <h4>Follow</h4>
                 <div class="icon-links-wrapper">
-                    <a class="footer-btn btn-pastel" href="https://instagram.com/robotstools?stkn=MXdxd2xxdmJsY2t3NA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <a class="footer-btn" href="https://instagram.com/robotstools?stkn=MXdxd2xxdmJsY2t3NA%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <div class="btn-glow-effect"></div>
                         <div class="btn-content">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FFFD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -168,19 +424,19 @@
                             <span>Instagram</span>
                         </div>
                     </a>
-                    <a class="footer-btn btn-pastel" href="https://x.com/YakelinYisel28" target="_blank" rel="noopener noreferrer" aria-label="X">
+                    <a class="footer-btn" href="https://x.com/YakelinYisel28" target="_blank" rel="noopener noreferrer" aria-label="X">
                         <div class="btn-glow-effect"></div>
                         <div class="btn-content">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#7FFFD4" aria-hidden="true">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
                             <span>X</span>
                         </div>
                     </a>
-                    <a class="footer-btn btn-pastel" href="https://t.me/Grocecode" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                    <a class="footer-btn" href="https://t.me/Grocecode" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                         <div class="btn-glow-effect"></div>
                         <div class="btn-content">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#7FFFD4" aria-hidden="true">
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
                             <span>Telegram</span>
@@ -188,338 +444,43 @@
                     </a>
                 </div>
             </div>
+            
+            <!-- Columna vacía para mantener el grid en 3 columnas si es necesario, o puedes eliminar -->
+            <div class="footer-section" id="empty-column" style="visibility: hidden; display: none;" aria-hidden="true"></div>
+
         </div>
+
+        <!-- ===== SECCIÓN 5: CONTACTO (EMAIL Y WHATSAPP) ===== -->
+        <section id="footer-contacto-section">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <div class="contacto-wrapper">
+                <!-- Botón Email -->
+                <a id="link-email" class="footer-btn" href="mailto:yigraciel@hotmail.com?subject=Question%2FComment">
+                    <div class="btn-glow-effect"></div>
+                    <div class="btn-content">
+                        <img src="docs/yilkaemail.gif" alt="Email" class="btn-img">
+                        <span>Email</span>
+                        <span class="btn-arrow">→</span>
+                    </div>
+                </a>
+                <!-- Botón WhatsApp -->
+                <a id="link-whatsapp" class="footer-btn btn-whatsapp-redondo" href="https://wa.me/5561981792390" target="_blank" rel="noopener noreferrer">
+                    <div class="btn-glow-effect"></div>
+                    <div class="btn-content">
+                        <img src="docs/whatsapp%204.0.gif" alt="WhatsApp" class="btn-img">
+                        <span>WhatsApp</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <!-- ===== COPYRIGHT ===== -->
-    <div class="footer-bottom">
+    <div class="footer-bottom" id="footer-copyright">
         <p>© 2026 Yisell Tools. All Rights Reserved.</p>
     </div>
-</section>
+</footer>
 
-<style>
-/* Reset & Tipografía Base */
-.site-footer {
-    background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #0f172a;
-    color: #d1d5db;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    padding: 40px 20px;
-    position: relative;
-}
-
-.site-footer::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.92));
-    z-index: 0;
-}
-
-.footer-container,
-.footer-bottom {
-    position: relative;
-    z-index: 1;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-
-<!-- 1 >> COLOCALO AQUI - ANTES DE TU FOOTER, NO ANTES DEL HEAD -->
-<style>
-/* --- 1 >> ESTILO BASE UNIFICADO PARA TODOS LOS BOTONES (A) - VIDRIO TRANSPARENTE --- */
-.footer-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: 12px;
-    padding: 10px 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    
-    /* 1.1 >> CAJA TRANSPARENTE - como en tu captura */
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 2px solid rgba(255,255,255,0.12);
-    box-shadow: 0 0 0 1px rgba(122,61,79,0.3), 0 6px 15px rgba(0,0,0,0.5);
-}
-
-.btn-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    z-index: 2;
-}
-
-/* 1.2 >> BORDE BRILLANTE EN LOS TEXTOS */
-.footer-btn span, .footer-btn {
-    color: #e2e8f0;
-    text-shadow: 
-      0 0 4px rgba(255,255,255,0.8),
-      0 0 10px rgba(122,61,79,0.6),
-      0 0 18px rgba(122,61,79,0.4);
-}
-
-.btn-img {
-    max-height: 35px;
-    width: auto;
-    display: block;
-    filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
-}
-
-.btn-arrow {
-    font-size: 18px;
-    font-weight: bold;
-    transition: transform 0.3s;
-}
-
-/* 1.3 >> TRANSPARENCIAS EN LOS MARCOS - doble marco */
-.marco-violeta .footer-btn { border-color: rgba(93,58,110,0.35); }
-.marco-marron .footer-btn { border-color: rgba(107,74,53,0.35); }
-.marco-violeta .footer-btn::before {
-    content:''; position:absolute; inset:3px;
-    border:1.5px solid rgba(122,61,79,0.25); /* rosa viejo oscuro transparente */
-    border-radius:9px; pointer-events:none;
-}
-
-/* Efecto de Luz / Glow Dinámico */
-.btn-glow-effect {
-    position: absolute;
-    top: 0; 
-    left: -100%;
-    width: 60%; 
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.6s ease;
-    z-index: 1;
-}
-
-.footer-btn:hover .btn-glow-effect { left: 140%; }
-.footer-btn:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.25);
-    box-shadow: 0 0 0 1px #7a3d4f, 0 8px 25px rgba(0,0,0,0.6), 0 0 20px rgba(122,61,79,0.3);
-}
-.footer-btn:hover .btn-arrow { transform: translateX(5px); }
-
-/* Mantener tu unidad redonda de WhatsApp */
-.footer-btn.btn-whatsapp-redondo {
-    border-radius: 50px;
-    padding: 12px 22px;
-    isolation: isolate;
-}
-</style>
-
-<!-- 2 >> TU FOOTER - MANTIENE TODO, SOLO CAMBIA LA CLASE -->
-<div class="footer-section">
-    <footer id="seccion-contacto" class="seccion seccion-footer">
-        <h2 id="titulo-footer">Contacto</h2>
-        <div id="div-nav-footer">
-            <nav id="nav-footer" class="nav nav-footer">
-                
-                <!-- EMAIL con caja transparente -->
-                <div class="div div-email marco-violeta">
-                    <a id="link-email" class="footer-btn" href="mailto:yigraciel@hotmail.com?subject=Question%2FComment">
-                        <div class="btn-glow-effect"></div>
-                        <div class="btn-content">
-                            <img src="docs/yilkaemail.gif" alt="contact" class="btn-img">
-                            <span>Email</span>
-                            <span class="btn-arrow">→</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- WHATSAPP con caja transparente + unidad redonda -->
-                <div class="div div-whatsapp marco-marron">
-                    <a id="link-whatsapp" class="footer-btn btn-whatsapp-redondo" href="https://wa.me/5561981792390" target="_blank">
-                        <div class="btn-glow-effect"></div>
-                        <div class="btn-content">
-                            <img src="docs/whatsapp%204.0.gif" alt="WhatsApp" class="btn-img">
-                            <span>WhatsApp</span>
-                        </div>
-                    </a>
-                </div>
-
-            </nav>
-            <div class="div div-copyright">
-                <p>© 2026 Todos os direitos reservados</p>
-            </div>
-        </div>
-    </footer>
-</div>
-
-
-/* --- VARIANTES DE COLORES (Marcos) --- */
-
-/* Azul (Risk Disclosure) */
-.btn-blue {
-    background: linear-gradient(145deg, #1e3a8a, #1d4ed8);
-    border-color: #60a5fa;
-    color: #8A8ACB;
-}
-.btn-blue:hover {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 3px #000, 0 10px 25px rgba(37, 99, 235, 0.5), 0 0 20px rgba(37, 99, 235, 0.4);
-}
-
-/* Marrón (Navegación) */
-.btn-brown {
-    background: linear-gradient(145deg, #3e2723, #5d4037);
-    border-color: #a1887f;
-    color: #efebe9;
-    font-size: 11px;
-    padding: 8px 16px;
-}
-.btn-brown:hover {
-    border-color: #d7ccc8;
-    box-shadow: 0 0 0 3px #000, 0 10px 25px rgba(93, 64, 55, 0.5), 0 0 20px rgba(161, 136, 127, 0.4);
-}
-
-/* Violeta (Properties) */
-.btn-violet {
-    background: linear-gradient(145deg, #2e1065, #4c1d95);
-    border-color: #a78bfa;
-    color: #ffffff;
-    padding: 12px 24px;
-}
-.btn-violet:hover {
-    border-color: #c4b5fd;
-    box-shadow: 0 0 0 3px #000, 0 10px 25px rgba(167, 139, 250, 0.5), 0 0 20px rgba(167, 139, 250, 0.4);
-}
-
-/* Rosa Pastel (Contacto y Redes) */
-.btn-pastel {
-    background: linear-gradient(145deg, #831843, #be185d);
-    border-color: #f9a8d4;
-    color: #ffffff;
-    font-size: 12px;
-    padding: 8px 16px;
-}
-.btn-pastel:hover {
-    border-color: #fbcfe8;
-    box-shadow: 0 0 0 3px #000, 0 10px 25px rgba(190, 24, 93, 0.5), 0 0 20px rgba(249, 168, 212, 0.4);
-}
-.btn-pastel svg {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-    fill: currentColor;
-}
-
-/* Ajuste específico para el botón de Orion (mantiene su diseño pero unificado) */
-.btn-pink {
-    background: linear-gradient(145deg, #2563eb, #1d4ed8);
-    border-color: #60a5fa;
-    padding: 10px 20px;
-}
-.btn-pink:hover {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 3px #000, 0 10px 25px rgba(37, 99, 235, 0.5), 0 0 20px rgba(37, 99, 235, 0.4);
-}
-
-/* --- SECCIÓN DE COLUMNAS Y LISTAS --- */
-.footer-columns {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-}
-@media (min-width: 600px) {
-    .footer-columns { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 900px) {
-    .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
-}
-
-.footer-section h4 {
-    font-family: 'Montserrat', sans-serif;
-    color: #a78bfa;
-    border-bottom: 2px solid #3b82f6;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.icon-links-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    text-align: center;
-    padding-top: 20px;
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: #9ca3af;
-}
-
-/* --- SECCIÓN CTA PROPERTIES --- */
-#footer-cta-section {
-    display: flex;
-    justify-content: center;
-}
-#footer-cta-container { 
-    text-align: center; 
-}
-#cta-label-wrapper .cta-text {
-    display: inline-block;
-    font-family: 'Inter', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #c19a6b;
-    background: rgba(17, 17, 17, 0.9);
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    border: 1px solid #3a2a1a;
-}
-
-/* --- SECCIÓN RISK DISCLOSURE --- */
-.footer-risk {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-/* --- SECCIÓN PROMO --- */
-.footer-promo {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-</style>
+</body>
+</html>
