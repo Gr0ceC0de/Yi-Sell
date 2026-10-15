@@ -1,169 +1,187 @@
-
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaico de Bienvenidas - 101 Idiomas</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
+<style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Montserrat',sans-serif;background:#f4f7fc}
-
 .header-mosaico{background:linear-gradient(135deg,#1e1e2f 0%,#2a2a40 100%);color:#fff;padding:2rem 1rem;text-align:center;border-bottom:4px solid #ffb347}
 .header-mosaico h1{font-size:clamp(1.5rem,5vw,2.5rem);letter-spacing:2px;margin-bottom:.5rem;font-weight:700}
 .header-mosaico p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.8;margin-bottom:1.5rem;font-style:italic}
-
-/* Mosaico: sin cajas, texto flotando */
 .mosaico-container{
-  font-size:.6rem; /* base: todos los tamaños se calculan en "em" sobre esto */
+  font-size:.6rem;
   display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
   gap:6px 14px;max-width:1400px;margin:0 auto;padding:0 10px}
 .tarjeta-idioma{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2px 3px;background:none;border:none;box-shadow:none}
 .tarjeta-idioma .saludo{line-height:1.2;word-break:break-word}
 .tarjeta-idioma .idioma-nombre{font:400 .7em 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:1px;opacity:.7;color:#ffe3a3;margin:2px 0 1px}
 .tarjeta-idioma .iconos{font-size:1em;letter-spacing:2px}
-
-/* Responsivo */
+.tarjeta-idioma{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.tarjeta-idioma.sonando .saludo{text-shadow:0 0 10px currentColor,0 0 22px currentColor}
 @media (min-width:1200px){.mosaico-container{font-size:.65rem}}
 @media (max-width:768px){.mosaico-container{font-size:.55rem;gap:5px 10px}}
 @media (max-width:480px){.mosaico-container{font-size:.5rem;gap:4px 8px}}
-
-
+</style>
+</head>
+<body>
 <header class="header-mosaico">
   <h1>🌍 Bienvenidos al Mundo 🌍</h1>
   <p>101 lenguas, un solo saludo</p>
   <div id="mosaico" class="mosaico-container"></div>
 </header>
-
 <script>
-// saludo|idioma|3 iconos culturales
-const DATA = `Welcome|English|🗽🫖🎸
-Bienvenidos|Español|💃🥘🌶️
-Bem-vindos|Português|⚽🐓🌊
-Bienvenue|Français|🥐🗼🍷
-Benvenuti|Italiano|🍕🎭🍝
-Willkommen|Deutsch|🥨🍺🏰
-Welkom|Nederlands|🌷🚲🧀
-Välkommen|Svenska|🦌🕯️🐴
-Velkommen|Norsk|🎿🐟⛵
-Velkommen|Dansk|🧱🥧🧜
-Tervetuloa|Suomi|🧖🦌🌌
-Velkomin|Íslenska|🌋♨️🐑
-Fáilte|Gaeilge|☘️🍀🎻
-Croeso|Cymraeg|🐉🐑🏰
-Ongi etorri|Euskara|🏔️🧀🍷
-Benvinguts|Català|🏰🥖🍅
-Bine ați venit|Română|🧛🏰🎻
-Witamy|Polski|🥟🦅🎹
-Vítejte|Čeština|🍺🏰🎻
-Vitajte|Slovenčina|🏔️🐑🎶
-Üdvözöljük|Magyar|🌶️🎻♨️
-Dobrodošli|Hrvatski|🏝️⚓🍇
-Добродошли|Српски|🥁🍇⛪
-Добре дошли|Български|🌹🥛🎶
-Добро пожаловать|Русский|🪆❄️🐻
-Ласкаво просимо|Українська|🌻🥟🌾
-Сардэчна запрашаем|Беларуская|🌾🦬🥔
-Καλώς ήρθατε|Ελληνικά|🏛️🫒🌊
-Hoş geldiniz|Türkçe|☕🕌🎈
-Mirë se vini|Shqip|🦅🏔️🎶
-Добредојде|Македонски|🏞️🍇🎶
-Sveiki atvykę|Lietuvių|🏀🌲🎶
-Laipni lūdzam|Latviešu|🌾🎶🌲
-Tere tulemast|Eesti|🌲🎶🏝️
-Merħba|Malti|🏝️⚓⛪
-Բարի գալուստ|Հայերեն|🍑⛪🏔️
-კეთილი იყოს თქვენი მობრძანება|ქართული|🍷🏔️🥟
-Xoş gəlmisiniz|Azərbaycan|🔥🧶🍵
-Қош келдіңіз|Қазақша|🐎🏔️🎶
-Xush kelibsiz|O'zbek|🍉🕌🧶
-ברוכים הבאים|עברית|🕎🍯🌴
-أهلاً وسهلاً|العربية|🐪🌙☕
-خوش آمدید|فارسی|🌹🧿🍵
-ښه راغلاست|پښتو|🏔️🍇🧣
-خوش آمدید|اردو|🏏🌙🪁
-स्वागत है|हिन्दी|🪔🐘🕉️
-স্বাগতম|বাংলা|🐅🐟🌾
-સ્વાગત છે|ગુજરાતી|🪁🥭💃
-स्वागत आहे|मराठी|🐘🏰🥭
-ਜੀ ਆਇਆਂ ਨੂੰ|ਪੰਜਾਬੀ|🌾🥁🍛
-வரவேற்கிறோம்|தமிழ்|🛕🌺🍛
-స్వాగతం|తెలుగు|🌶️🛕🎬
-സ്വാഗതം|മലയാളം|🥥⛵🌴
-ಸ್ವಾಗತ|ಕನ್ನಡ|🏯🎶🌸
-ආයුබෝවන්|සිංහල|🍵🐘🏝️
-स्वागत छ|नेपाली|🏔️🙏🐃
-ยินดีต้อนรับ|ไทย|🙏🐘🍜
-ຍິນດີຕ້ອນຮັບ|ລາວ|🛕🍚🐘
-ស្វាគមន៍|ខ្មែរ|🛕🪷💃
-ကြိုဆိုပါတယ်|မြန်မာ|🛕🪷🐘
-Chào mừng|Tiếng Việt|🍜🏮🛵
-Selamat datang|Indonesia|🌋🥢🌺
-Selamat datang|Melayu|🌺🍛🕌
-Maligayang pagdating|Tagalog|🏝️🥥🥭
-Sugeng rawuh|Jawa|🌋🎭🛕
-E komo mai|ʻŌlelo Hawaiʻi|🌺🏄🌋
-Nau mai|Māori|🥝🌿🛶
-Afio mai|Samoa|🌴🥥🛶
-欢迎|中文 简体|🐼🏮🥢
-歡迎|中文 繁體|🏮🍵🐉
-ようこそ|日本語|🗻🌸🍣
-환영합니다|한국어|🍲🎤🏯
-Тавтай морил|Монгол|🐎🏕️🏹
-བཀྲ་ཤིས་བདེ་ལེགས།|བོད་ཡིག|☸️🏔️🐃
-Kuzuzangpo|Dzongkha|🐉🏔️☸️
-እንኳን ደህና መጡ|አማርኛ|☕🦁⛪
-Karibu|Kiswahili|🦁🌍🥁
-Kaabo|Yorùbá|🥁🎭🌴
-Siyakwamukela|Zulu|🛡️🥁🦁
-Wamkelekile|Xhosa|🥁🌅🦒
-Soo dhawoow|Somali|🐪🌊🥛
-Barka da zuwa|Hausa|🐪🧵🥁
-Nnọọ|Igbo|🥁🎭🍠
-Murakaza neza|Kinyarwanda|🦍🌿🥁
-Boyei malamu|Lingala|🎶🌴🥁
-Mauya|Shona|🗿🥁🌅
-Welkom|Afrikaans|🦁🔥🍖
-Rea u amohela|Sesotho|🐎🏔️🧣
-Tongasoa|Malagasy|🐒🌴🌺
-Bonvenon|Esperanto|🟢⭐🌍
-Salvete|Latina|🏛️📜⚔️
-स्वागतम्|संस्कृतम्|🕉️📜🪷
-Byenveni|Kreyòl Ayisyen|🌴🥁🌺
-ᎣᏏᏲ|ᏣᎳᎩ|🪶🦅🌽
-ᑐᙵᓱᒋᑦ|Inuktitut|🐻‍❄️❄️🛶
-Allillanchu|Quechua|🦙🏔️🌽
-Mba'éichapa|Guaraní|🧉🦜🌿
-Aski jayp'u|Aymara|🦙🏔️🧶
-Yá'át'ééh|Diné|🏜️🪶🐑
-yI'el!|Klingon|🖖🚀⚔️
-Benvidos|Galego|🐙🌊🥧`;
+// saludo|idioma|3 iconos|código de voz
+const DATA = `Welcome|English|🗽🫖🎸|en-US
+Bienvenidos|Español|💃🥘🌶️|es-ES
+Bem-vindos|Português|⚽🐓🌊|pt-BR
+Bienvenue|Français|🥐🗼🍷|fr-FR
+Benvenuti|Italiano|🍕🎭🍝|it-IT
+Willkommen|Deutsch|🥨🍺🏰|de-DE
+Welkom|Nederlands|🌷🚲🧀|nl-NL
+Välkommen|Svenska|🦌🕯️🐴|sv-SE
+Velkommen|Norsk|🎿🐟⛵|nb-NO
+Velkommen|Dansk|🧱🥧🧜|da-DK
+Tervetuloa|Suomi|🧖🦌🌌|fi-FI
+Velkomin|Íslenska|🌋♨️🐑|is-IS
+Fáilte|Gaeilge|☘️🍀🎻|ga-IE
+Croeso|Cymraeg|🐉🐑🏰|cy-GB
+Ongi etorri|Euskara|🏔️🧀🍷|eu-ES
+Benvinguts|Català|🏰🥖🍅|ca-ES
+Bine ați venit|Română|🧛🏰🎻|ro-RO
+Witamy|Polski|🥟🦅🎹|pl-PL
+Vítejte|Čeština|🍺🏰🎻|cs-CZ
+Vitajte|Slovenčina|🏔️🐑🎶|sk-SK
+Üdvözöljük|Magyar|🌶️🎻♨️|hu-HU
+Dobrodošli|Hrvatski|🏝️⚓🍇|hr-HR
+Добродошли|Српски|🥁🍇⛪|sr-RS
+Добре дошли|Български|🌹🥛🎶|bg-BG
+Добро пожаловать|Русский|🪆❄️🐻|ru-RU
+Ласкаво просимо|Українська|🌻🥟🌾|uk-UA
+Сардэчна запрашаем|Беларуская|🌾🦬🥔|be-BY
+Καλώς ήρθατε|Ελληνικά|🏛️🫒🌊|el-GR
+Hoş geldiniz|Türkçe|☕🕌🎈|tr-TR
+Mirë se vini|Shqip|🦅🏔️🎶|sq-AL
+Добредојде|Македонски|🏞️🍇🎶|mk-MK
+Sveiki atvykę|Lietuvių|🏀🌲🎶|lt-LT
+Laipni lūdzam|Latviešu|🌾🎶🌲|lv-LV
+Tere tulemast|Eesti|🌲🎶🏝️|et-EE
+Merħba|Malti|🏝️⚓⛪|mt-MT
+Բարի գալուստ|Հայերեն|🍑⛪🏔️|hy-AM
+კეთილი იყოს თქვენი მობრძანება|ქართული|🍷🏔️🥟|ka-GE
+Xoş gəlmisiniz|Azərbaycan|🔥🧶🍵|az-AZ
+Қош келдіңіз|Қазақша|🐎🏔️🎶|kk-KZ
+Xush kelibsiz|O'zbek|🍉🕌🧶|uz-UZ
+ברוכים הבאים|עברית|🕎🍯🌴|he-IL
+أهلاً وسهلاً|العربية|🐪🌙☕|ar-SA
+خوش آمدید|فارسی|🌹🧿🍵|fa-IR
+ښه راغلاست|پښتو|🏔️🍇🧣|ps-AF
+خوش آمدید|اردو|🏏🌙🪁|ur-PK
+स्वागत है|हिन्दी|🪔🐘🕉️|hi-IN
+স্বাগতম|বাংলা|🐅🐟🌾|bn-BD
+સ્વાગત છે|ગુજરાતી|🪁🥭💃|gu-IN
+स्वागत आहे|मराठी|🐘🏰🥭|mr-IN
+ਜੀ ਆਇਆਂ ਨੂੰ|ਪੰਜਾਬੀ|🌾🥁🍛|pa-IN
+வரவேற்கிறோம்|தமிழ்|🛕🌺🍛|ta-IN
+స్వాగతం|తెలుగు|🌶️🛕🎬|te-IN
+സ്വാഗതം|മലയാളം|🥥⛵🌴|ml-IN
+ಸ್ವಾಗತ|ಕನ್ನಡ|🏯🎶🌸|kn-IN
+ආයුබෝවන්|සිංහල|🍵🐘🏝️|si-LK
+स्वागत छ|नेपाली|🏔️🙏🐃|ne-NP
+ยินดีต้อนรับ|ไทย|🙏🐘🍜|th-TH
+ຍິນດີຕ້ອນຮັບ|ລາວ|🛕🍚🐘|lo-LA
+ស្វាគមន៍|ខ្មែរ|🛕🪷💃|km-KH
+ကြိုဆိုပါတယ်|မြန်မာ|🛕🪷🐘|my-MM
+Chào mừng|Tiếng Việt|🍜🏮🛵|vi-VN
+Selamat datang|Indonesia|🌋🥢🌺|id-ID
+Selamat datang|Melayu|🌺🍛🕌|ms-MY
+Maligayang pagdating|Tagalog|🏝️🥥🥭|fil-PH
+Sugeng rawuh|Jawa|🌋🎭🛕|jv-ID
+E komo mai|ʻŌlelo Hawaiʻi|🌺🏄🌋|haw
+Nau mai|Māori|🥝🌿🛶|mi-NZ
+Afio mai|Samoa|🌴🥥🛶|sm-WS
+欢迎|中文 简体|🐼🏮🥢|zh-CN
+歡迎|中文 繁體|🏮🍵🐉|zh-TW
+ようこそ|日本語|🗻🌸🍣|ja-JP
+환영합니다|한국어|🍲🎤🏯|ko-KR
+Тавтай морил|Монгол|🐎🏕️🏹|mn-MN
+བཀྲ་ཤིས་བདེ་ལེགས།|བོད་ཡིག|☸️🏔️🐃|bo-CN
+Kuzuzangpo|Dzongkha|🐉🏔️☸️|dz-BT
+እንኳን ደህና መጡ|አማርኛ|☕🦁⛪|am-ET
+Karibu|Kiswahili|🦁🌍🥁|sw-KE
+Kaabo|Yorùbá|🥁🎭🌴|yo-NG
+Siyakwamukela|Zulu|🛡️🥁🦁|zu-ZA
+Wamkelekile|Xhosa|🥁🌅🦒|xh-ZA
+Soo dhawoow|Somali|🐪🌊🥛|so-SO
+Barka da zuwa|Hausa|🐪🧵🥁|ha-NG
+Nnọọ|Igbo|🥁🎭🍠|ig-NG
+Murakaza neza|Kinyarwanda|🦍🌿🥁|rw-RW
+Boyei malamu|Lingala|🎶🌴🥁|ln-CD
+Mauya|Shona|🗿🥁🌅|sn-ZW
+Welkom|Afrikaans|🦁🔥🍖|af-ZA
+Rea u amohela|Sesotho|🐎🏔️🧣|st-ZA
+Tongasoa|Malagasy|🐒🌴🌺|mg-MG
+Bonvenon|Esperanto|🟢⭐🌍|eo
+Salvete|Latina|🏛️📜⚔️|la
+स्वागतम्|संस्कृतम्|🕉️📜🪷|sa-IN
+Byenveni|Kreyòl Ayisyen|🌴🥁🌺|ht-HT
+ᎣᏏᏲ|ᏣᎳᎩ|🪶🦅🌽|chr-US
+ᑐᙵᓱᒋᑦ|Inuktitut|🐻‍❄️❄️🛶|iu-CA
+Allillanchu|Quechua|🦙🏔️🌽|qu-PE
+Mba'éichapa|Guaraní|🧉🦜🌿|gn-PY
+Aski jayp'u|Aymara|🦙🏔️🧶|ay-BO
+Yá'át'ééh|Diné|🏜️🪶🐑|nv-US
+yI'el!|Klingon|🖖🚀⚔️|tlh
+Benvidos|Galego|🐙🌊🥧|gl-ES`;
 
 const FONTS = ["'Montserrat'","'Playfair Display'","'Pacifico'","'Lobster'","'Caveat'","'Oswald'","'Merriweather'","'Righteous'","'Bebas Neue'","'Dancing Script'","'Abril Fatface'","'Comfortaa'","'Special Elite'","'Cinzel'"];
 const FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
+
+// --- SONIDO: voz del navegador (Web Speech API) ---
+let voces = [];
+function cargarVoces() { voces = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
+if (window.speechSynthesis) { cargarVoces(); speechSynthesis.onvoiceschanged = cargarVoces; }
+
+function hablar(texto, lang, tarjeta) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = lang;
+  const base = lang.split('-')[0].toLowerCase();
+  const voz = voces.find(v => v.lang.replace('_','-').toLowerCase() === lang.toLowerCase())
+           || voces.find(v => v.lang.toLowerCase().startsWith(base));
+  if (voz) u.voice = voz;
+  u.rate = 0.85;
+  document.querySelectorAll('.sonando').forEach(x => x.classList.remove('sonando'));
+  tarjeta.classList.add('sonando');
+  u.onend = u.onerror = () => tarjeta.classList.remove('sonando');
+  speechSynthesis.speak(u);
+}
 
 function generarMosaico() {
   const box = document.getElementById('mosaico');
   const rows = DATA.split('\n').map(r => r.trim()).filter(Boolean).map(r => r.split('|'));
   let seed = 7;
   const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-
-  rows.forEach(([t, l, ic], i) => {
+  rows.forEach(([t, l, ic, lang], i) => {
     const hue = Math.floor((i * 137.5) % 360);
     const d = document.createElement('div');
     d.className = 'tarjeta-idioma';
-
     const s = document.createElement('div');
     s.className = 'saludo';
     s.textContent = t;
     s.style.fontFamily = FONTS[i % FONTS.length] + FALLBACK;
-    s.style.fontSize = (0.9 + rnd() * 1.0).toFixed(2) + 'em'; // 0.9 – 1.9em
+    s.style.fontSize = (0.9 + rnd() * 1.0).toFixed(2) + 'em';
     s.style.color = `hsl(${hue},85%,72%)`;
-
     const n = document.createElement('div');
     n.className = 'idioma-nombre';
     n.textContent = l;
-
     const e = document.createElement('div');
     e.className = 'iconos';
     e.textContent = ic;
-
+    d.addEventListener('click', () => hablar(t, lang, d));
     d.append(s, n, e);
     box.appendChild(d);
   });
@@ -171,3 +189,5 @@ function generarMosaico() {
 }
 document.addEventListener('DOMContentLoaded', generarMosaico);
 </script>
+</body>
+</html>
