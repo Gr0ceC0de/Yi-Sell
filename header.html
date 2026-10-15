@@ -1,3 +1,30 @@
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:#f4f7fc}
+
+.header-mosaico{background:linear-gradient(135deg,#1e1e2f 0%,#2a2a40 100%);color:#fff;padding:2rem 1rem;text-align:center;border-bottom:4px solid #ffb347}
+.header-mosaico h1{font-size:clamp(1.5rem,5vw,2.5rem);letter-spacing:2px;margin-bottom:.5rem;font-weight:700}
+.header-mosaico p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.8;margin-bottom:1.5rem;font-style:italic}
+
+/* Mosaico: sin cajas, texto flotando */
+.mosaico-container{
+  font-size:.6rem; /* base: todos los tamaños se calculan en "em" sobre esto */
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:6px 14px;max-width:1400px;margin:0 auto;padding:0 10px}
+.tarjeta-idioma{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2px 3px;background:none;border:none;box-shadow:none}
+.tarjeta-idioma .saludo{line-height:1.2;word-break:break-word}
+.tarjeta-idioma .idioma-nombre{font:400 .7em 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:1px;opacity:.7;color:#ffe3a3;margin:2px 0 1px}
+.tarjeta-idioma .iconos{font-size:1em;letter-spacing:2px}
+
+/* Responsivo */
+@media (min-width:1200px){.mosaico-container{font-size:.65rem}}
+@media (max-width:768px){.mosaico-container{font-size:.55rem;gap:5px 10px}}
+@media (max-width:480px){.mosaico-container{font-size:.5rem;gap:4px 8px}}
+
+
 <header class="header-mosaico">
   <h1>🌍 Bienvenidos al Mundo 🌍</h1>
   <p>101 lenguas, un solo saludo</p>
