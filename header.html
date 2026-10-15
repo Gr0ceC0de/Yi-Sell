@@ -1,2 +1,249 @@
+<section class="welcome-box" id="welcome-box">
+  <div class="welcome-mosaic" id="welcome-mosaic"></div>
+  <div class="welcome-content">
+    <span class="welcome-badge">🚀 Novedades 2026 • 100 Lenguas • 5 Continentes</span>
+    <h1>Bienvenido a tu próxima gran experiencia</h1>
+    <p>Optimiza tus proyectos, descubre herramientas avanzadas y lleva tu flujo de trabajo al siguiente nivel con nuestra interfaz diseñada a tu medida.</p>
+    <div class="welcome-actions">
+      <a href="#explorar" class="btn-primary">Empezar ahora</a>
+      <a href="#saber-mas" class="btn-secondary">Conocer más</a>
+    </div>
+  </div>
+</section>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Noto+Nastaliq+Urdu&family=Noto+Sans+JP:wght@700&family=Noto+Serif+Georgian:wght@700&display=swap');
+
+.welcome-box{
+  position:relative;
+  width:100%;
+  min-height: 520px;
+  background: radial-gradient(circle at center, #ffffff 0%, #e8e8ff 35%, #d6d6ff 100%);
+  border-radius: 28px;
+  overflow:hidden;
+  border: 4px solid #111;
+  box-shadow: 0 0 0 6px #fff, 0 20px 60px rgba(0,0,0,0.25), inset 0 4px 10px rgba(255,255,255,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 40px 20px;
+  isolation:isolate;
+}
+.welcome-mosaic{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:0;
+}
+.welcome-mosaic span{
+  position:absolute;
+  left:50%; top:50%;
+  font-weight:800;
+  white-space:nowrap;
+  user-select:none;
+  will-change: transform;
+  opacity:0.9;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.1);
+  animation: floaty 6s ease-in-out infinite;
+}
+.welcome-content{
+  position:relative;
+  z-index:2;
+  max-width: 640px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  border: 3px solid #111;
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align:center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+.welcome-badge{
+  display:inline-block;
+  font-family: Inter, sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  background:#111;
+  color:#a78bfa;
+  padding:6px 12px;
+  border-radius:20px;
+  margin-bottom:12px;
+}
+.welcome-content h1{
+  font-family: Montserrat, sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  line-height:1.1;
+  margin:0 0 10px;
+  color:#0f172a;
+}
+.welcome-content p{
+  font-family: Inter, sans-serif;
+  font-size:14px;
+  color:#334155;
+  margin:0 0 18px;
+}
+.welcome-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.btn-primary, .btn-secondary{
+  font-family: Montserrat, sans-serif;
+  font-weight:800;
+  padding:10px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  border:2px solid #111;
+  transition: transform 0.2s;
+}
+.btn-primary{ background:#111; color:#fff; }
+.btn-secondary{ background:#fff; color:#111; }
+.btn-primary:hover, .btn-secondary:hover{ transform: translateY(-2px) scale(1.03); }
+
+@keyframes floaty{
+  0%,100%{ transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1); }
+  50%{ transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.15); }
+}
+@keyframes spiralRotate{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+.welcome-mosaic{ animation: spiralRotate 180s linear infinite; }
+</style>
+
+<script>
+const welcomes = [
+  {t:"Welcome", l:"English", f:"Montserrat"},
+  {t:"Bienvenidos", l:"Español"},
+  {t:"Bem-vindos", l:"Português"},
+  {t:"Bienvenue", l:"Français"},
+  {t:"Benvenuti", l:"Italiano"},
+  {t:"Willkommen", l:"Deutsch"},
+  {t:"Welkom", l:"Nederlands"},
+  {t:"Välkommen", l:"Svenska"},
+  {t:"Velkommen", l:"Norsk"},
+  {t:"Velkommen", l:"Dansk"},
+  {t:"Tervetuloa", l:"Suomi"},
+  {t:"Velkomin", l:"Íslenska"},
+  {t:"Fáilte", l:"Gaeilge"},
+  {t:"Croeso", l:"Cymraeg"},
+  {t:"Ongi etorri", l:"Euskara"},
+  {t:"Benvinguts", l:"Català"},
+  {t:"Bine ați venit", l:"Română"},
+  {t:"Witamy", l:"Polski"},
+  {t:"Vítejte", l:"Čeština"},
+  {t:"Vitajte", l:"Slovenčina"},
+  {t:"Üdvözöljük", l:"Magyar"},
+  {t:"Dobrodošli", l:"Hrvatski"},
+  {t:"Добродошли", l:"Српски"},
+  {t:"Добре дошли", l:"Български"},
+  {t:"Добро пожаловать", l:"Русский"},
+  {t:"Ласкаво просимо", l:"Українська"},
+  {t:"Сардэчна запрашаем", l:"Беларуская"},
+  {t:"Καλώς ήρθατε", l:"Ελληνικά"},
+  {t:"Hoş geldiniz", l:"Türkçe"},
+  {t:"Mirë se vini", l:"Shqip"},
+  {t:"Добредојде", l:"Македонски"},
+  {t:"Sveiki atvykę", l:"Lietuvių"},
+  {t:"Laipni lūdzam", l:"Latviešu"},
+  {t:"Tere tulemast", l:"Eesti"},
+  {t:"Merħba", l:"Malti"},
+  {t:"Բարի գալուստ", l:"Հայերեն"},
+  {t:"კეთილი იყოს თქვენი მობრძანება", l:"ქართული"},
+  {t:"Xoş gəlmisiniz", l:"Azərbaycan"},
+  {t:"Қош келдіңіз", l:"Қазақша"},
+  {t:"Xush kelibsiz", l:"O'zbek"},
+  {t:"ברוכים הבאים", l:"עברית"},
+  {t:"أهلاً وسهلاً", l:"العربية"},
+  {t:"خوش آمدید", l:"فارسی"},
+  {t:"ښه راغلاست", l:"پښتو"},
+  {t:"خوش آمدید", l:"اردو"},
+  {t:"स्वागत है", l:"हिन्दी"},
+  {t:"স্বাগতম", l:"বাংলা"},
+  {t:"સ્વાગત છે", l:"ગુજરાતી"},
+  {t:"स्वागत आहे", l:"मराठी"},
+  {t:"ਜੀ ਆਇਆਂ ਨੂੰ", l:"ਪੰਜਾਬੀ"},
+  {t:"வரவேற்கிறோம்", l:"தமிழ்"},
+  {t:"స్వాగతం", l:"తెలుగు"},
+  {t:"സ്വാഗതം", l:"മലയാളം"},
+  {t:"ಸ್ವಾಗತ", l:"ಕನ್ನಡ"},
+  {t:"ආයුබෝවන්", l:"සිංහල"},
+  {t:"स्वागत छ", l:"नेपाली"},
+  {t:"ยินดีต้อนรับ", l:"ไทย"},
+  {t:"ຍິນດີຕ້ອນຮັບ", l:"ລາວ"},
+  {t:"ស្វាគមន៍", l:"ខ្មែរ"},
+  {t:"ကြိုဆိုပါတယ်", l:"မြန်မာ"},
+  {t:"Chào mừng", l:"Tiếng Việt"},
+  {t:"Selamat datang", l:"Indonesia"},
+  {t:"Selamat datang", l:"Melayu"},
+  {t:"Maligayang pagdating", l:"Tagalog"},
+  {t:"Sugeng rawuh", l:"Jawa"},
+  {t:"E komo mai", l:"ʻŌlelo Hawaiʻi"},
+  {t:"Nau mai", l:"Māori"},
+  {t:"Afio mai", l:"Samoa"},
+  {t:"欢迎", l:"中文 简体"},
+  {t:"歡迎", l:"中文 繁體"},
+  {t:"ようこそ", l:"日本語"},
+  {t:"환영합니다", l:"한국어"},
+  {t:"Тавтай морил", l:"Монгол"},
+  {t:"བཀྲ་ཤིས་བདེ་ལེགས།", l:"བོད་ཡིག"},
+  {t:"བཀྲ་ཤིས་བདེ་ལེགས", l:"Dzongkha"},
+  {t:"እንኳን ደህና መጡ", l:"አማርኛ"},
+  {t:"Karibu", l:"Kiswahili"},
+  {t:"Kaabo", l:"Yorùbá"},
+  {t:"Wamkelekile", l:"Zulu"},
+  {t:"Wamkelekile", l:"Xhosa"},
+  {t:"Soo dhawoow", l:"Somali"},
+  {t:"Barka da zuwa", l:"Hausa"},
+  {t:"Nnọọ", l:"Igbo"},
+  {t:"Murakaza neza", l:"Kinyarwanda"},
+  {t:"Boyei bolamu", l:"Lingala"},
+  {t:"Mauya", l:"Shona"},
+  {t:"Welkom", l:"Afrikaans"},
+  {t:"Rea u amohela", l:"Sesotho"},
+  {t:"Tongasoa", l:"Malagasy"},
+  {t:"Bonvenon", l:"Esperanto"},
+  {t:"Salvete", l:"Latina Antiqua"},
+  {t:"स्वागतम्", l:"संस्कृतम्"},
+  {t:"ⲁⲛⲁϣ", l:"Coptic"},
+  {t:"ᎣᏏᏲ", l:"ᏣᎳᎩ"},
+  {t:"ᑐᙵᓱᒋᑦ", l:"Inuktitut"},
+  {t:"Allillanchu", l:"Quechua"},
+  {t:"Mba'éichapa", l:"Guaraní"},
+  {t:"Aski jayp'u", l:"Aymara"},
+  {t:"Yá'át'ééh", l:"Diné"},
+  {t:"yI'el!", l:"Klingon"}
+];
+
+const mosaic = document.getElementById('welcome-mosaic');
+const colors = ["#111","#6C5CE7","#8A8ACB","#e63946","#2563eb","#0f172a","#7B8CDE","#A78BFA","#c19a6b","#d946ef"];
+const fonts = ["Montserrat","Inter","'Noto Sans JP'","'Noto Serif Georgian'","'Courier New'","Georgia","Impact","Verdana"];
+
+welcomes.forEach((w,i)=>{
+  const el = document.createElement('span');
+  el.textContent = w.t;
+  el.title = w.l;
+  
+  const angle = i * 0.55; // espiral
+  const radius = Math.pow(i, 0.92) * 6.5;
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
+  
+  const size = 10 + (i % 7) * 3 + Math.random()*8; // tamaños variados
+  const rot = (Math.random()*80 - 40) + (angle*12);
+  
+  el.style.setProperty('--x', x+'px');
+  el.style.setProperty('--y', y+'px');
+  el.style.setProperty('--r', rot+'deg');
+  el.style.left = '50%';
+  el.style.top = '50%';
+  el.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+  el.style.fontSize = size+'px';
+  el.style.color = colors[i % colors.length];
+  el.style.fontFamily = fonts[i % fonts.length];
+  el.style.animationDelay = (i*0.05)+'s';
+  el.style.zIndex = 100 - i;
+  if(i < 5) { el.style.fontSize = '28px'; el.style.background='#111'; el.style.color='#fff'; el.style.padding='2px 8px'; el.style.borderRadius='8px'; }
+  
+  mosaic.appendChild(el);
+});
+</script>
   
