@@ -1,180 +1,122 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Algorithms | Algoritmos Financieros | Yisel - Mosaico Animado</title>
+<!-- ===== HEADER YISEL · 2 BOXES (pegar tal cual en tu página) ===== -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
-    <!-- Fuentes Locales -->
-    <style>
-        @font-face {
-            font-family: "Optimistic";
-            font-style: normal;
-            font-weight: 400 600;
-            font-display: swap;
-            src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-        }
-        @font-face {
-            font-family: "Optimistic Mono";
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-        }
-        :where(html) {
-            font-family: "Optimistic", system-ui, sans-serif;
-        }
-        :where(code, pre, kbd, samp) {
-            font-family: "Optimistic Mono", ui-monospace, monospace;
-        }
-    </style>
+<style>
+#ys-header, #ys-header * { box-sizing: border-box; }
+#ys-header {
+    background: #1e1e2f;
+    color: #fff;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    padding: 20px 12px 28px;
+    border-bottom: 4px solid #ffb347;
+    display: flex; flex-direction: column; gap: 20px;
+    max-width: 100%; overflow-x: hidden;
+}
+.ys-box {
+    max-width: 1400px; width: 100%; margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid rgba(255,179,71,.25);
+    background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
+    position: relative;
+}
 
-    <!-- Fuentes de Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+/* ---------- BOX 1 : MOSAICO ---------- */
+.ys-box-mosaico { padding: 28px 10px 24px; }
+.ys-box-mosaico h1 {
+    font-size: clamp(1.4rem, 5vw, 2.4rem); letter-spacing: 2px; line-height: 1.15;
+    margin: 0; text-align: center; font-weight: 700;
+}
+.ys-sub { text-align: center; font-style: italic; opacity: .9; margin: 8px 0 0; }
+.ys-hint-wrap { text-align: center; }
+.ys-hint {
+    display: inline-block; margin-top: 14px; padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; letter-spacing: .5px;
+    background: rgba(255,179,71,.12); border: 1px solid rgba(255,179,71,.25); color: #ffe3a3;
+}
+#ys-mosaico {
+    font-size: .62rem;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+    gap: 16px 14px; padding: 30px 6px 6px;
+}
+.ys-card {
+    position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 12px 18px 8px; min-width: 92px;
+    background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 12px;
+    transition: background .2s, border-color .2s, box-shadow .2s;
+    user-select: none;
+    animation: ys-entra .6s cubic-bezier(.34,1.56,.64,1) both;
+}
+.ys-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,179,71,.3); z-index: 2; }
+.ys-card.ys-on {
+    background: rgba(255,179,71,.15); border-color: rgba(255,179,71,.6);
+    box-shadow: 0 0 0 1px rgba(255,179,71,.3), 0 12px 32px rgba(0,0,0,.45); z-index: 3;
+}
+.ys-saludo { line-height: 1.2; max-width: 24ch; overflow-wrap: anywhere; }
+.ys-card.ys-on .ys-saludo { text-shadow: 0 0 12px currentColor, 0 0 28px currentColor; }
+.ys-nombre { font-size: .72em; text-transform: uppercase; letter-spacing: 1px; opacity: .7; color: #ffe3a3; margin: 5px 0 2px; }
+.ys-iconos { font-size: 1em; letter-spacing: 2px; }
+.ys-btn {
+    position: absolute; top: -10px; right: -8px; width: 32px; height: 32px; padding: 0;
+    border-radius: 999px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,.2); background: #1e1e2f; color: #ffe3a3;
+    font-size: 14px; cursor: pointer; z-index: 4; -webkit-tap-highlight-color: transparent;
+    transition: transform .2s;
+}
+.ys-btn:hover { transform: scale(1.12); }
+.ys-btn.ys-on { background: #ffb347; border-color: #ffb347; color: #1e1e2f; animation: ys-pulso 1.2s ease-in-out infinite; }
+.ys-count { text-align: center; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: .4; margin-top: 18px; }
 
-    <!-- Estilos CSS -->
-    <style>
-        * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; }
-        body { background: #1e1e2f; overflow-x: hidden; }
+/* ---------- BOX 2 : MARCA ---------- */
+.ys-box-marca {
+    padding: 28px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 22px;
+    text-align: left;
+}
+.ys-logo { width: 96px; height: 96px; flex: none; }
+.ys-marca-txt { max-width: 560px; }
+.ys-marca-txt h2 { margin: 0; font-size: clamp(1.5rem, 5vw, 2.1rem); letter-spacing: 1px; }
+.ys-marca-txt h2 span { color: #ffb347; }
+.ys-marca-txt .ys-en { margin: 2px 0 0; font-style: italic; opacity: .85; }
+.ys-marca-txt p.ys-desc { margin: 12px 0 0; line-height: 1.55; opacity: .85; font-size: .95rem; }
 
-        .header-mosaico {
-            background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
-            color: #fff;
-            padding: 2.5rem 1rem 2rem;
-            text-align: center;
-            border-bottom: 4px solid #ffb347;
-            position: relative;
-            overflow: hidden;
-        }
-        .header-mosaico::before {
-            content: ""; position: absolute; inset: 0;
-            background: radial-gradient(600px at 50% -20%, rgba(255, 179, 71, .15), transparent 60%);
-            pointer-events: none;
-        }
-        .header-mosaico h1 {
-            position: relative;
-            font-family: 'Montserrat', system-ui, sans-serif;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            letter-spacing: 2px; line-height: 1.1; margin: 0; font-weight: 700;
-            animation: fadeDown .8s ease both;
-        }
-        .header-mosaico .sub {
-            position: relative;
-            font-family: 'Montserrat', system-ui, sans-serif;
-            font-size: clamp(.95rem, 2.5vw, 1.15rem);
-            opacity: .9; margin: 8px 0 0; font-style: italic;
-            animation: fadeDown .8s .15s ease both;
-        }
-        .header-mosaico .hint {
-            position: relative;
-            display: inline-flex; align-items: center; gap: 6px;
-            margin-top: 16px; padding: 6px 14px; border-radius: 999px;
-            font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .5px;
-            background: rgba(255, 179, 71, .12); border: 1px solid rgba(255, 179, 71, .25); color: #ffe3a3;
-            animation: fadeDown .8s .3s ease both;
-        }
-        .mosaico-container {
-            font-size: .6rem;
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
-            gap: 12px 14px; max-width: 1400px; margin: 0 auto;
-            padding: 32px 10px 40px;
-            width: 100%;
-            min-width: 0;
-        }
-        .tarjeta-idioma {
-            position: relative;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center;
-            padding: 10px 12px 8px; min-width: 92px; max-width: 220px;
-            background: rgba(255, 255, 255, .03);
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 12px;
-            transition: background .2s, border-color .2s, box-shadow .2s;
-            user-select: none;
-            opacity: 0;
-            transform: translateY(20px) scale(.92);
-            will-change: transform;
-            overflow: hidden;
-            word-wrap: break-word;
-            animation: entraMosaico .7s cubic-bezier(.34, 1.56, .64, 1) forwards;
-        }
-        .tarjeta-idioma:hover {
-            background: rgba(255, 255, 255, .07);
-            border-color: rgba(255, 179, 71, .25);
-            z-index: 2;
-        }
-        .tarjeta-idioma.sonando {
-            background: rgba(255, 179, 71, .15) !important;
-            border-color: rgba(255, 179, 71, .6) !important;
-            box-shadow: 0 0 0 1px rgba(255, 179, 71, .3), 0 12px 32px rgba(0, 0, 0, .45);
-            z-index: 3;
-        }
-        .tarjeta-idioma.sonando .saludo {
-            text-shadow: 0 0 12px currentColor, 0 0 28px currentColor;
-        }
-        .tarjeta-idioma .saludo {
-            line-height: 1.15; word-break: break-word; max-width: 22ch; padding: 0 2px;
-            transition: text-shadow .25s ease;
-        }
-        .tarjeta-idioma .idioma-nombre {
-            font: 400 .70em 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
-            opacity: .7; color: #ffe3a3; margin: 4px 0 2px;
-        }
-        .tarjeta-idioma .iconos {
-            font-size: 1em; letter-spacing: 2px; opacity: .9; transition: transform .3s ease;
-        }
-        .tarjeta-idioma:hover .iconos {
-            transform: scale(1.15) rotate(2deg);
-        }
+@keyframes ys-entra { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes ys-pulso { 50% { transform: scale(1.18); } }
+@media (max-width: 480px) { #ys-mosaico { font-size: .55rem; } .ys-box-marca { text-align: center; } }
+@media (prefers-reduced-motion: reduce) { .ys-card, .ys-btn.ys-on { animation: none; } }
+</style>
 
-        .btn-voz {
-            position: absolute; top: -8px; right: -8px; width: 32px; height: 32px; min-width: 32px; min-height: 32px;
-            border-radius: 999px; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255, 255, 255, .15); background: rgba(30, 30, 47, .92); color: #ffe3a3;
-            font-size: 14px; cursor: pointer; transition: all .2s ease; -webkit-tap-highlight-color: transparent;
-            z-index: 4;
-        }
-        .btn-voz:hover {
-            transform: scale(1.12); box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
-        }
-        .btn-voz.sonando {
-            background: #ffb347; border-color: #ffb347; color: #1e1e2f;
-            animation: pulseBtn 1.2s ease-in-out infinite; box-shadow: 0 0 0 4px rgba(255, 179, 71, .25);
-        }
+<header id="ys-header">
 
-        .footer-meta {
-            width: 100%; text-align: center; padding: 0 0 36px; font-family: 'Montserrat', sans-serif;
-            font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: .3; color: #fff;
-        }
+    <!-- BOX 1: MOSAICO GIGANTE -->
+    <section class="ys-box ys-box-mosaico">
+        <h1>Financial Algorithms | Algoritmos Financieros</h1>
+        <p class="ys-sub">Yisel</p>
+        <div class="ys-hint-wrap"><span class="ys-hint">🔊 Toca la corneta para escuchar el saludo</span></div>
+        <div id="ys-mosaico"></div>
+        <div class="ys-count" id="ys-count"></div>
+    </section>
 
-        /* ANIMACIONES */
-        @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes entraMosaico { from { opacity: 0; transform: translateY(22px) scale(.88); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes pulseBtn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
-        @keyframes brillo { 0% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } 50% { box-shadow: 0 0 0 8px rgba(255, 179, 71, .18); } 100% { box-shadow: 0 0 0 0 rgba(255, 179, 71, 0); } }
-        .brillo { animation: brillo 1s ease; }
+    <!-- BOX 2: LOGOTIPO Y PRESENTACIÓN -->
+    <section class="ys-box ys-box-marca">
+        <svg class="ys-logo" viewBox="0 0 96 96" role="img" aria-label="Logotipo Yisel">
+            <circle cx="48" cy="48" r="45" fill="#1e1e2f" stroke="#ffb347" stroke-width="3"/>
+            <path d="M26 26 L48 52 L70 26" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M48 52 V72" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+            <polyline points="22,66 36,58 46,63 62,44 74,40" fill="none" stroke="#ffb347" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="74" cy="40" r="4" fill="#ffb347"/>
+        </svg>
+        <div class="ys-marca-txt">
+            <h2>Yisel <span>·</span> Algoritmos Financieros</h2>
+            <p class="ys-en">Financial Algorithms</p>
+            <p class="ys-desc">Herramientas y algoritmos de trading y análisis financiero, creados para que tomes decisiones con datos. · Trading and financial analysis tools built for data-driven decisions.</p>
+        </div>
+    </section>
 
-        @media (min-width: 1200px) { .mosaico-container { font-size: .65rem; } }
-        @media (max-width: 768px) { .mosaico-container { font-size: .55rem; gap: 10px; } }
-        @media (max-width: 480px) { .mosaico-container { font-size: .5rem; gap: 8px; } .tarjeta-idioma { min-width: 80px; } }
-    </style>
-</head>
-<body>
-
-<header class="header-mosaico">
-    <h1>Financial Algorithms | Algoritmos Financieros</h1>
-    <p class="sub">Yisel</p>
-    <div class="hint">🔊 Toca la corneta para escuchar el saludo</div>
-    <div id="mosaico" class="mosaico-container"></div>
-    <div class="footer-meta">101 bienvenidas · Web Speech API</div>
 </header>
 
 <script>
-    // ==========================================
-    // 1. DATOS DE LOS IDIOMAS (101 Idiomas)
-    // ==========================================
-    const DATA = `Welcome|English|🗽🫖🎸|en-US
+(function () {
+    // Todo va dentro de una función: así no choca con otras variables de tu página (DATA, FONTS, etc.)
+    var YS_DATA = `Welcome|English|🗽🫖🎸|en-US
 Bienvenidos|Español|💃🥘🌶️|es-ES
 Bem-vindos|Português|⚽🐓🌊|pt-BR
 Bienvenue|Français|🥐🗼🍷|fr-FR
@@ -276,23 +218,17 @@ Yá'át'ééh|Diné|🏜️🪶🐑|nv-US
 yI'el!|Klingon|🖖🚀⚔️|tlh
 Benvidos|Galego|🐙🌊🥧|gl-ES`;
 
-    const FONTS = ["'Montserrat'", "'Playfair Display'", "'Pacifico'", "'Lobster'", "'Caveat'", "'Oswald'", "'Merriweather'", "'Righteous'", "'Bebas Neue'", "'Dancing Script'", "'Abril Fatface'", "'Comfortaa'", "'Special Elite'", "'Cinzel'"];
-    const FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
+    var YS_FONTS = ["'Montserrat'", "'Playfair Display'", "'Pacifico'", "'Lobster'", "'Caveat'", "'Oswald'", "'Merriweather'", "'Righteous'", "'Bebas Neue'", "'Dancing Script'", "'Abril Fatface'", "'Comfortaa'", "'Special Elite'", "'Cinzel'"];
+    var YS_FALLBACK = ", 'Noto Sans', system-ui, sans-serif";
 
-    // ==========================================
-    // 2. GESTIÓN DE VOCES Y REPRODUCCIÓN
-    // ==========================================
-    let vocesDisponibles = [];
-
-    function actualizarVoces() {
-        if (window.speechSynthesis) {
-            vocesDisponibles = window.speechSynthesis.getVoices();
-        }
+    // ---- Voces ----
+    var voces = [];
+    function cargarVoces() {
+        if (window.speechSynthesis) voces = window.speechSynthesis.getVoices();
     }
-
     if (window.speechSynthesis) {
-        actualizarVoces();
-        window.speechSynthesis.onvoiceschanged = actualizarVoces;
+        cargarVoces();
+        window.speechSynthesis.onvoiceschanged = cargarVoces;
     }
 
     function hablar(texto, lang, tarjeta, boton) {
@@ -300,118 +236,94 @@ Benvidos|Galego|🐙🌊🥧|gl-ES`;
             alert("Tu navegador no soporta síntesis de voz.");
             return;
         }
-
-        // Detener cualquier audio previo en curso
         window.speechSynthesis.cancel();
 
-        const utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = lang;
-        utterance.rate = 0.9; // Velocidad ligeramente más natural y clara
+        var u = new SpeechSynthesisUtterance(texto);
+        u.lang = lang;
+        u.rate = 0.9;
 
-        // Búsqueda inteligente de la voz correspondiente
-        const baseLang = lang.split('-')[0].toLowerCase();
-        const vozExacta = vocesDisponibles.find(v => v.lang.replace('_', '-').toLowerCase() === lang.toLowerCase());
-        const vozBase = vocesDisponibles.find(v => v.lang.toLowerCase().startsWith(baseLang));
+        var base = lang.split('-')[0].toLowerCase();
+        var exacta = voces.find(function (v) { return v.lang.replace('_', '-').toLowerCase() === lang.toLowerCase(); });
+        var parcial = voces.find(function (v) { return v.lang.toLowerCase().indexOf(base) === 0; });
+        if (exacta) u.voice = exacta; else if (parcial) u.voice = parcial;
 
-        if (vozExacta) {
-            utterance.voice = vozExacta;
-        } else if (vozBase) {
-            utterance.voice = vozBase;
-        }
+        document.querySelectorAll('#ys-header .ys-on').forEach(function (el) { el.classList.remove('ys-on'); });
+        document.querySelectorAll('#ys-header .ys-btn').forEach(function (b) { b.textContent = '🔊'; });
 
-        // Limpiar estados previos visuales
-        document.querySelectorAll('.sonando').forEach(el => el.classList.remove('sonando'));
-        document.querySelectorAll('.btn-voz').forEach(b => b.textContent = '🔊');
-
-        // Activar estados visuales actuales
-        tarjeta.classList.add('sonando');
-        boton.classList.add('sonando');
+        tarjeta.classList.add('ys-on');
+        boton.classList.add('ys-on');
         boton.textContent = '🔉';
 
-        // Eventos de control de reproducción
-        utterance.onend = utterance.onerror = () => {
-            tarjeta.classList.remove('sonando');
-            boton.classList.remove('sonando');
+        u.onend = u.onerror = function () {
+            tarjeta.classList.remove('ys-on');
+            boton.classList.remove('ys-on');
             boton.textContent = '🔊';
         };
-
-        // Ejecutar voz
-        window.speechSynthesis.speak(utterance);
+        window.speechSynthesis.speak(u);
     }
 
-    // ==========================================
-    // 3. GENERACIÓN DEL MOSAICO DE TARJETAS
-    // ==========================================
-    function generarMosaico() {
-        const contenedor = document.getElementById('mosaico');
-        if (!contenedor) return;
+    // ---- Mosaico ----
+    function generar() {
+        var cont = document.getElementById('ys-mosaico');
+        if (!cont) return;
 
-        const lineas = DATA.split('\n').map(r => r.trim()).filter(Boolean).map(r => r.split('|'));
+        var lineas = YS_DATA.split('\n')
+            .map(function (r) { return r.trim(); })
+            .filter(Boolean)
+            .map(function (r) { return r.split('|'); });
 
-        let seed = 7;
-        const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+        var seed = 7;
+        function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
 
-        lineas.forEach(([textoSaludo, nombreIdioma, iconos, codigoLang], i) => {
-            const hue = Math.floor((i * 137.5) % 360);
-            const tarjeta = document.createElement('div');
-            tarjeta.className = 'tarjeta-idioma';
+        lineas.forEach(function (f, i) {
+            var saludo = f[0], idioma = f[1], iconos = f[2], lang = f[3];
+            var hue = Math.floor((i * 137.5) % 360);
 
-            // Retraso escalonado para la aparición inicial
-            const delayEntrada = (i * 15) % 600;
-            tarjeta.style.animationDelay = `${delayEntrada}ms`;
+            var card = document.createElement('div');
+            card.className = 'ys-card';
+            card.style.animationDelay = ((i * 15) % 600) + 'ms';
 
-            // Botón de voz interactivo
-            const botonVoz = document.createElement('button');
-            botonVoz.className = 'btn-voz';
-            botonVoz.textContent = '🔊';
-            botonVoz.setAttribute('aria-label', `Escuchar ${textoSaludo} en ${nombreIdioma}`);
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'ys-btn';
+            btn.textContent = '🔊';
+            btn.setAttribute('aria-label', 'Escuchar ' + saludo + ' en ' + idioma);
 
-            // Contenido textual y visual de la tarjeta
-            const divSaludo = document.createElement('div');
-            divSaludo.className = 'saludo';
-            divSaludo.textContent = textoSaludo;
-            divSaludo.style.fontFamily = FONTS[i % FONTS.length] + FALLBACK;
-            divSaludo.style.fontSize = (0.9 + rnd() * 0.9).toFixed(2) + 'em';
-            divSaludo.style.color = `hsl(${hue}, 85%, 72%)`;
+            var dS = document.createElement('div');
+            dS.className = 'ys-saludo';
+            dS.textContent = saludo;
+            dS.style.fontFamily = YS_FONTS[i % YS_FONTS.length] + YS_FALLBACK;
+            dS.style.fontSize = (0.9 + rnd() * 0.9).toFixed(2) + 'em';
+            dS.style.color = 'hsl(' + hue + ', 85%, 72%)';
 
-            const divNombre = document.createElement('div');
-            divNombre.className = 'idioma-nombre';
-            divNombre.textContent = nombreIdioma;
+            var dN = document.createElement('div');
+            dN.className = 'ys-nombre';
+            dN.textContent = idioma;
 
-            const divIconos = document.createElement('div');
-            divIconos.className = 'iconos';
-            divIconos.textContent = iconos;
+            var dI = document.createElement('div');
+            dI.className = 'ys-iconos';
+            dI.textContent = iconos;
 
-            // Asignación limpia del evento click
-            botonVoz.addEventListener('click', (e) => {
+            btn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                hablar(textoSaludo, codigoLang, tarjeta, botonVoz);
+                hablar(saludo, lang, card, btn);
             });
+            // También suena al tocar la tarjeta completa
+            card.addEventListener('click', function () { hablar(saludo, lang, card, btn); });
 
-            tarjeta.append(botonVoz, divSaludo, divNombre, divIconos);
-            contenedor.appendChild(tarjeta);
+            card.append(btn, dS, dN, dI);
+            cont.appendChild(card);
         });
 
-        // Efecto visual sutil y aleatorio de brillo periódico
-        setInterval(() => {
-            const tarjetas = document.querySelectorAll('.tarjeta-idioma');
-            if (!tarjetas.length) return;
-            const tarjetaAleatoria = tarjetas[Math.floor(Math.random() * tarjetas.length)];
-            tarjetaAleatoria.classList.add('brillo');
-            setTimeout(() => tarjetaAleatoria.classList.remove('brillo'), 1000);
-        }, 3000);
-
-        console.log('Mosaico de 101 idiomas cargado y listo con soporte de voz interactivo.');
+        var c = document.getElementById('ys-count');
+        if (c) c.textContent = lineas.length + ' bienvenidas · Web Speech API';
     }
 
-    // Inicializar al cargar el DOM
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', generarMosaico);
+        document.addEventListener('DOMContentLoaded', generar);
     } else {
-        generarMosaico();
+        generar();
     }
+})();
 </script>
-</body>
-</html>
-
-
+<!-- ===== FIN HEADER YISEL ===== -->
