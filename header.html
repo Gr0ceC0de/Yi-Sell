@@ -1,139 +1,611 @@
-<!-- ===== HEADER YISEL · 2 BOXES · 100% HTML ESTÁTICO (SIN JAVASCRIPT) ===== -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<!-- ===== HEADER YISEL · header.html · HTML + CSS puro, sin JavaScript ===== -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Oswald:wght@500&family=Merriweather:wght@700&family=Righteous&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Comfortaa:wght@700&family=Special+Elite&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
 <style>
+/* ---------- BASE ---------- */
 #ys-header, #ys-header * { box-sizing: border-box; }
-#ys-header { background:#fff; color:#333; font-family:'Montserrat',system-ui,sans-serif; padding:20px 12px 28px; border-bottom:4px solid #ffb347; display:flex; flex-direction:column; gap:20px; max-width:100%; overflow-x:hidden; }
-#ys-header .ys-box { max-width:1400px; width:100%; margin:0 auto; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,.04); }
-#ys-header .ys-box-mosaico { padding:28px 10px 24px; background:#fff5f7; border:1px solid #fce4e8; }
-#ys-header .ys-hint-wrap { text-align:center; }
-#ys-header .ys-hint { display:inline-block; padding:6px 14px; border-radius:999px; font-size:13px; background:#ffe3a3; border:1px solid #ffb347; color:#7a4b00; }
-#ys-header .ys-mosaico { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:14px; padding:26px 6px 6px; font-size:.62rem; }
-#ys-header .ys-card { display:flex; flex-direction:column; align-items:center; text-align:center; padding:12px 18px 8px; min-width:92px; background:#fff; border:1px solid #f0f0f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.02); }
-#ys-header .ys-card h3 { margin:0; line-height:1.2; max-width:24ch; overflow-wrap:anywhere; font-weight:700; }
-#ys-header .ys-card p { margin:0; }
-#ys-header .ys-nombre { font-size:.72em; text-transform:uppercase; letter-spacing:1px; color:#888; margin-top:5px !important; }
-#ys-header .ys-iconos { font-size:1em; letter-spacing:2px; }
-#ys-header .ys-count { text-align:center; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#999; margin-top:18px; }
-#ys-header .ys-box-marca { padding:28px 20px; background:#fff; border:1px solid #f0f0f0; text-align:center; }
-#ys-header .ys-box-marca h2 { margin:0; font-size:clamp(1.5rem,5vw,2.1rem); letter-spacing:1px; color:#1e1e2f; }
-#ys-header .ys-box-marca h2 span { color:#ffb347; }
-#ys-header .ys-en { margin:2px 0 0; font-style:italic; color:#666; }
-#ys-header .ys-desc { margin:12px auto 0; max-width:560px; line-height:1.55; color:#555; font-size:.95rem; }
-@media (max-width:480px) { #ys-header .ys-mosaico { font-size:.55rem; } }
+#ys-header {
+  background: #fff; color: #333;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  padding: 20px 12px 28px;
+  border-bottom: 4px solid #ffb347;
+  display: flex; flex-direction: column; gap: 20px;
+  max-width: 100%; overflow-x: hidden;
+}
+#ys-header .ys-box {
+  max-width: 1400px; width: 100%; margin: 0 auto;
+  border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.04);
+}
+
+/* ---------- SECTION 1: MOSAICO (rosa mate) ---------- */
+#ys-header .ys-box-mosaico { padding: 28px 10px 24px; background: #fff5f7; border: 1px solid #fce4e8; }
+#ys-header .ys-hint-wrap { text-align: center; }
+#ys-header .ys-hint {
+  display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 13px;
+  background: #ffe3a3; border: 1px solid #ffb347; color: #7a4b00;
+}
+#ys-header .ys-mosaico {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+  gap: 14px; padding: 26px 6px 6px; font-size: .62rem;
+}
+#ys-header .ys-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  min-width: 92px; padding: 12px 18px 8px;
+  background: #fff; border: 1px solid #f0f0f0; border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.02);
+}
+#ys-header .ys-card h3 { margin: 0; font-weight: 700; line-height: 1.2; max-width: 24ch; overflow-wrap: anywhere; }
+#ys-header .ys-card p { margin: 0; }
+#ys-header .ys-nombre { margin-top: 5px; font-size: .72em; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+#ys-header .ys-iconos { font-size: 1em; letter-spacing: 2px; }
+#ys-header .ys-count { margin-top: 18px; text-align: center; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+
+/* Fuente, color y tamaño de cada saludo (rotan automáticamente) */
+#ys-header .ys-card:nth-child(14n+1) h3 { font-family:'Montserrat','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+2) h3 { font-family:'Playfair Display','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+3) h3 { font-family:'Pacifico','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+4) h3 { font-family:'Lobster','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+5) h3 { font-family:'Caveat','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+6) h3 { font-family:'Oswald','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+7) h3 { font-family:'Merriweather','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+8) h3 { font-family:'Righteous','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+9) h3 { font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+10) h3 { font-family:'Dancing Script','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+11) h3 { font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+12) h3 { font-family:'Comfortaa','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+13) h3 { font-family:'Special Elite','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(14n+14) h3 { font-family:'Cinzel','Noto Sans',system-ui,sans-serif; }
+#ys-header .ys-card:nth-child(10n+1) h3 { color:hsl(0,72%,40%); }
+#ys-header .ys-card:nth-child(10n+2) h3 { color:hsl(35,72%,40%); }
+#ys-header .ys-card:nth-child(10n+3) h3 { color:hsl(70,72%,40%); }
+#ys-header .ys-card:nth-child(10n+4) h3 { color:hsl(110,72%,40%); }
+#ys-header .ys-card:nth-child(10n+5) h3 { color:hsl(150,72%,40%); }
+#ys-header .ys-card:nth-child(10n+6) h3 { color:hsl(190,72%,40%); }
+#ys-header .ys-card:nth-child(10n+7) h3 { color:hsl(230,72%,40%); }
+#ys-header .ys-card:nth-child(10n+8) h3 { color:hsl(265,72%,40%); }
+#ys-header .ys-card:nth-child(10n+9) h3 { color:hsl(300,72%,40%); }
+#ys-header .ys-card:nth-child(10n+10) h3 { color:hsl(335,72%,40%); }
+#ys-header .ys-card:nth-child(8n+1) h3 { font-size:1.0em; }
+#ys-header .ys-card:nth-child(8n+2) h3 { font-size:1.4em; }
+#ys-header .ys-card:nth-child(8n+3) h3 { font-size:1.15em; }
+#ys-header .ys-card:nth-child(8n+4) h3 { font-size:1.7em; }
+#ys-header .ys-card:nth-child(8n+5) h3 { font-size:1.25em; }
+#ys-header .ys-card:nth-child(8n+6) h3 { font-size:1.5em; }
+#ys-header .ys-card:nth-child(8n+7) h3 { font-size:1.05em; }
+#ys-header .ys-card:nth-child(8n+8) h3 { font-size:1.35em; }
+
+/* ---------- SECTION 2: MARCA ---------- */
+#ys-header .ys-box-marca { padding: 28px 20px; text-align: center; background: #fff; border: 1px solid #f0f0f0; }
+#ys-header .ys-box-marca h2 { margin: 0; font-size: clamp(1.5rem, 5vw, 2.1rem); letter-spacing: 1px; color: #1e1e2f; }
+#ys-header .ys-box-marca h2 span { color: #ffb347; }
+#ys-header .ys-en { margin: 2px 0 0; font-style: italic; color: #666; }
+#ys-header .ys-desc { margin: 12px auto 0; max-width: 560px; line-height: 1.55; font-size: .95rem; color: #555; }
+
+@media (max-width: 480px) { #ys-header .ys-mosaico { font-size: .55rem; } }
 </style>
 
 <header id="ys-header">
 
-  <!-- BOX 1: MOSAICO DE 101 BIENVENIDAS -->
+  <!-- ===== SECTION 1: MOSAICO · 101 BIENVENIDAS ===== -->
   <section class="ys-box ys-box-mosaico">
-    <div class="ys-hint-wrap"><span class="ys-hint">Financial Algorithms | Algoritmos Financieros · Yisel</span></div>
-    <div class="ys-mosaico">
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(0,75%,40%)">Welcome</h3><p class="ys-nombre">English</p><p class="ys-iconos">🗽🫖🎸</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(137,75%,40%)">Bienvenidos</h3><p class="ys-nombre">Español</p><p class="ys-iconos">💃🥘🌶️</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(275,75%,40%)">Bem-vindos</h3><p class="ys-nombre">Português</p><p class="ys-iconos">⚽🐓🌊</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(52,75%,40%)">Bienvenue</h3><p class="ys-nombre">Français</p><p class="ys-iconos">🥐🗼🍷</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(190,75%,40%)">Benvenuti</h3><p class="ys-nombre">Italiano</p><p class="ys-iconos">🍕🎭🍝</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(327,75%,40%)">Willkommen</h3><p class="ys-nombre">Deutsch</p><p class="ys-iconos">🥨🍺🏰</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(105,75%,40%)">Welkom</h3><p class="ys-nombre">Nederlands</p><p class="ys-iconos">🌷🚲🧀</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(242,75%,40%)">Välkommen</h3><p class="ys-nombre">Svenska</p><p class="ys-iconos">🦌🕯️🐴</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(20,75%,40%)">Velkommen</h3><p class="ys-nombre">Norsk</p><p class="ys-iconos">🎿🐟⛵</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(157,75%,40%)">Velkommen</h3><p class="ys-nombre">Dansk</p><p class="ys-iconos">🧱🥧🧜</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(295,75%,40%)">Tervetuloa</h3><p class="ys-nombre">Suomi</p><p class="ys-iconos">🧖🦌🌌</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(72,75%,40%)">Velkomin</h3><p class="ys-nombre">Íslenska</p><p class="ys-iconos">🌋♨️🐑</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(210,75%,40%)">Fáilte</h3><p class="ys-nombre">Gaeilge</p><p class="ys-iconos">☘️🍀🎻</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(347,75%,40%)">Croeso</h3><p class="ys-nombre">Cymraeg</p><p class="ys-iconos">🐉🐑🏰</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(125,75%,40%)">Ongi etorri</h3><p class="ys-nombre">Euskara</p><p class="ys-iconos">🏔️🧀🍷</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(262,75%,40%)">Benvinguts</h3><p class="ys-nombre">Català</p><p class="ys-iconos">🏰🥖🍅</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(40,75%,40%)">Bine ați venit</h3><p class="ys-nombre">Română</p><p class="ys-iconos">🧛🏰🎻</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(177,75%,40%)">Witamy</h3><p class="ys-nombre">Polski</p><p class="ys-iconos">🥟🦅🎹</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(315,75%,40%)">Vítejte</h3><p class="ys-nombre">Čeština</p><p class="ys-iconos">🍺🏰🎻</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(92,75%,40%)">Vitajte</h3><p class="ys-nombre">Slovenčina</p><p class="ys-iconos">🏔️🐑🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(230,75%,40%)">Üdvözöljük</h3><p class="ys-nombre">Magyar</p><p class="ys-iconos">🌶️🎻♨️</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(7,75%,40%)">Dobrodošli</h3><p class="ys-nombre">Hrvatski</p><p class="ys-iconos">🏝️⚓🍇</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(145,75%,40%)">Добродошли</h3><p class="ys-nombre">Српски</p><p class="ys-iconos">🥁🍇⛪</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(282,75%,40%)">Добре дошли</h3><p class="ys-nombre">Български</p><p class="ys-iconos">🌹🥛🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(60,75%,40%)">Добро пожаловать</h3><p class="ys-nombre">Русский</p><p class="ys-iconos">🪆❄️🐻</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(197,75%,40%)">Ласкаво просимо</h3><p class="ys-nombre">Українська</p><p class="ys-iconos">🌻🥟🌾</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(335,75%,40%)">Сардэчна запрашаем</h3><p class="ys-nombre">Беларуская</p><p class="ys-iconos">🌾🦬🥔</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(112,75%,40%)">Καλώς ήρθατε</h3><p class="ys-nombre">Ελληνικά</p><p class="ys-iconos">🏛️🫒🌊</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(250,75%,40%)">Hoş geldiniz</h3><p class="ys-nombre">Türkçe</p><p class="ys-iconos">☕🕌🎈</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(27,75%,40%)">Mirë se vini</h3><p class="ys-nombre">Shqip</p><p class="ys-iconos">🦅🏔️🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(165,75%,40%)">Добредојде</h3><p class="ys-nombre">Македонски</p><p class="ys-iconos">🏞️🍇🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(302,75%,40%)">Sveiki atvykę</h3><p class="ys-nombre">Lietuvių</p><p class="ys-iconos">🏀🌲🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(80,75%,40%)">Laipni lūdzam</h3><p class="ys-nombre">Latviešu</p><p class="ys-iconos">🌾🎶🌲</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(217,75%,40%)">Tere tulemast</h3><p class="ys-nombre">Eesti</p><p class="ys-iconos">🌲🎶🏝️</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(355,75%,40%)">Merħba</h3><p class="ys-nombre">Malti</p><p class="ys-iconos">🏝️⚓⛪</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(132,75%,40%)">Բարի գալուստ</h3><p class="ys-nombre">Հայերեն</p><p class="ys-iconos">🍑⛪🏔️</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(270,75%,40%)">კეთილი იყოს თქვენი მობრძანება</h3><p class="ys-nombre">ქართული</p><p class="ys-iconos">🍷🏔️🥟</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(47,75%,40%)">Xoş gəlmisiniz</h3><p class="ys-nombre">Azərbaycan</p><p class="ys-iconos">🔥🧶🍵</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(185,75%,40%)">Қош келдіңіз</h3><p class="ys-nombre">Қазақша</p><p class="ys-iconos">🐎🏔️🎶</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(322,75%,40%)">Xush kelibsiz</h3><p class="ys-nombre">O&#x27;zbek</p><p class="ys-iconos">🍉🕌🧶</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(100,75%,40%)">ברוכים הבאים</h3><p class="ys-nombre">עברית</p><p class="ys-iconos">🕎🍯🌴</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(237,75%,40%)">أهلاً وسهلاً</h3><p class="ys-nombre">العربية</p><p class="ys-iconos">🐪🌙☕</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(15,75%,40%)">خوش آمدید</h3><p class="ys-nombre">فارسی</p><p class="ys-iconos">🌹🧿🍵</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(152,75%,40%)">ښه راغلاست</h3><p class="ys-nombre">پښتو</p><p class="ys-iconos">🏔️🍇🧣</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(290,75%,40%)">خوش آمدید</h3><p class="ys-nombre">اردو</p><p class="ys-iconos">🏏🌙🪁</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(67,75%,40%)">स्वागत है</h3><p class="ys-nombre">हिन्दी</p><p class="ys-iconos">🪔🐘🕉️</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(205,75%,40%)">স্বাগতম</h3><p class="ys-nombre">বাংলা</p><p class="ys-iconos">🐅🐟🌾</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(342,75%,40%)">સ્વાગત છે</h3><p class="ys-nombre">ગુજરાતી</p><p class="ys-iconos">🪁🥭💃</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(120,75%,40%)">स्वागत आहे</h3><p class="ys-nombre">मराठी</p><p class="ys-iconos">🐘🏰🥭</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(257,75%,40%)">ਜੀ ਆਇਆਂ ਨੂੰ</h3><p class="ys-nombre">ਪੰਜਾਬੀ</p><p class="ys-iconos">🌾🥁🍛</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(35,75%,40%)">வரவேற்கிறோம்</h3><p class="ys-nombre">தமிழ்</p><p class="ys-iconos">🛕🌺🍛</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(172,75%,40%)">స్వాగతం</h3><p class="ys-nombre">తెలుగు</p><p class="ys-iconos">🌶️🛕🎬</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(310,75%,40%)">സ്വാഗതം</h3><p class="ys-nombre">മലയാളം</p><p class="ys-iconos">🥥⛵🌴</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(87,75%,40%)">ಸ್ವಾಗತ</h3><p class="ys-nombre">ಕನ್ನಡ</p><p class="ys-iconos">🏯🎶🌸</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(225,75%,40%)">ආයුබෝවන්</h3><p class="ys-nombre">සිංහල</p><p class="ys-iconos">🍵🐘🏝️</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(2,75%,40%)">स्वागत छ</h3><p class="ys-nombre">नेपाली</p><p class="ys-iconos">🏔️🙏🐃</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(140,75%,40%)">ยินดีต้อนรับ</h3><p class="ys-nombre">ไทย</p><p class="ys-iconos">🙏🐘🍜</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(277,75%,40%)">ຍິນດີຕ້ອນຮັບ</h3><p class="ys-nombre">ລາວ</p><p class="ys-iconos">🛕🍚🐘</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(55,75%,40%)">ស្វាគមន៍</h3><p class="ys-nombre">ខ្មែរ</p><p class="ys-iconos">🛕🪷💃</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(192,75%,40%)">ကြိုဆိုပါတယ်</h3><p class="ys-nombre">မြန်မာ</p><p class="ys-iconos">🛕🪷🐘</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(330,75%,40%)">Chào mừng</h3><p class="ys-nombre">Tiếng Việt</p><p class="ys-iconos">🍜🏮🛵</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(107,75%,40%)">Selamat datang</h3><p class="ys-nombre">Indonesia</p><p class="ys-iconos">🌋🥢🌺</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(245,75%,40%)">Selamat datang</h3><p class="ys-nombre">Melayu</p><p class="ys-iconos">🌺🍛🕌</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(22,75%,40%)">Maligayang pagdating</h3><p class="ys-nombre">Tagalog</p><p class="ys-iconos">🏝️🥥🥭</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(160,75%,40%)">Sugeng rawuh</h3><p class="ys-nombre">Jawa</p><p class="ys-iconos">🌋🎭🛕</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(297,75%,40%)">E komo mai</h3><p class="ys-nombre">ʻŌlelo Hawaiʻi</p><p class="ys-iconos">🌺🏄🌋</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(75,75%,40%)">Nau mai</h3><p class="ys-nombre">Māori</p><p class="ys-iconos">🥝🌿🛶</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(212,75%,40%)">Afio mai</h3><p class="ys-nombre">Samoa</p><p class="ys-iconos">🌴🥥🛶</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(350,75%,40%)">欢迎</h3><p class="ys-nombre">中文 简体</p><p class="ys-iconos">🐼🏮🥢</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(127,75%,40%)">歡迎</h3><p class="ys-nombre">中文 繁體</p><p class="ys-iconos">🏮🍵🐉</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(265,75%,40%)">ようこそ</h3><p class="ys-nombre">日本語</p><p class="ys-iconos">🗻🌸🍣</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(42,75%,40%)">환영합니다</h3><p class="ys-nombre">한국어</p><p class="ys-iconos">🍲🎤🏯</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(180,75%,40%)">Тавтай морил</h3><p class="ys-nombre">Монгол</p><p class="ys-iconos">🐎🏕️🏹</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(317,75%,40%)">བཀྲ་ཤིས་བདེ་ལེགས།</h3><p class="ys-nombre">བོད་ཡིག</p><p class="ys-iconos">☸️🏔️🐃</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(95,75%,40%)">Kuzuzangpo</h3><p class="ys-nombre">Dzongkha</p><p class="ys-iconos">🐉🏔️☸️</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(232,75%,40%)">እንኳን ደህና መጡ</h3><p class="ys-nombre">አማርኛ</p><p class="ys-iconos">☕🦁⛪</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(10,75%,40%)">Karibu</h3><p class="ys-nombre">Kiswahili</p><p class="ys-iconos">🦁🌍🥁</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(147,75%,40%)">Kaabo</h3><p class="ys-nombre">Yorùbá</p><p class="ys-iconos">🥁🎭🌴</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(285,75%,40%)">Siyakwamukela</h3><p class="ys-nombre">Zulu</p><p class="ys-iconos">🛡️🥁🦁</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(62,75%,40%)">Wamkelekile</h3><p class="ys-nombre">Xhosa</p><p class="ys-iconos">🥁🌅🦒</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(200,75%,40%)">Soo dhawoow</h3><p class="ys-nombre">Somali</p><p class="ys-iconos">🐪🌊🥛</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(337,75%,40%)">Barka da zuwa</h3><p class="ys-nombre">Hausa</p><p class="ys-iconos">🐪🧵🥁</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(115,75%,40%)">Nnọọ</h3><p class="ys-nombre">Igbo</p><p class="ys-iconos">🥁🎭🍠</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(252,75%,40%)">Murakaza neza</h3><p class="ys-nombre">Kinyarwanda</p><p class="ys-iconos">🦍🌿🥁</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(30,75%,40%)">Boyei malamu</h3><p class="ys-nombre">Lingala</p><p class="ys-iconos">🎶🌴🥁</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(167,75%,40%)">Mauya</h3><p class="ys-nombre">Shona</p><p class="ys-iconos">🗿🥁🌅</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(305,75%,40%)">Welkom</h3><p class="ys-nombre">Afrikaans</p><p class="ys-iconos">🦁🔥🍖</p></div>
-<div class="ys-card"><h3 style="font-family:'Lobster','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(82,75%,40%)">Rea u amohela</h3><p class="ys-nombre">Sesotho</p><p class="ys-iconos">🐎🏔️🧣</p></div>
-<div class="ys-card"><h3 style="font-family:'Caveat','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(220,75%,40%)">Tongasoa</h3><p class="ys-nombre">Malagasy</p><p class="ys-iconos">🐒🌴🌺</p></div>
-<div class="ys-card"><h3 style="font-family:'Oswald','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(357,75%,40%)">Bonvenon</h3><p class="ys-nombre">Esperanto</p><p class="ys-iconos">🟢⭐🌍</p></div>
-<div class="ys-card"><h3 style="font-family:'Merriweather','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(135,75%,40%)">Salvete</h3><p class="ys-nombre">Latina</p><p class="ys-iconos">🏛️📜⚔️</p></div>
-<div class="ys-card"><h3 style="font-family:'Righteous','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(272,75%,40%)">स्वागतम्</h3><p class="ys-nombre">संस्कृतम्</p><p class="ys-iconos">🕉️📜🪷</p></div>
-<div class="ys-card"><h3 style="font-family:'Bebas Neue','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(50,75%,40%)">Byenveni</h3><p class="ys-nombre">Kreyòl Ayisyen</p><p class="ys-iconos">🌴🥁🌺</p></div>
-<div class="ys-card"><h3 style="font-family:'Dancing Script','Noto Sans',system-ui,sans-serif;font-size:1.5em;color:hsl(187,75%,40%)">ᎣᏏᏲ</h3><p class="ys-nombre">ᏣᎳᎩ</p><p class="ys-iconos">🪶🦅🌽</p></div>
-<div class="ys-card"><h3 style="font-family:'Abril Fatface','Noto Sans',system-ui,sans-serif;font-size:1.05em;color:hsl(325,75%,40%)">ᑐᙵᓱᒋᑦ</h3><p class="ys-nombre">Inuktitut</p><p class="ys-iconos">🐻‍❄️❄️🛶</p></div>
-<div class="ys-card"><h3 style="font-family:'Comfortaa','Noto Sans',system-ui,sans-serif;font-size:1.35em;color:hsl(102,75%,40%)">Allillanchu</h3><p class="ys-nombre">Quechua</p><p class="ys-iconos">🦙🏔️🌽</p></div>
-<div class="ys-card"><h3 style="font-family:'Special Elite','Noto Sans',system-ui,sans-serif;font-size:1.0em;color:hsl(240,75%,40%)">Mba&#x27;éichapa</h3><p class="ys-nombre">Guaraní</p><p class="ys-iconos">🧉🦜🌿</p></div>
-<div class="ys-card"><h3 style="font-family:'Cinzel','Noto Sans',system-ui,sans-serif;font-size:1.4em;color:hsl(17,75%,40%)">Aski jayp&#x27;u</h3><p class="ys-nombre">Aymara</p><p class="ys-iconos">🦙🏔️🧶</p></div>
-<div class="ys-card"><h3 style="font-family:'Montserrat','Noto Sans',system-ui,sans-serif;font-size:1.15em;color:hsl(155,75%,40%)">Yá&#x27;át&#x27;ééh</h3><p class="ys-nombre">Diné</p><p class="ys-iconos">🏜️🪶🐑</p></div>
-<div class="ys-card"><h3 style="font-family:'Playfair Display','Noto Sans',system-ui,sans-serif;font-size:1.7em;color:hsl(292,75%,40%)">yI&#x27;el!</h3><p class="ys-nombre">Klingon</p><p class="ys-iconos">🖖🚀⚔️</p></div>
-<div class="ys-card"><h3 style="font-family:'Pacifico','Noto Sans',system-ui,sans-serif;font-size:1.25em;color:hsl(70,75%,40%)">Benvidos</h3><p class="ys-nombre">Galego</p><p class="ys-iconos">🐙🌊🥧</p></div>
+
+    <div class="ys-hint-wrap">
+      <span class="ys-hint">Financial Algorithms | Algoritmos Financieros · Yisel</span>
     </div>
+
+    <div class="ys-mosaico">
+    <div class="ys-card">
+      <h3>Welcome</h3>
+      <p class="ys-nombre">English</p>
+      <p class="ys-iconos">🗽🫖🎸</p>
+    </div>
+    <div class="ys-card">
+      <h3>Bienvenidos</h3>
+      <p class="ys-nombre">Español</p>
+      <p class="ys-iconos">💃🥘🌶️</p>
+    </div>
+    <div class="ys-card">
+      <h3>Bem-vindos</h3>
+      <p class="ys-nombre">Português</p>
+      <p class="ys-iconos">⚽🐓🌊</p>
+    </div>
+    <div class="ys-card">
+      <h3>Bienvenue</h3>
+      <p class="ys-nombre">Français</p>
+      <p class="ys-iconos">🥐🗼🍷</p>
+    </div>
+    <div class="ys-card">
+      <h3>Benvenuti</h3>
+      <p class="ys-nombre">Italiano</p>
+      <p class="ys-iconos">🍕🎭🍝</p>
+    </div>
+    <div class="ys-card">
+      <h3>Willkommen</h3>
+      <p class="ys-nombre">Deutsch</p>
+      <p class="ys-iconos">🥨🍺🏰</p>
+    </div>
+    <div class="ys-card">
+      <h3>Welkom</h3>
+      <p class="ys-nombre">Nederlands</p>
+      <p class="ys-iconos">🌷🚲🧀</p>
+    </div>
+    <div class="ys-card">
+      <h3>Välkommen</h3>
+      <p class="ys-nombre">Svenska</p>
+      <p class="ys-iconos">🦌🕯️🐴</p>
+    </div>
+    <div class="ys-card">
+      <h3>Velkommen</h3>
+      <p class="ys-nombre">Norsk</p>
+      <p class="ys-iconos">🎿🐟⛵</p>
+    </div>
+    <div class="ys-card">
+      <h3>Velkommen</h3>
+      <p class="ys-nombre">Dansk</p>
+      <p class="ys-iconos">🧱🥧🧜</p>
+    </div>
+    <div class="ys-card">
+      <h3>Tervetuloa</h3>
+      <p class="ys-nombre">Suomi</p>
+      <p class="ys-iconos">🧖🦌🌌</p>
+    </div>
+    <div class="ys-card">
+      <h3>Velkomin</h3>
+      <p class="ys-nombre">Íslenska</p>
+      <p class="ys-iconos">🌋♨️🐑</p>
+    </div>
+    <div class="ys-card">
+      <h3>Fáilte</h3>
+      <p class="ys-nombre">Gaeilge</p>
+      <p class="ys-iconos">☘️🍀🎻</p>
+    </div>
+    <div class="ys-card">
+      <h3>Croeso</h3>
+      <p class="ys-nombre">Cymraeg</p>
+      <p class="ys-iconos">🐉🐑🏰</p>
+    </div>
+    <div class="ys-card">
+      <h3>Ongi etorri</h3>
+      <p class="ys-nombre">Euskara</p>
+      <p class="ys-iconos">🏔️🧀🍷</p>
+    </div>
+    <div class="ys-card">
+      <h3>Benvinguts</h3>
+      <p class="ys-nombre">Català</p>
+      <p class="ys-iconos">🏰🥖🍅</p>
+    </div>
+    <div class="ys-card">
+      <h3>Bine ați venit</h3>
+      <p class="ys-nombre">Română</p>
+      <p class="ys-iconos">🧛🏰🎻</p>
+    </div>
+    <div class="ys-card">
+      <h3>Witamy</h3>
+      <p class="ys-nombre">Polski</p>
+      <p class="ys-iconos">🥟🦅🎹</p>
+    </div>
+    <div class="ys-card">
+      <h3>Vítejte</h3>
+      <p class="ys-nombre">Čeština</p>
+      <p class="ys-iconos">🍺🏰🎻</p>
+    </div>
+    <div class="ys-card">
+      <h3>Vitajte</h3>
+      <p class="ys-nombre">Slovenčina</p>
+      <p class="ys-iconos">🏔️🐑🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Üdvözöljük</h3>
+      <p class="ys-nombre">Magyar</p>
+      <p class="ys-iconos">🌶️🎻♨️</p>
+    </div>
+    <div class="ys-card">
+      <h3>Dobrodošli</h3>
+      <p class="ys-nombre">Hrvatski</p>
+      <p class="ys-iconos">🏝️⚓🍇</p>
+    </div>
+    <div class="ys-card">
+      <h3>Добродошли</h3>
+      <p class="ys-nombre">Српски</p>
+      <p class="ys-iconos">🥁🍇⛪</p>
+    </div>
+    <div class="ys-card">
+      <h3>Добре дошли</h3>
+      <p class="ys-nombre">Български</p>
+      <p class="ys-iconos">🌹🥛🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Добро пожаловать</h3>
+      <p class="ys-nombre">Русский</p>
+      <p class="ys-iconos">🪆❄️🐻</p>
+    </div>
+    <div class="ys-card">
+      <h3>Ласкаво просимо</h3>
+      <p class="ys-nombre">Українська</p>
+      <p class="ys-iconos">🌻🥟🌾</p>
+    </div>
+    <div class="ys-card">
+      <h3>Сардэчна запрашаем</h3>
+      <p class="ys-nombre">Беларуская</p>
+      <p class="ys-iconos">🌾🦬🥔</p>
+    </div>
+    <div class="ys-card">
+      <h3>Καλώς ήρθατε</h3>
+      <p class="ys-nombre">Ελληνικά</p>
+      <p class="ys-iconos">🏛️🫒🌊</p>
+    </div>
+    <div class="ys-card">
+      <h3>Hoş geldiniz</h3>
+      <p class="ys-nombre">Türkçe</p>
+      <p class="ys-iconos">☕🕌🎈</p>
+    </div>
+    <div class="ys-card">
+      <h3>Mirë se vini</h3>
+      <p class="ys-nombre">Shqip</p>
+      <p class="ys-iconos">🦅🏔️🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Добредојде</h3>
+      <p class="ys-nombre">Македонски</p>
+      <p class="ys-iconos">🏞️🍇🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Sveiki atvykę</h3>
+      <p class="ys-nombre">Lietuvių</p>
+      <p class="ys-iconos">🏀🌲🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Laipni lūdzam</h3>
+      <p class="ys-nombre">Latviešu</p>
+      <p class="ys-iconos">🌾🎶🌲</p>
+    </div>
+    <div class="ys-card">
+      <h3>Tere tulemast</h3>
+      <p class="ys-nombre">Eesti</p>
+      <p class="ys-iconos">🌲🎶🏝️</p>
+    </div>
+    <div class="ys-card">
+      <h3>Merħba</h3>
+      <p class="ys-nombre">Malti</p>
+      <p class="ys-iconos">🏝️⚓⛪</p>
+    </div>
+    <div class="ys-card">
+      <h3>Բարի գալուստ</h3>
+      <p class="ys-nombre">Հայերեն</p>
+      <p class="ys-iconos">🍑⛪🏔️</p>
+    </div>
+    <div class="ys-card">
+      <h3>კეთილი იყოს თქვენი მობრძანება</h3>
+      <p class="ys-nombre">ქართული</p>
+      <p class="ys-iconos">🍷🏔️🥟</p>
+    </div>
+    <div class="ys-card">
+      <h3>Xoş gəlmisiniz</h3>
+      <p class="ys-nombre">Azərbaycan</p>
+      <p class="ys-iconos">🔥🧶🍵</p>
+    </div>
+    <div class="ys-card">
+      <h3>Қош келдіңіз</h3>
+      <p class="ys-nombre">Қазақша</p>
+      <p class="ys-iconos">🐎🏔️🎶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Xush kelibsiz</h3>
+      <p class="ys-nombre">O&#x27;zbek</p>
+      <p class="ys-iconos">🍉🕌🧶</p>
+    </div>
+    <div class="ys-card">
+      <h3>ברוכים הבאים</h3>
+      <p class="ys-nombre">עברית</p>
+      <p class="ys-iconos">🕎🍯🌴</p>
+    </div>
+    <div class="ys-card">
+      <h3>أهلاً وسهلاً</h3>
+      <p class="ys-nombre">العربية</p>
+      <p class="ys-iconos">🐪🌙☕</p>
+    </div>
+    <div class="ys-card">
+      <h3>خوش آمدید</h3>
+      <p class="ys-nombre">فارسی</p>
+      <p class="ys-iconos">🌹🧿🍵</p>
+    </div>
+    <div class="ys-card">
+      <h3>ښه راغلاست</h3>
+      <p class="ys-nombre">پښتو</p>
+      <p class="ys-iconos">🏔️🍇🧣</p>
+    </div>
+    <div class="ys-card">
+      <h3>خوش آمدید</h3>
+      <p class="ys-nombre">اردو</p>
+      <p class="ys-iconos">🏏🌙🪁</p>
+    </div>
+    <div class="ys-card">
+      <h3>स्वागत है</h3>
+      <p class="ys-nombre">हिन्दी</p>
+      <p class="ys-iconos">🪔🐘🕉️</p>
+    </div>
+    <div class="ys-card">
+      <h3>স্বাগতম</h3>
+      <p class="ys-nombre">বাংলা</p>
+      <p class="ys-iconos">🐅🐟🌾</p>
+    </div>
+    <div class="ys-card">
+      <h3>સ્વાગત છે</h3>
+      <p class="ys-nombre">ગુજરાતી</p>
+      <p class="ys-iconos">🪁🥭💃</p>
+    </div>
+    <div class="ys-card">
+      <h3>स्वागत आहे</h3>
+      <p class="ys-nombre">मराठी</p>
+      <p class="ys-iconos">🐘🏰🥭</p>
+    </div>
+    <div class="ys-card">
+      <h3>ਜੀ ਆਇਆਂ ਨੂੰ</h3>
+      <p class="ys-nombre">ਪੰਜਾਬੀ</p>
+      <p class="ys-iconos">🌾🥁🍛</p>
+    </div>
+    <div class="ys-card">
+      <h3>வரவேற்கிறோம்</h3>
+      <p class="ys-nombre">தமிழ்</p>
+      <p class="ys-iconos">🛕🌺🍛</p>
+    </div>
+    <div class="ys-card">
+      <h3>స్వాగతం</h3>
+      <p class="ys-nombre">తెలుగు</p>
+      <p class="ys-iconos">🌶️🛕🎬</p>
+    </div>
+    <div class="ys-card">
+      <h3>സ്വാഗതം</h3>
+      <p class="ys-nombre">മലയാളം</p>
+      <p class="ys-iconos">🥥⛵🌴</p>
+    </div>
+    <div class="ys-card">
+      <h3>ಸ್ವಾಗತ</h3>
+      <p class="ys-nombre">ಕನ್ನಡ</p>
+      <p class="ys-iconos">🏯🎶🌸</p>
+    </div>
+    <div class="ys-card">
+      <h3>ආයුබෝවන්</h3>
+      <p class="ys-nombre">සිංහල</p>
+      <p class="ys-iconos">🍵🐘🏝️</p>
+    </div>
+    <div class="ys-card">
+      <h3>स्वागत छ</h3>
+      <p class="ys-nombre">नेपाली</p>
+      <p class="ys-iconos">🏔️🙏🐃</p>
+    </div>
+    <div class="ys-card">
+      <h3>ยินดีต้อนรับ</h3>
+      <p class="ys-nombre">ไทย</p>
+      <p class="ys-iconos">🙏🐘🍜</p>
+    </div>
+    <div class="ys-card">
+      <h3>ຍິນດີຕ້ອນຮັບ</h3>
+      <p class="ys-nombre">ລາວ</p>
+      <p class="ys-iconos">🛕🍚🐘</p>
+    </div>
+    <div class="ys-card">
+      <h3>ស្វាគមន៍</h3>
+      <p class="ys-nombre">ខ្មែរ</p>
+      <p class="ys-iconos">🛕🪷💃</p>
+    </div>
+    <div class="ys-card">
+      <h3>ကြိုဆိုပါတယ်</h3>
+      <p class="ys-nombre">မြန်မာ</p>
+      <p class="ys-iconos">🛕🪷🐘</p>
+    </div>
+    <div class="ys-card">
+      <h3>Chào mừng</h3>
+      <p class="ys-nombre">Tiếng Việt</p>
+      <p class="ys-iconos">🍜🏮🛵</p>
+    </div>
+    <div class="ys-card">
+      <h3>Selamat datang</h3>
+      <p class="ys-nombre">Indonesia</p>
+      <p class="ys-iconos">🌋🥢🌺</p>
+    </div>
+    <div class="ys-card">
+      <h3>Selamat datang</h3>
+      <p class="ys-nombre">Melayu</p>
+      <p class="ys-iconos">🌺🍛🕌</p>
+    </div>
+    <div class="ys-card">
+      <h3>Maligayang pagdating</h3>
+      <p class="ys-nombre">Tagalog</p>
+      <p class="ys-iconos">🏝️🥥🥭</p>
+    </div>
+    <div class="ys-card">
+      <h3>Sugeng rawuh</h3>
+      <p class="ys-nombre">Jawa</p>
+      <p class="ys-iconos">🌋🎭🛕</p>
+    </div>
+    <div class="ys-card">
+      <h3>E komo mai</h3>
+      <p class="ys-nombre">ʻŌlelo Hawaiʻi</p>
+      <p class="ys-iconos">🌺🏄🌋</p>
+    </div>
+    <div class="ys-card">
+      <h3>Nau mai</h3>
+      <p class="ys-nombre">Māori</p>
+      <p class="ys-iconos">🥝🌿🛶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Afio mai</h3>
+      <p class="ys-nombre">Samoa</p>
+      <p class="ys-iconos">🌴🥥🛶</p>
+    </div>
+    <div class="ys-card">
+      <h3>欢迎</h3>
+      <p class="ys-nombre">中文 简体</p>
+      <p class="ys-iconos">🐼🏮🥢</p>
+    </div>
+    <div class="ys-card">
+      <h3>歡迎</h3>
+      <p class="ys-nombre">中文 繁體</p>
+      <p class="ys-iconos">🏮🍵🐉</p>
+    </div>
+    <div class="ys-card">
+      <h3>ようこそ</h3>
+      <p class="ys-nombre">日本語</p>
+      <p class="ys-iconos">🗻🌸🍣</p>
+    </div>
+    <div class="ys-card">
+      <h3>환영합니다</h3>
+      <p class="ys-nombre">한국어</p>
+      <p class="ys-iconos">🍲🎤🏯</p>
+    </div>
+    <div class="ys-card">
+      <h3>Тавтай морил</h3>
+      <p class="ys-nombre">Монгол</p>
+      <p class="ys-iconos">🐎🏕️🏹</p>
+    </div>
+    <div class="ys-card">
+      <h3>བཀྲ་ཤིས་བདེ་ལེགས།</h3>
+      <p class="ys-nombre">བོད་ཡིག</p>
+      <p class="ys-iconos">☸️🏔️🐃</p>
+    </div>
+    <div class="ys-card">
+      <h3>Kuzuzangpo</h3>
+      <p class="ys-nombre">Dzongkha</p>
+      <p class="ys-iconos">🐉🏔️☸️</p>
+    </div>
+    <div class="ys-card">
+      <h3>እንኳን ደህና መጡ</h3>
+      <p class="ys-nombre">አማርኛ</p>
+      <p class="ys-iconos">☕🦁⛪</p>
+    </div>
+    <div class="ys-card">
+      <h3>Karibu</h3>
+      <p class="ys-nombre">Kiswahili</p>
+      <p class="ys-iconos">🦁🌍🥁</p>
+    </div>
+    <div class="ys-card">
+      <h3>Kaabo</h3>
+      <p class="ys-nombre">Yorùbá</p>
+      <p class="ys-iconos">🥁🎭🌴</p>
+    </div>
+    <div class="ys-card">
+      <h3>Siyakwamukela</h3>
+      <p class="ys-nombre">Zulu</p>
+      <p class="ys-iconos">🛡️🥁🦁</p>
+    </div>
+    <div class="ys-card">
+      <h3>Wamkelekile</h3>
+      <p class="ys-nombre">Xhosa</p>
+      <p class="ys-iconos">🥁🌅🦒</p>
+    </div>
+    <div class="ys-card">
+      <h3>Soo dhawoow</h3>
+      <p class="ys-nombre">Somali</p>
+      <p class="ys-iconos">🐪🌊🥛</p>
+    </div>
+    <div class="ys-card">
+      <h3>Barka da zuwa</h3>
+      <p class="ys-nombre">Hausa</p>
+      <p class="ys-iconos">🐪🧵🥁</p>
+    </div>
+    <div class="ys-card">
+      <h3>Nnọọ</h3>
+      <p class="ys-nombre">Igbo</p>
+      <p class="ys-iconos">🥁🎭🍠</p>
+    </div>
+    <div class="ys-card">
+      <h3>Murakaza neza</h3>
+      <p class="ys-nombre">Kinyarwanda</p>
+      <p class="ys-iconos">🦍🌿🥁</p>
+    </div>
+    <div class="ys-card">
+      <h3>Boyei malamu</h3>
+      <p class="ys-nombre">Lingala</p>
+      <p class="ys-iconos">🎶🌴🥁</p>
+    </div>
+    <div class="ys-card">
+      <h3>Mauya</h3>
+      <p class="ys-nombre">Shona</p>
+      <p class="ys-iconos">🗿🥁🌅</p>
+    </div>
+    <div class="ys-card">
+      <h3>Welkom</h3>
+      <p class="ys-nombre">Afrikaans</p>
+      <p class="ys-iconos">🦁🔥🍖</p>
+    </div>
+    <div class="ys-card">
+      <h3>Rea u amohela</h3>
+      <p class="ys-nombre">Sesotho</p>
+      <p class="ys-iconos">🐎🏔️🧣</p>
+    </div>
+    <div class="ys-card">
+      <h3>Tongasoa</h3>
+      <p class="ys-nombre">Malagasy</p>
+      <p class="ys-iconos">🐒🌴🌺</p>
+    </div>
+    <div class="ys-card">
+      <h3>Bonvenon</h3>
+      <p class="ys-nombre">Esperanto</p>
+      <p class="ys-iconos">🟢⭐🌍</p>
+    </div>
+    <div class="ys-card">
+      <h3>Salvete</h3>
+      <p class="ys-nombre">Latina</p>
+      <p class="ys-iconos">🏛️📜⚔️</p>
+    </div>
+    <div class="ys-card">
+      <h3>स्वागतम्</h3>
+      <p class="ys-nombre">संस्कृतम्</p>
+      <p class="ys-iconos">🕉️📜🪷</p>
+    </div>
+    <div class="ys-card">
+      <h3>Byenveni</h3>
+      <p class="ys-nombre">Kreyòl Ayisyen</p>
+      <p class="ys-iconos">🌴🥁🌺</p>
+    </div>
+    <div class="ys-card">
+      <h3>ᎣᏏᏲ</h3>
+      <p class="ys-nombre">ᏣᎳᎩ</p>
+      <p class="ys-iconos">🪶🦅🌽</p>
+    </div>
+    <div class="ys-card">
+      <h3>ᑐᙵᓱᒋᑦ</h3>
+      <p class="ys-nombre">Inuktitut</p>
+      <p class="ys-iconos">🐻‍❄️❄️🛶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Allillanchu</h3>
+      <p class="ys-nombre">Quechua</p>
+      <p class="ys-iconos">🦙🏔️🌽</p>
+    </div>
+    <div class="ys-card">
+      <h3>Mba&#x27;éichapa</h3>
+      <p class="ys-nombre">Guaraní</p>
+      <p class="ys-iconos">🧉🦜🌿</p>
+    </div>
+    <div class="ys-card">
+      <h3>Aski jayp&#x27;u</h3>
+      <p class="ys-nombre">Aymara</p>
+      <p class="ys-iconos">🦙🏔️🧶</p>
+    </div>
+    <div class="ys-card">
+      <h3>Yá&#x27;át&#x27;ééh</h3>
+      <p class="ys-nombre">Diné</p>
+      <p class="ys-iconos">🏜️🪶🐑</p>
+    </div>
+    <div class="ys-card">
+      <h3>yI&#x27;el!</h3>
+      <p class="ys-nombre">Klingon</p>
+      <p class="ys-iconos">🖖🚀⚔️</p>
+    </div>
+    <div class="ys-card">
+      <h3>Benvidos</h3>
+      <p class="ys-nombre">Galego</p>
+      <p class="ys-iconos">🐙🌊🥧</p>
+    </div>
+    </div>
+
     <div class="ys-count">101 bienvenidas</div>
+
   </section>
 
-  <!-- BOX 2: PRESENTACIÓN DE LA EMPRESA -->
+  <!-- ===== SECTION 2: PRESENTACIÓN DE LA EMPRESA ===== -->
   <section class="ys-box ys-box-marca">
     <h2>Yisel <span>·</span> Algoritmos Financieros</h2>
     <p class="ys-en">Financial Algorithms</p>
