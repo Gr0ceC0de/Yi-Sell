@@ -1027,6 +1027,36 @@
         .catch(err => console.error('Error loading footer:', err));
     });
   </script>
+    <div id="footer-placeholder"></div>
+
+
+    <!-- ============================================================
+         SECCIÓN 04: SCRIPT LOCAL (sin URLs externas)
+         ============================================================ -->
+    <script src="classified.js"></script>
+  <div id="footer-placeholder"></div>
+
+  <script>
+    (function () {
+      function loadPartial(id, url, label) {
+        fetch(url)
+          .then(function (res) {
+            if (!res.ok) throw new Error(label + ' not found: ' + res.status);
+            return res.text();
+          })
+          .then(function (data) {
+            var el = document.getElementById(id);
+            if (el) el.innerHTML = data;
+          })
+          .catch(function (err) {
+            console.error('Error loading ' + label + ':', err);
+          });
+      }
+
+      loadPartial('header-placeholder', 'header.html', 'header');
+      loadPartial('footer-placeholder', 'footer.html', 'footer');
+    })();
+  </script>
 
  
     
