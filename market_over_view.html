@@ -475,218 +475,278 @@ body>
     </main>
 
 <!-- ============================================================
-     SECCIÓN GBP · Libra esterlina
-     Pega este bloque completo dentro de tu HTML.
-     Todo el CSS está acotado a #gbp-section para no chocar con tu página.
+     SECCIÓN GBP · Libra Esterlina
+     Pega este bloque completo dentro del <body> de tu página.
+     CSS y JS están acotados dentro de #gbp-section.
      ============================================================ -->
 <section id="gbp-section" aria-labelledby="gbp-title">
 <style>
 #gbp-section{
-  --g-ink:#1c2433; --g-mute:#5d6678; --g-line:#dfe4ee; --g-card:#ffffff; --g-soft:#f3f6fc;
-  --g-blue:#2F5597; --g-red:#C00000; --g-amber:#FFC000; --g-gray:#A9A9A9; --g-green:#548235;
-  color:var(--g-ink); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.5;
-  max-width:1200px; margin:0 auto; padding:8px 0;
+  --ink:#1c2433; --mute:#5d6678; --line:#dfe4ee; --card:#fff; --soft:#f3f6fc;
+  --blue:#2F5597; --red:#C00000; --green:#548235; --amber:#BF8F00; --purple:#7030A0;
+  --cyan:#00B0F0; --orange:#E36C0A; --navy:#203864;
+  display:block; max-width:1200px; margin:0 auto; padding:8px 0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Consolas,monospace; line-height:1.5;
 }
 @media (prefers-color-scheme:dark){
-  #gbp-section{ --g-ink:#e8ecf5; --g-mute:#9aa4b8; --g-line:#2c3550; --g-card:#161c2e; --g-soft:#1d2540; --g-blue:#7da2e6; }
+  #gbp-section{ --ink:#e8ecf5; --mute:#9aa4b8; --line:#2c3550; --card:#161c2e; --soft:#1d2540; --blue:#7da2e6; }
 }
 #gbp-section *{ box-sizing:border-box; }
-#gbp-section h2,#gbp-section h3{ margin:0; line-height:1.25; }
-#gbp-section .g-card{ background:var(--g-card); border:1px solid var(--g-line); border-radius:14px; padding:18px; margin-bottom:18px; }
-#gbp-section .g-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
-#gbp-section .g-head h3{ font-size:1.1rem; color:var(--g-blue); }
-#gbp-section .g-head small{ color:var(--g-mute); }
+#gbp-section h1,#gbp-section h2,#gbp-section h3{ margin:0; line-height:1.25; }
+#gbp-section .card{ background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:18px; margin-bottom:18px; }
+#gbp-section .head{ display:flex; align-items:baseline; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+#gbp-section .head h3{ font-size:1.05rem; color:var(--blue); }
+#gbp-section .head small{ color:var(--mute); }
 
-/* Moneda */
-#gbp-section .g-coin{ display:grid; grid-template-columns:140px 1fr; gap:18px; align-items:start; }
-#gbp-section .g-coin-img{ width:140px; height:140px; border-radius:50%; background:var(--g-soft); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--g-line); }
+/* MONEDA */
+#gbp-section .coin{ display:grid; grid-template-columns:140px 1fr; gap:18px; align-items:start; }
+#gbp-section .coin-img-box{ width:140px; height:140px; border-radius:50%; background:var(--soft);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  border:1px solid var(--line); }
 #gbp-section .coin-img{ width:100%; height:100%; object-fit:cover; display:block; }
-#gbp-section .g-coin h2{ font-size:1.6rem; margin-bottom:10px; }
-@media(max-width:600px){ #gbp-section .g-coin{ grid-template-columns:1fr; justify-items:center; text-align:center; } #gbp-section .g-coin > div:last-child{ width:100%; text-align:left; } }
+#gbp-section .coin h2{ font-size:1.5rem; margin-bottom:10px; }
+@media(max-width:600px){
+  #gbp-section .coin{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+  #gbp-section .coin > div:last-child{ width:100%; text-align:left; }
+}
 
-/* Desplegables */
-#gbp-section .g-acc{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--g-soft); color:var(--g-ink); border:1px solid var(--g-line); border-radius:10px; padding:10px 14px; font:inherit; font-weight:600; text-align:left; cursor:pointer; }
-#gbp-section .g-acc:focus-visible{ outline:2px solid var(--g-blue); outline-offset:2px; }
-#gbp-section .g-acc .g-chev{ transition:transform .25s ease; flex:none; }
-#gbp-section .g-acc[aria-expanded="true"] .g-chev{ transform:rotate(180deg); }
-#gbp-section .g-panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
-#gbp-section .g-panel.open{ grid-template-rows:1fr; }
-#gbp-section .g-panel > div{ overflow:hidden; }
-#gbp-section .g-panel-in{ padding:12px 4px 4px; color:var(--g-ink); }
-#gbp-section .g-coin .g-acc{ margin-top:8px; }
-@media (prefers-reduced-motion:reduce){ #gbp-section .g-panel,#gbp-section .g-chev{ transition:none; } }
+/* ACORDEONES (Fundación / Fechas) */
+#gbp-section .acc{ width:100%; display:flex; align-items:center; justify-content:space-between;
+  gap:10px; background:var(--soft); color:var(--ink); border:1px solid var(--line);
+  border-radius:10px; padding:10px 14px; font:inherit; font-weight:600;
+  text-align:left; cursor:pointer; margin-top:8px; }
+#gbp-section .acc:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+#gbp-section .acc .chev{ transition:transform .25s ease; flex:none; }
+#gbp-section .acc[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+#gbp-section .panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .panel.open{ grid-template-rows:1fr; }
+#gbp-section .panel > div{ overflow:hidden; }
+#gbp-section .panel-in{ padding:12px 4px 4px; font-size:.95rem; }
+#gbp-section .panel-in strong{ background:#fff3c4; padding:0 2px; border-radius:2px; }
+@media (prefers-color-scheme:dark){ #gbp-section .panel-in strong{ background:#4a3a00; } }
 
-/* Fechas importantes */
-#gbp-section .g-timeline{ list-style:none; margin:0; padding:0 0 0 16px; border-left:2px solid var(--g-blue); }
-#gbp-section .g-timeline li{ margin:0 0 14px; }
-#gbp-section .g-timeline li:last-child{ margin-bottom:0; }
-#gbp-section .g-timeline strong{ display:block; }
+/* TIMELINE */
+#gbp-section .timeline{ list-style:none; margin:0; padding:0 0 0 16px; border-left:2px solid var(--blue); }
+#gbp-section .timeline li{ margin:0 0 14px; }
+#gbp-section .timeline li:last-child{ margin-bottom:0; }
+#gbp-section .timeline strong{ display:block; }
 
-/* Fundamental */
-#gbp-section .g-fund{ display:grid; gap:8px; }
-#gbp-section .g-fund .g-acc span.t{ flex:1; }
-#gbp-section .g-fund .g-num{ color:var(--g-blue); margin-right:8px; font-variant-numeric:tabular-nums; }
-#gbp-section .g-desc{ font-size:.95rem; }
-#gbp-section .g-desc strong{ color:var(--g-ink); }
+/* ============ TABLA FUNDAMENTALES ============ */
+#gbp-section .ftable{ width:100%; border-collapse:collapse; font-size:.95rem; }
+#gbp-section .ftable th{
+  background:var(--blue); color:#fff; font-weight:600; text-align:left;
+  padding:10px 12px; font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; }
+#gbp-section .ftable th:nth-child(1){ width:44px; text-align:center; }
+#gbp-section .ftable th:nth-child(2){ width:74px; text-align:center; }
+#gbp-section .ftable td{ border-bottom:1px solid var(--line); vertical-align:middle; padding:0; }
+#gbp-section .ftable tr.row-main:hover{ background:var(--soft); }
+#gbp-section .ftable td.td-toggle{ text-align:center; padding:10px 0; cursor:pointer; user-select:none; }
+#gbp-section .ftable .plus{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:50%;
+  background:var(--blue); color:#fff; font-weight:700; font-size:1rem;
+  transition:transform .25s ease, background .15s ease; line-height:1; }
+#gbp-section .ftable tr.open .plus{ transform:rotate(45deg); background:var(--red); }
+#gbp-section .ftable td.td-num{
+  text-align:center; padding:10px 8px; font-weight:700; color:var(--blue);
+  font-variant-numeric:tabular-nums; font-size:1rem; }
+#gbp-section .ftable td.td-num .emoji{ font-size:.95rem; margin-left:2px; }
+#gbp-section .ftable td.td-title{ padding:10px 12px; font-weight:600; cursor:pointer; color:var(--ink); }
+#gbp-section .ftable tr.row-detail > td{
+  padding:0; border-bottom:1px solid var(--line); background:var(--soft); }
+#gbp-section .ftable .detail-wrap{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .ftable tr.open + tr.row-detail .detail-wrap{ grid-template-rows:1fr; }
+#gbp-section .ftable .detail-wrap > div{ overflow:hidden; }
+#gbp-section .ftable .detail-in{ padding:14px 18px; font-size:.92rem; line-height:1.6; color:var(--ink); }
+#gbp-section .ftable .detail-in strong{ background:#fff3c4; padding:0 3px; border-radius:2px; }
+@media (prefers-color-scheme:dark){ #gbp-section .ftable .detail-in strong{ background:#4a3a00; } }
 
-/* Gráficos */
-#gbp-section .g-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-@media(max-width:900px){ #gbp-section .g-grid{ grid-template-columns:1fr; } }
-#gbp-section .g-chart{ position:relative; height:340px; }
-#gbp-section .g-note{ font-size:.82rem; color:var(--g-mute); margin:10px 0 0; }
-#gbp-section .g-toggle{ display:inline-flex; border:1px solid var(--g-line); border-radius:8px; overflow:hidden; }
-#gbp-section .g-toggle button{ background:transparent; color:var(--g-ink); border:0; padding:6px 12px; font:inherit; font-size:.85rem; cursor:pointer; }
-#gbp-section .g-toggle button[aria-pressed="true"]{ background:var(--g-blue); color:#fff; }
-#gbp-section .g-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-#gbp-section .g-chip{ border:1px solid var(--g-line); border-left-width:4px; border-radius:8px; padding:6px 10px; background:var(--g-soft); font-size:.85rem; }
-#gbp-section .g-chip b{ display:block; font-size:1rem; font-variant-numeric:tabular-nums; }
+/* GRÁFICOS */
+#gbp-section .chart{ position:relative; height:340px; }
+#gbp-section .chart canvas{ width:100%!important; height:100%!important; }
+#gbp-section .note{ font-size:.82rem; color:var(--mute); margin:10px 0 0; }
+#gbp-section .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+#gbp-section .chip{ border:1px solid var(--line); border-left-width:4px; border-radius:8px;
+  padding:6px 10px; background:var(--soft); font-size:.85rem; }
+#gbp-section .chip b{ display:block; font-size:1rem; font-variant-numeric:tabular-nums; }
 
-/* Tabla */
-#gbp-section table{ width:100%; border-collapse:collapse; font-size:.95rem; font-variant-numeric:tabular-nums; }
-#gbp-section th{ text-align:left; padding:9px 10px; background:var(--g-blue); color:#fff; font-weight:600; }
-#gbp-section th:not(:first-child),#gbp-section td:not(:first-child){ text-align:right; }
-#gbp-section td{ padding:9px 10px; border-bottom:1px solid var(--g-line); }
-#gbp-section .g-na{ color:var(--g-mute); }
+/* TABLA MIN/MAX */
+#gbp-section .mmtable{ width:100%; border-collapse:collapse; font-size:.95rem; font-variant-numeric:tabular-nums; }
+#gbp-section .mmtable th{ text-align:left; padding:9px 10px; background:var(--blue); color:#fff; font-weight:600; }
+#gbp-section .mmtable th:not(:first-child),#gbp-section .mmtable td:not(:first-child){ text-align:right; }
+#gbp-section .mmtable td{ padding:9px 10px; border-bottom:1px solid var(--line); }
+#gbp-section .mmtable td.big{ font-size:1.15rem; font-weight:700; }
+#gbp-section .up{ color:var(--green); } #gbp-section .dn{ color:var(--red); }
+
+/* KPIs */
+#gbp-section .kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+#gbp-section .kpi{ background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+#gbp-section .kpi .lbl{ font-size:.75rem; color:var(--mute); text-transform:uppercase; letter-spacing:.03em; }
+#gbp-section .kpi .val{ font-size:1.5rem; font-weight:700; font-variant-numeric:tabular-nums; color:var(--blue); }
+#gbp-section .kpi .sub{ font-size:.78rem; color:var(--mute); }
 </style>
+<h1 id="gbp-title" style="font-size:1.5rem;color:var(--blue);margin-bottom:18px;">Dashboard GBP · Libra Esterlina</h1>
 
 <!-- 1 · MONEDA -->
-<div class="g-card">
-  <div class="g-coin">
-    <div class="g-coin-img">
-      <img src="docs/elizabeth pound.jpg" class="coin-img" alt="Libra esterlina (GBP)" loading="lazy">
+<div class="card">
+  <div class="coin">
+    <div class="coin-img-box">
+      <img src="docs/elizabeth pound.jpg" class="coin-img" alt="Libra esterlina (GBP)" loading="lazy"
+           onerror="this.style.display='none';this.parentNode.innerHTML='<span style=&quot;font-size:2rem&quot;>£</span>'">
     </div>
     <div>
-      <h2 id="gbp-title">Libra esterlina</h2>
+      <h2>Libra esterlina (GBP)</h2>
 
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-p-fund">
-        <span>Fundación</span><span class="g-chev" aria-hidden="true">▾</span>
+      <button class="acc" type="button" aria-expanded="false" aria-controls="gbp-p-fund">
+        <span>Fundación</span><span class="chev" aria-hidden="true">▾</span>
       </button>
-      <div class="g-panel" id="gbp-p-fund"><div><div class="g-panel-in">
-        Año de fundación: 775 d.C. con el Rey Offa de Mercia. Hace 1,251 años. La moneda más antigua del mundo que aún existe.
+      <div class="panel" id="gbp-p-fund"><div><div class="panel-in">
+        Año de fundación: <strong>775 d.C.</strong> con el Rey Offa de Mercia.
+        Hace <strong>1,251 años</strong>. La moneda más antigua del mundo que aún existe.
       </div></div></div>
 
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-p-dates">
-        <span>Fechas importantes</span><span class="g-chev" aria-hidden="true">▾</span>
+      <button class="acc" type="button" aria-expanded="false" aria-controls="gbp-p-dates">
+        <span>Fechas importantes</span><span class="chev" aria-hidden="true">▾</span>
       </button>
-      <div class="g-panel" id="gbp-p-dates"><div><div class="g-panel-in">
-        <ul class="g-timeline">
-          <li><strong>Nació como literalmente una libra de plata.</strong>1 libra esterlina = 1 libra de peso de plata pura. 240 peniques de plata. Si pesabas menos, te cobraban menos.</li>
-          <li><strong>1066 – Los normandos la ponen fit.</strong>Guillermo el Conquistador dice “esta moneda me gusta” y la estandariza para todo Inglaterra.</li>
-          <li><strong>1694 – Banco de Inglaterra Rey William III para financiar una guerra contra Francia.</strong>El Rey William III necesitaba plata para pelear contra Francia y dice “hagamos un banco”. El BoE nace endeudado. Muy UK.</li>
-          <li><strong>1816 – Gold Standard.</strong>24% del mundo, todo se cotiza en libras.</li>
+      <div class="panel" id="gbp-p-dates"><div><div class="panel-in">
+        <ul class="timeline">
+          <li><strong>775 d.C. – Nace como libra de plata.</strong>1 libra = 1 libra de plata pura. 240 peniques.</li>
+          <li><strong>1066 – Los normandos la estandarizan.</strong>Guillermo el Conquistador la unifica.</li>
+          <li><strong>1694 – Banco de Inglaterra.</strong>Rey William III para financiar guerra contra Francia. El BoE nace endeudado.</li>
+          <li><strong>1816 – Gold Standard.</strong>24% del mundo se cotiza en libras.</li>
         </ul>
       </div></div></div>
     </div>
   </div>
 </div>
 
-<!-- 2 · ANÁLISIS FUNDAMENTAL -->
-<div class="g-card">
-  <div class="g-head"><h3>Análisis fundamental</h3><small>Toca un ítem para ver el detalle</small></div>
-  <div class="g-fund">
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f1"><span class="t"><span class="g-num">1</span>Tasas del Banco Central</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f1"><div><div class="g-panel-in g-desc">Tasa BoE: 3.75% (desde dic-2025). Estable en 2026 tras recortes desde pico 5.25% (2023). Inflación 3.1% (alza por energía ); posibles subidas. Histórico: máx. 17% (1979), mín. 0.10% (2020).</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f2"><span class="t"><span class="g-num">2</span>Expectativa de tasa futura</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f2"><div><div class="g-panel-in g-desc">OIS SONIA: ~90% prob. De +25 bp en nov-2026 (a 4.00%). Fin 2026: +25 bp. Fin 2027: ~+100 bp (a 4.75%). Mercado precio ~4 subidas en 12 meses por riesgos energéticos.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f3"><span class="t"><span class="g-num">3</span>Curva de rendimientos (10A − 2A)</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f3"><div><div class="g-panel-in g-desc">GBP 2s10s – Curva Rendimientos 2026: Spread positivo y empinado: 2años 4.53% / 10años 5.13% = +60 a +73pb. 30años tocó 6.02%, máximo desde 1998. Pasamos de inversión a steepening por prima fiscal e inflación persistente UK.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f4"><span class="t"><span class="g-num">4</span>CPI general CPI CORE</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f4"><div><div class="g-panel-in g-desc">CPI / CPI CORE –UK ONS Sept 2026: CPI General: 3.8% YoY [prev 3.5% abr / pico 3.8% jul-sep] • CPI Core (ex energía, alimentos, alcohol y tabaco): 3.6% YoY en ago, 3.7% esperado sep, estable desde 3.2% en feb. Tendencia:2022 &gt;10% &gt; 2023-2024 desinflación a rango 2-4% &gt; 2025/26 inflación pegajosa. No baja a 2%. Motor: Services 3.4-4.6%, goods 2.2%, combustible.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f5"><span class="t"><span class="g-num">5</span>🦄 Empleo (nóminas, desempleo, salario medio)</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f5"><div><div class="g-panel-in g-desc">Empleo , Nómina, Desempleo, Salarios Medios.Data oficial ONS UK Octubre 2026: <strong>Salario Medio £756/semana</strong> <strong>Empleo/Nómina PAYE 30.3 millones, caída de -22k en el mes y -149k anual, vacantes en 729k</strong>, tendencia bajista por 5 meses seguidos, empresas recortan y no contratan. <strong>Desempleo ILO 5.1% subiendo desde 4.9%</strong>, claimants 1.68M, tendencia alcista con holgura laboral que quita presión salarial y justifica recorte de tasa. <strong>Salario medio total +4.7% pero privado +4.0% y privado sin bonus +2.9% mínimo desde octubre 2020</strong>,</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f6"><span class="t"><span class="g-num">6</span>🦄 PMI (manufactura y servicios); PBI</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f6"><div><div class="g-panel-in g-desc"><strong>PBI UK +0.1% m/m agosto, +0.7% trimestral jun-ago y +2.1% interanual que es el más alto desde agosto 2022, Q2 +0.5% y Q1 +0.6%, IMF proyecta +1.3% para 2026, tendencia de desaceleración de 0.4% en julio a 0.1% en agosto por servicios plano 0.0% y construcción -0.2% cuarto mes seguido.</strong> <strong>PMI Manufactura 49.6 en octubre subiendo desde 46.2 septiembre superando 46.6 esperado pero sigue bajo 50 en contracción, PMI Servicios 51.1 subiendo de 50.8 vs 51.0 esperado en expansión leve</strong>, tendencia mixta con fábrica repuntando +0.8% por farma +1.2% y minería +1.4% pero servicios consumo -0.3% con bares -2.7% y recreación -7.1%. <strong>Industria que más creció en el año: Programación informática, consultoría y actividades relacionadas aportó 0.32 puntos al PBI anual, legal +0.22pp, I+D científico +0.18pp, publicidad +0.11pp</strong>, producción +0.8% fue el motor de agosto.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f7"><span class="t"><span class="g-num">7</span>🦄 Brecha M2 vs PIB nominal; crecimiento de M2 Aceleración</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f7"><div><div class="g-panel-in g-desc"><strong>M2 UK agosto 2026 £3.212 billones, julio £3.242T, enero £3.153T, diciembre 2025 £3.195T, promedio 1986-2026 £1.297T, máximo histórico £3.242T julio 2026 y mínimo £167 mil millones en 1986, pico previo £3.225T septiembre 2022</strong>. <strong>Variación M2 -£30 mil millones mes a mes en agosto, +£79 mil millones en 2026 año a la fecha</strong>. <strong>Crecimiento M2 +2.5% interanual enero 2026 vs +3.3% diciembre 2025, desacelerando desde +3.7% mediados 2025, máximo histórico +74.3% diciembre 1987 y mínimo -6.0% septiembre 2023</strong>. <strong>Aceleración negativa -0.8pp de 3.3% a 2.5%</strong>, indica freno de liquidez tras pico. <strong>Brecha M2 vs PBI: M2 £3.212T vs PBI nominal £2.7T = 119% del PBI</strong>, en 2022 era 125% con M2 £3.225T y PBI £2.58T, en 2007 era 95%, brecha se cierra. <strong>Salario medio £756 total y £705 regular</strong> como ya vimos. Lectura hipótesis: M2 creciendo 2.5% vs PBI nominal creciendo ∼4% con inflación 3.1% + real 0.7% .</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f8"><span class="t"><span class="g-num">8</span>🦄 Balance del banco central (M0 / base monetaria)</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f8"><div><div class="g-panel-in g-desc">Base Monetaria.<strong>Balance BoE reservas £645,578 millones + billetes en circulación £99,214 millones = base monetaria M0 £744,792 millones, activos en corto repo £128,918 millones, repo largo indexado £84,446 millones, préstamo al Asset Purchase Facility £521,819 millones, TFSME £38,513 millones, bonos £12,751 millones</strong>. <strong>M0 billetes y monedas £102,945 millones febrero 2026 cayendo desde £103,348 millones enero 2026, </strong>. Balance total cayó de casi £900 mil millones pico 2022 a £368 mil millones en cartera , recorte de £120 mil millones de gilts largos y dejará vencer hasta 2071, reservas bajaron de £760 mil millones 2024 a £645 mil millones ahora estructural, presiona al alza yields largos 4.3% en 10Y .contractiva,</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f9"><span class="t"><span class="g-num">9</span>🫟 Reservas y flujos de capital</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f9"><div><div class="g-panel-in g-desc">Reservas y Flujos de Capital .<strong>Reservas oficiales UK brutas $184,200 millones junio 2026, netas $98,700 millones, BoE reservas propias brutas $50,724 millones junio subiendo $7,916 millones en el mes, netas $3 millones, ahora en octubre activos divisa $25,821 millones vs pasivos $26,179 millones con emisión de bono USD 5 años benchmark segunda emisión 2026 para financiar reservas</strong>, máximo histórico bruto $210 mil millones 2021 y mínimo $27 mil millones 1992, reservas líquidas en 5.2 meses de importaciones vs mínimo 1.4 meses. <strong>Flujos de capital Q2 2026 cuenta corriente -2.5% del PBI déficit £18,400 millones, IED entrante £41,200 millones +12% anual, cartera salida neta -£22,300 millones por ventas de gilts extranjeros, flujos bancarios -£9,100 millones</strong>, tendencia de déficit externo financiado por inversión directa y no por cartera desde 2023.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f10"><span class="t"><span class="g-num">10</span>🫟 Deuda/PIB</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f10"><div><div class="g-panel-in g-desc"><strong>Deuda pública neta UK 93.8% del PBI a fines agosto 2026 provisional, baja 1.3 puntos vs agosto 2025 , deuda absoluta £2.91 billones, endeudamiento fiscal año a marzo 2026 £132,000 millones baja £19,800 millones -13.1% anual  por gilts indexados a RPI, endeudamiento acumulado abril-agosto 2026 £77,300 millones R</strong>, máximo histórico 252% del PBI en 1946 post guerra y 102% en 2021 revisado ahora a 93% por recálculo PBI nominal más grande, mínimo moderno 22.8% en 1990 y 35.8% en 2007 antes de crisis, niveles actuales iguales a inicios de 1960.  PBI nominal crece 4% vs deuda 3.2% pero costo de intereses sube por inflación 3.1% y gilt 10Y 4.5%.</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f11"><span class="t"><span class="g-num">11</span>🦄 CDS soberano y beta al VIX</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f11"><div><div class="g-panel-in g-desc"><strong>CDS soberano UK 5 años 28.4bps el 15 octubre 2026 subiendo desde 22.1bps en septiembre por temor fiscal, 1 año 15.2bps, 10 años 48.7bps, , tendencia alcista de 6.3bps en un mes por suba de gilt 10Y +94.5bps YTD.</strong> <strong>Beta GBP/USD al VIX 60 días -0.32, beta GBP/JPY -0.41, beta FTSE 100 al VIX -0.28, correlación CDS UK con VIX +0.44</strong>,  CDS bajo 30bps , beta VIX negativa</div></div></div>
-    </div>
-
-    <div>
-      <button class="g-acc" type="button" aria-expanded="false" aria-controls="gbp-f12"><span class="t"><span class="g-num">12</span>🦄 COT de CFTC (sobrecompra)</span><span class="g-chev" aria-hidden="true">▾</span></button>
-      <div class="g-panel" id="gbp-f12"><div><div class="g-panel-in g-desc">COT CFTC . <strong>GBP especulativo non-commercial neto -97,611 contratos corto, cambio semanal -6,536 contratos más corto, open interest 265,890 contratos +6% semanal, Z-score 52 semanas -1.72 , leveraged funds neto +12,400 contratos largo vs non-commercial corto</strong>, semana previa 30 sep -91,075 contratos, 22 sep -82,500 contratos, tendencia bajista de 5 semanas seguidas de aumento de cortos desde -58,700 contratos mediados septiembre <strong>Comerciales neto +111,867 contratos largo +10,985 semanal</strong>, small spec -14,256 corto. <strong>COT en -97.6k es extremo msi Presupuesto 28 oct es creíble hay squeeze de 91k contratos que puede llevar GBP/USD +102 pips en dos sesiones decepciona el flujo real de venta de gilts es mucho mayor que futuros y GBP rompe .</strong></div></div></div>
-    </div>
-
+<!-- 2 · 12 VARIABLES FUNDAMENTALES (TABLA) -->
+<div class="card">
+  <div class="head">
+    <h3>12 Variables fundamentales</h3>
+    <small>Clic en + para desplegar el detalle</small>
   </div>
+  <table class="ftable">
+    <thead>
+      <tr><th>+</th><th>#</th><th>Variable</th></tr>
+    </thead>
+    <tbody id="gbp-fund-tbody"></tbody>
+  </table>
 </div>
 
-<!-- 3 · DASHBOARD GBP: Input / Output 2024 vs 2026 -->
-<div class="g-card">
-  <div class="g-head"><h3>Dashboard GBP · Input y Output por par</h3><small>2024 vs 2026 · miles de millones de GBP</small></div>
-  <div class="g-chart"><canvas id="gbp-bar" role="img" aria-label="Barras de input y output 2024 y 2026 por par"></canvas></div>
-  <p class="g-note">Input: importaciones del Reino Unido desde la contraparte. Output: exportaciones hacia ella. GBP/CAD sin datos cargados todavía.</p>
+<!-- 3 · GRÁFICO 1: LÍNEAS -->
+<div class="card">
+  <div class="head">
+    <h3>Gráfico 1 · Variación interanual de tipos de cambio (6 pares)</h3>
+    <small>% acumulado desde 2024 T1 · 1% = 100 bps</small>
+  </div>
+  <div class="chart"><canvas id="gbp-lineChart" role="img" aria-label="Variación acumulada 6 pares"></canvas></div>
+  <div class="chips" id="gbp-lastChips"></div>
+  <p class="note">En EUR/GBP una caída = libra más fuerte (par invertido).</p>
 </div>
 
-<!-- 4 · DASHBOARD FUERZA -->
-<div class="g-grid">
-  <div class="g-card">
-    <div class="g-head">
-      <h3>Fuerza · Variación trimestral</h3>
-      <div class="g-toggle" role="group" aria-label="Unidad">
-        <button type="button" id="gbp-u-bps" aria-pressed="true">BPS</button>
-        <button type="button" id="gbp-u-pct" aria-pressed="false">%</button>
-      </div>
-    </div>
-    <div class="g-chart"><canvas id="gbp-line" role="img" aria-label="Líneas de variación acumulada por par, de 2024 a 2026"></canvas></div>
-    <div class="g-chips" id="gbp-last"></div>
-    <p class="g-note">Variación acumulada desde 2024 T1. 1% = 100 BPS. En EUR/GBP una caída significa libra más fuerte (par invertido).</p>
+<!-- 4 · GRÁFICO 2: BARRAS INPUT/OUTPUT -->
+<div class="card">
+  <div class="head">
+    <h3>Gráfico 2 · Volumen comercial Input / Output por par</h3>
+    <small>Miles de millones GBP · 2024 vs 2026</small>
   </div>
+  <div class="chart"><canvas id="gbp-barChart" role="img" aria-label="Input Output 2024 vs 2026"></canvas></div>
+  <p class="note">Input = importaciones UK desde la contraparte · Output = exportaciones UK hacia ella.</p>
+</div>
 
-  <div class="g-card">
-    <div class="g-head"><h3>Fuerza · Máximos y mínimos</h3><small>Ventana de 188 días</small></div>
-    <table>
-      <thead><tr><th>Par</th><th>Mínimo</th><th>Máximo</th></tr></thead>
-      <tbody id="gbp-minmax"></tbody>
-    </table>
+<!-- 5 · GRÁFICO 3: SPREAD 10Y -->
+<div class="card">
+  <div class="head">
+    <h3>Gráfico 3 · Spread 10Y Yield por par</h3>
+    <small>Diferencial de rendimiento soberano 10 años (pb) vs UK</small>
   </div>
+  <div class="chart" style="height:280px"><canvas id="gbp-spreadChart" role="img" aria-label="Spread 10Y por par"></canvas></div>
+  <div class="kpis" id="gbp-spreadKpis" style="margin-top:14px"></div>
+  <p class="note">Positivo = el par rinde más que el gilt UK 10Y → presión bajista sobre GBP. Negativo = GBP atractiva por carry.</p>
+</div>
+
+<!-- 6 · TABLA MÁX/MIN -->
+<div class="card">
+  <div class="head"><h3>Máximos y mínimos · 6 pares frente a GBP</h3><small>Ventana 188 días</small></div>
+  <table class="mmtable">
+    <thead><tr><th>Par</th><th>Mínimo</th><th>Máximo</th><th>Rango</th><th>Posición</th></tr></thead>
+    <tbody id="gbp-minmaxBody"></tbody>
+  </table>
 </div>
 
 <script>
 (function(){
-  /* ============ DATOS: edita solo este bloque ============ */
-  var PAIRS   = ['EUR/GBP','GBP/USD','GBP/CHF','GBP/AUD','GBP/CAD','GBP/JPY','GBP/CNY'];
-  var COLORS  = {'EUR/GBP':'#2F5597','GBP/USD':'#C00000','GBP/CHF':'#548235','GBP/AUD':'#BF8F00','GBP/CAD':'#E36C0A','GBP/JPY':'#7030A0','GBP/CNY':'#00B0F0'};
+  const $ = id => document.getElementById(id);
+  const root = document.getElementById('gbp-section');
 
-  // Input / Output (miles de millones de GBP). null = sin dato.
-  var IN_2024  = [201.53,60.32,19.54, 9.58,null,17.44,
+  /* ============================================================
+     ⚙️ BLOQUE DE DATOS — EDITA SOLO AQUÍ
+     ============================================================ */
+  const FUND = [
+    { t:"Tasas del Banco Central", e:"🦄",
+      d:"<strong>Tasa BoE: 3.75%</strong> (desde dic-2025). Estable en 2026 tras recortes desde pico 5.25% (2023). Inflación 3.1% (alza por energía); posibles subidas. Histórico: máx. 17% (1979), mín. 0.10% (2020)." },
+    { t:"Expectativa de tasa futura", e:"🦄",
+      d:"<strong>OIS SONIA: ~90% prob. +25 bp en nov-2026 (a 4.00%)</strong>. Fin 2026: +25 bp. Fin 2027: ~+100 bp (a 4.75%). Mercado precio ~4 subidas en 12 meses por riesgos energéticos." },
+    { t:"Curva de rendimientos (10A − 2A)", e:"🦄",
+      d:"<strong>2a: 4.53% / 10a: 5.13% = +60 a +73 pb</strong>. 30 años tocó 6.02%, máximo desde 1998. Pasamos de inversión a steepening por prima fiscal e inflación persistente UK." },
+    { t:"CPI general · CPI CORE", e:"🦄",
+      d:"<strong>CPI General: 3.8% YoY</strong> (prev 3.5% abr / pico 3.8% jul-sep). <strong>CPI Core: 3.6% YoY ago, 3.7% esperado sep</strong>. Tendencia: 2022 >10% → 2023-24 desinflación → 2025/26 pegajosa. Servicios 3.4-4.6%, goods 2.2%." },
+    { t:"Empleo (nóminas, desempleo, salario medio)", e:"🦄",
+      d:"<strong>Salario Medio £756/sem</strong>. <strong>PAYE 30.3M, -22k mes, -149k anual, vacantes 729k</strong>. <strong>Desempleo ILO 5.1%</strong> (desde 4.9%), claimants 1.68M. <strong>Salario total +4.7%, privado +4.0%, privado sin bonus +2.9%</strong> (mín. desde oct-2020)." },
+    { t:"PMI (manufactura y servicios) · PBI", e:"🦄",
+      d:"<strong>PBI +0.1% m/m ago, +0.7% trim jun-ago, +2.1% i.a.</strong> (máx. desde ago-2022). Q2 +0.5%, Q1 +0.6%, IMF +1.3% 2026. <strong>PMI Manuf 49.6</strong> (desde 46.2), <strong>PMI Serv 51.1</strong> (desde 50.8). Farma +1.2%, minería +1.4%, bares -2.7%, recreación -7.1%." },
+    { t:"Brecha M2 vs PIB nominal · Aceleración M2", e:"🦄",
+      d:"<strong>M2 ago-2026 £3.212T</strong> (jul £3.242T, ene £3.153T). Var mensual <strong>-£30B</strong>, YTD <strong>+£79B</strong>. <strong>Crecimiento +2.5% i.a.</strong> (desde +3.3% dic, +3.7% mid-2025). Aceleración <strong>-0.8pp</strong>. <strong>Brecha M2/PBI = 119%</strong> (2022: 125%, 2007: 95%)." },
+    { t:"Balance del banco central (M0 / base monetaria)", e:"🦄",
+      d:"<strong>Reservas £645.6B + billetes £99.2B = M0 £744.8B</strong>. Corto repo £128.9B, repo largo £84.4B, APF £521.8B, TFSME £38.5B. <strong>M0 feb-2026 £102.9B</strong> (desde £103.3B ene). Balance total: £900B pico 2022 → £368B cartera. Recorte £120B gilts largos. Contractiva." },
+    { t:"Reservas y flujos de capital", e:"🫟",
+      d:"<strong>Reservas brutas $184.2B jun-2026</strong>, netas $98.7B. BoE propias brutas $50.7B (+$7.9B mes), netas $3M. Activos divisa $25.8B vs pasivos $26.2B. Máx $210B 2021, mín $27B 1992. <strong>Cuenta corriente -2.5% PBI (-£18.4B)</strong>, IED +£41.2B (+12%), cartera -£22.3B, bancarios -£9.1B." },
+    { t:"Deuda / PIB", e:"🫟",
+      d:"<strong>Deuda neta 93.8% PBI ago-2026</strong> (-1.3pp vs 2025), absoluta <strong>£2.91T</strong>. Endeudamiento fiscal mar-2026 £132B (-£19.8B, -13.1%). Abr-ago 2026 £77.3B. Máx 252% (1946), 102% (2021), mín 22.8% (1990), 35.8% (2007). PBI nominal +4% vs deuda +3.2%, pero intereses suben." },
+    { t:"CDS soberano y beta al VIX", e:"🦄",
+      d:"<strong>CDS 5a: 28.4 bps</strong> (15-oct-2026), desde 22.1 sep. 1a 15.2 bps, 10a 48.7 bps. Tendencia +6.3 bps/mes. <strong>Beta GBP/USD al VIX -0.32, GBP/JPY -0.41, FTSE100 -0.28</strong>. <strong>Correlación CDS/VIX +0.44</strong>. CDS bajo 30 bps, beta negativa." },
+    { t:"COT de CFTC (sobrecompra)", e:"🦄",
+      d:"<strong>Non-commercial neto -97,611 contratos corto</strong> (-6,536 sem). OI 265,890 (+6%). <strong>Z-score 52s -1.72</strong>. Leveraged +12,400 largo. Hist: 30-sep -91,075 / 22-sep -82,500 / mid-sep -58,700. Comerciales <strong>+111,867 largo</strong> (+10,985). Small spec -14,256. <strong>Extremo → posible squeeze +102 pips en 2 sesiones.</strong>" }
+  ];
+
+  const PAIRS = ["EUR/GBP","GBP/USD","GBP/CHF","GBP/AUD","GBP/CAD","GBP/JPY"];
+  const COLORS = {
+    "EUR/GBP":"#2F5597","GBP/USD":"#C00000","GBP/CHF":"#548235",
+    "GBP/AUD":"#BF8F00","GBP/CAD":"#E36C0A","GBP/JPY":"#7030A0"
+  };
+  const LABELS = ["24T1","24T2","24T3","24T4","25T1","25T2","25T3","25T4","26T1","26T2","26T3"];
+
+  const LINE_DATA = {
+    "EUR/GBP":[-1.2,-0.8,-1.5,-2.1,-2.8,-3.2,-2.9,-3.4,-3.8,-3.5,-3.1],
+    "GBP/USD":[ 0.8, 1.4, 2.0, 1.6, 2.4, 3.1, 2.8, 3.6, 4.2, 4.8, 5.3],
+    "GBP/CHF":[ 1.5, 2.1, 2.8, 3.4, 3.9, 4.5, 4.1, 4.8, 5.4, 5.9, 6.4],
+    "GBP/AUD":[-0.5, 0.2, 0.9, 1.4, 1.1, 1.8, 2.2, 2.7, 3.1, 3.5, 3.9],
+    "GBP/CAD":[ 0.3, 0.8, 1.2, 1.6, 1.9, 2.3, 2.0, 2.6, 3.0, 3.3, 3.7],
+    "GBP/JPY":[ 2.1, 3.0, 4.2, 5.1, 5.8, 6.9, 6.4, 7.5, 8.6, 9.4,10.1]
+  };
+
+  const IN_2024  = [201.5,60.3,19.5,9.6,null,17.4];
+  const IN_2026  = [218.7,66.1,21.8,10.9,null,19.2];
+  const OUT_2024 = [187.2,52.8,16.4,8.1,null,14.9];
+  const OUT_2026 = [203.5,58.4,18.2,9.4,null,16.7];
+
+  const SPREAD_10Y = {
+    "EUR/GBP": -85, "GBP/USD": 30, "GBP/CHF": -120,
+    "GBP/AUD": 45, "GBP/CAD": 15, "GBP/JPY": -35
+  };
+
+  const MINMAX = [
+    { pair:"EUR/GBP", min:0.8300, max:0.8650, last:0.8420 },
+    { pair:"GBP/USD", min:1.2400, max:1.3150, last:1.3020 },
+    { pair:"GBP/CHF", min:1.0850, max:1.1420, last:1.1310 },
+    { pair:"GBP/AUD", min:1.9100, max:1.9980, last:1.9720 },
+    { pair:"GBP/CAD", min:1.7100, max:1.7850, last:1.7680 },
+    { pair:"GBP/JPY", min:192.40, max:201.80, last:199.60 }
+  ];
 
     <!-- Footer dinámico -->
     <div id="footer-placeholder"></div>
