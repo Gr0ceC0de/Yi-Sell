@@ -747,6 +747,151 @@ body>
     { pair:"GBP/CAD", min:1.7100, max:1.7850, last:1.7680 },
     { pair:"GBP/JPY", min:192.40, max:201.80, last:199.60 }
   ];
+/* ============================================================
+     ✅ FIN DEL BLOQUE DE DATOS
+     ============================================================ */
+
+  // ---- Acordeones Fundación / Fechas ----
+  root.querySelectorAll('.acc').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const panel = document.getElementById(b.getAttribute('aria-controls'));
+      const open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('open', !open);
+    });
+  });
+
+  // ---- Tabla 12 fundamentales ----
+  (function renderFundTable(){
+    const tbody = document.getElementById('gbp-fund-tbody');
+    FUND.forEach((f,i)=>{
+      const n = i+1, detailId = 'gbp-det-'+i;
+
+      const trMain = document.createElement('tr');
+      trMain.className = 'row-main';
+      trMain.innerHTML = `
+        <td class="td-toggle" role="button" tabindex="0" aria-controls="${detailId}" aria-expanded="false">
+          <span class="plus">+</span>
+        </td>
+        <td class="td-num">${n}.<span class="emoji">${f.e||'🦄'}</span></td>
+        <td class="td-title">${f.t}</td>`;
+
+      const trDet = document.createElement('tr');
+      trDet.className = 'row-detail';
+      trDet.id = detailId;
+      trDet.innerHTML = `
+        <td colspan="3">
+          <div class="detail-wrap"><div><div class="detail-in">${f.d}</div></div></div>
+        </td>`;
+
+      const toggle = ()=>{
+        const isOpen = trMain.classList.contains('open');
+        tbody.querySelectorAll('tr.row-main.open').forEach(r=>{
+          r.classList.remove('open');
+          r.querySelector('.td-toggle').setAttribute('aria-expanded','false');
+        });
+        if (!isOpen){
+          trMain.classList.add('open');
+          trMain.querySelector('.td-toggle').setAttribute('aria-expanded','true');
+        }
+      };
+      trMain.querySelector('.td-toggle').addEventListener('click', toggle);
+      trMain.querySelector('.td-title').addEventListener('click', toggle);
+      trMain.querySelector('.td-toggle').addEventListener('keydown', e=>{
+        if (e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); }
+      });
+
+      tbody.appendChild(trMain);
+      tbody.appendChild(trDet);
+    });
+  })();
+
+  // ---- Canvas setup ----
+  function setupCanvas(cv){
+    const dpr = window.devicePixelRatio || 1;
+    const rect = cv.getBoundingClientRect();
+    cv.width  = rect.width  * dpr;
+    cv.height = rect.height * dpr;
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return { ctx, w:rect.width, h:rect.height };
+  }
+
+  // ---- Gráfico 1: líneas ----
+  function drawLine(){
+    const cv = document.getElementById('gbp-lineChart');
+    const { ctx, w, h } = setupCanvas(cv);
+    const pad = { l:52, r:20, t:26, b:36 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
+
+    let allVals = [];
+    PAIRS.forEach(p => allVals.push(...LINE_DATA[p]));
+    const yMin = Math.min(...allVals), yMax = Math.max(...allVals);
+    const yPad = (yMax - yMin || 1) * 0.15;
+    const y0 = yMin - yPad, y1 = yMax + yPad;
+    const xOf = i => pad.l + (cw * i / (LABELS.length - 1));
+    const yOf = v => pad.t + ch - ((v - y0) / (y1 - y0)) * ch;
+
+    ctx.strokeStyle = 'rgba(150,150,150,.18)';
+    ctx.fillStyle = 'rgba(120,120,120,1)';
+    ctx.font = '11px system-ui,Consolas';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (let k=0;k<=4;k++){
+      const v = y0 + (y1-y0)*k/4, y = yOf(v);
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(w-pad.r,y); ctx.stroke();
+      ctx.fillText(v.toFixed(1)+'%', pad.l-8, y);
+    }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    LABELS.forEach((lb,i)=>{ if (i%2===0) ctx.fillText(lb, xOf(i), h - pad.b + 8); });
+
+    if (y0 < 0 && y1 > 0){
+      ctx.strokeStyle = 'rgba(120,120,120,.5)';
+      ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(pad.l, yOf(0)); ctx.lineTo(w-pad.r, yOf(0)); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    PAIRS.forEach(p=>{
+      const data = LINE_DATA[p];
+      ctx.strokeStyle = COLORS[p]; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      data.forEach((v,i)=>{
+        const x = xOf(i), y = yOf(v);
+        i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      const lx = xOf(data.length-1), ly = yOf(data[data.length-1]);
+      ctx.fillStyle = COLORS[p];
+      ctx.beginPath(); ctx.arc(lx, ly, 3.5, 0, Math.PI*2); ctx.fill();
+    });
+
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.font = '11px system-ui,Consolas';
+    PAIRS.forEach((p,i)=>{
+      const lx = pad.l + (i%3)*90, ly = 10 + Math.floor(i/3)*14;
+      ctx.fillStyle = COLORS[p];
+      ctx.fillRect(lx, ly-3, 10, 6);
+      ctx.fillStyle = 'rgba(120,120,120,1)';
+      ctx.fillText(p, lx+14, ly);
+    });
+  }
+
+  // ---- Chips últimos valores ----
+  (function renderChips(){
+    const wrap = document.getElementById('gbp-lastChips');
+    PAIRS.forEach(p=>{
+      const v = LINE_DATA[p][LINE_DATA[p].length-1];
+      const cls = v>=0 ? 'up' : 'dn';
+      const sign = v>=0 ? '+' : '';
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.style.borderLeftColor = COLORS[p];
+      chip.innerHTML = `<span>${p}</span><b class="${cls}">${sign}${v.toFixed(1)}%</b>`;
+      wrap.appendChild(chip);
+    });
+  })();
+
 
     <!-- Footer dinámico -->
     <div id="footer-placeholder"></div>
