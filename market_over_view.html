@@ -891,7 +891,167 @@ body>
       wrap.appendChild(chip);
     });
   })();
+// ---- Gráfico 2: barras Input/Output ----
+  function drawBars(){
+    const cv = document.getElementById('gbp-barChart');
+    const { ctx, w, h } = setupCanvas(cv);
+    const pad = { l:56, r:20, t:26, b:44 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
 
+    const vals = [...IN_2024,...IN_2026,...OUT_2024,...OUT_2026].filter(v=>v!=null);
+    const yMax = Math.max(...vals) * 1.15;
+    const yOf = v => pad.t + ch - (v / yMax) * ch;
+
+    ctx.strokeStyle = 'rgba(150,150,150,.18)';
+    ctx.fillStyle = 'rgba(120,120,120,1)';
+    ctx.font = '11px system-ui,Consolas';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (let k=0;k<=4;k++){
+      const v = yMax * k/4, y = yOf(v);
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(w-pad.r,y); ctx.stroke();
+      ctx.fillText(Math.round(v)+'B', pad.l-8, y);
+    }
+
+    const groupW = cw / PAIRS.length;
+    const barW = Math.min(14, (groupW - 18) / 4);
+    const offsets = [-1.5,-0.5,0.5,1.5].map(o => o*(barW+2));
+    const colors4 = ['#A9C0E8','#2F5597','#E8C0A9','#C00000'];
+
+    PAIRS.forEach((p,gi)=>{
+      const cx = pad.l + groupW*gi + groupW/2;
+      const data4 = [IN_2024[gi], IN_2026[gi], OUT_2024[gi], OUT_2026[gi]];
+      data4.forEach((v,bi)=>{
+        if (v==null) return;
+        const x = cx + offsets[bi] - barW/2;
+        const y = yOf(v);
+        const bh = pad.t + ch - y;
+        ctx.fillStyle = colors4[bi];
+        ctx.fillRect(x, y, barW, bh);
+        if (bi===1 || bi===3){
+          ctx.save();
+          ctx.translate(x+barW/2, y-4);
+          ctx.rotate(-Math.PI/2);
+          ctx.textAlign='left'; ctx.textBaseline='middle';
+          ctx.fillStyle='rgba(120,120,120,1)';
+          ctx.font='9px system-ui,Consolas';
+          ctx.fillText(v.toFixed(0), 0, 0);
+          ctx.restore();
+        }
+      });
+      ctx.fillStyle='rgba(120,120,120,1)';
+      ctx.font='11px system-ui,Consolas';
+      ctx.textAlign='center'; ctx.textBaseline='top';
+      ctx.fillText(p, cx, h - pad.b + 8);
+    });
+
+    const legend = ['IN 2024','IN 2026','OUT 2024','OUT 2026'];
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.font='11px system-ui,Consolas';
+    legend.forEach((lb,i)=>{
+      const lx = pad.l + i*100, ly = 10;
+      ctx.fillStyle = colors4[i];
+      ctx.fillRect(lx, ly-4, 12, 8);
+      ctx.fillStyle='rgba(120,120,120,1)';
+      ctx.fillText(lb, lx+16, ly);
+    });
+  }
+
+  // ---- Gráfico 3: spread 10Y ----
+  function drawSpread(){
+    const cv = document.getElementById('gbp-spreadChart');
+    const { ctx, w, h } = setupCanvas(cv);
+    const pad = { l:56, r:20, t:26, b:44 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
+
+    const vals = PAIRS.map(p => SPREAD_10Y[p] ?? 0);
+    const vMax = Math.max(50, ...vals.map(v=>Math.abs(v))) * 1.15;
+    const zeroY = pad.t + ch/2;
+    const yOf = v => zeroY - (v / vMax) * (ch/2);
+
+    // grid
+    ctx.strokeStyle = 'rgba(150,150,150,.18)';
+    ctx.fillStyle = 'rgba(120,120,120,1)';
+    ctx.font = '11px system-ui,Consolas';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    [-1,-0.5,0,0.5,1].forEach(k=>{
+      const v = vMax*k, y = yOf(v);
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(w-pad.r,y); ctx.stroke();
+      ctx.fillText(Math.round(v)+'pb', pad.l-8, y);
+    });
+
+    // eje cero
+    ctx.strokeStyle = 'rgba(120,120,120,.55)';
+    ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(pad.l, zeroY); ctx.lineTo(w-pad.r, zeroY); ctx.stroke();
+    ctx.setLineDash([]);
+
+    const groupW = cw / PAIRS.length;
+    const barW = Math.min(28, groupW * 0.55);
+
+    PAIRS.forEach((p,i)=>{
+      const cx = pad.l + groupW*i + groupW/2;
+      const v = SPREAD_10Y[p] ?? 0;
+      const y = yOf(v);
+      const bh = Math.abs(zeroY - y);
+      ctx.fillStyle = v >= 0 ? '#C00000' : '#2F5597';
+      if (v >= 0) ctx.fillRect(cx - barW/2, y, barW, bh);
+      else        ctx.fillRect(cx - barW/2, zeroY, barW, bh);
+
+      ctx.fillStyle = 'rgba(60,60,60,1)';
+      ctx.font = 'bold 11px system-ui,Consolas';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+      ctx.fillText((v>=0?'+':'')+v+'pb', cx, v>=0 ? y-4 : zeroY+bh+12);
+
+      ctx.fillStyle = 'rgba(120,120,120,1)';
+      ctx.font = '11px system-ui,Consolas';
+      ctx.textBaseline = 'top';
+      ctx.fillText(p, cx, h - pad.b + 8);
+    });
+  }
+
+  // KPIs del spread
+  (function renderSpreadKpis(){
+    const wrap = document.getElementById('gbp-spreadKpis');
+    PAIRS.forEach(p=>{
+      const v = SPREAD_10Y[p] ?? 0;
+      const cls = v>=0 ? 'dn' : 'up';
+      const kpi = document.createElement('div');
+      kpi.className = 'kpi';
+      kpi.innerHTML = `
+        <div class="lbl">${p}</div>
+        <div class="val ${cls}" style="color:${v>=0?'var(--red)':'var(--green)'}">${(v>=0?'+':'')}${v}</div>
+        <div class="sub">pb vs gilt UK</div>`;
+      wrap.appendChild(kpi);
+    });
+  })();
+
+  // ---- Tabla min/max ----
+  (function renderMinMax(){
+    const tbody = document.getElementById('gbp-minmaxBody');
+    MINMAX.forEach(r=>{
+      const range = r.max - r.min;
+      const pos = range ? ((r.last - r.min) / range) * 100 : 0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${r.pair}</strong></td>
+        <td>${r.min.toFixed(4)}</td>
+        <td>${r.max.toFixed(4)}</td>
+        <td>${range.toFixed(4)}</td>
+        <td class="big">${pos.toFixed(0)}%</td>`;
+      tbody.appendChild(tr);
+    });
+  })();
+
+  // ---- Dibujo + responsive ----
+  function drawAll(){ drawLine(); drawBars(); drawSpread(); }
+  drawAll();
+  let rT;
+  window.addEventListener('resize', ()=>{ clearTimeout(rT); rT = setTimeout(drawAll, 120); });
+})();
+</script>
+</section>
 
     <!-- Footer dinámico -->
     <div id="footer-placeholder"></div>
