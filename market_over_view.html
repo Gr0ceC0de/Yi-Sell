@@ -1109,6 +1109,438 @@ body>
 </script>
 </section>
 
+<div class="trade-chart-section">
+
+  <style>
+    .trade-chart-section {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: transparent;
+      color: #222;
+      padding: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .trade-chart-section .chart-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .trade-chart-section .chart-sub {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    /* ===== GRÁFICO ===== */
+    .trade-chart-section .chart-area {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 380px;
+      border-left: 2px solid #333;
+      border-bottom: 2px solid #333;
+      padding: 0 10px 0 10px;
+      margin-bottom: 10px;
+    }
+
+    .trade-chart-section .bar-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      position: relative;
+      width: 22%;
+    }
+
+    .trade-chart-section .bar {
+      flex: 1;
+      position: relative;
+      border-radius: 2px 2px 0 0;
+      transition: height .4s ease;
+    }
+
+    .trade-chart-section .bar.out {
+      background: linear-gradient(to top, #1b7a3d, #4caf50);
+    }
+
+    .trade-chart-section .bar.in {
+      background: linear-gradient(to top, #a11d1d, #e53935);
+    }
+
+    /* Números sobre barras */
+    .trade-chart-section .bar .num {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .trade-chart-section .bar.out .num { color: #1b7a3d; }
+    .trade-chart-section .bar.in .num  { color: #a11d1d; }
+
+    /* Etiqueta año dentro de la barra */
+    .trade-chart-section .bar .year {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: rgba(255,255,255,.85);
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+
+    /* ===== LÍNEA DE BALANZA (encima de cada grupo) ===== */
+    .trade-chart-section .balance-line {
+      position: absolute;
+      top: -34px;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+    }
+
+    .trade-chart-section .balance-line .line {
+      width: 90%;
+      height: 2px;
+      background: #444;
+      border-radius: 2px;
+    }
+
+    .trade-chart-section .balance-line .bal-label {
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: #fff;
+      border: 1px solid #ddd;
+      white-space: nowrap;
+    }
+
+    .trade-chart-section .bal-label.neg { color: #c62828; }
+    .trade-chart-section .bal-label.pos { color: #2e7d32; }
+
+    /* Nombre del par debajo */
+    .trade-chart-section .pair-name {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #333;
+      margin-top: 6px;
+      letter-spacing: .5px;
+    }
+
+    /* Volumen total (vértice / bandera) */
+    .trade-chart-section .volume-flag {
+      display: block;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #0d47a1;
+      background: #e3f2fd;
+      border: 1px solid #90caf9;
+      border-radius: 10px;
+      padding: 2px 6px;
+      margin: 6px auto 0 auto;
+      width: fit-content;
+      white-space: nowrap;
+    }
+
+    /* ===== LEYENDA ===== */
+    .trade-chart-section .legend {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      margin: 14px 0 6px 0;
+      flex-wrap: wrap;
+    }
+
+    .trade-chart-section .legend .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .trade-chart-section .dot.g  { background: #2e7d32; }
+    .trade-chart-section .dot.r  { background: #c62828; }
+    .trade-chart-section .dot.ln { background: #444; height: 2px; width: 16px; }
+
+    /* ===== TABLA OCULTA ===== */
+    .trade-chart-section .toggle-btn {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    .trade-chart-section .toggle-btn:hover { background: #e8e8e8; }
+
+    .trade-chart-section .data-table-wrap {
+      display: none;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    .trade-chart-section .data-table-wrap.open { display: block; }
+
+    .trade-chart-section table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .trade-chart-section table th,
+    .trade-chart-section table td {
+      border: 1px solid #ddd;
+      padding: 6px 8px;
+      text-align: right;
+    }
+
+    .trade-chart-section table th {
+      background: #f0f0f0;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .trade-chart-section table td:first-child,
+    .trade-chart-section table th:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .trade-chart-section table tr:nth-child(even) { background: #fafafa; }
+
+    .trade-chart-section .neg { color: #c62828; font-weight: 700; }
+    .trade-chart-section .pos { color: #2e7d32; font-weight: 700; }
+  </style>
+
+  <div class="chart-title">Balanza comercial de EE.UU. — 4 socios clave</div>
+  <div class="chart-sub">Output (exportaciones) vs Input (importaciones) · 2021 → 2026 · valores en miles de millones USD</div>
+
+  <!-- LEYENDA -->
+  <div class="legend">
+    <span><span class="dot g"></span>Output (exportaciones EE.UU.)</span>
+    <span><span class="dot r"></span>Input (importaciones EE.UU.)</span>
+    <span><span class="dot ln"></span>Línea de balanza (Output − Input)</span>
+  </div>
+
+  <!-- GRÁFICO -->
+  <div class="chart-area">
+
+    <!-- CANADÁ -->
+    <div class="bar-group" style="height:100%;">
+      <div class="balance-line">
+        <div class="line"></div>
+        <div class="bal-label neg">−61.1</div>
+      </div>
+      <div class="bar out" style="height:78%;">
+        <span class="num">350.6</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar in" style="height:92%;">
+        <span class="num">411.7</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar out" style="height:74%;">
+        <span class="num">~333.0</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="bar in" style="height:86%;">
+        <span class="num">~385.0</span>
+        <span class="year">2026</span>
+      </div>
+    </div>
+
+    <!-- MÉXICO -->
+    <div class="bar-group" style="height:100%;">
+      <div class="balance-line">
+        <div class="line"></div>
+        <div class="bal-label neg">−171.5</div>
+      </div>
+      <div class="bar out" style="height:74%;">
+        <span class="num">334.0</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar in" style="height:100%;">
+        <span class="num">505.5</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar out" style="height:75%;">
+        <span class="num">~338.0</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="bar in" style="height:99%;">
+        <span class="num">~534.9</span>
+        <span class="year">2026</span>
+      </div>
+    </div>
+
+    <!-- CHINA -->
+    <div class="bar-group" style="height:100%;">
+      <div class="balance-line">
+        <div class="line"></div>
+        <div class="bal-label neg">−297.0</div>
+      </div>
+      <div class="bar out" style="height:32%;">
+        <span class="num">143.3</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar in" style="height:87%;">
+        <span class="num">440.3</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar out" style="height:24%;">
+        <span class="num">~106.3</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="bar in" style="height:61%;">
+        <span class="num">~308.4</span>
+        <span class="year">2026</span>
+      </div>
+    </div>
+
+    <!-- EUROPA -->
+    <div class="bar-group" style="height:100%;">
+      <div class="balance-line">
+        <div class="line"></div>
+        <div class="bal-label neg">−236.8</div>
+      </div>
+      <div class="bar out" style="height:82%;">
+        <span class="num">369.9</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar in" style="height:100%;">
+        <span class="num">606.7</span>
+        <span class="year">2021</span>
+      </div>
+      <div class="bar out" style="height:91%;">
+        <span class="num">~412.5</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="bar in" style="height:99%;">
+        <span class="num">~632.9</span>
+        <span class="year">2026</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOMBRES DE PARES + VOLUMEN TOTAL -->
+  <div style="display:flex; justify-content:space-around;">
+    <div style="width:22%;">
+      <div class="pair-name">USDCAD</div>
+      <div class="volume-flag">Vol. total: ~1.48 B</div>
+    </div>
+    <div style="width:22%;">
+      <div class="pair-name">MXNUSD</div>
+      <div class="volume-flag">Vol. total: ~1.71 B</div>
+    </div>
+    <div style="width:22%;">
+      <div class="pair-name">CNYUSD</div>
+      <div class="volume-flag">Vol. total: ~0.99 B</div>
+    </div>
+    <div style="width:22%;">
+      <div class="pair-name">EURUSD</div>
+      <div class="volume-flag">Vol. total: ~2.07 B</div>
+    </div>
+  </div>
+
+  <!-- BOTÓN + TABLA OCULTA -->
+  <button class="toggle-btn" onclick="var t=this.nextElementSibling; t.classList.toggle('open'); this.textContent = t.classList.contains('open') ? '− Ocultar data' : '+ Ver data';">
+    + Ver data
+  </button>
+
+  <div class="data-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Economía</th>
+          <th>Año</th>
+          <th>Output (Exp. EE.UU.)</th>
+          <th>Input (Imp. EE.UU.)</th>
+          <th>Balanza (Out − In)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Canadá (USDCAD)</td>
+          <td>2021</td>
+          <td>350.6</td>
+          <td>411.7</td>
+          <td class="neg">−61.1</td>
+        </tr>
+        <tr>
+          <td>Canadá (USDCAD)</td>
+          <td>2026 (est.)</td>
+          <td>~333.0</td>
+          <td>~385.0</td>
+          <td class="neg">~−52.0</td>
+        </tr>
+        <tr>
+          <td>México (MXNUSD)</td>
+          <td>2021</td>
+          <td>334.0</td>
+          <td>505.5</td>
+          <td class="neg">−171.5</td>
+        </tr>
+        <tr>
+          <td>México (MXNUSD)</td>
+          <td>2026 (est.)</td>
+          <td>~338.0</td>
+          <td>~534.9</td>
+          <td class="neg">~−196.9</td>
+        </tr>
+        <tr>
+          <td>China (CNYUSD)</td>
+          <td>2021</td>
+          <td>143.3</td>
+          <td>440.3</td>
+          <td class="neg">−297.0</td>
+        </tr>
+        <tr>
+          <td>China (CNYUSD)</td>
+          <td>2026 (est.)</td>
+          <td>~106.3</td>
+          <td>~308.4</td>
+          <td class="neg">~−202.1</td>
+        </tr>
+        <tr>
+          <td>Unión Europea (EURUSD)</td>
+          <td>2021</td>
+          <td>369.9</td>
+          <td>606.7</td>
+          <td class="neg">−236.8</td>
+        </tr>
+        <tr>
+          <td>Unión Europea (EURUSD)</td>
+          <td>2026 (est.)</td>
+          <td>~412.5</td>
+          <td>~632.9</td>
+          <td class="neg">~−220.3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
     <!-- Footer dinámico -->
     <div id="footer-placeholder"></div>
 
