@@ -2723,54 +2723,47 @@ body>
 @keyframes slide{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 </style>
 
-<div class="header">🇺🇸 DÓLAR AMERICANO - 12 FUNDAMENTALES OFICIALES - 18 Oct 2026</div>
-<div class="table-wrap">
+<div id="USD-Dolar-Americano-variables" style="margin:0 0 80px 0; padding:20px; background:#0a0a0a; border-radius:16px;">
+<style>
+#USD-Dolar-Americano-variables{font-family:ui-monospace, SFMono-Regular, Menlo, monospace; width:100%; max-width:1200px; margin:0 auto 80px auto !important; background:#0a0a0a; color:#e0e0e0; border:1px solid #222;}
+#USD-Dolar-Americano-variables .header{color:#7FFFD4; font-size:16px; font-weight:900; padding:14px 0; text-align:center; border-bottom:1px solid #222;}
+#USD-Dolar-Americano-variables .sub{color:#FF00FF; font-size:11px; text-align:center; padding-bottom:12px;}
+#USD-Dolar-Americano-variables table{width:100%; border-collapse:collapse; font-size:12px;}
+#USD-Dolar-Americano-variables th{background:#111; color:#7FFF00; padding:10px 12px; text-align:left; border-bottom:2px solid #7FFF00;}
+#USD-Dolar-Americano-variables td{padding:12px; border-bottom:1px solid #1a1a1a; vertical-align:top; line-height:1.5;}
+#USD-Dolar-Americano-variables .var{color:#7FFFD4; font-weight:800;}
+#USD-Dolar-Americano-variables .lime{color:#7FFF00; font-weight:700;}
+#USD-Dolar-Americano-variables .fucsia{color:#FF00FF;}
+#USD-Dolar-Americano-variables .rojo{color:#FF4444;}
+#USD-Dolar-Americano-variables .aqua{color:#7FFFD4;}
+#USD-Dolar-Americano-variables .badge-lime{background:#7FFF00; color:#000; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+#USD-Dolar-Americano-variables .badge-fucsia{background:#FF00FF; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+#USD-Dolar-Americano-variables .badge-aqua{background:#7FFFD4; color:#000; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+#USD-Dolar-Americano-variables .badge-rojo{background:#FF4444; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+</style>
+<div class="header">🇺🇸 USD DOLAR AMERICANO - 12 VARIABLES</div>
+<div class="sub">FED / BLS / BEA / TREASURY / FRED / CFTC / IMF - 18 Oct 2026</div>
 <table>
-<thead>
-<tr><th>#</th><th>Variable</th><th>HOY</th><th>YoY Tendencia</th><th>Max / Min Hist</th><th>▶</th></tr>
-</thead>
+<thead><tr><th style="width:22%">B 1-12 VARIABLES</th><th>DATA | TENDENCIA | MAX MIN HISTORICOS</th></tr></thead>
 <tbody>
-<tr><td><span class="badge black">1</span></td><td><b>Tasas Banco Central</b></td><td><span class="badge green">3.75-4.00% Fed</span></td><td class="yellow">Hace 1A 3.50-3.75% +25bp alcista</td><td>Max 20% 1981 / Min 0% 2008-22</td><td><button class="btn" onclick="this.closest('table').querySelector('#d1').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d1" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>FED H.15 16 Sep 2026 suba 25bp. EFFR 3.88%, SOFR 3.89%, Prime 7.00%. Dot plot 16/18 ven +25bp a 4.00-4.25% fin 2026.</p></div><div class="box"><h4>📈 YoY</h4><p>Desde 5.25-5.50% en Sep 2024 cortó a 3.50% y ahora vuelve a subir. Tendencia restrictiva real +1.5%.</p></div><div class="box"><h4>💡 Trading</h4><p>Sostiene DXY bullish. Fuente: federalreserve.gov</p></div></div></td></tr>
-
-<tr><td><span class="badge black">2</span></td><td><b>Expectativa tasa futura OIS</b></td><td><span class="badge green">28 Oct 84.5% hold / Dic 88% hike</span></td><td class="yellow">4 cortes esperados 2024 → 1 suba ahora</td><td>Max hawk 6% 2023 / Min 0% 2020</td><td><button class="btn" onclick="document.getElementById('d2').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d2" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>CME FedWatch, OIS 4.10% a 12M. Curva Fed Funds futura leve inversión corto plazo.</p></div><div class="box"><h4>📈 YoY</h4><p>Giro hawkish total. Warsh: 'hard pressed to describe conditions as restrictive'.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: cmegroup.com</p></div></div></td></tr>
-
-<tr><td><span class="badge black">3</span></td><td><b>Curva 10A-2A Tesoro</b></td><td><span class="badge green">+33bp 10A 5.10% - 2A 4.77%</span></td><td class="yellow">-20bp invertida → +33bp +53bp normaliza</td><td>Max +282bp 2010 / Min -108bp 2023</td><td><button class="btn" onclick="document.getElementById('d3').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d3" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>FRED Daily Par Yield cierre 14 Oct: 10A 5.19% 2A 4.82% = +37bp. Vantage 5.10%/4.77% = +33bp. Bear steepening.</p></div><div class="box"><h4>📈 YoY</h4><p>Desactivada señal recesión. Expansión implícita 2.4% GDP.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: treasury.gov / fred.stlouisfed.org</p></div></div></td></tr>
-
-<tr><td><span class="badge black">4</span></td><td><b>CPI general / CORE</b></td><td><span class="badge green">General 3.7% / Core 2.6% Sep</span></td><td class="yellow">General +1.3% YoY / Core -0.7% YoY</td><td>Max 9.1% Jun22 / Core max 6.6% Sep22 / Min -2.1% 2009</td><td><button class="btn" onclick="document.getElementById('d4').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d4" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>BLS 14 Oct 2026: Shelter 3.2% YoY, Energy 20.4% YoY Gasolina +34.2% YoY +9.1% MoM, Food 2.5%. MoM 0.6% gen / 0.3% core.</p></div><div class="box"><h4>📈 YoY</h4><p>Core lowest desde early 2021 pero arriba 2% target.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: bls.gov/cpi</p></div></div></td></tr>
-
-<tr><td><span class="badge black">5</span></td><td><b>🦄 Empleo nóminas / desempleo / salario</b></td><td><span class="badge green">+29k / 4.2% / $37.81 +3.0%</span></td><td class="yellow">Avg 45k/mes vs 15k 2025 / Sal 3.9%→3.0% -0.9%</td><td>Max +1014k May20 / Min -20.5M Abr20 / Paro max 14.7% / min 3.4%</td><td><button class="btn" onclick="document.getElementById('d5').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d5" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>BLS Employment Oct 2: +29k vs +84k esperado. Revisión -60k Jul-Ago. Participación 61.8%. 7.1M desempleados.</p></div><div class="box"><h4>📈 YoY</h4><p>Hiring freeze, no despidos masivos. Enfriamiento.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: bls.gov/employment</p></div></div></td></tr>
-
-<tr><td><span class="badge black">6</span></td><td><b>🦄 PMI manuf/serv + PBI</b></td><td><span class="badge green">PMI M 54.5% S 54.9% / PBI Q2 2.2%</span></td><td class="yellow">M 47.2→54.5% +7.3pts / PBI 3.0→2.2% -0.8%</td><td>Max PMI 64.7% 2021 / Min 41.5% 2020 / PBI -31.2% Q2 20</td><td><button class="btn" onclick="document.getElementById('d6').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d6" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>ISM Sep: Manuf 54.5% 9 meses expansión, New Orders 55.3, Prices 77.9 +6.8pts surge. Servicios 54.9%. BEA PBI Q2 2.2% real final sales privado 4.6%. S&P Global Composite 58.4% 5Y high.</p></div><div class="box"><h4>📈 Max/Min</h4><p>PMI >50 expansión. 54.5% = 2.4% GDP anualizado históricamente.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: ismworld.org, bea.gov</p></div></div></td></tr>
-
-<tr><td><span class="badge black">7</span></td><td><b>🦄 Brecha M2 vs PIB nominal</b></td><td><span class="badge green">M2 $23.34T vs PIB $31.5T 74% +5.66% YoY</span></td><td class="yellow">$22.1T hace año acelera 2.97→4.63%</td><td>Max M2 +27% Feb21 / Min -4.5% 2023</td><td><button class="btn" onclick="document.getElementById('d7').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d7" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>H.6 Sep 22: M2 $23,342.8B Ago. Retail MMF $3,073.9B +128% desde Ene 22. Sin MMF M2 es $35B menor que Ene 22. 13w ann 6.5%.</p></div><div class="box"><h4>📈 Aceleración</h4><p>26 meses crecimiento consecutivo desde Nov 2023. Bancos crean crédito pese Fed restrictivo.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: federalreserve.gov H6</p></div></div></td></tr>
-
-<tr><td><span class="badge black">8</span></td><td><b>🦄 Balance Banco Central M0</b></td><td><span class="badge green">Activos $6.76T Net liq $5.87T</span></td><td class="yellow">$7.1T hace año -5% QT -340B</td><td>Max $8.96T Abr22 / Min $0.87T 2007</td><td><button class="btn" onclick="document.getElementById('d8').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d8" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>H.4.1 14 Oct: Total $6.76T - TGA $883.4B - RRP $0.2B = Net liq $5.87T. QT $60B Treas + $35B MBS/mes.</p></div><div class="box"><h4>📈 Tendencia</h4><p>Reservas aún abundantes. RRP casi cero = fin drenaje.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: federalreserve.gov H41</p></div></div></td></tr>
-
-<tr><td><span class="badge black">9</span></td><td><b>🫟 Reservas y Flujos TIC</b></td><td><span class="badge green">+ $199.8B Ago / Holdings $9.331T</span></td><td class="yellow">+$80B hace año +150% demanda</td><td>Max $9.487T Feb26 / Inflow max $398B</td><td><button class="btn" onclick="document.getElementById('d9').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d9" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>TIC 16 Oct: Privado +$178.5B Oficial +$21.3B. Largo plazo +$300.7B (priv $257.8B). T-Bills -47.8B. Holdings: UK $1.009T >$1T primera vez custodia, Japón $1.068T -35.6B, China $590.7B mínimo 2008.</p></div><div class="box"><h4>📈 YoY</h4><p>Foreign demand fuerte pese yields altos.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: treasury.gov/tic</p></div></div></td></tr>
-
-<tr><td><span class="badge black">10</span></td><td><b>🫟 Deuda/PIB</b></td><td><span class="badge green">123.37% bruta / 100% publ / $40.17T</span></td><td class="yellow">122.6% hace año +0.77% empeora</td><td>Max 133.5% Q2 20 / Min 31.8% 1981</td><td><button class="btn" onclick="document.getElementById('d10').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d10" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>IMF Fiscal Monitor: USA 126.79% 2026. IBIS 124.8% proyectado. Déficit $1.8-2T =6% PIB. Interés $1.1T 3.4% PIB > Defensa.</p></div><div class="box"><h4>📈 Causa</h4><p>OBBBA 2025 expande gasto + corta ingresos SALT. Social Security + mandatory.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: fiscaldata.treasury.gov</p></div></div></td></tr>
-
-<tr><td><span class="badge black">11</span></td><td><b>🦄 CDS soberano beta VIX</b></td><td><span class="badge green">CDS 5A 37-42bp / VIX 16.38 Beta +0.3</span></td><td class="yellow">CDS 29bp hace año +30% sube riesgo</td><td>Max CDS 75bp Jul11 / VIX max 89.5 08 / Min CDS 8bp 2007 VIX 9.14 2017</td><td><button class="btn" onclick="document.getElementById('d11').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d11" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>S&P Global: CDS USA 5A ~37bp baja de 39bp. Oracle CDS 288bp récord, Nvidia 90bp, Meta 104bp, IG index 60bp. Curva CDS Treasury ascendente.</p></div><div class="box"><h4>📈 Beta</h4><p>USD safe haven: DXY +1% por +10% VIX crisis. Kotok: mercado apuesta pérdida status risk-free.</p></div><div class="box"><h4>💡 Trading</h4><p>Fuente: S&P Global Market Intelligence</p></div></div></td></tr>
-
-<tr><td><span class="badge black">12</span></td><td><b>🦄 COT CFTC sobrecompra</b></td><td><span class="badge green">USD long $35.5B +8.9B sem DXY 19k long 90%ile</span></td><td class="yellow">De -$5B short a +$35.5B +$40B giro bullish</td><td>Max long $45B 2019 / Euro short -99k extremo 1%ile</td><td><button class="btn" onclick="document.getElementById('d12').classList.toggle('open')">+ Detalle →</button></td></tr>
-<tr id="d12" class="detail-row"><td colspan="6"><div class="detail-content"><div class="box"><h4>📊 Oficial</h4><p>CFTC w/e 6 Oct: USD spec net $+35.5B +$8.9B weekly. DXY Asset Managers 19,096 long 37.3% OI 81%ile 6M 90%ile 1Y extremo. Leveraged 863 long +504.</p></div><div class="box"><h4>📈 Open Interest</h4><p>OI +2,774 contratos participación expandiendo. New longs + short covering simultáneo = señal fuerte.</p></div><div class="box"><h4>💡 Contrarian</h4><p>Euro -99.3k short 1%ile extremo = squeeze potencial anti-USD. Fuente: cftc.gov</p></div></div></td></tr>
+<tr><td class="var">1. Tasas Banco Central</td><td><span class="badge-lime">HOY</span> <span class="lime">3.75-4.00% Fed EFFR 3.88% Prime 7.00%</span> | <span class="badge-fucsia">YoY</span> <span class="fucsia">Hace 1A 3.50-3.75% +25bp alcista</span> | <span class="badge-aqua">EXT</span> <span class="aqua">Max 20% 1981 / Min 0% 2008-22</span><br><span class="aqua">H.15 Sep16 suba 25bp Dot 16/18 +25bp a 4.00-4.25% fin 2026</span></td></tr>
+<tr><td class="var">2. Expectativa tasa OIS</td><td><span class="badge-lime">HOY</span> <span class="lime">28 Oct 84.5% hold / Dic 88% hike SOFR 3.89%</span> | <span class="fucsia">2024 4 cortes → ahora 1 suba giro hawkish</span> | <span class="rojo">Max 6% 2023 / Min 0% 2020</span></td></tr>
+<tr><td class="var">3. Curva 10A-2A</td><td><span class="badge-lime">HOY</span> <span class="lime">+33bp 10A 5.10% - 2A 4.77%</span> | <span class="fucsia">-20bp → +33bp +53bp normaliza</span> | <span class="aqua">Max +282bp 2010 / Min -108bp 2023</span></td></tr>
+<tr><td class="var">4. CPI general / CORE</td><td><span class="lime">General 3.7% / Core 2.6% Sep</span> | <span class="fucsia">Gen +1.3% YoY / Core -0.7% YoY</span> | <span class="rojo">Max 9.1% Jun22 / Core max 6.6% / Min -2.1% 2009</span><br><span class="aqua">BLS Shelter 3.2% Energy 20.4% Gasolina +34.2% YoY</span></td></tr>
+<tr><td class="var">5. 🦄 Empleo</td><td><span class="lime">+29k / 4.2% / $37.81 +3.0%</span> | <span class="fucsia">Avg 45k/mes vs 15k 2025 / Sal 3.9%→3.0%</span> | <span class="aqua">Max +1014k / Min -20.5M / Paro max 14.7%</span></td></tr>
+<tr><td class="var">6. 🦄 PMI + PBI</td><td><span class="lime">PMI M 54.5% S 54.9% / PBI Q2 2.2%</span> | <span class="fucsia">47.2%→54.5% +7.3pts / PBI 3.0%→2.2%</span> | <span class="rojo">Max PMI 64.7% / Min 41.5% / PBI -31.2% Q2 20</span></td></tr>
+<tr><td class="var">7. 🦄 M2 vs PIB</td><td><span class="lime">M2 $23.34T vs PIB $31.5T 74% +5.66% YoY 6.5% 13w ann</span> | <span class="fucsia">$22.1T hace año acelera 2.97→4.63%</span> | <span class="aqua">Max M2 +27% Feb21 / Min -4.5% 2023</span></td></tr>
+<tr><td class="var">8. 🦄 Balance M0</td><td><span class="lime">Activos $6.76T Net liq $5.87T</span> | <span class="fucsia">$7.1T hace año -5% QT -340B</span> | <span class="aqua">Max $8.96T Abr22 / Min $0.87T 2007</span></td></tr>
+<tr><td class="var">9. 🫟 Reservas TIC</td><td><span class="lime">+$199.8B Ago Holdings $9.331T</span> | <span class="fucsia">+$80B hace año +150% demanda</span> | <span class="rojo">Max $9.487T Feb26 / Inflow max $398B</span></td></tr>
+<tr><td class="var">10. 🫟 Deuda/PIB</td><td><span class="lime">123.37% bruta / 100% publ / $40.17T</span> | <span class="fucsia">122.6% hace año +0.77% empeora</span> | <span class="aqua">Max 133.5% Q2 20 / Min 31.8% 1981</span></td></tr>
+<tr><td class="var">11. 🦄 CDS + VIX</td><td><span class="lime">CDS 5A 37-42bp VIX 16.38 Beta +0.3</span> | <span class="fucsia">29bp hace año +30% sube riesgo</span> | <span class="rojo">Max CDS 75bp Jul11 / VIX max 89.5 08</span></td></tr>
+<tr><td class="var">12. 🦄 COT CFTC</td><td><span class="lime">USD long $35.5B +8.9B sem DXY 19k long 90%ile 1A extremo</span> | <span class="fucsia">De -$5B short → +$35.5B +$40B giro bullish</span> | <span class="aqua">Max long $45B 2019 / Euro short -99k 1%ile extremo</span></td></tr>
 </tbody>
 </table>
-</div>
+<div style="margin-top:16px; padding-top:12px; border-top:1px solid #222; display:flex; gap:12px; font-size:10px;"><span style="color:#7FFF00;">● HOY lime</span><span style="color:#FF00FF;">● YoY fucsia</span><span style="color:#FF4444;">● Extremos rojo</span><span style="color:#7FFFD4;">● Detalle aqua</span></div>
 </div>
 
- 
+  
 
   <!-- ===== GRÁFICO 3D ===== -->
 
