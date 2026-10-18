@@ -1510,9 +1510,218 @@ body>
   </div>
 
 </section>
-   
-     
-</div>
+    
+<script>
+  // 1. DATOS (Puedes reemplazar esto con tus variables globales si ya las tienes)
+  const PAIRS = ['USDCAD', 'USDMXN', 'CNYUSD', 'EURUSD'];
+  
+  // Datos de Entrada (Inputs/Importaciones)
+  const IN_2024 = [411.7, 505.5, 440.3, 606.7];
+  const IN_2026 = [385.0, 534.9, 308.4, 632.9];
+  
+  // Datos de Salida (Outputs/Exportaciones)
+  const OUT_2024 = [350.6, 334.0, 143.3, 369.9];
+  const OUT_2026 = [333.0, 338.0, 106.3, 412.5];
+
+  // 2. CONFIGURACIÓN DE COLORES SOLICITADOS
+  const COLOR_TITLE = '#00FFFF'; // Aquamarine
+  const COLOR_OUT_2024 = '#2e7d32'; // Verde oscuro
+  const COLOR_OUT_2026 = '#66bb6a'; // Verde claro
+  const COLOR_IN_2024  = '#c62828'; // Rojo oscuro
+  const COLOR_IN_2026  = '#ef5350'; // Rojo claro
+  const COLOR_LINE_OUT = '#00FFFF'; // Línea Output Total (Aquamarine)
+  const COLOR_LINE_IN  = '#FF00FF'; // Línea Input Total (Fucsia)
+
+  // 3. LÓGICA DEL GRÁFICO
+  function drawChart() {
+    const cv = document.getElementById('gbp-barChart');
+    const ctx = cv.getContext('2d');
+    
+    // Ajustar resolución para pantallas Retina/HD
+    const dpr = window.devicePixelRatio || 1;
+    const rect = cv.getBoundingClientRect();
+    cv.width = rect.width * dpr;
+    cv.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width;
+    const h = rect.height;
+    const pad = { l: 60, r: 20, t: 50, b: 60 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
+
+    // Calcular máximos para la escala Y
+    const allVals = [...IN_2024, ...IN_2026, ...OUT_2024, ...OUT_2026];
+    const yMax = Math.max(...allVals) * 1.15; // 15% de margen superior
+    const yOf = v => pad.t + ch - (v / yMax) * ch;
+
+    // --- DIBUJAR CUADRÍCULA Y EJE Y ---
+    ctx.strokeStyle = 'rgba(150,150,150,0.2)';
+    ctx.fillStyle = COLOR_TITLE;
+    ctx.font = 'bold 11px system-ui, monospace';
+    ctx.textAlign = 'right'; 
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 1;
+
+    for (let k = 0; k <= 5; k++) {
+      const v = yMax * (k / 5);
+      const y = yOf(v);
+      ctx.beginPath(); 
+      ctx.moveTo(pad.l, y); 
+      ctx.lineTo(w - pad.r, y); 
+      ctx.stroke();
+      ctx.fillText(Math.round(v) + ' Bn', pad.l - 10, y);
+    }
+
+    // --- DIBUJAR BARRAS 3D AGRUPADAS ---
+    const groupW = cw / PAIRS.length;
+    const barW = Math.min(16, (groupW - 20) / 4); 
+    const offsets = [-1.5, -0.5, 0.5, 1.5].map(o => o * (barW + 4)); // Espaciado entre barras
+
+    // Función auxiliar para dibujar un cubo 3D
+    function draw3DBar(x, y, width, height, color, depth = 5) {
+      // Cara Frontal
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, width, height);
+      
+      // Tapa Superior (más clara)
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + depth, y - depth);
+      ctx.lineTo(x + width + depth, y - depth);
+      ctx.lineTo(x + width, y);
+      ctx.fillStyle = color + 'CC'; // Simula luz con opacidad
+      ctx.fill();
+      
+      // Lado Derecho (más oscuro)
+      ctx.beginPath();
+      ctx.moveTo(x + width, y);
+      ctx.lineTo(x + width + depth, y - depth);
+      ctx.lineTo(x + width + depth, y - depth + height);
+      ctx.lineTo(x + width, y + height);
+      ctx.fillStyle = color + '88';
+      ctx.fill();
+    }
+
+    // Arrays para guardar las coordenadas y dibujar las líneas después
+    let linePointsOut = [];
+    let linePointsIn = [];
+
+    PAIRS.forEach((pair, gi) => {
+      const cx = pad.l + groupW * gi + groupW / 2;
+      
+      // Datos: [Out24, Out26, In24, In26]
+      const barsData = [
+        { val: OUT_2024[gi], color: COLOR_OUT_2024 },
+        { val: OUT_2026[gi], color: COLOR_OUT_2026 },
+        { val: IN_2024[gi], color: COLOR_IN_2024 },
+        { val: IN_2026[gi], color: COLOR_IN_2026 }
+      ];
+
+      // Sumas totales para las líneas (Output e Input)
+      const totalOut = OUT_2024[gi] + OUT_2026[gi];
+      const totalIn = IN_2024[gi] + IN_2026[gi];
+
+      barsData.forEach((bar, bi) => {
+        const x = cx + offsets[bi] - barW / 2;
+        const y = yOf(bar.val);
+        const bh = pad.t + ch - y;
+
+        draw3DBar(x, y, barW, bh, bar.color);
+
+        // Imprimir número sobre la barra con un fondo sutil para que no choque
+        ctx.fillStyle = 'rgba(0,0,0,0.5)'; // Fondo semi-transparente para legibilidad
+        ctx.fillRect(x - 4, y - 18, barW + 8, 14);
+        
+        ctx.fillStyle = bar.color.includes('2e7d') || bar.color.includes('66bb') ? '#66ff66' : '#ff6666';
+        ctx.font = 'bold 10px system-ui';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(Math.round(bar.val), x + barW / 2, y - 11);
+      });
+
+      // Guardar puntos para las líneas (usando el centro del grupo)
+      linePointsOut.push({ x: cx, y: yOf(totalOut), val: totalOut });
+      linePointsIn.push({ x: cx, y: yOf(totalIn), val: totalIn });
+
+      // Nombre del par (Eje X)
+      ctx.fillStyle = COLOR_TITLE;
+      ctx.font = 'bold 12px system-ui';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(pair, cx, h - pad.b + 10);
+    });
+
+    // --- DIBUJAR LÍNEAS SUPERPUESTAS (OUTPUT E INPUT TOTAL) ---
+    function drawLine(points, color, label) {
+      if (points.length === 0) return;
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Dibujar puntos y etiquetas
+      points.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Texto de la suma total
+        ctx.fillStyle = color;
+        ctx.font = 'bold 11px system-ui';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        // Ajuste para que el texto no se salga por arriba
+        const textY = p.y - 10 < pad.t ? p.y + 15 : p.y - 10;
+        ctx.fillText(label + ': ' + Math.round(p.val), p.x, textY);
+      });
+    }
+
+    drawLine(linePointsOut, COLOR_LINE_OUT, 'Out Total');
+    drawLine(linePointsIn, COLOR_LINE_IN, 'In Total');
+
+    // --- LEYENDA SUPERIOR ---
+    const legendItems = [
+      { text: 'Out 2024', color: COLOR_OUT_2024 },
+      { text: 'Out 2026', color: COLOR_OUT_2026 },
+      { text: 'In 2024', color: COLOR_IN_2024 },
+      { text: 'In 2026', color: COLOR_IN_2026 },
+      { text: 'Línea Output', color: COLOR_LINE_OUT },
+      { text: 'Línea Input', color: COLOR_LINE_IN }
+    ];
+
+    let lx = pad.l;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.font = 'bold 11px system-ui';
+    
+    legendItems.forEach(item => {
+      ctx.fillStyle = item.color;
+      if (item.text.includes('Línea')) {
+        // Dibujar línea en la leyenda
+        ctx.fillRect(lx, 15, 16, 3);
+      } else {
+        // Dibujar cuadrado en la leyenda
+        ctx.fillRect(lx, 11, 10, 10);
+      }
+      ctx.fillStyle = COLOR_TITLE;
+      ctx.fillText(item.text, lx + (item.text.includes('Línea') ? 22 : 16), 16);
+      lx += ctx.measureText(item.text).width + 35; // Espaciado dinámico
+    });
+  }
+
+  // Ejecutar al cargar y al redimensionar la ventana
+  window.addEventListener('load', drawChart);
+  window.addEventListener('resize', drawChart);
+</script>
 
     <!-- Footer dinámico -->
     <div id="footer-placeholder"></div>
