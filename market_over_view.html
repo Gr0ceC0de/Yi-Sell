@@ -3128,78 +3128,227 @@ body>
   </div>
 
 </section>
-
-<section id="analisis-fuerza-usd" style="margin:0 auto 90px auto; max-width:1200px; background:transparent; font-family:ui-monospace,monospace; padding:20px; border:1px solid #222; border-radius:16px;">
-
 <section id="analisis-fuerza-usd" style="margin:0 auto 90px auto; max-width:100%; width:100%; background:transparent !important; font-family:ui-monospace,monospace; padding:24px 10px; border:1px solid #222; border-radius:16px; overflow:hidden;">
 <style>
 #analisis-fuerza-usd{background:transparent !important; isolation:isolate;}
-#analisis-fuerza-usd *{box-sizing:border-box}
-#analisis-fuerza-usd h2{color:#7FFF00; font-size:18px; font-weight:900; text-align:center; margin:0 0 8px 0; text-shadow:0 0 8px #7FFF00; letter-spacing:0.5px;}
-#analisis-fuerza-usd .sub{color:#7FFFD4; font-size:11px; text-align:center; margin-bottom:16px; opacity:0.9;}
-#analisis-fuerza-usd .btn-detalles{
-  display:inline-flex; align-items:center; gap:8px;
-  background:transparent; border:1px solid #7FFF00; color:#7FFF00;
-  padding:10px 18px; border-radius:999px; cursor:pointer; font-weight:800; font-size:12px;
-  text-shadow:0 0 6px #7FFF00; transition:all .2s;
-}
-#analisis-fuerza-usd .btn-detalles:hover{background:#7FFF00; color:#000; box-shadow:0 0 18px #7FFF00;}
-#analisis-fuerza-usd .hidden-table{display:none; margin-top:20px; overflow-x:auto; overflow-y:hidden; border:1px solid #1e1e1e; border-radius:12px; width:100%; -webkit-overflow-scrolling:touch;}
+#analisis-fuerza-usd .btn-detalles{display:inline-flex; gap:8px; background:transparent; border:1px solid #7FFFD4; color:#7FFFD4; padding:10px 18px; border-radius:999px; cursor:pointer; font-weight:800; font-size:12px; font-family:inherit; transition:all .2s;}
+#analisis-fuerza-usd .btn-detalles:hover{background:rgba(127,255,212,0.12); box-shadow:0 0 12px rgba(127,255,212,0.35);}
+#analisis-fuerza-usd .hidden-table{display:none; overflow-x:auto; border:1px solid #1e1e1e; border-radius:12px; width:100%; margin-top:14px;}
 #analisis-fuerza-usd .hidden-table.show{display:block;}
-#analisis-fuerza-usd .hidden-table::-webkit-scrollbar{height:6px} #analisis-fuerza-usd .hidden-table::-webkit-scrollbar-thumb{background:#222; border-radius:99px}
 #analisis-fuerza-usd table{width:max-content; min-width:100%; border-collapse:collapse; background:transparent !important; font-size:11px; white-space:nowrap;}
-#analisis-fuerza-usd th{background:transparent !important; color:#FFFF00; padding:10px 14px; border-bottom:2px solid #FFFF00; border-left:0; border-right:0; text-align:center; text-shadow:0 0 6px #FFFF00; font-weight:900;}
-#analisis-fuerza-usd td{background:transparent !important; color:#7FFFD4; padding:10px 14px; border-bottom:1px solid #1e1e1e; border-left:0; border-right:0; text-align:center;}
-#analisis-fuerza-usd .pair{color:#7FFF00; font-weight:900; text-shadow:0 0 6px #7FFF00; position:sticky; left:0; background:rgba(0,0,0,0.6) !important; backdrop-filter:blur(6px);}
-#analisis-fuerza-usd .val-min{color:#7FFFD4;} .val-max{color:#FFFF00;} .val-sep{color:#555; margin:0 4px;}
-#analisis-fuerza-usd .chart-wrap{margin-top:22px; background:transparent !important; border:1px solid #1e1e1e; border-radius:12px; padding:12px; width:100%; overflow-x:auto;}
-#analisis-fuerza-usd .chart-inner{min-width:900px; height:340px;}
-#analisis-fuerza-usd .legend{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size:10px; margin-top:10px;}
-#analisis-fuerza-usd .dot{width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow:0 0 6px currentColor;}
-#analisis-fuerza-usd .bps-info{color:#FFFF00; font-size:10px; text-align:center; margin-top:8px; opacity:0.8;}
+#analisis-fuerza-usd th{background:transparent !important; color:#FFA500; padding:10px 14px; border-bottom:2px solid #FFA500; text-align:center; font-weight:800; letter-spacing:.5px;}
+#analisis-fuerza-usd td{background:transparent !important; padding:7px 14px; border-bottom:1px solid #1e1e1e; text-align:center; font-variant-numeric:tabular-nums;}
+#analisis-fuerza-usd .pair{color:#FFA500; font-weight:900; position:sticky; left:0; background:rgba(0,0,0,0.85) !important; border-right:1px solid #FFA500; text-align:left; padding-left:14px;}
+#analisis-fuerza-usd .tipo{font-size:9px; font-weight:800; padding:5px 8px; border-right:1px solid #1e1e1e; letter-spacing:.5px;}
+#analisis-fuerza-usd .chart-wrap{margin-top:22px; background:transparent !important; border:1px solid #1e1e1e; border-radius:12px; padding:12px; overflow-x:auto;}
+#analisis-fuerza-usd .chart-inner{min-width:950px; height:440px; position:relative;}
+#analisis-fuerza-usd h2{color:#FFA500; font-size:14px; margin:0 0 16px 0; letter-spacing:1.5px; font-weight:800;}
+#analisis-fuerza-usd .legend{display:flex; flex-wrap:wrap; gap:16px; margin-top:14px; padding:12px; border:1px dashed #1e1e1e; border-radius:12px; font-size:10px;}
+#analisis-fuerza-usd .legend .item{display:flex; align-items:center; gap:6px; color:#7FFFD4;}
+#analisis-fuerza-usd .legend .sw{width:18px; height:2px; display:inline-block; background:currentColor;}
+#analisis-fuerza-usd .legend .sw.dash{background:repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 9px);}
+#analisis-fuerza-usd .legend .wick{width:2px; height:12px; display:inline-block; background:currentColor;}
 </style>
 
-<h2>🫟 ANÁLISIS DE FUERZA USD - 2024_S1 a 2026_S2</h2>
-<div class="sub">Min / Max por semestre | Líneas = sinuosidad real del par (12 puntos: min→max) | Solo líneas, sin relleno</div>
+<h2>USD · Dólar Americano — Análisis de Fortaleza (Mín/Máx Semestral)</h2>
 
-<div style="text-align:center;">
-<button class="btn-detalles" id="btn-usd">+ Ver detalles tabla oculta</button>
+<div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:14px;">
+  <button class="btn-detalles" id="btn-fuerza-usd">+ Detalles</button>
+  <span style="color:#7FFFD4; font-size:10px; letter-spacing:.5px;">▸ Δ en BPS por semestre · Rango máx-min</span>
 </div>
 
-<div id="tabla-oculta-usd" class="hidden-table">
-<table>
-<thead>
-<tr>
-<th>Par</th>
-<th>2024_S1<br><span style="font-size:9px;color:#7FFFD4">MIN</span> <span class="val-sep">/</span> <span style="font-size:9px;color:#FFFF00">MAX</span></th>
-<th>2024_S2<br>MIN / MAX</th>
-<th>2025_S1<br>MIN / MAX</th>
-<th>2025_S2<br>MIN / MAX</th>
-<th>2026_S1<br>MIN / MAX</th>
-<th>2026_S2<br>MIN / MAX</th>
-</tr>
-</thead>
-<tbody>
-<tr><td class="pair">EURUSD</td><td><span class="val-min">1.0601</span> <span class="val-sep">/</span> <span class="val-max">1.0981</span></td><td><span class="val-min">1.0334</span> / <span class="val-max">1.1201</span></td><td><span class="val-min">1.0177</span> / <span class="val-max">1.1610</span></td><td><span class="val-min">1.1065</span> / <span class="val-max">1.1918</span></td><td><span class="val-min">1.1325</span> / <span class="val-max">1.2083</span></td><td><span class="val-min">1.1113</span> / <span class="val-max">1.1710</span></td></tr>
-<tr><td class="pair">USDCAD</td><td><span class="val-min">1.3220</span> / <span class="val-max">1.3803</span></td><td><span class="val-min">1.3441</span> / <span class="val-max">1.4242</span></td><td><span class="val-min">1.3848</span> / <span class="val-max">1.4798</span></td><td><span class="val-min">1.3481</span> / <span class="val-max">1.4299</span></td><td><span class="val-min">1.3650</span> / <span class="val-max">1.4450</span></td><td><span class="val-min">1.3850</span> / <span class="val-max">1.4134</span></td></tr>
-<tr><td class="pair">USDMXN</td><td><span class="val-min">16.5225</span> / <span class="val-max">18.9996</span></td><td><span class="val-min">18.3900</span> / <span class="val-max">20.8418</span></td><td><span class="val-min">18.4200</span> / <span class="val-max">21.0710</span></td><td><span class="val-min">16.8570</span> / <span class="val-max">19.5000</span></td><td><span class="val-min">16.8570</span> / <span class="val-max">18.7702</span></td><td><span class="val-min">18.3780</span> / <span class="val-max">18.7702</span></td></tr>
-<tr><td class="pair">GBPUSD</td><td><span class="val-min">1.2446</span> / <span class="val-max">1.2859</span></td><td><span class="val-min">1.2487</span> / <span class="val-max">1.3434</span></td><td><span class="val-min">1.2099</span> / <span class="val-max">1.3445</span></td><td><span class="val-min">1.3010</span> / <span class="val-max">1.3870</span></td><td><span class="val-min">1.3010</span> / <span class="val-max">1.3870</span></td><td><span class="val-min">1.3137</span> / <span class="val-max">1.3869</span></td></tr>
-<tr><td class="pair">USDCNY</td><td><span class="val-min">7.0888</span> / <span class="val-max">7.2688</span></td><td><span class="val-min">7.0120</span> / <span class="val-max">7.3323</span></td><td><span class="val-min">7.1600</span> / <span class="val-max">7.3500</span></td><td><span class="val-min">7.0100</span> / <span class="val-max">7.2500</span></td><td><span class="val-min">6.9500</span> / <span class="val-max">7.1800</span></td><td><span class="val-min">7.0100</span> / <span class="val-max">7.1550</span></td></tr>
-</tbody>
-</table>
+<div id="tabla-fuerza-usd" class="hidden-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Par</th><th>Tipo</th>
+        <th>2024_S1</th><th>2024_S2</th><th>2025_S1</th>
+        <th>2025_S2</th><th>2026_S1</th><th>2026_S2</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-fuerza-usd"></tbody>
+  </table>
 </div>
 
 <div class="chart-wrap">
-<div class="chart-inner"><canvas id="chartFuerzaUSD"></canvas></div>
+  <div class="chart-inner"><canvas id="chart-fuerza-usd"></canvas></div>
+</div>
+
 <div class="legend">
-<span><i class="dot" style="background:#7FFF00"></i> <span style="color:#7FFF00">EURUSD</span></span>
-<span><i class="dot" style="background:#FF00FF"></i> <span style="color:#FF00FF">USDCAD</span></span>
-<span><i class="dot" style="background:#FFFF00"></i> <span style="color:#FFFF00">USDMXN</span></span>
-<span><i class="dot" style="background:#7FFFD4"></i> <span style="color:#7FFFD4">GBPUSD</span></span>
-<span><i class="dot" style="background:#FF8C42"></i> <span style="color:#FF8C42">USDCNY</span></span>
+  <div class="item" style="color:#7FFFD4;"><span class="sw"></span>MIN · línea sólida</div>
+  <div class="item" style="color:#FFA500;"><span class="sw dash"></span>MAX · línea punteada</div>
+  <div class="item" style="color:#7FFFD4;"><span class="wick"></span>Wick alcista (mín→máx)</div>
+  <div class="item" style="color:#FFA500;"><span class="wick"></span>Wick bajista (máx→mín)</div>
+  <div class="item" style="color:#7FFFD4; opacity:.7;">Base = midpoint 2024_S1 · Pares: EURUSD · USDCAD · USDMXN · GBPUSD · USDCNY</div>
 </div>
-<div class="bps-info">Sinuosidad = secuencia MIN→MAX por semestre | 12 puntos por par | Hover para ver precio exacto</div>
-</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  const labels = ['2024_S1','2024_S2','2025_S1','2025_S2','2026_S1','2026_S2'];
+  const pairs = ['EURUSD','USDCAD','USDMXN','GBPUSD','USDCNY'];
+
+  const raw = {
+    EURUSD:{min:[1.0601,1.0334,1.0177,1.1065,1.1325,1.1113], max:[1.0981,1.1201,1.1610,1.1918,1.2083,1.1710]},
+    USDCAD:{min:[1.3220,1.3441,1.3848,1.3481,1.3650,1.3850], max:[1.3803,1.4242,1.4798,1.4299,1.4450,1.4134]},
+    USDMXN:{min:[16.5225,18.39,18.42,16.857,16.857,18.378], max:[18.9996,20.8418,21.071,19.5,18.7702,18.7702]},
+    GBPUSD:{min:[1.2446,1.2487,1.2099,1.3010,1.3010,1.3137], max:[1.2859,1.3434,1.3445,1.3870,1.3870,1.3869]},
+    USDCNY:{min:[7.0888,7.012,7.16,7.01,6.95,7.01], max:[7.2688,7.3323,7.35,7.25,7.18,7.155]}
+  };
+
+  // Paleta: aquamarinas para MIN, naranjas para MAX
+  const pal = {
+    EURUSD:{min:'#7FFFD4', max:'#FFA500'},
+    USDCAD:{min:'#40E0D0', max:'#FF8C00'},
+    USDMXN:{min:'#00CED1', max:'#FF7F50'},
+    GBPUSD:{min:'#48D1CC', max:'#FF6347'},
+    USDCNY:{min:'#20B2AA', max:'#FFD700'}
+  };
+
+  // Base = midpoint del primer semestre → normaliza todo a % de cambio
+  const bases = {};
+  pairs.forEach(p => bases[p] = (raw[p].min[0] + raw[p].max[0]) / 2);
+  const norm = {};
+  pairs.forEach(p => {
+    norm[p] = {
+      min: raw[p].min.map(v => ((v - bases[p]) / bases[p]) * 100),
+      max: raw[p].max.map(v => ((v - bases[p]) / bases[p]) * 100)
+    };
+  });
+
+  const bps = (mn, mx) => ((mx - mn) / mn) * 10000;
+
+  // ---------- TABLA ----------
+  const tbody = document.getElementById('tbody-fuerza-usd');
+  pairs.forEach(p => {
+    const {min, max} = raw[p], c = pal[p];
+    const trMin = document.createElement('tr');
+    trMin.innerHTML = `<td class="pair" rowspan="3">${p}</td>
+      <td class="tipo" style="color:${c.min};">MIN</td>` +
+      min.map(v => `<td style="color:${c.min};">${v.toFixed(4)}</td>`).join('');
+    const trMax = document.createElement('tr');
+    trMax.innerHTML = `<td class="tipo" style="color:${c.max};">MAX</td>` +
+      max.map(v => `<td style="color:${c.max};">${v.toFixed(4)}</td>`).join('');
+    const trBps = document.createElement('tr');
+    trBps.innerHTML = `<td class="tipo" style="color:#FFFF00;">Δ BPS</td>` +
+      min.map((v,i) => {
+        const b = bps(v, max[i]);
+        const col = b > 600 ? '#FFA500' : '#7FFFD4';
+        return `<td style="color:${col}; font-weight:800;">${b.toFixed(0)}</td>`;
+      }).join('');
+    tbody.append(trMin, trMax, trBps);
+  });
+
+  // ---------- TOGGLE ----------
+  const btn = document.getElementById('btn-fuerza-usd');
+  const tbl = document.getElementById('tabla-fuerza-usd');
+  btn.addEventListener('click', () => {
+    tbl.classList.toggle('show');
+    btn.textContent = tbl.classList.contains('show') ? '− Detalles' : '+ Detalles';
+  });
+
+  // ---------- WICKS (rango min→max por semestre) ----------
+  const wickPlugin = {
+    id: 'wickUSD',
+    beforeDatasetsDraw(chart){
+      const ctx = chart.ctx, xs = chart.scales.x, ys = chart.scales.y;
+      pairs.forEach(p => {
+        const c = pal[p];
+        for (let i=0; i<labels.length; i++){
+          const x = xs.getPixelForValue(i);
+          const yMin = ys.getPixelForValue(norm[p].min[i]);
+          const yMax = ys.getPixelForValue(norm[p].max[i]);
+          // dirección inferida vs semestre anterior (midpoint)
+          let up = true;
+          if (i>0){
+            const prevMid = (norm[p].min[i-1] + norm[p].max[i-1]) / 2;
+            const currMid = (norm[p].min[i] + norm[p].max[i]) / 2;
+            up = currMid >= prevMid;
+          }
+          ctx.save();
+          ctx.strokeStyle = up ? c.min : c.max;
+          ctx.globalAlpha = 0.6;
+          ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(x, yMin); ctx.lineTo(x, yMax); ctx.stroke();
+          // tapas
+          ctx.globalAlpha = 0.95; ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(x-3, yMin); ctx.lineTo(x+3, yMin);
+          ctx.moveTo(x-3, yMax); ctx.lineTo(x+3, yMax);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+    }
+  };
+
+  // ---------- DATASETS ----------
+  const datasets = [];
+  pairs.forEach(p => {
+    const c = pal[p];
+    datasets.push({
+      label: `${p} MIN`,
+      data: norm[p].min,
+      borderColor: c.min, backgroundColor: 'transparent',
+      borderWidth: 2, tension: 0.25, fill: false,
+      pointRadius: 4, pointBackgroundColor: c.min,
+      pointBorderColor: '#000', pointBorderWidth: 1
+    });
+    datasets.push({
+      label: `${p} MAX`,
+      data: norm[p].max,
+      borderColor: c.max, backgroundColor: 'transparent',
+      borderWidth: 2, borderDash: [6,4], tension: 0.25, fill: false,
+      pointRadius: 4, pointBackgroundColor: c.max,
+      pointBorderColor: '#000', pointBorderWidth: 1
+    });
+  });
+
+  // ---------- CHART ----------
+  new Chart(document.getElementById('chart-fuerza-usd').getContext('2d'), {
+    type: 'line',
+    data: {labels, datasets},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: {mode:'index', intersect:false},
+      plugins: {
+        legend: {
+          labels: {
+            color:'#7FFFD4', boxWidth:14, padding:8,
+            font:{size:9, family:'ui-monospace,monospace'}
+          }
+        },
+        tooltip: {
+          backgroundColor:'rgba(0,0,0,0.95)',
+          titleColor:'#FFA500', bodyColor:'#7FFFD4',
+          borderColor:'#FFA500', borderWidth:1,
+          titleFont:{family:'ui-monospace,monospace', size:11},
+          bodyFont:{family:'ui-monospace,monospace', size:10},
+          callbacks: {
+            label: c => `${c.dataset.label}: ${c.parsed.y.toFixed(2)}%`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks:{color:'#7FFFD4', font:{size:10, family:'ui-monospace,monospace'}},
+          grid:{color:'rgba(127,255,212,0.08)'}
+        },
+        y: {
+          title:{display:true, text:'Δ% vs 2024_S1 (mid)',
+                 color:'#FFA500', font:{size:10, family:'ui-monospace,monospace'}},
+          ticks:{color:'#FFA500', font:{size:10, family:'ui-monospace,monospace'},
+                 callback: v => v+'%'},
+          grid:{color:'rgba(255,165,0,0.1)'}
+        }
+      }
+    },
+    plugins: [wickPlugin]
+  });
+})();
+</script>
+</section>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
@@ -3275,7 +3424,6 @@ new Chart(ctx, {
   }
 });
 </script>
-</section>
  
 
 <script>
