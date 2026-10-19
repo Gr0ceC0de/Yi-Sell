@@ -3349,6 +3349,74 @@ body>
 </script>
 </section>
 
+<section id="spread-10anos-usd">
+    <div style="font-family: system-ui, -apple-system, sans-serif; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); color: #1e293b;">
+        <h2 style="font-size: 1.5rem; margin-top: 0; margin-bottom: 0.5rem; color: #1e293b;">Spreads de Bonos Soberanos a 10 Años vs EE. UU.</h2>
+        <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">Cálculo dinámico basado en los rendimientos de referencia actuales.</p>
+        
+        <div style="overflow-x: auto;">
+            <table id="spreads-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                <thead>
+                    <tr style="background-color: #f1f5f9;">
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0;">Par de Divisas</th>
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0;">País Comparado</th>
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">Rend. EE. UU. (10Y)</th>
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">Rend. Local (10Y)</th>
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">Spread (EE. UU. - Local)</th>
+                        <th style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">Puntos Básicos (pb)</th>
+                    </tr>
+                </thead>
+                <tbody id="spreads-tbody">
+                    <!-- Los datos se inyectarán dinámicamente mediante JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Data base para los cálculos
+            const bondData = [
+                { pair: "USDCAD", country: "Canadá", usYield: 5.13, localYield: 3.91 },
+                { pair: "EURUSD", country: "Alemania (Eurozona)", usYield: 5.13, localYield: 3.41 },
+                { pair: "USDMXN", country: "México", usYield: 5.13, localYield: 9.30 },
+                { pair: "GBPUSD", country: "Reino Unido", usYield: 5.13, localYield: 5.45 },
+                { pair: "USDCNY", country: "China", usYield: 5.13, localYield: 1.66 }
+            ];
+
+            const tbody = document.getElementById('spreads-tbody');
+            if (!tbody) return;
+
+            bondData.forEach(item => {
+                const spread = item.usYield - item.localYield;
+                const spreadBp = Math.round(spread * 100);
+                
+                const isPositive = spread >= 0;
+                const badgeColor = isPositive ? '#16a34a' : '#dc2626';
+                const badgeBg = isPositive ? '#dcfce7' : '#fee2e2';
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; font-weight: 600;">${item.pair}</td>
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0;">${item.country}</td>
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">${item.usYield.toFixed(2)}%</td>
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">${item.localYield.toFixed(2)}%</td>
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: ${badgeColor};">
+                        ${isPositive ? '+' : ''}${spread.toFixed(2)}%
+                    </td>
+                    <td style="padding: 0.75rem 1rem; border-bottom: 1px solid #e2e8f0; text-align: right;">
+                        <span style="display: inline-block; padding: 0.25rem 0.5rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; background-color: ${badgeBg}; color: ${badgeColor};">
+                            ${isPositive ? '+' : ''}${spreadBp} pb
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        })();
+    </script>
+</section>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
