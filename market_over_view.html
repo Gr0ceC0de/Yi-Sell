@@ -3130,52 +3130,67 @@ body>
 </section>
 
 <section id="analisis-fuerza-usd" style="margin:0 auto 90px auto; max-width:1200px; background:transparent; font-family:ui-monospace,monospace; padding:20px; border:1px solid #222; border-radius:16px;">
+
+<section id="analisis-fuerza-usd" style="margin:0 auto 90px auto; max-width:100%; width:100%; background:transparent !important; font-family:ui-monospace,monospace; padding:24px 10px; border:1px solid #222; border-radius:16px; overflow:hidden;">
 <style>
-#analisis-fuerza-usd{background:transparent !important;}
+#analisis-fuerza-usd{background:transparent !important; isolation:isolate;}
 #analisis-fuerza-usd *{box-sizing:border-box}
-#analisis-fuerza-usd h2{color:#7FFF00; font-size:18px; font-weight:900; text-align:center; margin:0 0 8px 0; text-shadow:0 0 8px #7FFF00;}
-#analisis-fuerza-usd .sub{color:#7FFFD4; font-size:11px; text-align:center; margin-bottom:16px;}
+#analisis-fuerza-usd h2{color:#7FFF00; font-size:18px; font-weight:900; text-align:center; margin:0 0 8px 0; text-shadow:0 0 8px #7FFF00; letter-spacing:0.5px;}
+#analisis-fuerza-usd .sub{color:#7FFFD4; font-size:11px; text-align:center; margin-bottom:16px; opacity:0.9;}
 #analisis-fuerza-usd .btn-detalles{
   display:inline-flex; align-items:center; gap:8px;
   background:transparent; border:1px solid #7FFF00; color:#7FFF00;
-  padding:8px 14px; border-radius:999px; cursor:pointer; font-weight:800; font-size:12px;
-  text-shadow:0 0 6px #7FFF00;
+  padding:10px 18px; border-radius:999px; cursor:pointer; font-weight:800; font-size:12px;
+  text-shadow:0 0 6px #7FFF00; transition:all .2s;
 }
-#analisis-fuerza-usd .btn-detalles:hover{background:#7FFF00; color:#000;}
-#analisis-fuerza-usd .hidden-table{display:none; margin-top:18px; overflow-x:auto; border:1px solid #1e1e1e; border-radius:12px;}
+#analisis-fuerza-usd .btn-detalles:hover{background:#7FFF00; color:#000; box-shadow:0 0 18px #7FFF00;}
+#analisis-fuerza-usd .hidden-table{display:none; margin-top:20px; overflow-x:auto; overflow-y:hidden; border:1px solid #1e1e1e; border-radius:12px; width:100%; -webkit-overflow-scrolling:touch;}
 #analisis-fuerza-usd .hidden-table.show{display:block;}
-#analisis-fuerza-usd table{width:100%; border-collapse:collapse; background:transparent; font-size:11px;}
-#analisis-fuerza-usd th{background:transparent; color:#FFFF00; padding:8px; border-bottom:2px solid #FFFF00; text-align:center; text-shadow:0 0 6px #FFFF00;}
-#analisis-fuerza-usd td{background:transparent; color:#7FFFD4; padding:8px; border-bottom:1px solid #1e1e1e; text-align:center;}
-#analisis-fuerza-usd .pair{color:#7FFF00; font-weight:800;}
-#analisis-fuerza-usd .chart-wrap{margin-top:22px; background:transparent; border:1px solid #1e1e1e; border-radius:12px; padding:12px;}
-#analisis-fuerza-usd .legend{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; font-size:10px; margin-top:8px;}
-#analisis-fuerza-usd .dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
-#analisis-fuerza-usd .bps-info{color:#FFFF00; font-size:10px; text-align:center; margin-top:6px;}
+#analisis-fuerza-usd .hidden-table::-webkit-scrollbar{height:6px} #analisis-fuerza-usd .hidden-table::-webkit-scrollbar-thumb{background:#222; border-radius:99px}
+#analisis-fuerza-usd table{width:max-content; min-width:100%; border-collapse:collapse; background:transparent !important; font-size:11px; white-space:nowrap;}
+#analisis-fuerza-usd th{background:transparent !important; color:#FFFF00; padding:10px 14px; border-bottom:2px solid #FFFF00; border-left:0; border-right:0; text-align:center; text-shadow:0 0 6px #FFFF00; font-weight:900;}
+#analisis-fuerza-usd td{background:transparent !important; color:#7FFFD4; padding:10px 14px; border-bottom:1px solid #1e1e1e; border-left:0; border-right:0; text-align:center;}
+#analisis-fuerza-usd .pair{color:#7FFF00; font-weight:900; text-shadow:0 0 6px #7FFF00; position:sticky; left:0; background:rgba(0,0,0,0.6) !important; backdrop-filter:blur(6px);}
+#analisis-fuerza-usd .val-min{color:#7FFFD4;} .val-max{color:#FFFF00;} .val-sep{color:#555; margin:0 4px;}
+#analisis-fuerza-usd .chart-wrap{margin-top:22px; background:transparent !important; border:1px solid #1e1e1e; border-radius:12px; padding:12px; width:100%; overflow-x:auto;}
+#analisis-fuerza-usd .chart-inner{min-width:900px; height:340px;}
+#analisis-fuerza-usd .legend{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size:10px; margin-top:10px;}
+#analisis-fuerza-usd .dot{width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow:0 0 6px currentColor;}
+#analisis-fuerza-usd .bps-info{color:#FFFF00; font-size:10px; text-align:center; margin-top:8px; opacity:0.8;}
 </style>
 
 <h2>🫟 ANÁLISIS DE FUERZA USD - 2024_S1 a 2026_S2</h2>
-<div class="sub">Fuerza relativa = (MAX - MIN) / MIN en BPS y % | Transparente lime/aqua/amarillo</div>
+<div class="sub">Min / Max por semestre | Líneas = sinuosidad real del par (12 puntos: min→max) | Solo líneas, sin relleno</div>
 
 <div style="text-align:center;">
-<button class="btn-detalles" onclick="document.getElementById('tabla-oculta-usd').classList.toggle('show'); this.innerHTML = document.getElementById('tabla-oculta-usd').classList.contains('show') ? '− Ocultar tabla' : '+ Detalles tabla oculta';">+ Detalles tabla oculta</button>
+<button class="btn-detalles" id="btn-usd">+ Ver detalles tabla oculta</button>
 </div>
 
 <div id="tabla-oculta-usd" class="hidden-table">
 <table>
-<thead><tr><th>Par</th><th>2024_S1 min/max</th><th>2024_S2 min/max</th><th>2025_S1 min/max</th><th>2025_S2 min/max</th><th>2026_S1 min/max</th><th>2026_S2 min/max</th></tr></thead>
+<thead>
+<tr>
+<th>Par</th>
+<th>2024_S1<br><span style="font-size:9px;color:#7FFFD4">MIN</span> <span class="val-sep">/</span> <span style="font-size:9px;color:#FFFF00">MAX</span></th>
+<th>2024_S2<br>MIN / MAX</th>
+<th>2025_S1<br>MIN / MAX</th>
+<th>2025_S2<br>MIN / MAX</th>
+<th>2026_S1<br>MIN / MAX</th>
+<th>2026_S2<br>MIN / MAX</th>
+</tr>
+</thead>
 <tbody>
-<tr><td class="pair">EURUSD</td><td>1.0601 / 1.0981</td><td>1.0334 / 1.1201</td><td>1.0177 / 1.1610</td><td>1.1065 / 1.1918</td><td>1.1325 / 1.2083</td><td>1.1113 / 1.1710</td></tr>
-<tr><td class="pair">USDCAD</td><td>1.3220 / 1.3803</td><td>1.3441 / 1.4242</td><td>1.3848 / 1.4798</td><td>1.3481 / 1.4299</td><td>1.3650 / 1.4450</td><td>1.3850 / 1.4134</td></tr>
-<tr><td class="pair">USDMXN</td><td>16.5225 / 18.9996</td><td>18.3900 / 20.8418</td><td>18.4200 / 21.0710</td><td>16.8570 / 19.5000</td><td>16.8570 / 18.7702</td><td>18.3780 / 18.7702</td></tr>
-<tr><td class="pair">GBPUSD</td><td>1.2446 / 1.2859</td><td>1.2487 / 1.3434</td><td>1.2099 / 1.3445</td><td>1.3010 / 1.3870</td><td>1.3010 / 1.3870</td><td>1.3137 / 1.3869</td></tr>
-<tr><td class="pair">USDCNY</td><td>7.0888 / 7.2688</td><td>7.0120 / 7.3323</td><td>7.1600 / 7.3500</td><td>7.0100 / 7.2500</td><td>6.9500 / 7.1800</td><td>7.0100 / 7.1550</td></tr>
+<tr><td class="pair">EURUSD</td><td><span class="val-min">1.0601</span> <span class="val-sep">/</span> <span class="val-max">1.0981</span></td><td><span class="val-min">1.0334</span> / <span class="val-max">1.1201</span></td><td><span class="val-min">1.0177</span> / <span class="val-max">1.1610</span></td><td><span class="val-min">1.1065</span> / <span class="val-max">1.1918</span></td><td><span class="val-min">1.1325</span> / <span class="val-max">1.2083</span></td><td><span class="val-min">1.1113</span> / <span class="val-max">1.1710</span></td></tr>
+<tr><td class="pair">USDCAD</td><td><span class="val-min">1.3220</span> / <span class="val-max">1.3803</span></td><td><span class="val-min">1.3441</span> / <span class="val-max">1.4242</span></td><td><span class="val-min">1.3848</span> / <span class="val-max">1.4798</span></td><td><span class="val-min">1.3481</span> / <span class="val-max">1.4299</span></td><td><span class="val-min">1.3650</span> / <span class="val-max">1.4450</span></td><td><span class="val-min">1.3850</span> / <span class="val-max">1.4134</span></td></tr>
+<tr><td class="pair">USDMXN</td><td><span class="val-min">16.5225</span> / <span class="val-max">18.9996</span></td><td><span class="val-min">18.3900</span> / <span class="val-max">20.8418</span></td><td><span class="val-min">18.4200</span> / <span class="val-max">21.0710</span></td><td><span class="val-min">16.8570</span> / <span class="val-max">19.5000</span></td><td><span class="val-min">16.8570</span> / <span class="val-max">18.7702</span></td><td><span class="val-min">18.3780</span> / <span class="val-max">18.7702</span></td></tr>
+<tr><td class="pair">GBPUSD</td><td><span class="val-min">1.2446</span> / <span class="val-max">1.2859</span></td><td><span class="val-min">1.2487</span> / <span class="val-max">1.3434</span></td><td><span class="val-min">1.2099</span> / <span class="val-max">1.3445</span></td><td><span class="val-min">1.3010</span> / <span class="val-max">1.3870</span></td><td><span class="val-min">1.3010</span> / <span class="val-max">1.3870</span></td><td><span class="val-min">1.3137</span> / <span class="val-max">1.3869</span></td></tr>
+<tr><td class="pair">USDCNY</td><td><span class="val-min">7.0888</span> / <span class="val-max">7.2688</span></td><td><span class="val-min">7.0120</span> / <span class="val-max">7.3323</span></td><td><span class="val-min">7.1600</span> / <span class="val-max">7.3500</span></td><td><span class="val-min">7.0100</span> / <span class="val-max">7.2500</span></td><td><span class="val-min">6.9500</span> / <span class="val-max">7.1800</span></td><td><span class="val-min">7.0100</span> / <span class="val-max">7.1550</span></td></tr>
 </tbody>
 </table>
 </div>
 
 <div class="chart-wrap">
-<canvas id="chartFuerzaUSD" height="320"></canvas>
+<div class="chart-inner"><canvas id="chartFuerzaUSD"></canvas></div>
 <div class="legend">
 <span><i class="dot" style="background:#7FFF00"></i> <span style="color:#7FFF00">EURUSD</span></span>
 <span><i class="dot" style="background:#FF00FF"></i> <span style="color:#FF00FF">USDCAD</span></span>
@@ -3183,49 +3198,84 @@ body>
 <span><i class="dot" style="background:#7FFFD4"></i> <span style="color:#7FFFD4">GBPUSD</span></span>
 <span><i class="dot" style="background:#FF8C42"></i> <span style="color:#FF8C42">USDCNY</span></span>
 </div>
-<div class="bps-info">Eje Y = % volatilidad semestral (MAX vs MIN) | 100 BPS = 1% | Hover para ver BPS</div>
+<div class="bps-info">Sinuosidad = secuencia MIN→MAX por semestre | 12 puntos por par | Hover para ver precio exacto</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-const labels = ['2024_S1','2024_S2','2025_S1','2025_S2','2026_S1','2026_S2'];
-const dataPct = {
-  EURUSD: [3.58, 8.38, 14.08, 7.71, 6.69, 5.37],
-  USDCAD: [4.41, 5.95, 6.85, 6.06, 5.86, 2.05],
-  USDMXN: [14.99, 13.33, 14.39, 15.68, 11.34, 2.13],
-  GBPUSD: [3.32, 7.58, 11.12, 6.61, 6.61, 5.57],
-  USDCNY: [2.54, 4.56, 2.65, 3.42, 3.30, 2.06]
+document.getElementById('btn-usd').addEventListener('click', function(){
+  const t = document.getElementById('tabla-oculta-usd');
+  t.classList.toggle('show');
+  this.innerHTML = t.classList.contains('show') ? '− Ocultar tabla' : '+ Ver detalles tabla oculta';
+});
+
+// 12 puntos: S1_min, S1_max, S2_min, S2_max...
+const labels = ['24_S1 min','24_S1 max','24_S2 min','24_S2 max','25_S1 min','25_S1 max','25_S2 min','25_S2 max','26_S1 min','26_S1 max','26_S2 min','26_S2 max'];
+
+const raw = {
+  EURUSD: [1.0601,1.0981, 1.0334,1.1201, 1.0177,1.1610, 1.1065,1.1918, 1.1325,1.2083, 1.1113,1.1710],
+  USDCAD: [1.3220,1.3803, 1.3441,1.4242, 1.3848,1.4798, 1.3481,1.4299, 1.3650,1.4450, 1.3850,1.4134],
+  USDMXN: [16.5225,18.9996, 18.39,20.8418, 18.42,21.071, 16.857,19.5, 16.857,18.7702, 18.378,18.7702],
+  GBPUSD: [1.2446,1.2859, 1.2487,1.3434, 1.2099,1.3445, 1.3010,1.3870, 1.3010,1.3870, 1.3137,1.3869],
+  USDCNY: [7.0888,7.2688, 7.012,7.3323, 7.16,7.35, 7.01,7.25, 6.95,7.18, 7.01,7.155]
 };
+
+// Normalizamos cada par a su propia escala para que se vea la FORMA en el mismo gráfico (fuerza relativa)
+// Si quieres precios absolutos, usa raw directo. Para fuerza USD usamos % sobre primer min.
+function toForce(arr){ const base = arr[0]; return arr.map(v=>((v-base)/base)*100); }
+
+const dataForce = {
+  EURUSD: toForce(raw.EURUSD),
+  USDCAD: toForce(raw.USDCAD),
+  USDMXN: toForce(raw.USDMXN),
+  GBPUSD: toForce(raw.GBPUSD),
+  USDCNY: toForce(raw.USDCNY)
+};
+
 const colors = {EURUSD:'#7FFF00', USDCAD:'#FF00FF', USDMXN:'#FFFF00', GBPUSD:'#7FFFD4', USDCNY:'#FF8C42'};
+
 const ctx = document.getElementById('chartFuerzaUSD').getContext('2d');
 new Chart(ctx, {
   type: 'line',
   data: {
     labels: labels,
-    datasets: Object.keys(dataPct).map(k=>({
-      label: k, data: dataPct[k],
-      borderColor: colors[k], backgroundColor:'transparent',
-      borderWidth:2, pointRadius:3, pointBackgroundColor:colors[k], tension:0.35, fill:false
+    datasets: Object.keys(dataForce).map(k=>({
+      label: k,
+      data: dataForce[k],
+      borderColor: colors[k],
+      backgroundColor: 'transparent',
+      borderWidth: 1.8,
+      pointRadius: 2.5,
+      pointBackgroundColor: colors[k],
+      pointBorderColor: 'transparent',
+      tension: 0.42,
+      fill: false
     }))
   },
   options: {
     responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index', intersect:false},
     plugins:{
       legend:{display:false},
       tooltip:{
-        backgroundColor:'#0a0a0a', titleColor:'#7FFF00', bodyColor:'#7FFFD4', borderColor:'#333', borderWidth:1,
-        callbacks:{label:(c)=> `${c.dataset.label}: ${c.parsed.y.toFixed(2)}% = ${(c.parsed.y*100).toFixed(0)} BPS`}
+        backgroundColor:'#0a0a0a', titleColor:'#7FFF00', bodyColor:'#7FFFD4', borderColor:'#222', borderWidth:1,
+        callbacks:{
+          label: (c)=>{
+            const idx = c.dataIndex;
+            const precio = raw[c.dataset.label][idx];
+            return `${c.dataset.label}: ${precio} (${c.parsed.y>0?'+':''}${c.parsed.y.toFixed(2)}%)`;
+          }
+        }
       }
     },
     scales:{
-      x:{grid:{color:'#1a1a1a'}, ticks:{color:'#7FFFD4', font:{size:10}}},
-      y:{grid:{color:'#1a1a1a'}, ticks:{color:'#FFFF00', callback:v=>v+'%'}, title:{display:true, text:'% vol / BPS/100', color:'#7FFF00'}}
+      x:{grid:{color:'#111'}, ticks:{color:'#7FFFD4', font:{size:9}}},
+      y:{grid:{color:'#111'}, ticks:{color:'#FFFF00', font:{size:9}, callback:v=> (v>0?'+':'')+v+'%'}, title:{display:true, text:'Fuerza % vs inicio 2024_S1 min', color:'#7FFF00', font:{size:10}}}
     }
   }
 });
 </script>
 </section>
-
  
 
 <script>
