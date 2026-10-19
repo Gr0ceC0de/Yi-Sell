@@ -3416,6 +3416,204 @@ body>
     </script>
 </section>
 
+<section id="USD-Dolar-Americano-variables">
+    <style>
+        #USD-Dolar-Americano-variables{font-family:ui-monospace, SFMono-Regular, Menlo, monospace; width:100%; max-width:1200px; margin:0 auto 80px auto !important; background:#0a0a0a; color:#e0e0e0; border:1px solid #222;}
+        #USD-Dolar-Americano-variables .header{color:#7FFFD4; font-size:16px; font-weight:900; padding:14px 0; text-align:center; border-bottom:1px solid #222;}
+        #USD-Dolar-Americano-variables .sub{color:#FF00FF; font-size:11px; text-align:center; padding-bottom:12px;}
+        #USD-Dolar-Americano-variables table{width:100%; border-collapse:collapse; font-size:12px;}
+        #USD-Dolar-Americano-variables th{background:#111; color:#7FFF00; padding:10px 12px; text-align:left; border-bottom:2px solid #7FFF00;}
+        #USD-Dolar-Americano-variables td{padding:12px; border-bottom:1px solid #1a1a1a; vertical-align:top; line-height:1.5; background:transparent;}
+        #USD-Dolar-Americano-variables .var{color:#7FFFD4; font-weight:800;}
+        #USD-Dolar-Americano-variables .lime{color:#7FFF00; font-weight:700;}
+        #USD-Dolar-Americano-variables .fucsia{color:#FF00FF;}
+        #USD-Dolar-Americano-variables .rojo{color:#FF4444;}
+        #USD-Dolar-Americano-variables .aqua{color:#7FFFD4;}
+        #USD-Dolar-Americano-variables .badge-lime{background:#7FFF00; color:#000; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+        #USD-Dolar-Americano-variables .badge-fucsia{background:#FF00FF; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+        #USD-Dolar-Americano-variables .badge-aqua{background:#7FFFD4; color:#000; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+        #USD-Dolar-Americano-variables .badge-rojo{background:#FF4444; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:900;}
+
+        /* ---- Extras del gráfico ---- */
+        #USD-Dolar-Americano-variables .chart-wrap{padding:10px 10px 0 10px;}
+        #USD-Dolar-Americano-variables .chart-wrap svg{display:block; width:100%; height:auto;}
+        #USD-Dolar-Americano-variables .grid{stroke:#1a1a1a; stroke-width:1;}
+        #USD-Dolar-Americano-variables .axis{fill:#64748b; font-size:11px;}
+        #USD-Dolar-Americano-variables .bubble{transition:fill-opacity .18s, stroke-width .18s; cursor:pointer;}
+        #USD-Dolar-Americano-variables .bubble:hover{fill-opacity:.50; stroke-width:3;}
+        #USD-Dolar-Americano-variables .legend{display:flex; flex-wrap:wrap; gap:16px; justify-content:center; padding:4px 12px 14px; font-size:10px; color:#94a3b8; letter-spacing:.5px;}
+        #USD-Dolar-Americano-variables .legend i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle;}
+        #USD-Dolar-Americano-variables .toggle{display:block; width:100%; background:#111; border:none; border-top:1px solid #222; border-bottom:1px solid #222; color:#7FFF00; font-family:inherit; font-size:11px; font-weight:900; letter-spacing:1.5px; padding:13px; cursor:pointer; text-align:center;}
+        #USD-Dolar-Americano-variables .toggle:hover{background:#161616; color:#7FFFD4;}
+        #USD-Dolar-Americano-variables .tabla-wrap{display:none; overflow-x:auto;}
+    </style>
+
+    <div class="header">SPREADS DE BONOS SOBERANOS 10Y vs EE. UU.</div>
+    <div class="sub">Dispersión: rendimiento local (eje X) vs spread en puntos básicos (eje Y)</div>
+
+    <div class="chart-wrap">
+        <svg viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet"
+             font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+             role="img" aria-label="Gráfico de dispersión de spreads de bonos soberanos a 10 años contra EE. UU.">
+
+            <!-- Área de trazado -->
+            <rect x="80" y="70" width="780" height="370" fill="#0d0d0d" stroke="#1e1e1e"/>
+
+            <!-- Rejilla horizontal -->
+            <g class="grid">
+                <line x1="80" y1="89.5"  x2="860" y2="89.5"/>
+                <line x1="80" y1="167.4" x2="860" y2="167.4"/>
+                <line x1="80" y1="323.2" x2="860" y2="323.2"/>
+                <line x1="80" y1="401.1" x2="860" y2="401.1"/>
+            </g>
+
+            <!-- Línea cero -->
+            <line x1="80" y1="245.3" x2="860" y2="245.3" stroke="#7FFF00" stroke-opacity=".35" stroke-dasharray="6 5"/>
+
+            <!-- Rejilla vertical -->
+            <g class="grid">
+                <line x1="236" y1="70" x2="236" y2="440"/>
+                <line x1="392" y1="70" x2="392" y2="440"/>
+                <line x1="548" y1="70" x2="548" y2="440"/>
+                <line x1="704" y1="70" x2="704" y2="440"/>
+            </g>
+
+            <!-- Etiquetas eje Y -->
+            <g class="axis" text-anchor="end">
+                <text x="70" y="93.5">+400</text>
+                <text x="70" y="171.4">+200</text>
+                <text x="70" y="249.3" fill="#7FFF00">0</text>
+                <text x="70" y="327.2">-200</text>
+                <text x="70" y="405.1">-400</text>
+            </g>
+
+            <!-- Etiquetas eje X -->
+            <g class="axis" text-anchor="middle">
+                <text x="80"  y="460">0</text>
+                <text x="236" y="460">2</text>
+                <text x="392" y="460">4</text>
+                <text x="548" y="460">6</text>
+                <text x="704" y="460">8</text>
+                <text x="860" y="460">10</text>
+            </g>
+
+            <!-- Títulos de ejes -->
+            <text x="470" y="490" text-anchor="middle" fill="#7FFFD4" font-size="11" font-weight="700">RENDIMIENTO LOCAL 10Y (%)</text>
+            <text transform="translate(26,255) rotate(-90)" text-anchor="middle" fill="#7FFFD4" font-size="11" font-weight="700">SPREAD vs EE. UU. (pb)</text>
+
+            <!-- ================= BURBUJAS ================= -->
+
+            <!-- USDCNY · China · Local 1.66% · +347 pb · r 27.3 -->
+            <circle cx="209.5" cy="110.1" r="40"   fill="#7FFF00" fill-opacity=".06"/>
+            <circle class="bubble" cx="209.5" cy="110.1" r="27.3" fill="#7FFF00" fill-opacity=".16" stroke="#7FFF00" stroke-width="1.5"/>
+            <text x="174" y="104" text-anchor="end" fill="#7FFF00" font-size="12" font-weight="700">USDCNY</text>
+            <text x="174" y="118" text-anchor="end" fill="#7FFF00" font-size="10" fill-opacity=".75">+347 pb</text>
+
+            <!-- EURUSD · Alemania · Local 3.41% · +172 pb · r 18.1 -->
+            <circle cx="346" cy="178.3" r="27"   fill="#7FFF00" fill-opacity=".06"/>
+            <circle class="bubble" cx="346" cy="178.3" r="18.1" fill="#7FFF00" fill-opacity=".16" stroke="#7FFF00" stroke-width="1.5"/>
+            <text x="346" y="140" text-anchor="middle" fill="#7FFF00" font-size="12" font-weight="700">EURUSD</text>
+            <text x="346" y="154" text-anchor="middle" fill="#7FFF00" font-size="10" fill-opacity=".75">+172 pb</text>
+
+            <!-- USDCAD · Canadá · Local 3.91% · +122 pb · r 15.4 -->
+            <circle cx="385" cy="197.7" r="23"   fill="#7FFF00" fill-opacity=".06"/>
+            <circle class="bubble" cx="385" cy="197.7" r="15.4" fill="#7FFF00" fill-opacity=".16" stroke="#7FFF00" stroke-width="1.5"/>
+            <text x="408" y="194" text-anchor="start" fill="#7FFF00" font-size="12" font-weight="700">USDCAD</text>
+            <text x="408" y="208" text-anchor="start" fill="#7FFF00" font-size="10" fill-opacity=".75">+122 pb</text>
+
+            <!-- GBPUSD · Reino Unido · Local 5.45% · -32 pb · r 10.7 -->
+            <circle cx="505.1" cy="257.7" r="16"   fill="#FF00FF" fill-opacity=".06"/>
+            <circle class="bubble" cx="505.1" cy="257.7" r="10.7" fill="#FF00FF" fill-opacity=".16" stroke="#FF4444" stroke-width="1.5"/>
+            <text x="523" y="254" text-anchor="start" fill="#FF00FF" font-size="12" font-weight="700">GBPUSD</text>
+            <text x="523" y="268" text-anchor="start" fill="#FF4444" font-size="10" fill-opacity=".85">-32 pb</text>
+
+            <!-- USDMXN · México · Local 9.30% · -417 pb · r 31 -->
+            <circle cx="805.4" cy="407.7" r="45"   fill="#FF00FF" fill-opacity=".06"/>
+            <circle class="bubble" cx="805.4" cy="407.7" r="31" fill="#FF00FF" fill-opacity=".16" stroke="#FF4444" stroke-width="1.5"/>
+            <text x="768" y="403" text-anchor="end" fill="#FF00FF" font-size="12" font-weight="700">USDMXN</text>
+            <text x="768" y="417" text-anchor="end" fill="#FF4444" font-size="10" fill-opacity=".85">-417 pb</text>
+        </svg>
+    </div>
+
+    <div class="legend">
+        <span><i style="background:#7FFF00"></i>SPREAD POSITIVO (EE. UU. &gt; LOCAL)</span>
+        <span><i style="background:#FF00FF"></i>SPREAD NEGATIVO (EE. UU. &lt; LOCAL)</span>
+        <span><i style="background:#64748b"></i>TAMAÑO DE BURBUJA = MAGNITUD DEL SPREAD</span>
+    </div>
+
+    <button class="toggle" id="toggle-spreads" type="button">+ VER TABLA DE DATOS</button>
+
+    <div class="tabla-wrap" id="tabla-spreads">
+        <table>
+            <thead>
+                <tr>
+                    <th>Par de Divisas</th>
+                    <th>País Comparado</th>
+                    <th>Rend. EE. UU. (10Y)</th>
+                    <th>Rend. Local (10Y)</th>
+                    <th>Spread (EE. UU. - Local)</th>
+                    <th>Puntos Básicos (pb)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="var">USDCAD</td>
+                    <td>Canadá</td>
+                    <td>5.13%</td>
+                    <td>3.91%</td>
+                    <td class="lime">+1.22%</td>
+                    <td><span class="badge-lime">+122 pb</span></td>
+                </tr>
+                <tr>
+                    <td class="var">EURUSD</td>
+                    <td>Alemania (Eurozona)</td>
+                    <td>5.13%</td>
+                    <td>3.41%</td>
+                    <td class="lime">+1.72%</td>
+                    <td><span class="badge-lime">+172 pb</span></td>
+                </tr>
+                <tr>
+                    <td class="var">USDMXN</td>
+                    <td>México</td>
+                    <td>5.13%</td>
+                    <td>9.30%</td>
+                    <td class="fucsia">-4.17%</td>
+                    <td><span class="badge-fucsia">-417 pb</span></td>
+                </tr>
+                <tr>
+                    <td class="var">GBPUSD</td>
+                    <td>Reino Unido</td>
+                    <td>5.13%</td>
+                    <td>5.45%</td>
+                    <td class="fucsia">-0.32%</td>
+                    <td><span class="badge-fucsia">-32 pb</span></td>
+                </tr>
+                <tr>
+                    <td class="var">USDCNY</td>
+                    <td>China</td>
+                    <td>5.13%</td>
+                    <td>1.66%</td>
+                    <td class="lime">+3.47%</td>
+                    <td><span class="badge-lime">+347 pb</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        (function () {
+            var btn   = document.getElementById('toggle-spreads');
+            var tabla = document.getElementById('tabla-spreads');
+            if (!btn || !tabla) return;
+
+            btn.addEventListener('click', function () {
+                var abierta = tabla.style.display === 'block';
+                tabla.style.display = abierta ? 'none' : 'block';
+                btn.textContent = abierta ? '+ VER TABLA DE DATOS' : '− OCULTAR TABLA DE DATOS';
+            });
+        })();
+    </script>
+</section>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
