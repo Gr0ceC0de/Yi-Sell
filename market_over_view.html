@@ -3615,247 +3615,403 @@ body>
     </script>
 </section>
 
-<section id="Euro-10-Variables-Paises">
+
+<section id="Euro-12-Variables-Paises">
 <style>
-#Euro-10-Variables-Paises{
+#Euro-12-Variables-Paises{
   width:100%; max-width:1400px;
   margin:0 auto 90px auto !important;
   background:transparent !important;
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#e0e0e0;
 }
-#Euro-10-Variables-Paises .header{
+#Euro-12-Variables-Paises .header{
   color:#7FFFD4; font-size:15px; font-weight:900;
   text-align:center; padding:14px 12px;
   background:#111; border:1px solid #222;
-  cursor:pointer; transition:.2s;
-  border-radius:12px;
-  user-select:none;
+  border-radius:12px; user-select:none;
 }
-#Euro-10-Variables-Paises .header:hover{color:#FF00FF; background:#161616;}
-#Euro-10-Variables-Paises .header .icon{color:#7FFF00; margin-right:8px; font-weight:900;}
-#Euro-10-Variables-Paises .sub{
+#Euro-12-Variables-Paises .header .icon{
+  color:#7FFF00; margin-right:8px; font-weight:900;
+}
+#Euro-12-Variables-Paises .sub{
   color:#FF6B6B; font-size:10px; text-align:center;
-  padding:6px 0 14px 0; background:transparent;
-  letter-spacing:.5px;
+  padding:6px 0 14px 0; letter-spacing:.5px;
 }
-#Euro-10-Variables-Paises .paises-wrap{
-  display:none; margin-top:16px;
+#Euro-12-Variables-Paises .table-wrap{
+  display:none; overflow-x:auto; margin-top:16px;
+  border:1px solid #222; border-radius:10px;
 }
-#Euro-10-Variables-Paises .paises-wrap.open{display:block;}
-#Euro-10-Variables-Paises .pais-block{
-  margin-bottom:28px; border:1px solid #1e1e1e; border-radius:10px; overflow:hidden;
+#Euro-12-Variables-Paises .table-wrap.open{display:block;}
+#Euro-12-Variables-Paises table{
+  width:100%; border-collapse:collapse; background:transparent;
+  min-width:900px; font-size:11.5px;
 }
-#Euro-10-Variables-Paises .pais-title{
-  background:#111; color:#7FFF00; font-size:13px; font-weight:900;
-  padding:10px 14px; letter-spacing:1px; border-bottom:1px solid #222;
-}
-#Euro-10-Variables-Paises table{
-  width:100%; border-collapse:collapse; background:transparent; min-width:900px;
-}
-#Euro-10-Variables-Paises th{
+#Euro-12-Variables-Paises th{
   background:transparent !important; color:#7FFF00;
-  padding:8px 10px; font-size:10px; text-transform:uppercase;
+  padding:10px 8px; font-size:10px; text-transform:uppercase;
   border-bottom:2px solid #7FFF00; text-align:left; letter-spacing:.5px;
-  white-space:nowrap;
+  white-space:nowrap; position:sticky; top:0;
 }
-#Euro-10-Variables-Paises td{
+#Euro-12-Variables-Paises td{
   background:transparent !important; background-color:transparent !important;
   border:none; border-bottom:1px solid #1e1e1e;
-  padding:10px 10px; vertical-align:top; line-height:1.6; font-size:11.5px;
+  padding:10px 8px; vertical-align:top; line-height:1.6;
 }
-#Euro-10-Variables-Paises tr{background:transparent !important;}
-#Euro-10-Variables-Paises .var{color:#7FFFD4; font-weight:700; font-size:11px; display:block;}
-#Euro-10-Variables-Paises .lime{color:#7FFF00; font-weight:800;}
-#Euro-10-Variables-Paises .fucsia{color:#FF00FF; font-weight:700;}
-#Euro-10-Variables-Paises .cobre{color:#FF8C42; font-weight:700;}
-#Euro-10-Variables-Paises .rojo{color:#FF1744; font-weight:700;}
-#Euro-10-Variables-Paises .aqua{color:#7FFFD4; font-weight:600;}
-#Euro-10-Variables-Paises .sep{color:#333; margin:0 4px;}
-#Euro-10-Variables-Paises .tend-pos{color:#7FFF00;}
-#Euro-10-Variables-Paises .tend-neg{color:#FF1744;}
-#Euro-10-Variables-Paises .tend-est{color:#FF8C42;}
+#Euro-12-Variables-Paises tr{background:transparent !important;}
+#Euro-12-Variables-Paises .var{
+  color:#7FFFD4; font-weight:700; font-size:11px; display:block;
+}
+#Euro-12-Variables-Paises .lime{color:#7FFF00; font-weight:800;}
+#Euro-12-Variables-Paises .fucsia{color:#FF00FF; font-weight:700;}
+#Euro-12-Variables-Paises .cobre{color:#FF8C42; font-weight:700;}
+#Euro-12-Variables-Paises .rojo{color:#FF1744; font-weight:700;}
+#Euro-12-Variables-Paises .aqua{color:#7FFFD4; font-weight:600;}
+
+/* Fila expandible */
+#Euro-12-Variables-Paises .expandable{cursor:pointer;}
+#Euro-12-Variables-Paises .expandable:hover{background:#111 !important;}
+#Euro-12-Variables-Paises .detail-row{display:none;}
+#Euro-12-Variables-Paises .detail-row.open{display:table-row;}
+#Euro-12-Variables-Paises .detail-content{
+  padding:12px; background:#0d0d0d; border-left:3px solid #7FFF00;
+}
+#Euro-12-Variables-Paises .pais-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px;
+}
+#Euro-12-Variables-Paises .pais-item{
+  background:#111; border:1px solid #1e1e1e; border-radius:6px; padding:8px 10px;
+}
+#Euro-12-Variables-Paises .pais-item .nombre{
+  color:#7FFF00; font-weight:700; font-size:10px; display:block;
+  margin-bottom:2px; text-transform:uppercase;
+}
+#Euro-12-Variables-Paises .pais-item .valor{
+  color:#e0e0e0; font-size:11px; line-height:1.4;
+}
+#Euro-12-Variables-Paises .pais-item .nota{
+  color:#64748b; font-size:9.5px; display:block; margin-top:2px;
+}
+@media(max-width:600px){
+  #Euro-12-Variables-Paises .pais-grid{grid-template-columns:1fr;}
+}
 </style>
 
-<div class="header" id="toggle-euro-paises">
-  <span class="icon" id="icon-euro-paises">+</span> 10 VARIABLES EURO · 8 PAÍSES
+<div class="header" id="toggle-euro-12">
+  <span class="icon" id="icon-euro-12">+</span> 12 VARIABLES EURO · 8 PAÍSES
 </div>
-<div class="sub">BCE / EUROSTAT / OCDE / FRED / BIS · DATOS 2026 (PROYECCIÓN) Y 2021 · MÍN/MÁX HISTÓRICOS</div>
+<div class="sub">BCE / EUROSTAT / S&P GLOBAL / CFTC / ICE / OCDE · DATOS 2025-2026 · CLIC EN CADA FILA PARA DETALLES</div>
 
-<div class="paises-wrap" id="tabla-euro-paises">
-  <!-- Las tablas se generan dinámicamente con JavaScript -->
+<div class="table-wrap" id="tabla-euro-12">
+<table>
+<thead>
+  <tr>
+    <th style="width:22%">Variable</th>
+    <th>Eurozona (agregado)</th>
+    <th>Tendencia</th>
+  </tr>
+</thead>
+<tbody>
+
+  <!-- 1. Tasas BCE -->
+  <tr class="expandable" data-target="d1">
+    <td><span class="var">1. Tasas Banco Central (BCE)</span></td>
+    <td class="lime">Depo 2,00% / Refi 2,15% / MRO 2,40%</td>
+    <td class="lime">Pausa prolongada desde jun-25</td>
+  </tr>
+  <tr class="detail-row" id="d1">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">Depo 2,00% / Refi 2,15%</span><span class="nota">Miembro BCE, misma tasa</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Fuente: BCE, decisión del 5-feb-2026. Tasas sin cambios desde junio 2025 tras ciclo de recortes de 350 pb.[reference:0]</span>
+    </td>
+  </tr>
+
+  <!-- 2. Expectativa OIS -->
+  <tr class="expandable" data-target="d2">
+    <td><span class="var">2. Expectativa tasa futura OIS</span></td>
+    <td class="fucsia">€STR 1,92% · OIS descuenta 1 recorte en 2026</td>
+    <td class="fucsia">Dovish / pausa</td>
+  </tr>
+  <tr class="detail-row" id="d2">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">€STR 1,92%</span><span class="nota">OIS 12M ~1,80%</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">El mercado descuenta un recorte adicional para finales de 2026, aunque el BCE mantiene sesgo dependiente de datos.[reference:1]</span>
+    </td>
+  </tr>
+
+  <!-- 3. Curva 10A-2A -->
+  <tr class="expandable" data-target="d3">
+    <td><span class="var">3. Curva de rendimientos (10A-2A)</span></td>
+    <td class="lime">Bund +55 pb · BTP +60 pb · OAT +55 pb</td>
+    <td class="lime">Bear steepening moderado</td>
+  </tr>
+  <tr class="detail-row" id="d3">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania (Bund)</span><span class="valor">+55 pb (10A 3,41% - 2A 2,86%)</span><span class="nota">Benchmark Eurozona</span></div>
+        <div class="pais-item"><span class="nombre">Francia (OAT)</span><span class="valor">+55 pb (10A ~3,55% - 2A ~3,00%)</span><span class="nota">Spread vs Bund ~85 pb</span></div>
+        <div class="pais-item"><span class="nombre">Italia (BTP)</span><span class="valor">+60 pb (10A ~4,90% - 2A ~4,30%)</span><span class="nota">Spread vs Bund ~70 pb</span></div>
+        <div class="pais-item"><span class="nombre">España (Bonos)</span><span class="valor">+55 pb (10A ~3,95% - 2A ~3,40%)</span><span class="nota">Spread vs Bund ~49 pb</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda (IRL)</span><span class="valor">+50 pb (10A ~3,20% - 2A ~2,70%)</span><span class="nota">Spread vs Bund ~45 pb</span></div>
+        <div class="pais-item"><span class="nombre">Portugal (OT)</span><span class="valor">+50 pb (10A ~3,80% - 2A ~3,30%)</span><span class="nota">Spread vs Bund ~70 pb</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica (OLO)</span><span class="valor">+55 pb (10A ~3,70% - 2A ~3,15%)</span><span class="nota">Spread vs Bund ~35 pb</span></div>
+        <div class="pais-item"><span class="nombre">Austria (RAGB)</span><span class="valor">+50 pb (10A ~3,65% - 2A ~3,15%)</span><span class="nota">Spread vs Bund ~30 pb</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Curva agregada Eurozona en torno a +55 pb. Datos de rendimientos a 10 años como referencia (Bund ~3,4%, BTP ~4,9%, OAT ~3,55%).[reference:2]</span>
+    </td>
+  </tr>
+
+  <!-- 4. CPI / CORE -->
+  <tr class="expandable" data-target="d4">
+    <td><span class="var">4. CPI general / CPI Core</span></td>
+    <td class="lime">HICP 1,9% · Core ~2,4%</td>
+    <td class="lime">Convergencia al 2%</td>
+  </tr>
+  <tr class="detail-row" id="d4">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">HICP 2,1% / Core 2,4%</span><span class="nota">Servicios pegajosos</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">HICP 2,0% / Core 2,3%</span><span class="nota">Energía moderando</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">HICP 2,2% / Core 2,4%</span><span class="nota">Presión moderada</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">HICP 2,5% / Core 2,6%</span><span class="nota">Ligeramente superior</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">HICP 2,1% / Core 2,2%</span><span class="nota">Cerca del objetivo</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">HICP 2,3% / Core 2,4%</span><span class="nota">Estable</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">HICP 2,4% / Core 2,5%</span><span class="nota">Energía y servicios</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">HICP 2,2% / Core 2,3%</span><span class="nota">Convergencia gradual</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">HICP Eurozona: 1,9% interanual (dic-2025), proyección BCE ~2,6% promedio 2026. Core en torno al 2,4%–2,6%.[reference:3][reference:4]</span>
+    </td>
+  </tr>
+
+  <!-- 5. Empleo -->
+  <tr class="expandable" data-target="d5">
+    <td><span class="var">5. 🦄 Empleo (desempleo, salarios)</span></td>
+    <td class="lime">Paro Eurozona 6,2% · Salarios ~3,0-3,5%</td>
+    <td class="lime">Tenso, salarios moderan</td>
+  </tr>
+  <tr class="detail-row" id="d5">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">Paro 4,2%</span><span class="nota">Salarios +3,4%</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">Paro 8,6%</span><span class="nota">Salarios +3,0%</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">Paro 5,3%</span><span class="nota">Salarios +3,0%</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">Paro 9,0%</span><span class="nota">Salarios +3,0%</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">Paro 4,6%</span><span class="nota">Salarios +3,2%</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">Paro 6,4%</span><span class="nota">Salarios +3,2%</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">Paro 6,4%</span><span class="nota">Salarios +3,5%</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">Paro 5,0%</span><span class="nota">Salarios +3,2%</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Tasa de desempleo Eurozona 6,2% (mar-2026). España y Francia las más altas; Alemania e Irlanda las más bajas. Salarios en moderación gradual.[reference:5][reference:6]</span>
+    </td>
+  </tr>
+
+  <!-- 6. PMI / PBI -->
+  <tr class="expandable" data-target="d6">
+    <td><span class="var">6. 🦄 PMI (manuf. y serv.) / PBI</span></td>
+    <td class="lime">PMI Comp. 53,1 · PBI +0,4% t/t</td>
+    <td class="lime">Expansión sólida</td>
+  </tr>
+  <tr class="detail-row" id="d6">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">PMI Comp. 53,8</span><span class="nota">Manuf. 51,2 / Serv. 46,9*</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">PMI Comp. 51,1</span><span class="nota">Manuf. ~50 / Serv. 46,5*</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">PMI Comp. 51,0</span><span class="nota">Expansión moderada</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">PMI Comp. ~54</span><span class="nota">El más fuerte de la Eurozona</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">PMI Comp. ~52</span><span class="nota">Expansión</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">PMI Comp. ~52</span><span class="nota">Expansión modesta</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">PMI Comp. ~51</span><span class="nota">Cerca de neutral</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">PMI Comp. ~50,5</span><span class="nota">Débil</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">PMI Compuesto Eurozona 53,1 en sep-2026 (máximo de 41 meses). El PMI señala PBI +0,4% t/t. (*) Datos de abril-2026 muestran contracción en servicios de Alemania y Francia, luego recuperados.[reference:7][reference:8]</span>
+    </td>
+  </tr>
+
+  <!-- 7. M2 / PIB -->
+  <tr class="expandable" data-target="d7">
+    <td><span class="var">7. 🦄 Brecha M2 vs PIB / Crec. M2</span></td>
+    <td class="lime">M2 €16,38T · +4,2% a/a · M2/PIB ~93%</td>
+    <td class="lime">Normaliza</td>
+  </tr>
+  <tr class="detail-row" id="d7">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">M2/PIB ~87%</span><span class="nota">+4,0% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">M2/PIB ~96%</span><span class="nota">+3,5% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">M2/PIB ~86%</span><span class="nota">+3,8% a/a</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">M2/PIB ~93%</span><span class="nota">+4,2% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">M2/PIB ~60%</span><span class="nota">+5,0% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">M2/PIB ~120%</span><span class="nota">+4,5% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">M2/PIB ~117%</span><span class="nota">+3,5% a/a</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">M2/PIB ~80%</span><span class="nota">+3,5% a/a</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">M2 Eurozona €16,38 billones (may-2026), máximo histórico. Crecimiento ~4,2% a/a, en normalización tras el pico de 2021.[reference:9][reference:10]</span>
+    </td>
+  </tr>
+
+  <!-- 8. Balance BCE -->
+  <tr class="expandable" data-target="d8">
+    <td><span class="var">8. 🦄 Balance BCE (M0 / base monetaria)</span></td>
+    <td class="fucsia">€6,33T (ene-2026) · QT en curso</td>
+    <td class="fucsia">QT pasivo ~-€400B/año</td>
+  </tr>
+  <tr class="detail-row" id="d8">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">Participación en Eurosistema</span><span class="nota">~26% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">Participación en Eurosistema</span><span class="nota">~20% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">Participación en Eurosistema</span><span class="nota">~14% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">Participación en Eurosistema</span><span class="nota">~8% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">Participación en Eurosistema</span><span class="nota">~1,5% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">Participación en Eurosistema</span><span class="nota">~1,9% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">Participación en Eurosistema</span><span class="nota">~3,6% del capital BCE</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">Participación en Eurosistema</span><span class="nota">~2,8% del capital BCE</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Balance consolidado del Eurosistema: €6,33 billones (1-ene-2026). QT reduce cartera APP/PEPP. El balance es agregado, no individual por país.[reference:11]</span>
+    </td>
+  </tr>
+
+  <!-- 9. Reservas y flujos -->
+  <tr class="expandable" data-target="d9">
+    <td><span class="var">9. 🫟 Reservas y Flujos de Capital</span></td>
+    <td class="lime">Reservas Eurozona ~$343B · Cta. cte. +1,6% PIB</td>
+    <td class="lime">Superávit corriente estable</td>
+  </tr>
+  <tr class="detail-row" id="d9">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">Reservas ~$38,8B</span><span class="nota">Cta. cte. +6,9% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">Reservas ~$33,9B</span><span class="nota">Cta. cte. -0,7% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">Reservas ~$61,1B</span><span class="nota">Cta. cte. +2,5% PIB</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">Reservas ~$90B</span><span class="nota">Cta. cte. +1,5% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">Reservas ~$12B</span><span class="nota">Cta. cte. +8,0% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">Reservas ~$30B</span><span class="nota">Cta. cte. +1,2% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">Reservas ~$40B</span><span class="nota">Cta. cte. +1,0% PIB</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">Reservas ~$30B</span><span class="nota">Cta. cte. +1,2% PIB</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Reservas de divisas (ago-2026): Italia $61,1B, Alemania $38,8B, Francia $33,9B. Cuenta corriente Eurozona: superávit de €265B (1,6% PIB) a 2T-2026.[reference:12][reference:13]</span>
+    </td>
+  </tr>
+
+  <!-- 10. Deuda/PIB -->
+  <tr class="expandable" data-target="d10">
+    <td><span class="var">10. 🫟 Deuda / PIB</span></td>
+    <td class="cobre">Italia 138,4% · Grecia 136,9% · Eurozona 90,2%</td>
+    <td class="fucsia">Tendencia al alza en 2026</td>
+  </tr>
+  <tr class="detail-row" id="d10">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">63,5%</span><span class="nota">Consolidación fiscal</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">116,5%</span><span class="nota">Deterioro fiscal</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">138,4%</span><span class="nota">La más alta de la Eurozona</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">103,0%</span><span class="nota">Mejora vs 2021</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">42,0%</span><span class="nota">La más baja</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">97,0%</span><span class="nota">Mejora fuerte</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">107,0%</span><span class="nota">Estable / leve alza</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">78,0%</span><span class="nota">Baja leve</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">Italia supera a Grecia como mayor deuda/PIB de la Eurozona en 2026 (138,4%). Eurozona agregada: 90,2% (2026), subiendo desde 88,7% (2025).[reference:14][reference:15]</span>
+    </td>
+  </tr>
+
+  <!-- 11. CDS y beta VIX -->
+  <tr class="expandable" data-target="d11">
+    <td><span class="var">11. 🦄 CDS soberano y beta al VIX</span></td>
+    <td class="fucsia">CDS 5Y: Italia 65 pb · Francia 80 pb · Alemania 7 pb</td>
+    <td class="fucsia">Riesgo periférico contenido</td>
+  </tr>
+  <tr class="detail-row" id="d11">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">CDS 5Y ~7,1 pb</span><span class="nota">Beta VIX baja (~0,2)</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">CDS 5Y ~28-80 pb</span><span class="nota">Beta VIX media (~0,5)</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">CDS 5Y ~65 pb</span><span class="nota">Beta VIX alta (~0,8)</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">CDS 5Y ~29,5 pb</span><span class="nota">Beta VIX media (~0,6)</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">CDS 5Y ~14,6 pb</span><span class="nota">Beta VIX baja (~0,3)</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">CDS 5Y ~15,4 pb</span><span class="nota">Beta VIX baja (~0,3)</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">CDS 5Y ~20 pb</span><span class="nota">Beta VIX baja (~0,3)</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">CDS 5Y ~20 pb</span><span class="nota">Beta VIX baja (~0,3)</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">CDS a 5 años (may-2026): Alemania 7,99 pb, Francia 28,16 pb, Italia 29,34 pb, España 16,58 pb, Portugal 15,37 pb, Irlanda 14,58 pb.[reference:16] Francia ha visto ampliarse su CDS hasta ~80 pb en oct-2026 por riesgo fiscal.[reference:17] La beta al VIX es una estimación cualitativa basada en la sensibilidad histórica de los rendimientos periféricos a la volatilidad global.[reference:18]</span>
+    </td>
+  </tr>
+
+  <!-- 12. COT CFTC -->
+  <tr class="expandable" data-target="d12">
+    <td><span class="var">12. 🦄 COT de CFTC (sobrecompra)</span></td>
+    <td class="fucsia">EUR net short -137.573 contratos (~-USD 19,3B)</td>
+    <td class="fucsia">Máximo de 10 años en corto</td>
+  </tr>
+  <tr class="detail-row" id="d12">
+    <td colspan="3" class="detail-content">
+      <div class="pais-grid">
+        <div class="pais-item"><span class="nombre">Euro (agregado)</span><span class="valor">Net short -137.573 contratos</span><span class="nota">Semana al 13-oct-2026</span></div>
+        <div class="pais-item"><span class="nombre">Alemania</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Francia</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Italia</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">España</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Irlanda</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Portugal</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Bélgica</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+        <div class="pais-item"><span class="nombre">Austria</span><span class="valor">Sin COT individual</span><span class="nota">El COT es sobre el futuro del EUR</span></div>
+      </div>
+      <span class="nota" style="display:block;margin-top:6px;">CFTC: posición neta corta en futuros del EUR alcanzó -138.000 contratos (máximo de 10 años) en la semana al 13-oct-2026, equivalente a -USD 19,3B. Señal de sobreventa extrema del euro.[reference:19]</span>
+    </td>
+  </tr>
+
+</tbody>
+</table>
 </div>
 
 <script>
 (function(){
-  // ============================================================
-  //  DATOS POR PAÍS (10 variables)
-  // ============================================================
-  const paises = [
-    {
-      nombre: "ALEMANIA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A Bund", v26:"+55 bp", v21:"-5 bp", min:"-70 bp (2019)", max:"+90 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.1% / 2.4%", v21:"3.1% / 2.9%", min:"-0.3% (2020)", max:"10.6% (2022)", tend:"Convergencia al 2%", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"3.8% / 3.4%", v21:"3.6% / 1.8%", min:"3.0% (2019)", max:"6.5% (2020)", tend:"Tenso, salarios moderan", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"51.2 / +1.0%", v21:"54.8 / +2.6%", min:"28.7 (2020)", max:"62.4 (2021)", tend:"Expansión modesta", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"87% (+4.0% YoY)", v21:"83% (+7.5% YoY)", min:"+2.1% (2023)", max:"+12.3% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+6.9%", v21:"+7.4%", min:"+0.3% (2022)", max:"+8.0% (2015)", tend:"Superávit estable", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"0 bp / 25 bp", v21:"0 bp / 15 bp", min:"0 bp / 10 bp", max:"0 bp / 40 bp", tend:"Riesgo bajo", cls:"aqua" }
-      ]
-    },
-    {
-      nombre: "FRANCIA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A OAT", v26:"+55 bp", v21:"-5 bp", min:"-70 bp (2019)", max:"+95 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.0% / 2.3%", v21:"2.8% / 2.0%", min:"-0.3% (2020)", max:"10.6% (2022)", tend:"Convergencia al 2%", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"7.4% / 3.0%", v21:"7.9% / 1.8%", min:"7.1% (2023)", max:"9.0% (2020)", tend:"Mejora leve", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"50.4 / +1.2%", v21:"55.5 / +6.8%", min:"28.7 (2020)", max:"62.0 (2021)", tend:"Expansión modesta", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"96% (+3.5% YoY)", v21:"96% (+6.8% YoY)", min:"+1.5% (2023)", max:"+11.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"-0.7%", v21:"+0.4%", min:"-2.0% (2022)", max:"+1.0% (2019)", tend:"Deterioro leve", cls:"rojo" },
-        { n:"10. Spread vs Bund / CDS", v26:"85 bp / 45 bp", v21:"30 bp / 25 bp", min:"20 bp / 20 bp", max:"90 bp / 50 bp", tend:"Ampliación", cls:"fucsia" }
-      ]
-    },
-    {
-      nombre: "IRLANDA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A IRL", v26:"+50 bp", v21:"-10 bp", min:"-70 bp (2019)", max:"+80 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.1% / 2.2%", v21:"2.4% / 1.8%", min:"-0.5% (2020)", max:"9.6% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"4.5% / 3.2%", v21:"6.2% / 2.0%", min:"4.0% (2023)", max:"7.5% (2020)", tend:"Mejora fuerte", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"52.0 / +3.5%", v21:"56.5 / +13.5%", min:"30.0 (2020)", max:"65.0 (2021)", tend:"Expansión sólida", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"60% (+5.0% YoY)", v21:"56% (+8.0% YoY)", min:"+3.0% (2023)", max:"+15.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+8.0%", v21:"+13.5%", min:"+2.0% (2022)", max:"+15.0% (2015)", tend:"Superávit alto", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"45 bp / 45 bp", v21:"50 bp / 30 bp", min:"30 bp / 25 bp", max:"60 bp / 50 bp", tend:"Riesgo moderado", cls:"aqua" }
-      ]
-    },
-    {
-      nombre: "ITALIA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A BTP", v26:"+60 bp", v21:"-15 bp", min:"-80 bp (2019)", max:"+120 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.2% / 2.4%", v21:"1.9% / 1.5%", min:"-0.3% (2020)", max:"12.0% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"7.8% / 3.0%", v21:"9.5% / 1.5%", min:"7.5% (2023)", max:"12.5% (2020)", tend:"Mejora gradual", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"51.8 / +1.1%", v21:"56.2 / +6.5%", min:"26.0 (2020)", max:"60.0 (2021)", tend:"Expansión modesta", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"86% (+3.8% YoY)", v21:"84% (+7.0% YoY)", min:"+2.0% (2023)", max:"+10.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+2.5%", v21:"+3.1%", min:"+0.5% (2022)", max:"+3.5% (2019)", tend:"Superávit moderado", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"70 bp / 95 bp", v21:"105 bp / 60 bp", min:"50 bp / 50 bp", max:"250 bp / 180 bp", tend:"Compresión fuerte", cls:"lime" }
-      ]
-    },
-    {
-      nombre: "ESPAÑA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A Bonos", v26:"+55 bp", v21:"-5 bp", min:"-70 bp (2019)", max:"+100 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.5% / 2.6%", v21:"3.3% / 2.0%", min:"-0.5% (2020)", max:"10.8% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"11.2% / 3.0%", v21:"14.8% / 1.5%", min:"10.5% (2023)", max:"16.5% (2020)", tend:"Mejora clara", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"53.4 / +2.0%", v21:"55.8 / +5.5%", min:"28.0 (2020)", max:"62.0 (2021)", tend:"Expansión sólida", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"93% (+4.2% YoY)", v21:"92% (+7.0% YoY)", min:"+2.0% (2023)", max:"+11.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+1.5%", v21:"+0.8%", min:"+0.3% (2022)", max:"+2.5% (2019)", tend:"Superávit estable", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"49 bp / 54 bp", v21:"70 bp / 40 bp", min:"40 bp / 35 bp", max:"250 bp / 150 bp", tend:"Compresión", cls:"lime" }
-      ]
-    },
-    {
-      nombre: "PORTUGAL",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A OT", v26:"+50 bp", v21:"-10 bp", min:"-70 bp (2019)", max:"+90 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.3% / 2.4%", v21:"1.3% / 1.0%", min:"-0.3% (2020)", max:"10.0% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"6.3% / 3.2%", v21:"6.6% / 1.8%", min:"5.9% (2023)", max:"8.5% (2020)", tend:"Estable", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"52.5 / +1.8%", v21:"55.0 / +5.5%", min:"27.0 (2020)", max:"60.0 (2021)", tend:"Expansión modesta", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"120% (+4.5% YoY)", v21:"114% (+7.5% YoY)", min:"+2.5% (2023)", max:"+10.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+1.2%", v21:"+0.8%", min:"-1.0% (2022)", max:"+2.0% (2019)", tend:"Superávit leve", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"70 bp / 70 bp", v21:"60 bp / 50 bp", min:"40 bp / 40 bp", max:"250 bp / 180 bp", tend:"Estable", cls:"aqua" }
-      ]
-    },
-    {
-      nombre: "BÉLGICA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A OLO", v26:"+55 bp", v21:"-5 bp", min:"-70 bp (2019)", max:"+95 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.4% / 2.5%", v21:"3.2% / 2.0%", min:"-0.5% (2020)", max:"12.0% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"6.0% / 3.5%", v21:"6.3% / 2.0%", min:"5.5% (2023)", max:"7.5% (2020)", tend:"Estable", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"51.0 / +1.3%", v21:"55.2 / +6.0%", min:"28.0 (2020)", max:"62.0 (2021)", tend:"Expansión modesta", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"117% (+3.5% YoY)", v21:"109% (+6.5% YoY)", min:"+1.8% (2023)", max:"+10.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+1.0%", v21:"+1.5%", min:"+0.5% (2022)", max:"+2.5% (2019)", tend:"Superávit leve", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"35 bp / 35 bp", v21:"30 bp / 20 bp", min:"20 bp / 15 bp", max:"80 bp / 60 bp", tend:"Riesgo bajo", cls:"aqua" }
-      ]
-    },
-    {
-      nombre: "AUSTRIA",
-      vars: [
-        { n:"1. Tasas BCE (Depo/Refi)", v26:"2.00% / 2.15%", v21:"-0.50% / 0.00%", min:"-0.50% (2014-22)", max:"4.00% (2023-24)", tend:"Pausa tras -350 bp", cls:"lime" },
-        { n:"2. Expectativa OIS €STR", v26:"1.92%", v21:"-0.55%", min:"-0.60% (2019)", max:"3.90% (2023)", tend:"Dovish / pausa", cls:"fucsia" },
-        { n:"3. Curva 10A-2A RAGB", v26:"+50 bp", v21:"-10 bp", min:"-70 bp (2019)", max:"+85 bp (2023)", tend:"Bear steepening", cls:"lime" },
-        { n:"4. HICP / Core", v26:"2.2% / 2.3%", v21:"2.8% / 2.0%", min:"-0.3% (2020)", max:"11.0% (2022)", tend:"Convergencia", cls:"lime" },
-        { n:"5. Desempleo / Salarios", v26:"4.9% / 3.2%", v21:"4.8% / 1.8%", min:"4.0% (2023)", max:"6.0% (2020)", tend:"Estable", cls:"lime" },
-        { n:"6. PMI Comp. / PBI a/a", v26:"50.5 / +1.2%", v21:"55.0 / +4.8%", min:"27.0 (2020)", max:"61.0 (2021)", tend:"Expansión débil", cls:"lime" },
-        { n:"7. M2 / PIB (%)", v26:"80% (+3.5% YoY)", v21:"78% (+6.5% YoY)", min:"+1.5% (2023)", max:"+9.0% (2021)", tend:"Normaliza", cls:"lime" },
-        { n:"8. Balance BCE (QT)", v26:"€6.35T (total Eurosistema)", v21:"€8.55T (pico)", min:"€2.0T (2015)", max:"€8.84T (2022)", tend:"QT pasivo -€400B/año", cls:"fucsia" },
-        { n:"9. Cuenta Corriente (% PIB)", v26:"+1.2%", v21:"+1.5%", min:"+0.5% (2022)", max:"+2.5% (2019)", tend:"Superávit leve", cls:"lime" },
-        { n:"10. Spread vs Bund / CDS", v26:"30 bp / 40 bp", v21:"20 bp / 25 bp", min:"15 bp / 20 bp", max:"80 bp / 60 bp", tend:"Riesgo bajo", cls:"aqua" }
-      ]
-    }
-  ];
-
-  // ============================================================
-  //  GENERACIÓN DE TABLAS
-  // ============================================================
-  const wrap = document.getElementById('tabla-euro-paises');
-  if(!wrap) return;
-
-  let html = '';
-  paises.forEach(function(p){
-    html += '<div class="pais-block">';
-    html += '<div class="pais-title">' + p.nombre + '</div>';
-    html += '<table><thead><tr>';
-    html += '<th style="width:20%">Variable</th>';
-    html += '<th style="width:12%">2026</th>';
-    html += '<th style="width:12%">2021</th>';
-    html += '<th style="width:14%">Mín</th>';
-    html += '<th style="width:14%">Máx</th>';
-    html += '<th style="width:16%">Tendencia</th>';
-    html += '</tr></thead><tbody>';
-
-    p.vars.forEach(function(v){
-      html += '<tr>';
-      html += '<td><span class="var">' + v.n + '</span></td>';
-      html += '<td class="' + v.cls + '">' + v.v26 + '</td>';
-      html += '<td class="aqua">' + v.v21 + '</td>';
-      html += '<td class="cobre">' + v.min + '</td>';
-      html += '<td class="cobre">' + v.max + '</td>';
-      html += '<td>' + v.tend + '</td>';
-      html += '</tr>';
+  // Toggle principal
+  var btn = document.getElementById('toggle-euro-12');
+  var wrap = document.getElementById('tabla-euro-12');
+  var icon = document.getElementById('icon-euro-12');
+  if(btn && wrap){
+    btn.addEventListener('click', function(){
+      var abierta = wrap.classList.toggle('open');
+      icon.textContent = abierta ? '−' : '+';
     });
+  }
 
-    html += '</tbody></table></div>';
-  });
-
-  wrap.innerHTML = html;
-
-  // ============================================================
-  //  TOGGLE
-  // ============================================================
-  const btn = document.getElementById('toggle-euro-paises');
-  const icon = document.getElementById('icon-euro-paises');
-  btn.addEventListener('click', function(){
-    const abierta = wrap.classList.toggle('open');
-    icon.textContent = abierta ? '−' : '+';
+  // Filas expandibles
+  document.querySelectorAll('#Euro-12-Variables-Paises .expandable').forEach(function(row){
+    row.addEventListener('click', function(){
+      var targetId = this.getAttribute('data-target');
+      var detail = document.getElementById(targetId);
+      if(detail){
+        var isOpen = detail.classList.contains('open');
+        // Cerrar todas las demás
+        document.querySelectorAll('#Euro-12-Variables-Paises .detail-row.open').forEach(function(d){
+          d.classList.remove('open');
+        });
+        // Abrir la seleccionada si estaba cerrada
+        if(!isOpen){
+          detail.classList.add('open');
+        }
+      }
+    });
   });
 })();
 </script>
