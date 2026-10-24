@@ -1,5 +1,725 @@
 
+/* ============================================================ */
+/* 1. ESTILOS GLOBALES Y VARIABLES (:root, *, body)             */
+/* ============================================================ */
 
+:root {
+    --bg-dark: rgba(13, 17, 23, 0.85);
+    --bg-glass: rgba(22, 27, 34, 0.7);
+    --border-neon: #00D4AA;
+    --text-primary: #E6EDF3;
+    --text-secondary: #8B949E;
+    --hover-bg: rgba(22, 27, 34, 0.9);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg'); 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-size: cover; 
+    background-color: #0D1117; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    backdrop-filter: blur(2px);
+}
+
+
+/* ============================================================ */
+/* 2. <Section> Y ESTRUCTURAS PRINCIPALES (.main-wrapper, etc.)  */
+/* ============================================================ */
+
+.main-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 0 0 320px;
+}
+
+.right-column {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* ============================================================ */
+/* 3. <Image src> (<img class="logo-top">, .coin-img, .chart-img)*/
+/* ============================================================ */
+
+.logo-top {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 75px;
+    height: 75px;
+    z-index: 1000;
+    border-radius: 8px;
+    border: 2px solid var(--border-neon);
+}
+
+.coin-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chart-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+}
+
+.asset-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+
+/* ============================================================ */
+/* 4. <Div> (Contenedores, inputs, botones y utilidades)       */
+/* ============================================================ */
+
+.table-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.table-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--border-neon);
+    text-transform: uppercase;
+}
+
+.search-input {
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid var(--border-neon);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-size: 14px;
+    width: 200px;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.risk-warning {
+    background: rgba(13, 17, 23, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.risk-warning p:first-child {
+    color: #F0B90B;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+}
+
+.matrix-view-btn {
+    background: var(--border-neon);
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.matrix-view-btn:hover {
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}
+
+.indices-188-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--border-neon);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
+    position: sticky;
+    top: 20px;
+}
+
+.indices-188-title {
+    color: var(--border-neon);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.indices-188-subtitle {
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: center;
+    margin: -12px 0 16px 0;
+}
+
+.flag-emoji {
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.indice-nome {
+    font-weight: 600;
+    color: #58A6FF;
+}
+
+.max-value {
+    color: #0ECB81;
+    font-weight: 700;
+}
+
+.min-value {
+    color: #F6465D;
+    font-weight: 700;
+}
+
+.arrow-up::before {
+    content: "▲ ";
+}
+
+.arrow-down::before {
+    content: "▼ ";
+}
+
+.live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #0ECB81;
+    border-radius: 50%;
+    margin-left: 4px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.tag-risco-baixo { color: #00D4AA; font-weight: 600; }
+.tag-risco-medio { color: #FFB800; font-weight: 600; }
+.tag-risco-alto { color: #FF4757; font-weight: 600; }
+.tag-risco-extremo { color: #A55EEA; font-weight: 600; }
+
+.risk-low { color: #0ECB81; font-weight: 600; }
+.risk-med { color: #F0B90B; font-weight: 600; }
+.risk-high { color: #F6465D; font-weight: 600; }
+.risk-extreme { color: #B454F5; font-weight: 600; }
+
+.disclaimer {
+    font-size: 11px;
+    color: #848E9C;
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+.details-cell {
+    font-size: 11px;
+    color: #9DA3AF;
+}
+
+
+/* ============================================================ */
+/* 5. <table> (Tablas, th, td y filas)                           */
+/* ============================================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th {
+    background: rgba(0, 212, 170, 0.15);
+    color: #F0B90B;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-neon);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(8px);
+}
+
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(33, 38, 45, 0.8);
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+.indices-188-table th {
+    background: rgba(22, 27, 34, 0.9);
+    color: #F0B90B;
+    padding: 10px 6px;
+    font-size: 12px;
+}
+
+.indices-188-table td {
+    font-size: 12px;
+    padding: 12px 6px;
+}
+
+.matriz-financeira th {
+    background: rgba(0, 212, 170, 0.2);
+    color: #000;
+    font-weight: 700;
+}
+
+.uk-matrix th {
+    background: linear-gradient(90deg, rgba(240, 185, 11, 0.3) 0%, rgba(248, 209, 47, 0.3) 100%);
+    color: #181A20;
+}
+
+.market-overview-table.US th {
+    background: rgba(41, 98, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.market-overview-table.CA th {
+    background: rgba(216, 6, 33, 0.3);
+    color: #FFFFFF;
+}
+
+
+/* ============================================================ */
+/* 6. <title> Y <H1> <h2> (Encabezados de texto y títulos)      */
+/* ============================================================ */
+
+h1 {
+    text-align: center;
+    color: #58A6FF;
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+}
+
+h2 {
+    /* Estilos heredados / aplicados por selectores específicos */
+}
+
+
+/* ============================================================ */
+/* 7. ESTILOS ADICIONALES Y SECCIÓN GBP / DASHBOARD / GRÁFICOS  */
+/* ============================================================ */
+
+/* Ajustes adicionales generales */
+.main-wrapper { flex-direction: column; align-items: stretch; }
+.right-column { flex: 1 1 auto; width: 100%; }
+.left-column { flex: 1 1 auto; width: 100%; }
+.indices-188-container { position: static; }
+
+.table-container,
+.indices-188-container {
+    background: rgba(8, 18, 45, 0.18);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+th,
+.indices-188-table th {
+    background: rgba(0, 212, 170, 0.10);
+    backdrop-filter: blur(2px);
+}
+
+td { border-bottom: 1px solid rgba(255, 255, 255, 0.10); background: transparent; }
+tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
+.search-input { background: rgba(8, 18, 45, 0.45); }
+.table-container, .indices-188-container { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+.indices-188-table { margin-top: 12px; }
+
+/* GBP Section Styles */
+#gbp-section{
+  --line: rgba(255,255,255,0.14);
+  --card: rgba(15,23,42,0.32);
+  --soft: rgba(255,255,255,0.06);
+}
+
+#gbp-section .card{
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+}
+
+#gbp-section .ftable,
+#gbp-section .mmtable{
+  background: transparent;
+}
+#gbp-section .ftable td,
+#gbp-section .mmtable td{
+  background: transparent;
+}
+
+#gbp-section .ftable th,
+#gbp-section .mmtable th{
+  background: rgba(47,85,151,0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#gbp-section .ftable tr.row-main:hover{
+  background: rgba(255,255,255,0.08);
+}
+#gbp-section .ftable tr.row-detail > td{
+  background: transparent;
+}
+#gbp-section .ftable .detail-wrap{
+  background: rgba(0,0,0,0.15);
+}
+
+#gbp-section .up{ color: #4ade80; }
+#gbp-section .dn{ color: #f87171; }
+#gbp-section .up, #gbp-section .dn{
+  text-shadow: 0 0 8px currentColor;
+  font-weight: 700;
+}
+
+#gbp-section .head h3{
+  color: #7da2e6;
+}
+
+#gbp-section{
+  --ink:#1c2433; --mute:#5d6678; --line:#dfe4ee; --card:#fff; --soft:#f3f6fc;
+  --blue:#2F5597; --red:#C00000; --green:#548235; --amber:#BF8F00; --purple:#7030A0;
+  --cyan:#00B0F0; --orange:#E36C0A; --navy:#203864;
+  display:block; max-width:1200px; margin:0 auto; padding:8px 0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Consolas,monospace; line-height:1.5;
+}
+
+@media (prefers-color-scheme:dark){
+  #gbp-section{ --ink:#e8ecf5; --mute:#9aa4b8; --line:#2c3550; --card:#161c2e; --soft:#1d2540; --blue:#7da2e6; }
+}
+
+#gbp-section *{ box-sizing:border-box; }
+#gbp-section h1,#gbp-section h2,#gbp-section h3{ margin:0; line-height:1.25; }
+#gbp-section .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:18px; }
+#gbp-section .head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+#gbp-section .head h3{ font-size:1.05rem; color:var(--blue); }
+#gbp-section .head small{ color:var(--mute); }
+
+#gbp-section .coin{ display:grid; grid-template-columns:140px 1fr; gap:18px; align-items:start; }
+#gbp-section .coin-img-box{ width:140px; height:140px; border-radius:50%; background:var(--soft); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--line); }
+#gbp-section .coin-img{ width:100%; height:100%; object-fit:cover; display:block; }
+#gbp-section .coin h2{ font-size:1.5rem; margin-bottom:10px; }
+
+@media(max-width:600px){
+  #gbp-section .coin{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+  #gbp-section .coin > div:last-child{ width:100%; text-align:left; }
+}
+
+#gbp-section .acc{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--soft); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font:inherit; font-weight:600; text-align:left; cursor:pointer; margin-top:8px; }
+#gbp-section .acc:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+#gbp-section .acc .chev{ transition:transform .25s ease; flex:none; }
+#gbp-section .acc[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+#gbp-section .panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .panel.open{ grid-template-rows:1fr; }
+#gbp-section .panel > div{ overflow:hidden; }
+#gbp-section .panel-in{ padding:12px 4px 4px; font-size:.95rem; }
+#gbp-section .panel-in strong{ background:#fff3c4; padding:0 2px; border-radius:2px; }
+
+@media (prefers-color-scheme:dark){ #gbp-section .panel-in strong{ background:#4a3a00; } }
+
+#gbp-section .timeline{ list-style:none; margin:0; padding:0 0 0 16px; border-left:2px solid var(--blue); }
+#gbp-section .timeline li{ margin:0 0 14px; }
+#gbp-section .timeline li:last-child{ margin-bottom:0; }
+#gbp-section .timeline strong{ display:block; }
+
+#gbp-section .ftable{ width:100%; border-collapse:collapse; font-size:.95rem; }
+#gbp-section .ftable th{ background:var(--blue); color:#fff; font-weight:600; text-align:left; padding:10px 12px; font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; }
+#gbp-section .ftable th:nth-child(1){ width:44px; text-align:center; }
+#gbp-section .ftable th:nth-child(2){ width:74px; text-align:center; }
+#gbp-section .ftable td{ border-bottom:1px solid var(--line); vertical-align:middle; padding:0; }
+#gbp-section .ftable tr.row-main:hover{ background:var(--soft); }
+#gbp-section .ftable td.td-toggle{ text-align:center; padding:10px 0; cursor:pointer; user-select:none; }
+#gbp-section .ftable .plus{ display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-weight:700; font-size:1rem; transition:transform .25s ease, background .15s ease; line-height:1; }
+#gbp-section .ftable tr.open .plus{ transform:rotate(45deg); background:var(--red); }
+#gbp-section .ftable td.td-num{ text-align:center; padding:10px 8px; font-weight:700; color:var(--blue); font-variant-numeric:tabular-nums; font-size:1rem; }
+#gbp-section .ftable td.td-num .emoji{ font-size:.95rem; margin-left:2px; }
+#gbp-section .ftable td.td-title{ padding:10px 12px; font-weight:600; cursor:pointer; color:var(--ink); }
+#gbp-section .ftable tr.row-detail > td{ padding:0; border-bottom:1px solid var(--line); background:var(--soft); }
+#gbp-section .ftable .detail-wrap{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .ftable tr.open + tr.row-detail .detail-wrap{ grid-template-rows:1fr; }
+#gbp-section .ftable .detail-wrap > div{ overflow:hidden; }
+#gbp-section .ftable .detail-in{ padding:14px 18px; font-size:.92rem; line-height:1.6; color:var(--ink); }
+#gbp-section .ftable .detail-in strong{ background:#fff3c4; padding:0 3px; border-radius:2px; }
+
+@media (prefers-color-scheme:dark){ #gbp-section .ftable .detail-in strong{ background:#4a3a00; } }
+
+#gbp-section .chart{ position:relative; height:340px; }
+#gbp-section .chart canvas{ width:100%!important; height:100%!important; }
+#gbp-section .note{ font-size:.82rem; color:var(--mute); margin:10px 0 0; }
+#gbp-section .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+#gbp-section .chip{ border:1px solid var(--line); border-left-width:4px; border-radius:8px; padding:6px 10px; background:var(--soft); font-size:.85rem; }
+#gbp-section .chip b{ display:block; font-size:1rem; font-variant-numeric:tabular-nums; }
+
+#gbp-section .mmtable{ width:100%; border-collapse:collapse; font-size:.95rem; font-variant-numeric:tabular-nums; }
+#gbp-section .mmtable th{ text-align:left; padding:9px 10px; background:var(--blue); color:#fff; font-weight:600; }
+#gbp-section .mmtable th:not(:first-child),#gbp-section .mmtable td:not(:first-child){ text-align:right; }
+#gbp-section .mmtable td{ padding:9px 10px; border-bottom:1px solid var(--line); }
+#gbp-section .mmtable td.big{ font-size:1.15rem; font-weight:700; }
+
+#gbp-section .kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+#gbp-section .kpi{ background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+#gbp-section .kpi .lbl{ font-size:.75rem; color:var(--mute); text-transform:uppercase; letter-spacing:.03em; }
+#gbp-section .kpi .val{ font-size:1.5rem; font-weight:700; font-variant-numeric:tabular-nums; color:var(--blue); }
+#gbp-section .kpi .sub{ font-size:.78rem; color:var(--mute); }
+
+/* Trade Chart Section Styles */
+.trade-chart-section {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: transparent;
+    color: #222;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.trade-chart-section .chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.trade-chart-section .chart-sub {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.trade-chart-section .chart-area {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 380px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    padding: 0 10px 0 10px;
+    margin-bottom: 10px;
+}
+
+.trade-chart-section .bar-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    position: relative;
+    width: 22%;
+}
+
+.trade-chart-section .bar {
+    flex: 1;
+    position: relative;
+    border-radius: 2px 2px 0 0;
+    transition: height .4s ease;
+}
+
+.trade-chart-section .bar.out {
+    background: linear-gradient(to top, #1b7a3d, #4caf50);
+}
+
+.trade-chart-section .bar.in {
+    background: linear-gradient(to top, #a11d1d, #e53935);
+}
+
+.trade-chart-section .bar .num {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.trade-chart-section .bar.out .num { color: #1b7a3d; }
+.trade-chart-section .bar.in .num  { color: #a11d1d; }
+
+.trade-chart-section .bar .year {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: rgba(255,255,255,.85);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.trade-chart-section .balance-line {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.trade-chart-section .balance-line .line {
+    width: 90%;
+    height: 2px;
+    background: #444;
+    border-radius: 2px;
+}
+
+.trade-chart-section .balance-line .bal-label {
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 2px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.trade-chart-section .bal-label.neg { color: #c62828; }
+.trade-chart-section .bal-label.pos { color: #2e7d32; }
+
+.trade-chart-section .pair-name {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 6px;
+    letter-spacing: .5px;
+}
+
+.trade-chart-section .volume-flag {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #0d47a1;
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin: 6px auto 0 auto;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.trade-chart-section .legend {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    margin: 14px 0 6px 0;
+    flex-wrap: wrap;
+}
+
+.trade-chart-section .legend .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.trade-chart-section .dot.g  { background: #2e7d32; }
+.trade-chart-section .dot.r  { background: #c62828; }
+.trade-chart-section .dot.ln { background: #444; height: 2px; width: 16px; }
+
+.trade-chart-section .toggle-btn {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+
+.trade-chart-section .toggle-btn:hover { background: #e8e8e8; }
+
+.trade-chart-section .data-table-wrap {
+    display: none;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+.trade-chart-section .data-table-wrap.open { display: block; }
+
+.trade-chart-section table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.trade-chart-section table th,
+.trade-chart-section table td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: right;
+}
+
+.trade-chart-section table th {
+    background: #f0f0f0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.trade-chart-section table td:first-child,
+.trade-chart-section table th:first-child {
+    text-align: left;
+    font-weight: 600;
+}
 /* ============================================================
    ESTILOS GLOBALES Y DE LA PÁGINA PRINCIPAL
    (Corresponde al primer bloque <style> en el <head>)
