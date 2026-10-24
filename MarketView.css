@@ -1934,7 +1934,7 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
 }
 
 /* ============================================================
-   SECCIÓN BITCOIN (#Bitcoin-Esencial-Analisis)
+   SECCIÓN BITCOIN - SIN BACKGROUND, TRANSPARENTE
    ============================================================ */
 
 #Bitcoin-Esencial-Analisis {
@@ -1942,60 +1942,48 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    background;
+    background: transparent; /* sin fondo */
     color: #00FF88;
     border: 1px solid #222;
     border-radius: 16px;
     padding: 20px;
 }
+
 #Bitcoin-Esencial-Analisis table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 24px;
-    
+    background: transparent; /* sin fondo */
 }
+
 #Bitcoin-Esencial-Analisis th,
 #Bitcoin-Esencial-Analisis td {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 12px;
     font-weight: 400;
-    color: #FFD60A;
-    background: ;
-    padding: 10px 12px;
-    border: 1px solid #333;
+    padding: 12px 14px;
+    border: 1px solid #222;
     text-align: left;
-    line-height: 1.5;
-}
-#Bitcoin-Esencial-Analisis .title {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12px;
-    font-weight: 400;
-    color: #FFD60A;
-    padding: 12px 0;
-    border-bottom: 1px solid #333;
-    margin-bottom: 12px;
+    line-height: 1.6;
+    background: transparent !important; /* mata el blanco y el negro */
 }
 
-/* ============================================================
-   ESTILOS ADICIONALES (Fuentes, utilidades)
-   ============================================================ */
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+/* Títulos y primera columna - DORADO */
+#Bitcoin-Esencial-Analisis th,
+#Bitcoin-Esencial-Analisis td:first-child,
+#Bitcoin-Esencial-Analisis .title {
+    color: #FFD60A !important;
 }
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+
+/* Datos y segunda columna - VERDE NEÓN */
+#Bitcoin-Esencial-Analisis td:last-child {
+    color: #00FF88 !important;
+    font-weight: 600;
+    text-align: right;
 }
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
+
+/* Mata la cebra definitivamente */
+#Bitcoin-Esencial-Analisis tr:nth-child(even),
+#Bitcoin-Esencial-Analisis tr:nth-child(odd) {
+    background: transparent !important;
 }
