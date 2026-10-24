@@ -1943,7 +1943,7 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
     max-width: 1200px;
     margin: 0 auto;
     background;
-    color: FFD60A;
+    color: #FFD60A;
     border: 1px solid #222;
     border-radius: 16px;
     padding: 20px;
@@ -1959,7 +1959,7 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 12px;
     font-weight: 400;
-    color: #00FFD1;
+    color: #FFD60A;
     background: ;
     padding: 10px 12px;
     border: 1px solid #333;
@@ -1970,7 +1970,7 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 12px;
     font-weight: 400;
-    color: #7FFFD4;
+    color: #FFD60A;
     padding: 12px 0;
     border-bottom: 1px solid #333;
     margin-bottom: 12px;
