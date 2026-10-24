@@ -1,0 +1,1304 @@
+Perfecto. He procesado tu documento HTML. Aquí tienes las dos cosas que solicitaste, con todo el contenido intacto.
+
+---
+
+1. Índice de Contenido de la Página
+
+Aquí tienes un índice con las secciones principales de tu página para que puedas navegar por ella. He extraído los títulos y los id de las secciones más importantes.
+
+· Cabecera y Navegación Principal
+  · Logo y Encabezado
+· Sección de Monedas (Forex & Crypto)
+  · Tabla de Pares de Divisas y Cripto
+· Sección de Índices Mundiales (188D Máx/Mín)
+  · Tabla de Índices (IBOV, S&P 500, etc.)
+· Dashboard de la Libra Esterlina (GBP)
+  · Sección completa del GBP
+    · Gráfico 1: Variación de Tipos de Cambio
+    · Gráfico 2: Volumen Comercial (Input/Output)
+    · Gráfico 3: Spread de Rendimiento 10Y
+    · Tabla de Máximos y Mínimos de Pares GBP
+· Balanza Comercial de EE.UU.
+  · Sección de Balanza Comercial de EE.UU.
+  · Gráfico 3D de Balanza Comercial
+· Variables del Dólar Americano (USD)
+
+/* ============================================================
+   ESTILOS GLOBALES Y DE LA PÁGINA PRINCIPAL
+   (Corresponde al primer bloque <style> en el <head>)
+   ============================================================ */
+
+:root {
+    --bg-dark: rgba(13, 17, 23, 0.85);
+    --bg-glass: rgba(22, 27, 34, 0.7);
+    --border-neon: #00D4AA;
+    --text-primary: #E6EDF3;
+    --text-secondary: #8B949E;
+    --hover-bg: rgba(22, 27, 34, 0.9);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('8BF4C98B-45F2-49A3-86CE-4FBAD23C45EB.jpeg'); 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed; /* Corrección de la propiedad */
+    background-size: cover; 
+    background-color: #0D1117; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    backdrop-filter: blur(2px);
+}
+
+.main-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 0 0 320px;
+}
+
+.right-column {
+    flex: 1;
+    min-width: 0;
+}
+
+.logo-top {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 75px;
+    height: 75px;
+    z-index: 1000;
+    border-radius: 8px;
+    border: 2px solid var(--border-neon);
+}
+
+h1 {
+    text-align: center;
+    color: #58A6FF;
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+}
+
+.table-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.table-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--border-neon);
+    text-transform: uppercase;
+}
+
+.search-input {
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid var(--border-neon);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-size: 14px;
+    width: 200px;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th {
+    background: rgba(0, 212, 170, 0.15);
+    color: #F0B90B;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-neon);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(8px);
+}
+
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(33, 38, 45, 0.8);
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+.coin-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chart-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+}
+
+.risk-warning {
+    background: rgba(13, 17, 23, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.risk-warning p:first-child {
+    color: #F0B90B;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+}
+
+.matrix-view-btn {
+    background: var(--border-neon);
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.matrix-view-btn:hover {
+    opacity: 0.8;
+}
+
+.hidden { display: none; }
+
+/* Indices 188D Container */
+.indices-188-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--border-neon);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.15);
+    position: sticky;
+    top: 20px;
+}
+
+.indices-188-title {
+    color: var(--border-neon);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.indices-188-subtitle {
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: center;
+    margin: -12px 0 16px 0;
+}
+
+.indices-188-table th {
+    background: rgba(22, 27, 34, 0.9);
+    color: #F0B90B;
+    padding: 10px 6px;
+    font-size: 12px;
+}
+
+.indices-188-table td {
+    font-size: 12px;
+    padding: 12px 6px;
+}
+
+.flag-emoji { font-size: 18px; margin-right: 6px; }
+.indice-nome { font-weight: 600; color: #58A6FF; }
+.max-value { color: #0ECB81; font-weight: 700; }
+.min-value { color: #F6465D; font-weight: 700; }
+.arrow-up::before { content: "▲ "; }
+.arrow-down::before { content: "▼ "; }
+
+.live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #0ECB81;
+    border-radius: 50%;
+    margin-left: 4px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Matriz Financeira */
+.matriz-financeira th {
+    background: rgba(0, 212, 170, 0.2);
+    color: #000;
+    font-weight: 700;
+}
+
+.tag-risco-baixo { color: #00D4AA; font-weight: 600; }
+.tag-risco-medio { color: #FFB800; font-weight: 600; }
+.tag-risco-alto { color: #FF4757; font-weight: 600; }
+.tag-risco-extremo { color: #A55EEA; font-weight: 600; }
+
+/* UK Matrix */
+.uk-matrix th {
+    background: linear-gradient(90deg, rgba(240, 185, 11, 0.3) 0%, rgba(248, 209, 47, 0.3) 100%);
+    color: #181A20;
+}
+
+.asset-logo { width: 24px; height: 24px; margin-right: 8px; vertical-align: middle; }
+.risk-low { color: #0ECB81; font-weight: 600; }
+.risk-med { color: #F0B90B; font-weight: 600; }
+.risk-high { color: #F6465D; font-weight: 600; }
+.risk-extreme { color: #B454F5; font-weight: 600; }
+.disclaimer { font-size: 11px; color: #848E9C; margin-top: 12px; line-height: 1.4; }
+
+/* US Table */
+.market-overview-table.US th {
+    background: rgba(41, 98, 255, 0.3);
+    color: #FFFFFF;
+}
+
+/* CA Table */
+.market-overview-table.CA th {
+    background: rgba(216, 6, 33, 0.3);
+    color: #FFFFFF;
+}
+.details-cell {
+    font-size: 11px;
+    color: #9DA3AF;
+}
+
+@media (max-width: 1200px) {
+    .main-wrapper { flex-direction: column; }
+    .left-column { flex: 1; width: 100%; }
+}
+
+/* ============================================================
+   AJUSTES ADICIONALES (Tablas Apiladas)
+   (Corresponde al segundo bloque <style> en el <head>)
+   ============================================================ */
+
+/* Tablas apiladas: monedas arriba, índices abajo */
+.main-wrapper { flex-direction: column; align-items: stretch; }
+.right-column { flex: 1 1 auto; width: 100%; }
+.left-column { flex: 1 1 auto; width: 100%; }
+.indices-188-container { position: static; }
+
+/* Relleno translúcido para que se aprecie el fondo azul espacial */
+.table-container,
+.indices-188-container {
+    background: rgba(8, 18, 45, 0.18);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+th,
+.indices-188-table th {
+    background: rgba(0, 212, 170, 0.10);
+    backdrop-filter: blur(2px);
+}
+td { border-bottom: 1px solid rgba(255, 255, 255, 0.10); background: transparent; }
+tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
+.search-input { background: rgba(8, 18, 45, 0.45); }
+.table-container, .indices-188-container { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+.indices-188-table { margin-top: 12px; }
+
+
+/* ============================================================
+   SECCIÓN GBP · Libra Esterlina (#gbp-section)
+   (Corresponde al <style> dentro de la sección #gbp-section)
+   ============================================================ */
+
+#gbp-section{
+  --line: rgba(255,255,255,0.14);
+  --card: rgba(15,23,42,0.32);
+  --soft: rgba(255,255,255,0.06);
+}
+#gbp-section .card{
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+}
+#gbp-section .ftable,
+#gbp-section .mmtable{
+  background: transparent;
+}
+#gbp-section .ftable td,
+#gbp-section .mmtable td{
+  background: transparent;
+}
+#gbp-section .ftable th,
+#gbp-section .mmtable th{
+  background: rgba(47,85,151,0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+#gbp-section .ftable tr.row-main:hover{
+  background: rgba(255,255,255,0.08);
+}
+#gbp-section .ftable tr.row-detail > td{
+  background: transparent;
+}
+#gbp-section .ftable .detail-wrap{
+  background: rgba(0,0,0,0.15);
+}
+#gbp-section .up{ color: #4ade80; }
+#gbp-section .dn{ color: #f87171; }
+#gbp-section .up, #gbp-section .dn{
+  text-shadow: 0 0 8px currentColor;
+  font-weight: 700;
+}
+#gbp-section .head h3{
+  color: #7da2e6;
+}
+#gbp-section{
+  --ink:#1c2433; --mute:#5d6678; --line:#dfe4ee; --card:#fff; --soft:#f3f6fc;
+  --blue:#2F5597; --red:#C00000; --green:#548235; --amber:#BF8F00; --purple:#7030A0;
+  --cyan:#00B0F0; --orange:#E36C0A; --navy:#203864;
+  display:block; max-width:1200px; margin:0 auto; padding:8px 0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Consolas,monospace; line-height:1.5;
+}
+@media (prefers-color-scheme:dark){
+  #gbp-section{ --ink:#e8ecf5; --mute:#9aa4b8; --line:#2c3550; --card:#161c2e; --soft:#1d2540; --blue:#7da2e6; }
+}
+#gbp-section *{ box-sizing:border-box; }
+#gbp-section h1,#gbp-section h2,#gbp-section h3{ margin:0; line-height:1.25; }
+#gbp-section .card{ background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:18px; margin-bottom:18px; }
+#gbp-section .head{ display:flex; align-items:baseline; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+#gbp-section .head h3{ font-size:1.05rem; color:var(--blue); }
+#gbp-section .head small{ color:var(--mute); }
+#gbp-section .coin{ display:grid; grid-template-columns:140px 1fr; gap:18px; align-items:start; }
+#gbp-section .coin-img-box{ width:140px; height:140px; border-radius:50%; background:var(--soft);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  border:1px solid var(--line); }
+#gbp-section .coin-img{ width:100%; height:100%; object-fit:cover; display:block; }
+#gbp-section .coin h2{ font-size:1.5rem; margin-bottom:10px; }
+@media(max-width:600px){
+  #gbp-section .coin{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+  #gbp-section .coin > div:last-child{ width:100%; text-align:left; }
+}
+#gbp-section .acc{ width:100%; display:flex; align-items:center; justify-content:space-between;
+  gap:10px; background:var(--soft); color:var(--ink); border:1px solid var(--line);
+  border-radius:10px; padding:10px 14px; font:inherit; font-weight:600;
+  text-align:left; cursor:pointer; margin-top:8px; }
+#gbp-section .acc:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+#gbp-section .acc .chev{ transition:transform .25s ease; flex:none; }
+#gbp-section .acc[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+#gbp-section .panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .panel.open{ grid-template-rows:1fr; }
+#gbp-section .panel > div{ overflow:hidden; }
+#gbp-section .panel-in{ padding:12px 4px 4px; font-size:.95rem; }
+#gbp-section .panel-in strong{ background:#fff3c4; padding:0 2px; border-radius:2px; }
+@media (prefers-color-scheme:dark){ #gbp-section .panel-in strong{ background:#4a3a00; } }
+#gbp-section .timeline{ list-style:none; margin:0; padding:0 0 0 16px; border-left:2px solid var(--blue); }
+#gbp-section .timeline li{ margin:0 0 14px; }
+#gbp-section .timeline li:last-child{ margin-bottom:0; }
+#gbp-section .timeline strong{ display:block; }
+#gbp-section .ftable{ width:100%; border-collapse:collapse; font-size:.95rem; }
+#gbp-section .ftable th{
+  background:var(--blue); color:#fff; font-weight:600; text-align:left;
+  padding:10px 12px; font-size:.82rem; text-transform:uppercase; letter-spacing:.05em; }
+#gbp-section .ftable th:nth-child(1){ width:44px; text-align:center; }
+#gbp-section .ftable th:nth-child(2){ width:74px; text-align:center; }
+#gbp-section .ftable td{ border-bottom:1px solid var(--line); vertical-align:middle; padding:0; }
+#gbp-section .ftable tr.row-main:hover{ background:var(--soft); }
+#gbp-section .ftable td.td-toggle{ text-align:center; padding:10px 0; cursor:pointer; user-select:none; }
+#gbp-section .ftable .plus{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:50%;
+  background:var(--blue); color:#fff; font-weight:700; font-size:1rem;
+  transition:transform .25s ease, background .15s ease; line-height:1; }
+#gbp-section .ftable tr.open .plus{ transform:rotate(45deg); background:var(--red); }
+#gbp-section .ftable td.td-num{
+  text-align:center; padding:10px 8px; font-weight:700; color:var(--blue);
+  font-variant-numeric:tabular-nums; font-size:1rem; }
+#gbp-section .ftable td.td-num .emoji{ font-size:.95rem; margin-left:2px; }
+#gbp-section .ftable td.td-title{ padding:10px 12px; font-weight:600; cursor:pointer; color:var(--ink); }
+#gbp-section .ftable tr.row-detail > td{
+  padding:0; border-bottom:1px solid var(--line); background:var(--soft); }
+#gbp-section .ftable .detail-wrap{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+#gbp-section .ftable tr.open + tr.row-detail .detail-wrap{ grid-template-rows:1fr; }
+#gbp-section .ftable .detail-wrap > div{ overflow:hidden; }
+#gbp-section .ftable .detail-in{ padding:14px 18px; font-size:.92rem; line-height:1.6; color:var(--ink); }
+#gbp-section .ftable .detail-in strong{ background:#fff3c4; padding:0 3px; border-radius:2px; }
+@media (prefers-color-scheme:dark){ #gbp-section .ftable .detail-in strong{ background:#4a3a00; } }
+#gbp-section .chart{ position:relative; height:340px; }
+#gbp-section .chart canvas{ width:100%!important; height:100%!important; }
+#gbp-section .note{ font-size:.82rem; color:var(--mute); margin:10px 0 0; }
+#gbp-section .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+#gbp-section .chip{ border:1px solid var(--line); border-left-width:4px; border-radius:8px;
+  padding:6px 10px; background:var(--soft); font-size:.85rem; }
+#gbp-section .chip b{ display:block; font-size:1rem; font-variant-numeric:tabular-nums; }
+#gbp-section .mmtable{ width:100%; border-collapse:collapse; font-size:.95rem; font-variant-numeric:tabular-nums; }
+#gbp-section .mmtable th{ text-align:left; padding:9px 10px; background:var(--blue); color:#fff; font-weight:600; }
+#gbp-section .mmtable th:not(:first-child),#gbp-section .mmtable td:not(:first-child){ text-align:right; }
+#gbp-section .mmtable td{ padding:9px 10px; border-bottom:1px solid var(--line); }
+#gbp-section .mmtable td.big{ font-size:1.15rem; font-weight:700; }
+#gbp-section .up{ color:var(--green); } #gbp-section .dn{ color:var(--red); }
+#gbp-section .kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+#gbp-section .kpi{ background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+#gbp-section .kpi .lbl{ font-size:.75rem; color:var(--mute); text-transform:uppercase; letter-spacing:.03em; }
+#gbp-section .kpi .val{ font-size:1.5rem; font-weight:700; font-variant-numeric:tabular-nums; color:var(--blue); }
+#gbp-section .kpi .sub{ font-size:.78rem; color:var(--mute); }
+
+
+/* ============================================================
+   SECCIÓN DE GRÁFICO COMERCIAL (.trade-chart-section)
+   (Corresponde al <style> dentro del div .trade-chart-section)
+   ============================================================ */
+
+.trade-chart-section {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: transparent;
+    color: #222;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.trade-chart-section .chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #111;
+}
+.trade-chart-section .chart-sub {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 20px;
+}
+.trade-chart-section .chart-area {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 380px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    padding: 0 10px 0 10px;
+    margin-bottom: 10px;
+}
+.trade-chart-section .bar-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    position: relative;
+    width: 22%;
+}
+.trade-chart-section .bar {
+    flex: 1;
+    position: relative;
+    border-radius: 2px 2px 0 0;
+    transition: height .4s ease;
+}
+.trade-chart-section .bar.out {
+    background: linear-gradient(to top, #1b7a3d, #4caf50);
+}
+.trade-chart-section .bar.in {
+    background: linear-gradient(to top, #a11d1d, #e53935);
+}
+.trade-chart-section .bar .num {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.trade-chart-section .bar.out .num { color: #1b7a3d; }
+.trade-chart-section .bar.in .num  { color: #a11d1d; }
+.trade-chart-section .bar .year {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: rgba(255,255,255,.85);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+.trade-chart-section .balance-line {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+.trade-chart-section .balance-line .line {
+    width: 90%;
+    height: 2px;
+    background: #444;
+    border-radius: 2px;
+}
+.trade-chart-section .balance-line .bal-label {
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 2px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+.trade-chart-section .bal-label.neg { color: #c62828; }
+.trade-chart-section .bal-label.pos { color: #2e7d32; }
+.trade-chart-section .pair-name {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 6px;
+    letter-spacing: .5px;
+}
+.trade-chart-section .volume-flag {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #0d47a1;
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin: 6px auto 0 auto;
+    width: fit-content;
+    white-space: nowrap;
+}
+.trade-chart-section .legend {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    margin: 14px 0 6px 0;
+    flex-wrap: wrap;
+}
+.trade-chart-section .legend .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.trade-chart-section .dot.g  { background: #2e7d32; }
+.trade-chart-section .dot.r  { background: #c62828; }
+.trade-chart-section .dot.ln { background: #444; height: 2px; width: 16px; }
+.trade-chart-section .toggle-btn {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+.trade-chart-section .toggle-btn:hover { background: #e8e8e8; }
+.trade-chart-section .data-table-wrap {
+    display: none;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+.trade-chart-section .data-table-wrap.open { display: block; }
+.trade-chart-section table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.trade-chart-section table th,
+.trade-chart-section table td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: right;
+}
+.trade-chart-section table th {
+    background: #f0f0f0;
+    font-weight: 700;
+    text-align: center;
+}
+.trade-chart-section table td:first-child,
+.trade-chart-section table th:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+.trade-chart-section table tr:nth-child(even) { background: #fafafa; }
+.trade-chart-section .neg { color: #c62828; font-weight: 700; }
+.trade-chart-section .pos { color: #2e7d32; font-weight: 700; }
+
+/* ============================================================
+   SECCIÓN DÓLAR AMERICANO (#USD-Dolar-Americano-variables)
+   (Múltiples bloques <style> con el mismo ID, se han unificado)
+   ============================================================ */
+
+#USD-Dolar-Americano-variables {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+}
+#USD-Dolar-Americano-variables * { box-sizing: border-box; }
+#USD-Dolar-Americano-variables .header {
+    text-align: center;
+    padding: 16px;
+    background: #111;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+#USD-Dolar-Americano-variables .table-wrap {
+    overflow-x: auto;
+    border: 1px solid #eee;
+    border-radius: 0 0 12px 12px;
+}
+#USD-Dolar-Americano-variables table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+#USD-Dolar-Americano-variables th {
+    background: #111;
+    color: #fff;
+    padding: 10px 8px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+}
+#USD-Dolar-Americano-variables td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+#USD-Dolar-Americano-variables tr:hover { background: #f7f7f7; }
+#USD-Dolar-Americano-variables .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+#USD-Dolar-Americano-variables .green { background: #27ae6022; color: #1e8449; border: 1px solid #27ae60; }
+#USD-Dolar-Americano-variables .yellow { background: #fef9e7; }
+#USD-Dolar-Americano-variables .black { background: #111; color: #fff; }
+#USD-Dolar-Americano-variables .btn {
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    transition: 0.2s;
+}
+#USD-Dolar-Americano-variables .btn:hover { background: #333; transform: scale(1.05); }
+#USD-Dolar-Americano-variables .detail-row { display: none; background: #fbfbfb; }
+#USD-Dolar-Americano-variables .detail-row.open { display: table-row; animation: slide 0.3s ease; }
+#USD-Dolar-Americano-variables .detail-content { padding: 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+#USD-Dolar-Americano-variables .box { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; }
+#USD-Dolar-Americano-variables .box h4 { font-size: 11px; color: #666; margin-bottom: 4px; text-transform: uppercase; }
+#USD-Dolar-Americano-variables .box p { font-size: 11.5px; line-height: 1.4; }
+@media(max-width:700px){ #USD-Dolar-Americano-variables .detail-content{ grid-template-columns:1fr; } }
+@keyframes slide { from{opacity:0; transform:translateX(20px)} to{opacity:1; transform:translateX(0)} }
+
+/* --- Estilos del Gráfico de Dispersión (SVG) --- */
+#USD-Dolar-Americano-variables .chart-wrap { padding: 10px 10px 0 10px; }
+#USD-Dolar-Americano-variables .chart-wrap svg { display: block; width: 100%; height: auto; }
+#USD-Dolar-Americano-variables .grid { stroke: #1a1a1a; stroke-width: 1; }
+#USD-Dolar-Americano-variables .axis { fill: #64748b; font-size: 11px; }
+#USD-Dolar-Americano-variables .bubble { transition: fill-opacity .18s, stroke-width .18s; cursor: pointer; }
+#USD-Dolar-Americano-variables .bubble:hover { fill-opacity: .50; stroke-width: 3; }
+#USD-Dolar-Americano-variables .legend { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 4px 12px 14px; font-size: 10px; color: #94a3b8; letter-spacing: .5px; }
+#USD-Dolar-Americano-variables .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+#USD-Dolar-Americano-variables .toggle {
+    display: block;
+    width: 100%;
+    background: #111;
+    border: none;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    color: #7FFF00;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    padding: 13px;
+    cursor: pointer;
+    text-align: center;
+}
+#USD-Dolar-Americano-variables .toggle:hover { background: #161616; color: #7FFFD4; }
+#USD-Dolar-Americano-variables .tabla-wrap { display: none; overflow-x: auto; }
+#USD-Dolar-Americano-variables .var { color: #7FFFD4; font-weight: 800; }
+#USD-Dolar-Americano-variables .lime { color: #7FFF00; font-weight: 700; }
+#USD-Dolar-Americano-variables .fucsia { color: #FF00FF; }
+#USD-Dolar-Americano-variables .rojo { color: #FF4444; }
+#USD-Dolar-Americano-variables .aqua { color: #7FFFD4; }
+#USD-Dolar-Americano-variables .badge-lime { background: #7FFF00; color: #000; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 900; }
+#USD-Dolar-Americano-variables .badge-fucsia { background: #FF00FF; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 900; }
+#USD-Dolar-Americano-variables .badge-aqua { background: #7FFFD4; color: #000; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 900; }
+#USD-Dolar-Americano-variables .badge-rojo { background: #FF4444; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 900; }
+
+
+/* ============================================================
+   SECCIÓN ANÁLISIS DE FUERZA USD (#analisis-fuerza-usd)
+   ============================================================ */
+
+#analisis-fuerza-usd {
+    margin: 0 auto 90px auto;
+    max-width: 100%;
+    width: 100%;
+    background: transparent !important;
+    font-family: ui-monospace, monospace;
+    padding: 24px 10px;
+    border: 1px solid #222;
+    border-radius: 16px;
+    overflow: hidden;
+    isolation: isolate;
+}
+#analisis-fuerza-usd .btn-detalles {
+    display: inline-flex;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #7FFFD4;
+    color: #7FFFD4;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 12px;
+    font-family: inherit;
+    transition: all .2s;
+}
+#analisis-fuerza-usd .btn-detalles:hover {
+    background: rgba(127, 255, 212, 0.12);
+    box-shadow: 0 0 12px rgba(127, 255, 212, 0.35);
+}
+#analisis-fuerza-usd .hidden-table {
+    display: none;
+    overflow-x: auto;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 14px;
+}
+#analisis-fuerza-usd .hidden-table.show { display: block; }
+#analisis-fuerza-usd table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    background: transparent !important;
+    font-size: 11px;
+    white-space: nowrap;
+}
+#analisis-fuerza-usd th {
+    background: transparent !important;
+    color: #FFA500;
+    padding: 10px 14px;
+    border-bottom: 2px solid #FFA500;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+#analisis-fuerza-usd td {
+    background: transparent !important;
+    padding: 7px 14px;
+    border-bottom: 1px solid #1e1e1e;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+#analisis-fuerza-usd .pair {
+    color: #FFA500;
+    font-weight: 900;
+    position: sticky;
+    left: 0;
+    background: rgba(0, 0, 0, 0.85) !important;
+    border-right: 1px solid #FFA500;
+    text-align: left;
+    padding-left: 14px;
+}
+#analisis-fuerza-usd .tipo {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 5px 8px;
+    border-right: 1px solid #1e1e1e;
+    letter-spacing: .5px;
+}
+#analisis-fuerza-usd .chart-wrap {
+    margin-top: 22px;
+    background: transparent !important;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 12px;
+    overflow-x: auto;
+}
+#analisis-fuerza-usd .chart-inner {
+    min-width: 950px;
+    height: 440px;
+    position: relative;
+}
+#analisis-fuerza-usd h2 {
+    color: #FFA500;
+    font-size: 14px;
+    margin: 0 0 16px 0;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+}
+#analisis-fuerza-usd .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px dashed #1e1e1e;
+    border-radius: 12px;
+    font-size: 10px;
+}
+#analisis-fuerza-usd .legend .item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #7FFFD4;
+}
+#analisis-fuerza-usd .legend .sw {
+    width: 18px;
+    height: 2px;
+    display: inline-block;
+    background: currentColor;
+}
+#analisis-fuerza-usd .legend .sw.dash {
+    background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 9px);
+}
+#analisis-fuerza-usd .legend .wick {
+    width: 2px;
+    height: 12px;
+    display: inline-block;
+    background: currentColor;
+}
+
+/* ============================================================
+   SECCIÓN SPREADS DE BONOS (#spread-10anos-usd)
+   ============================================================ */
+
+#spread-10anos-usd {
+    /* Estilos generales para el contenedor */
+}
+
+/* ============================================================
+   SECCIÓN EURO 12 VARIABLES (#Euro-12-Variables-Paises)
+   ============================================================ */
+
+#Euro-12-Variables-Paises {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 90px auto !important;
+    background: transparent !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #e0e0e0;
+}
+#Euro-12-Variables-Paises .header {
+    color: #7FFFD4;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    padding: 14px 12px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    user-select: none;
+}
+#Euro-12-Variables-Paises .header .icon {
+    color: #7FFF00;
+    margin-right: 8px;
+    font-weight: 900;
+}
+#Euro-12-Variables-Paises .sub {
+    color: #FF6B6B;
+    font-size: 10px;
+    text-align: center;
+    padding: 6px 0 14px 0;
+    letter-spacing: .5px;
+}
+#Euro-12-Variables-Paises .table-wrap {
+    display: none;
+    overflow-x: auto;
+    margin-top: 16px;
+    border: 1px solid #222;
+    border-radius: 10px;
+}
+#Euro-12-Variables-Paises .table-wrap.open { display: block; }
+#Euro-12-Variables-Paises table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    min-width: 900px;
+    font-size: 11.5px;
+}
+#Euro-12-Variables-Paises th {
+    background: transparent !important;
+    color: #7FFF00;
+    padding: 10px 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #7FFF00;
+    text-align: left;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+}
+#Euro-12-Variables-Paises td {
+    background: transparent !important;
+    border: none;
+    border-bottom: 1px solid #1e1e1e;
+    padding: 10px 8px;
+    vertical-align: top;
+    line-height: 1.6;
+}
+#Euro-12-Variables-Paises tr { background: transparent !important; }
+#Euro-12-Variables-Paises .var { color: #7FFFD4; font-weight: 700; font-size: 11px; display: block; }
+#Euro-12-Variables-Paises .lime { color: #7FFF00; font-weight: 800; }
+#Euro-12-Variables-Paises .fucsia { color: #FF00FF; font-weight: 700; }
+#Euro-12-Variables-Paises .cobre { color: #FF8C42; font-weight: 700; }
+#Euro-12-Variables-Paises .rojo { color: #FF1744; font-weight: 700; }
+#Euro-12-Variables-Paises .aqua { color: #7FFFD4; font-weight: 600; }
+#Euro-12-Variables-Paises .expandable { cursor: pointer; }
+#Euro-12-Variables-Paises .expandable:hover { background: #111 !important; }
+#Euro-12-Variables-Paises .detail-row { display: none; }
+#Euro-12-Variables-Paises .detail-row.open { display: table-row; }
+#Euro-12-Variables-Paises .detail-content {
+    padding: 12px;
+    background: #0d0d0d;
+    border-left: 3px solid #7FFF00;
+}
+#Euro-12-Variables-Paises .pais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 8px;
+}
+#Euro-12-Variables-Paises .pais-item {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+#Euro-12-Variables-Paises .pais-item .nombre {
+    color: #7FFF00;
+    font-weight: 700;
+    font-size: 10px;
+    display: block;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+#Euro-12-Variables-Paises .pais-item .valor {
+    color: #e0e0e0;
+    font-size: 11px;
+    line-height: 1.4;
+}
+#Euro-12-Variables-Paises .pais-item .nota {
+    color: #64748b;
+    font-size: 9.5px;
+    display: block;
+    margin-top: 2px;
+}
+@media(max-width:600px){
+  #Euro-12-Variables-Paises .pais-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   SECCIÓN ÍNDICES INDUSTRIALES ZONA EURO (#indices-industriales-zona-euro)
+   ============================================================ */
+
+#indices-industriales-zona-euro {
+    margin: 0 0 80px 0;
+    padding: 20px;
+    background: #0a0a0a;
+    border-radius: 16px;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #e0e0e0;
+    border: 1px solid #222;
+}
+#indices-industriales-zona-euro * { box-sizing: border-box; }
+#indices-industriales-zona-euro .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 18px;
+}
+#indices-industriales-zona-euro .header h2 {
+    color: #7FFFD4;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+#indices-industriales-zona-euro .header h2 span {
+    color: #FF00FF;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+#indices-industriales-zona-euro .toggle-btn {
+    background: #111;
+    color: #7FFF00;
+    border: 1px solid #7FFF00;
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+#indices-industriales-zona-euro .toggle-btn:hover {
+    background: #1a1a1a;
+    box-shadow: 0 0 16px rgba(127, 255, 0, 0.25);
+    transform: scale(1.02);
+}
+#indices-industriales-zona-euro .toggle-btn .icon {
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+#indices-industriales-zona-euro .toggle-btn.open .icon { transform: rotate(45deg); }
+#indices-industriales-zona-euro .table-container {
+    display: none;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #1a1a1a;
+    background: #0f0f0f;
+    margin-bottom: 28px;
+    animation: fadeSlide 0.35s ease;
+}
+#indices-industriales-zona-euro .table-container.visible { display: block; }
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#indices-industriales-zona-euro .table-container table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-family: inherit;
+}
+#indices-industriales-zona-euro .table-container th {
+    background: #111;
+    color: #7FFF00;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #7FFF00;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+}
+#indices-industriales-zona-euro .table-container td {
+    padding: 10px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #d0d0d0;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+#indices-industriales-zona-euro .table-container tr:hover td { background: #151515; }
+#indices-industriales-zona-euro .country-flag { font-size: 16px; margin-right: 4px; }
+#indices-industriales-zona-euro .ticker { color: #FF00FF; font-weight: 700; font-size: 11px; }
+#indices-industriales-zona-euro .val-positive { color: #7FFFD4; font-weight: 700; }
+#indices-industriales-zona-euro .val-negative { color: #FF4444; font-weight: 700; }
+#indices-industriales-zona-euro .chart-section {
+    margin-top: 10px;
+    padding: 18px 12px 12px 12px;
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 14px;
+}
+#indices-industriales-zona-euro .chart-section h3 {
+    color: #7FFFD4;
+    font-size: 14px;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 4px;
+}
+#indices-industriales-zona-euro .chart-section h3 small {
+    color: #FF00FF;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+#indices-industriales-zona-euro .chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    margin-top: 12px;
+}
+#indices-industriales-zona-euro .chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+#indices-industriales-zona-euro .chart-legend-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 12px 6px 4px 6px;
+    font-size: 11px;
+    color: #888;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 14px;
+}
+#indices-industriales-zona-euro .chart-legend-note .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+@media (max-width: 700px) {
+    #indices-industriales-zona-euro { padding: 12px 8px 16px 8px; }
+    #indices-industriales-zona-euro .header h2 { font-size: 15px; }
+    #indices-industriales-zona-euro .header h2 span { display: none; }
+    #indices-industriales-zona-euro .toggle-btn { font-size: 11px; padding: 6px 14px; }
+    #indices-industriales-zona-euro .chart-wrapper { height: 300px; }
+    #indices-industriales-zona-euro .table-container table { min-width: 900px; font-size: 10.5px; }
+    #indices-industriales-zona-euro .table-container th,
+    #indices-industriales-zona-euro .table-container td { padding: 8px 6px; }
+}
+@media (max-width: 450px) {
+    #indices-industriales-zona-euro .chart-wrapper { height: 240px; }
+    #indices-industriales-zona-euro .header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================================
+   SECCIÓN BITCOIN (#Bitcoin-Esencial-Analisis)
+   ============================================================ */
+
+#Bitcoin-Esencial-Analisis {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 20px;
+}
+#Bitcoin-Esencial-Analisis table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    background: transparent;
+}
+#Bitcoin-Esencial-Analisis th,
+#Bitcoin-Esencial-Analisis td {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: #e0e0e0;
+    background: transparent;
+    padding: 10px 12px;
+    border: 1px solid #333;
+    text-align: left;
+    line-height: 1.5;
+}
+#Bitcoin-Esencial-Analisis .title {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: #e0e0e0;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 12px;
+}
+
+/* ============================================================
+   ESTILOS ADICIONALES (Fuentes, utilidades)
+   ============================================================ */
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
