@@ -1934,56 +1934,54 @@ tbody tr:hover { background: rgba(0, 212, 170, 0.12); }
 }
 
 /* ============================================================
-   SECCIÓN BITCOIN - SIN BACKGROUND, TRANSPARENTE
+   #Bitcoin-Esencial-Analisis - FINAL
+   Sin background / Verde Lima + Dorado Oro / Títulos Aquamarine
    ============================================================ */
 
 #Bitcoin-Esencial-Analisis {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: transparent; /* sin fondo */
-    color: #00FF88;
-    border: 1px solid #222;
-    border-radius: 16px;
-    padding: 20px;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid #222 !important;
+  color: #e0e0e0;
 }
 
-#Bitcoin-Esencial-Analisis table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 24px;
-    background: transparent; /* sin fondo */
-}
-
+#Bitcoin-Esencial-Analisis table,
+#Bitcoin-Esencial-Analisis tr,
 #Bitcoin-Esencial-Analisis th,
 #Bitcoin-Esencial-Analisis td {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 12px 14px;
-    border: 1px solid #222;
-    text-align: left;
-    line-height: 1.6;
-    background: transparent !important; /* mata el blanco y el negro */
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
-/* Títulos y primera columna - DORADO */
+/* TÍTULOS - Aquamarine fluorescente */
 #Bitcoin-Esencial-Analisis th,
-#Bitcoin-Esencial-Analisis td:first-child,
 #Bitcoin-Esencial-Analisis .title {
-    color: #FFD60A !important;
+  color: #00FFD1 !important; /* Aquamarine */
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #333 !important;
 }
 
-/* Datos y segunda columna - VERDE NEÓN */
+/* COLUMNA VARIABLE - Amarillo Dorado Oro */
+#Bitcoin-Esencial-Analisis td:first-child {
+  color: #FFD60A !important; /* Dorado oro */
+}
+
+/* COLUMNA DATA - Verde Lima 🍋‍🟩 */
 #Bitcoin-Esencial-Analisis td:last-child {
-    color: #00FF88 !important;
-    font-weight: 600;
-    text-align: right;
+  color: #7FFF00 !important; /* Verde Lima */
+  font-weight: 600;
+  text-align: right;
 }
 
-/* Mata la cebra definitivamente */
+/* Uniforme total - mata la cebra blanca/negra para siempre */
 #Bitcoin-Esencial-Analisis tr:nth-child(even),
 #Bitcoin-Esencial-Analisis tr:nth-child(odd) {
-    background: transparent !important;
+  background: transparent !important;
+}
+
+#Bitcoin-Esencial-Analisis td {
+  border: 1px solid #222 !important;
+  padding: 12px 14px !important;
 }
